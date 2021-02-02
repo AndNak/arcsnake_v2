@@ -1,5 +1,7 @@
 import os
 import can
+from datetime import datetime
+from pyinstrument import Profiler
 
 def init():
     os.system('sudo ifconfig can0 down')
@@ -8,6 +10,15 @@ def init():
 
 def readBytes(high_byte, low_byte):
     return high_byte*256 + low_byte
+
+def writeBytes(amt):
+    return amt // 256, amt % 256
+
+def toDegrees(enc_position):
+    return (360 * enc_position)/16384
+
+def toEncoderBit(degree_position):
+    return (16384 * degree_position)/360
 
 def send(arb_id, data):
     can0 = can.interface.Bus(channel='can0', bustype='socketcan_ctypes')
@@ -21,11 +32,14 @@ def read_encoder():
     msg = send(0x141, [0x90, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
     data = msg.data
 
-    print(msg)
-    print("cmd_byte = " + str(data[0]))
-    print("new_pos = " + str(readBytes(data[3], data[2])))
-    print("orig_pos = " + str(readBytes(data[5], data[4])))
-    print("offset = " + str(readBytes(data[7], data[6])))
+    # print(msg)
+    # print("cmd_byte = " + str(data[0]))
+    new_pos = readBytes(data[3], data[2])
+    # print("new_pos = " + str(new_pos))
+    # print("orig_pos = " + str(readBytes(data[5], data[4])))
+    # print("offset = " + str(readBytes(data[7], data[6])))
+
+    return new_pos
 
 def motor_running():
     msg = send(0x141, [0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
@@ -76,20 +90,41 @@ def cleanup():
 if __name__ == '__main__':
     init()
 
-    data0 = 0xa3
+    data0 = 0x19
     data1 = 0x00
     data2 = 0x00
     data3 = 0x00
-    data4 = 0x10
+    data4 = 0x00
     data5 = 0x00
     data6 = 0x00
     data7 = 0x00
     data = [data0, data1, data2, data3, data4, data5, data6, data7]
     # send(0x141, data)
+    
+    ### profiler ###
+    # profiler = Profiler()
+    # profiler.start()
+
+    # for i in range 1000:
+    #     read_encoder()
+
+    # profiler.stop()
+    # print(profiler.output_text(unicode=True, color=True))
+    ###
+
+    # m, l = writeBytes(10)
+    # orig = read_encoder()
+
+    # pos_ctrl(l, m, 0, 0)
+    new = read_encoder()
+    print("degree: %d" % ((360 * new)/16384))
+    # print("diff: " + str(new - orig))
+    
     # write_PID(0x80, 0x00, 0x20, 0x00, 0x20, 0x00)
-    read_encoder()
+    # read_encoder()
     # read_PID()
     # motor_stop()
+    # read_encoder()
     # motor_running()
 
     # cleanup()
