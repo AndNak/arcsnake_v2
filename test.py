@@ -21,11 +21,11 @@ def toEncoderBit(degree_position):
     return (16384 * degree_position)/360
 
 def send(arb_id, data):
-    can0 = can.interface.Bus(channel='can0', bustype='socketcan_ctypes')
+    canBus = can.interface.Bus(channel='can0', bustype='socketcan_ctypes')
 
     msg = can.Message(arbitration_id=arb_id, data=data, extended_id=False)
-    can0.send(msg)
-    msg = can0.recv()
+    canBus.send(msg)
+    msg = canBus.recv()
     return msg
 
 def read_encoder():
@@ -35,9 +35,9 @@ def read_encoder():
     # print(msg)
     # print("cmd_byte = " + str(data[0]))
     new_pos = readBytes(data[3], data[2])
-    # print("new_pos = " + str(new_pos))
-    # print("orig_pos = " + str(readBytes(data[5], data[4])))
-    # print("offset = " + str(readBytes(data[7], data[6])))
+    # print("new_pos = " + str(toDegrees(new_pos)))
+    # print("orig_pos = " + str(toDegrees(readBytes(data[5], data[4]))))
+    # print("offset = " + str(toDegrees(readBytes(data[7], data[6]))))
 
     return new_pos
 
@@ -90,27 +90,29 @@ def cleanup():
 if __name__ == '__main__':
     init()
 
-    data0 = 0x19
+    data0 = 0xa3
     data1 = 0x00
     data2 = 0x00
     data3 = 0x00
     data4 = 0x00
-    data5 = 0x00
+    data5 = 0x41
     data6 = 0x00
     data7 = 0x00
     data = [data0, data1, data2, data3, data4, data5, data6, data7]
+    pos_ctrl(data4, data5, data6, data7)
     # send(0x141, data)
-    
+
     ### profiler ###
     # profiler = Profiler()
     # profiler.start()
 
-    # for i in range 1000:
-    #     read_encoder()
+    # for i in range(1000):
+    #     read_encoder(can)
 
     # profiler.stop()
     # print(profiler.output_text(unicode=True, color=True))
     ###
+    # read_encoder()
 
     # m, l = writeBytes(10)
     # orig = read_encoder()
