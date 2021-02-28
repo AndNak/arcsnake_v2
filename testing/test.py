@@ -15,11 +15,11 @@ def readBytes(high_byte, low_byte):
 def writeBytes(amt):
     return int(amt // 256), int(amt % 256)
 
-def toDegrees(enc_position):
-    return (360 * enc_position)/16384
+# def toDegrees(enc_position):
+#     return (360 * enc_position)/16384
 
-def toEncoderBit(degree_position):
-    return (16384 * degree_position)/360
+# def toEncoderBit(degree_position):
+#     return (16384 * degree_position)/360
 
 def send(arb_id, data):
     canBus = can.interface.Bus(channel='can0', bustype='socketcan_ctypes')
@@ -127,34 +127,35 @@ if __name__ == '__main__':
     ###
     # read_encoder()
     
-    # to_angle = 180
+    to_angle = 180
     # The least significant bit represents 0.01 degrees per second.
-    # m, l = writeBytes(100*to_angle)
+    m, l = writeBytes(100*to_angle)
     # orig = read_encoder()
 
-    # pos_ctrl(l, m, 0, 0)
-    # new = read_encoder()
-    # print("degree: %d" % ((360 * new)/16384))
+    pos_ctrl(l, m, 0, 0)
+    new = read_encoder()
+    print("degree: %d" % (new*360/15800))
+    # motor_stop()
     # print("diff: " + str(new - orig))
-    start = datetime.now()
+    # start = datetime.now()
     
-    while (True):
-        try:
-            time_since_start = datetime.now() - start
+    # while (True):
+    #     try:
+    #         time_since_start = datetime.now() - start
             
-            amp = 50.0
-            freq = 1
+    #         amp = 50.0
+    #         freq = 1
 
-            to_angle = 50+ amp * math.sin(time_since_start.total_seconds() * freq * math.pi)
-            # The least significant bit represents 0.01 degrees per second.
-            m, l = writeBytes(100*to_angle)
-            # print("to_angle is " + str(to_angle))
-            # print("m is " + str(m))
-            # print("l is " + str(l))
-            # print("---------------------")
-            pos_ctrl(l, m, 0, 0)
-        except KeyboardInterrupt:
-            motor_stop()
-            break
+    #         to_angle = 50+ amp * math.sin(time_since_start.total_seconds() * freq * math.pi)
+    #         # The least significant bit represents 0.01 degrees per second.
+    #         m, l = writeBytes(100*to_angle)
+    #         # print("to_angle is " + str(to_angle))
+    #         # print("m is " + str(m))
+    #         # print("l is " + str(l))
+    #         # print("---------------------")
+    #         pos_ctrl(l, m, 0, 0)
+    #     except KeyboardInterrupt:
+    #         motor_stop()
+    #         break
 
     # cleanup()

@@ -19,10 +19,8 @@ class CanMotor:
 
     def read_encoder(self):
         msg = self.send(0x141, [0x90, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
-        data = msg.data
-
-        new_pos = self.utils.readBytes(data[3], data[2])
-        return self.utils.toDegrees(new_pos)
+        # encoder current position: msg.data[3] == high byte, msg.data[2] == low byte
+        return self.utils.toDegrees(self.utils.readBytes(msg.data[3], msg.data[2]))
 
     def pos_ctrl(self, to_angle):
         if (to_angle < 0 or to_angle >= 256):

@@ -52,12 +52,12 @@ if __name__ == "__main__":
             z.append(to_angle)
             screw.pos_ctrl(to_angle)
 
-            y.append(screw.read_encoder())
             # y.append(utils.toDegrees(utils.readBytes(m,l)))
+            y.append(screw.read_encoder())
 
             loop_dur = datetime.now() - start - time_since_start
             # 20ms for each loop
-            time.sleep(0.03 - loop_dur.total_seconds())
+            time.sleep(0.01 - loop_dur.total_seconds())
         except KeyboardInterrupt or ValueError:
             break
 
