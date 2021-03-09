@@ -102,15 +102,15 @@ def cleanup():
 if __name__ == '__main__':
     init()
 
-    data0 = 0xa3
-    data1 = 0x00
-    data2 = 0x00
-    data3 = 0x00
-    data4 = 0x01
-    data5 = 0xF4
-    data6 = 0x00
-    data7 = 0x00
-    data = [data0, data1, data2, data3, data4, data5, data6, data7]
+    # data0 = 0xa3
+    # data1 = 0x00
+    # data2 = 0x00
+    # data3 = 0x00
+    # data4 = 0x01
+    # data5 = 0xF4
+    # data6 = 0x00
+    # data7 = 0x00
+    # data = [data0, data1, data2, data3, data4, data5, data6, data7]
     # pos_ctrl(data4, data5, data6, data7)
     # speed_ctrl(data4, data5, data6, data7)
     # send(0x141, data)
@@ -127,12 +127,13 @@ if __name__ == '__main__':
     ###
     # read_encoder()
     
-    to_angle = 180
+    to_angle = 539
     # The least significant bit represents 0.01 degrees per second.
     m, l = writeBytes(100*to_angle)
     # orig = read_encoder()
 
-    pos_ctrl(l, m, 0, 0)
+    # pos_ctrl(l, m, 0, 0)
+    speed_ctrl(l, m, 0, 0)
     new = read_encoder()
     print("degree: %d" % (new*360/15800))
     # motor_stop()

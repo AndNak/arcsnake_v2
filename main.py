@@ -39,7 +39,7 @@ if __name__ == "__main__":
     y = []
     z = []
 
-    for i in range(200):
+    for i in range(400):
     # while (True):
         try:
             time_since_start = datetime.now() - start
@@ -57,13 +57,13 @@ if __name__ == "__main__":
 
             loop_dur = datetime.now() - start - time_since_start
             # 10ms for each loop
-            time.sleep(0.01 - loop_dur.total_seconds())
+            time.sleep(max(0, 0.01 - loop_dur.total_seconds()))
         except KeyboardInterrupt or ValueError:
             break
 
     screw.motor_stop()
-    plt.plot(x,y,'bo-')
-    plt.plot(x,z,'ro-')
+    plt.plot(x,y,'b-')
+    plt.plot(x,z,'r-')
     
     plt.xlabel('time')
     plt.ylabel('angle')
