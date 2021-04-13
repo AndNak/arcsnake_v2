@@ -12,7 +12,7 @@ def init():
 def readBytes(high_byte, low_byte):
     return high_byte*256 + low_byte
 
-def writeBytes(amt):
+def toBytes(amt):
     return int(amt // 256), int(amt % 256)
 
 # def toDegrees(enc_position):
@@ -129,7 +129,7 @@ if __name__ == '__main__':
     
     to_angle = 539
     # The least significant bit represents 0.01 degrees per second.
-    m, l = writeBytes(100*to_angle)
+    m, l = toBytes(100*to_angle)
     # orig = read_encoder()
 
     # pos_ctrl(l, m, 0, 0)
@@ -149,7 +149,7 @@ if __name__ == '__main__':
 
     #         to_angle = 50+ amp * math.sin(time_since_start.total_seconds() * freq * math.pi)
     #         # The least significant bit represents 0.01 degrees per second.
-    #         m, l = writeBytes(100*to_angle)
+    #         m, l = toBytes(100*to_angle)
     #         # print("to_angle is " + str(to_angle))
     #         # print("m is " + str(m))
     #         # print("l is " + str(l))

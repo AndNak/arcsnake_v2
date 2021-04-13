@@ -8,32 +8,32 @@ if __name__ == "__main__":
     utils = CanUtils()
     start = datetime.now()
     x = []
-    # a = []
-    b = []
-    # c = []
+    readvals = []
+    setpoints = []
 
-    to_val = 539
-    # The least significant bit represents 0.01 degrees per second.
-    m, l = utils.writeBytes(100*to_val)
-    screw.speed_ctrl(l, m, 0, 0)
+    to_val = 450
+    screw.speed_ctrl(to_val)
 
     for i in range(5000):
         try:
+            if (i % 1000 == 0):
+                to_val += 100
+                screw.speed_ctrl(to_val)
+
             time_since_start = datetime.now() - start
             x.append(time_since_start.total_seconds())
 
-            (torque, speed, position) = screw.read_motor_status()
-            # y.append(screw.read_encoder())
-            # a.append(torque)
-            b.append(speed)
-            # c.append(position)
-        except KeyboardInterrupt or ValueError:
+            (_, speed, _) = screw.read_motor_status()
+            readvals.append(speed)
+            setpoints.append(to_val)
+        except (KeyboardInterrupt, ValueError) as e:
+            print(e)
             break
 
     screw.motor_stop()
-    # plt.plot(x,a,'b')
-    plt.plot(x,b,'r')
-    # plt.plot(x,c,'g')
+    plt.plot(x,readvals,'r')
+    plt.plot(x,setpoints,'g')
+    plt.legend(["read vals", "setpoints"], loc="upper left")
     
     plt.xlabel('time')
     plt.ylabel('speed')

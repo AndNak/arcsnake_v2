@@ -46,7 +46,7 @@ if __name__ == "__main__":
             x.append(time_since_start.total_seconds())
             
             amp = 30.0
-            freq = 1
+            freq = 0.1
             to_angle = 40+amp * math.sin(time_since_start.total_seconds() * freq * math.pi)
             
             z.append(to_angle)
@@ -58,7 +58,8 @@ if __name__ == "__main__":
             loop_dur = datetime.now() - start - time_since_start
             # 10ms for each loop
             time.sleep(max(0, 0.01 - loop_dur.total_seconds()))
-        except KeyboardInterrupt or ValueError:
+        except (KeyboardInterrupt, ValueError) as e:
+            print(e)
             break
 
     screw.motor_stop()

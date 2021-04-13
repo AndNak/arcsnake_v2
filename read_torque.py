@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     to_angle = 534
     # The least significant bit represents 0.01 degrees per second.
-    h, l = utils.writeBytes(to_angle)
+    h, l = utils.toBytes(to_angle)
     screw.torque_ctrl(l, h)
 
     for i in range(5000):
@@ -27,7 +27,8 @@ if __name__ == "__main__":
             a.append(torque)
             # b.append(speed)
             # c.append(position)
-        except KeyboardInterrupt or ValueError:
+        except (KeyboardInterrupt, ValueError) as e:
+            print(e)
             break
 
     screw.motor_stop()

@@ -8,31 +8,25 @@ if __name__ == "__main__":
     utils = CanUtils()
     start = datetime.now()
     x = []
-    # a = []
-    # b = []
     c = []
 
     to_angle = 539
     # The least significant bit represents 0.01 degrees per second.
-    m, l = utils.writeBytes(100*to_angle)
-    screw.speed_ctrl(l, m, 0, 0)
+    # m, l = utils.toBytes(100*to_angle)
+    screw.speed_ctrl(to_angle)
 
     for i in range(2000):
         try:
             time_since_start = datetime.now() - start
             x.append(time_since_start.total_seconds())
 
-            (torque, speed, position) = screw.read_motor_status()
-            # y.append(screw.read_encoder())
-            # a.append(torque)
-            # b.append(speed)
+            (_, _, position) = screw.read_motor_status()
             c.append(position)
-        except KeyboardInterrupt or ValueError:
+        except (KeyboardInterrupt, ValueError) as e:
+            print(e)
             break
 
     screw.motor_stop()
-    # plt.plot(x,a,'b')
-    # plt.plot(x,b,'r')
     plt.plot(x,c,'g')
     
     plt.xlabel('time')
