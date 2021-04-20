@@ -47,13 +47,11 @@ if __name__ == "__main__":
             
             to_vel = 4 * (math.pi**2) * math.cos(time_since_start.total_seconds() * 0.2 * math.pi)
             
-            z.append(utils.radToDeg(to_vel))
+            z.append(to_vel)
             screw.speed_ctrl(to_vel)
 
-            # y.append(screw.read_encoder())
             (_, speed, _) = screw.read_motor_status()
-            y.append(utils.radToDeg(speed))
-            print(str(utils.radToDeg(speed)))
+            y.append(speed)
 
             loop_dur = datetime.now() - start - time_since_start
             # 10ms for each loop
@@ -66,8 +64,8 @@ if __name__ == "__main__":
     plt.plot(x,y,'b-')
     plt.plot(x,z,'r-')
     
-    plt.xlabel('time')
-    plt.ylabel('speed')
+    plt.xlabel('time (s)')
+    plt.ylabel('speed (rad/s)')
     plt.legend(["encoder speed", "set speed"])
     plt.show()
 

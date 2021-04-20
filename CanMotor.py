@@ -55,9 +55,6 @@ class CanMotor:
         to_deg = 100 * self.utils.radToDeg(to_rad)
         byte1, byte2, byte3, byte4 = self.utils.toBytes(to_deg)
 
-        if (byte1 < 0 or byte1 >= 256):
-            raise ValueError("ValueError: to_deg = " + str(to_deg) + ": Must be in range [0,16777216]")
-
         self.send(0x141, [0xa3, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1])
 
     '''
@@ -67,10 +64,7 @@ class CanMotor:
     def speed_ctrl(self, to_rad):
         to_dps = 100 * self.utils.radToDeg(to_rad)
         byte1, byte2, byte3, byte4 = self.utils.toBytes(to_dps)
-
-        # if (byte1 < 0 or byte1 >= 256):
-        #     raise ValueError("ValueError: to_dps = " + str(to_dps) + ": Must be in range [0,16777216]")
-        
+ 
         msg = self.send(0x141, [0xa2, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1])
         return self.utils.degToRad(self.utils.readBytes(msg.data[5], msg.data[4]))
 

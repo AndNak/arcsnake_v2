@@ -1,29 +1,20 @@
 import math
-
-HEXBASE = 16
-TWOBYTE_VAL = HEXBASE * HEXBASE
+import numpy as np
 
 class CanUtils:
     # convert values from 2-byte hexadecimal to decimal
     def readBytes(self, high_byte, low_byte):
-        decimal_val = high_byte*256 + low_byte
-
-        if ((high_byte & 0x80) != 0):  # if MSB is 1
-            decimal_val = -1*(((decimal_val) ^ 0xffff) + 1)  # 2's complement
-        
+        decimal_val = np.int16(np.uint16((high_byte << 8) | low_byte))
         return decimal_val
 
-    # convert value from decimal to 2-byte hexadecimal
+    # convert value from decimal to 4-byte hexadecimal
     def toBytes(self, amt):
-        amt = int(amt)
+        amt = np.uint32(np.int32(amt))
 
-        if (amt < 0):
-            amt = ((-amt) ^ 0xffff) + 1  # 2's complement
-
-        byte1 = (amt & 0xf000) >> 12
-        byte2 = (amt & 0xf00)  >> 8
-        byte3 = (amt & 0xf0)   >> 4
-        byte4 = (amt & 0xf)
+        byte1 = np.uint8((amt & 0xff000000) >> 24)
+        byte2 = np.uint8((amt & 0xff0000) >> 16)
+        byte3 = np.uint8((amt & 0xff00) >> 8)
+        byte4 = np.uint8((amt & 0xff))
 
         return byte1, byte2, byte3, byte4
 
