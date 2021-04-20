@@ -20,12 +20,11 @@ class CanUtils:
         if (amt < 0):
             amt = ((-amt) ^ 0xffff) + 1  # 2's complement
 
-        byte1 = int(amt // (TWOBYTE_VAL ** 3))
-        amt = amt % (TWOBYTE_VAL ** 3)
-        byte2 = int(amt // (TWOBYTE_VAL ** 2))
-        amt = amt % (TWOBYTE_VAL ** 2)
-        byte3 = int(amt // TWOBYTE_VAL)
-        byte4 = int(amt % TWOBYTE_VAL)
+        byte1 = (amt & 0xf000) >> 12
+        byte2 = (amt & 0xf00)  >> 8
+        byte3 = (amt & 0xf0)   >> 4
+        byte4 = (amt & 0xf)
+
         return byte1, byte2, byte3, byte4
 
     # convert 14-bit encoder (range 0~16383) current position to degrees 
