@@ -39,21 +39,21 @@ if __name__ == "__main__":
     y = []
     z = []
 
-    for i in range(400):
+    for i in range(800):
     # while (True):
         try:
             time_since_start = datetime.now() - start
             x.append(time_since_start.total_seconds())
             
-            amp = 30.0
-            freq = 0.1
-            to_angle = 40+amp * math.sin(time_since_start.total_seconds() * freq * math.pi)
+            to_vel = 4 * (math.pi**2) * math.cos(time_since_start.total_seconds() * 0.2 * math.pi)
             
-            z.append(to_angle)
-            screw.pos_ctrl(to_angle)
+            z.append(utils.radToDeg(to_vel))
+            screw.speed_ctrl(to_vel)
 
-            # y.append(utils.toDegrees(utils.readBytes(m,l)))
-            y.append(screw.read_encoder())
+            # y.append(screw.read_encoder())
+            (_, speed, _) = screw.read_motor_status()
+            y.append(utils.radToDeg(speed))
+            print(str(utils.radToDeg(speed)))
 
             loop_dur = datetime.now() - start - time_since_start
             # 10ms for each loop
@@ -67,8 +67,8 @@ if __name__ == "__main__":
     plt.plot(x,z,'r-')
     
     plt.xlabel('time')
-    plt.ylabel('angle')
-    plt.legend(["encoder angle", "set angle"])
+    plt.ylabel('speed')
+    plt.legend(["encoder speed", "set speed"])
     plt.show()
 
     cleanup()

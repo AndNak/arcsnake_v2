@@ -1,6 +1,9 @@
 HEXBASE = 16
 TWOBYTE_VAL = HEXBASE * HEXBASE
-amt = 65536
+amt = -5
+
+if (amt < 0):
+    amt = ((-amt) ^ 0xffff) + 1  # 2's complement
 
 byte1 = int(amt // (TWOBYTE_VAL ** 3))
 amt = amt % (TWOBYTE_VAL ** 3)
