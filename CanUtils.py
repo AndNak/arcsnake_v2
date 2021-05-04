@@ -21,8 +21,7 @@ class CanUtils:
     # convert 14-bit encoder (range 0~16383) current position to degrees 
     # seems like 360 degrees = 15800 encoder bit value
     def toDegrees(self, enc_position):
-        return (enc_position*360/15800)
-        # return enc_position
+        return (enc_position*360/16383)
 
     # convert degrees to radians
     def degToRad(self, in_deg):

@@ -1,5 +1,6 @@
 import os
 import can
+import math
 from CanUtils import CanUtils
 
 class CanMotor:
@@ -36,7 +37,7 @@ class CanMotor:
 
         return (self.utils.encToAmp(torque), 
                 self.utils.degToRad(speed), 
-                self.utils.degToRad(position))
+                self.utils.degToRad(self.utils.toDegrees(position)))
 
     '''
     get just the position reading from the encoder
@@ -47,10 +48,14 @@ class CanMotor:
 
     '''
     sends the motor to position `to_rad` by converting from radians to degrees.
+    `to_rad` must be a positive value.
     actual position sent is in units of 0.01 deg/LSB (36000 == 360 deg).
     rotation direction is determined by the difference between the target pos and the current pos
     '''
     def pos_ctrl(self, to_rad):
+        if (to_rad < 0 or to_rad >= 2*math.pi):
+            raise ValueError("pos_ctrl: to_rad = " + str(to_rad) + ". Must be in range [0,2*pi).")
+        
         # The least significant bit represents 0.01 degrees per second.
         to_deg = 100 * self.utils.radToDeg(to_rad)
         byte1, byte2, byte3, byte4 = self.utils.toBytes(to_deg)

@@ -35,24 +35,22 @@ if __name__ == "__main__":
     utils = CanUtils()
     
     start = datetime.now()
-    x = []
-    y = []
-    z = []
-    time.sleep(5)
+    t = []
+    read_speeds = []
+    set_speeds = []
 
     for i in range(800):
         try:
             time_since_start = datetime.now() - start
-            x.append(time_since_start.total_seconds())
+            t.append(time_since_start.total_seconds())
             
-            to_pos = (-1) ** (2/(1/10*time_since_start.total_seconds())) * 2 * math.pi
-            print(to_pos)
-
-            z.append(to_pos)
-            screw.pos_ctrl(to_pos)
+            to_vel = 4 * (math.pi**2) * math.cos(time_since_start.total_seconds() * 0.2 * math.pi)
+            
+            set_speeds.append(to_vel)
+            screw.speed_ctrl(to_vel)
 
             (_, speed, _) = screw.read_motor_status()
-            y.append(speed)
+            read_speeds.append(2*speed)
 
             loop_dur = datetime.now() - start - time_since_start
             # 10ms for each loop
@@ -62,8 +60,8 @@ if __name__ == "__main__":
             break
 
     screw.motor_stop()
-    plt.plot(x,y,'b-')
-    plt.plot(x,z,'r-')
+    plt.plot(t,read_speeds,'b-')
+    plt.plot(t,set_speeds,'r-')
     
     plt.xlabel('time (s)')
     plt.ylabel('speed (rad/s)')

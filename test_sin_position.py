@@ -35,24 +35,22 @@ if __name__ == "__main__":
     utils = CanUtils()
     
     start = datetime.now()
-    x = []
-    y = []
-    z = []
-    time.sleep(5)
+    t = []
+    set_pos = []
+    read_pos = []
 
     for i in range(800):
         try:
             time_since_start = datetime.now() - start
-            x.append(time_since_start.total_seconds())
+            t.append(time_since_start.total_seconds())
             
-            to_pos = (-1) ** (2/(1/10*time_since_start.total_seconds())) * 2 * math.pi
+            to_pos = math.pi/2 + math.pi * math.sin(time_since_start.total_seconds() * 0.5 * math.pi/2)
             print(to_pos)
-
-            z.append(to_pos)
+            set_pos.append(to_pos)
             screw.pos_ctrl(to_pos)
 
-            (_, speed, _) = screw.read_motor_status()
-            y.append(speed)
+            pos = screw.read_encoder()
+            read_pos.append(pos)
 
             loop_dur = datetime.now() - start - time_since_start
             # 10ms for each loop
@@ -62,12 +60,14 @@ if __name__ == "__main__":
             break
 
     screw.motor_stop()
-    plt.plot(x,y,'b-')
-    plt.plot(x,z,'r-')
-    
-    plt.xlabel('time (s)')
-    plt.ylabel('speed (rad/s)')
-    plt.legend(["encoder speed", "set speed"])
-    plt.show()
+
+    if (len(t) == len(set_pos) and len(t) == len(read_pos)):
+        plt.plot(t,read_pos,'b-')
+        plt.plot(t,set_pos,'r-')
+        
+        plt.xlabel('time (s)')
+        plt.ylabel('position (rad)')
+        plt.legend(["encoder position", "set position"])
+        plt.show()
 
     cleanup()
