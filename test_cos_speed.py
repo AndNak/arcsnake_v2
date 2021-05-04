@@ -31,7 +31,8 @@ def profile(screw):
 if __name__ == "__main__":
     init()
 
-    screw = CanMotor()
+    screw = CanMotor(0x142)
+    joint = CanMotor()
     utils = CanUtils()
     
     start = datetime.now()
@@ -48,9 +49,10 @@ if __name__ == "__main__":
             
             set_speeds.append(to_vel)
             screw.speed_ctrl(to_vel)
+            joint.speed_ctrl(to_vel)
 
             (_, speed, _) = screw.read_motor_status()
-            read_speeds.append(2*speed)
+            read_speeds.append(speed)
 
             loop_dur = datetime.now() - start - time_since_start
             # 10ms for each loop
@@ -60,6 +62,7 @@ if __name__ == "__main__":
             break
 
     screw.motor_stop()
+    joint.motor_stop()
     plt.plot(t,read_speeds,'b-')
     plt.plot(t,set_speeds,'r-')
     

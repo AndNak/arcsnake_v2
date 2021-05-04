@@ -44,7 +44,7 @@ if __name__ == "__main__":
             time_since_start = datetime.now() - start
             t.append(time_since_start.total_seconds())
             
-            to_pos = math.pi/2 + math.pi * math.sin(time_since_start.total_seconds() * 0.5 * math.pi/2)
+            to_pos = math.pi + math.pi * math.sin(time_since_start.total_seconds() * 0.5 * math.pi/2)
             print(to_pos)
             set_pos.append(to_pos)
             screw.pos_ctrl(to_pos)
