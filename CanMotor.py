@@ -3,7 +3,7 @@ import can
 import math
 from CanUtils import CanUtils
 
-class CanMotor:
+class CanMotor(object):
     def __init__(self, gear_ratio, motor_id=0x141):
         self.canBus = can.interface.Bus(channel='can0', bustype='socketcan_ctypes')
         self.utils = CanUtils()

@@ -7,7 +7,7 @@ GEAR_RATIO = 1
 
 class CanScrewMotor(CanMotor):
     def __init__(self, motor_id=0x141):
-        super().__init__(GEAR_RATIO, motor_id)
+        super(CanScrewMotor, self).__init__(GEAR_RATIO, motor_id)
 
     def speed_ctrl(self, to_rad):
-        super().speed_ctrl(to_rad, MAX_SPEED)
+        super(CanScrewMotor, self).speed_ctrl(to_rad, MAX_SPEED)

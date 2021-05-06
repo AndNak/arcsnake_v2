@@ -30,7 +30,6 @@ def profile(screw):
 
 if __name__ == "__main__":
     init()
-
     
     joint1 = CanMotor(0x141)
     joint2 = CanMotor(0x142)
