@@ -4,13 +4,11 @@ import math
 from CanUtils import CanUtils
 
 class CanMotor:
-    def __init__(self, motor_id=0x141):
-        os.system('sudo ifconfig can0 down')
-        os.system('sudo ip link set can0 type can bitrate 1000000')
-        os.system('sudo ifconfig can0 up')
-
+    def __init__(self, gear_ratio, motor_id=0x141):
         self.canBus = can.interface.Bus(channel='can0', bustype='socketcan_ctypes')
         self.utils = CanUtils()
+        # TODO ACTUALLY USE THIS
+        self.gear_ratio = gear_ratio
         self.id = motor_id
 
     def send(self, arb_id, data):

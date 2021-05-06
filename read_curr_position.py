@@ -1,20 +1,19 @@
-from CanMotor import CanMotor
-from CanUtils import CanUtils
-import matplotlib.pyplot as plt
-from datetime import datetime
-import math
+from CanScrewMotor import CanScrewMotor
+from CanJointMotor import CanJointMotor
 
 if __name__ == "__main__":
-    screw = CanMotor()
-    utils = CanUtils()
-    screw.pos_ctrl(0)
+    joint1 = CanJointMotor(0x141)
+    joint2 = CanJointMotor(0x142)
+    screw = CanScrewMotor(0x143)
 
-    for i in range(5):
-        try:
-            position = screw.read_encoder()
-            print(position)
-        except (KeyboardInterrupt, ValueError) as e:
-            print(e)
-            break
+    try:
+        print(screw.read_encoder())
+        print(joint1.read_encoder())
+        print(joint2.read_encoder())
+    except (KeyboardInterrupt, ValueError) as e:
+        print(e)
+        break
 
     screw.motor_stop()
+    joint1.motor_stop()
+    joint2.motor_stop()
