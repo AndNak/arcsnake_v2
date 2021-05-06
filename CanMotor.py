@@ -4,10 +4,9 @@ import math
 from CanUtils import CanUtils
 
 class CanMotor(object):
-    def __init__(self, gear_ratio, motor_id=0x141):
-        self.canBus = can.interface.Bus(channel='can0', bustype='socketcan_ctypes')
+    def __init__(self, gear_ratio, motor_id):
+        self.canBus = can.ThreadSafeBus(channel='can0', bustype='socketcan_ctypes')
         self.utils = CanUtils()
-        # TODO ACTUALLY USE THIS
         self.gear_ratio = gear_ratio
         self.id = motor_id
 
@@ -70,7 +69,7 @@ class CanMotor(object):
         if to_rad > max_speed:
             to_rad = max_speed
 
-        to_dps = 100 * self.utils.radToDeg(to_rad)
+        to_dps = self.gear_ratio * 100 * self.utils.radToDeg(to_rad)
         byte1, byte2, byte3, byte4 = self.utils.toBytes(to_dps)
  
         msg = self.send([0xa2, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1])

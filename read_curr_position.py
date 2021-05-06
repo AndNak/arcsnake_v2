@@ -1,5 +1,4 @@
 import os
-# import can
 from CanJointMotor import CanJointMotor
 from CanScrewMotor import CanScrewMotor
 

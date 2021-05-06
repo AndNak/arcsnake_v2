@@ -7,7 +7,7 @@ MIN_POS = 0
 MAX_POS = 2*math.pi
 
 class CanJointMotor(CanMotor):
-    def __init__(self, motor_id=0x141):
+    def __init__(self, motor_id):
         super(CanJointMotor, self).__init__(GEAR_RATIO, motor_id)
 
     def pos_ctrl(self, to_rad):

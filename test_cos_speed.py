@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from pyinstrument import Profiler
 
-from CanMotor import CanMotor
+from CanJointMotor import CanJointMotor
+from CanScrewMotor import CanScrewMotor
 from CanUtils import CanUtils
 
 def init():
@@ -31,9 +32,9 @@ def profile(screw):
 if __name__ == "__main__":
     init()
     
-    joint1 = CanMotor(0x141)
-    joint2 = CanMotor(0x142)
-    screw = CanMotor(0x143)
+    joint1 = CanJointMotor(0x141)
+    # joint2 = CanJointMotor(0x142)
+    screw = CanScrewMotor(0x143)
     utils = CanUtils()
     
     start = datetime.now()
@@ -50,10 +51,13 @@ if __name__ == "__main__":
             
             set_speeds.append(to_vel)
             screw.speed_ctrl(to_vel)
+
+            (_, screw_speed, _) = screw.read_motor_status()
+            
             joint1.speed_ctrl(to_vel)
 
-            (_, speed, _) = screw.read_motor_status()
-            read_speeds.append(speed)
+            (_, joint_speed, _) = joint1.read_motor_status()
+            read_speeds.append(screw_speed)
 
             loop_dur = datetime.now() - start - time_since_start
             # 10ms for each loop
