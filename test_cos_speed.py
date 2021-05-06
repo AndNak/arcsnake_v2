@@ -47,7 +47,7 @@ if __name__ == "__main__":
             time_since_start = datetime.now() - start
             t.append(time_since_start.total_seconds())
             
-            to_vel = 4 * (math.pi**2) * math.cos(time_since_start.total_seconds() * 0.2 * math.pi)
+            to_vel = 2 * (math.pi**2) * math.cos(time_since_start.total_seconds() * 0.2 * math.pi)
             
             set_speeds.append(to_vel)
             screw.speed_ctrl(to_vel)

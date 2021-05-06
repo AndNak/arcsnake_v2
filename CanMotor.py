@@ -31,8 +31,8 @@ class CanMotor:
 
         # encoder readings are in (high byte, low byte)
         torque   = self.utils.readBytes(msg.data[3], msg.data[2])
-        speed    = self.utils.readBytes(msg.data[5], msg.data[4])
-        position = self.utils.readBytes(msg.data[7], msg.data[6])
+        speed    = self.utils.readBytes(msg.data[5], msg.data[4]) / self.gear_ratio
+        position = self.utils.readBytes(msg.data[7], msg.data[6]) / self.gear_ratio
 
         return (self.utils.encToAmp(torque), 
                 self.utils.degToRad(speed), 
