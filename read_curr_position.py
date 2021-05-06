@@ -1,5 +1,5 @@
-from CanScrewMotor import CanScrewMotor
 from CanJointMotor import CanJointMotor
+from CanScrewMotor import CanScrewMotor
 
 if __name__ == "__main__":
     joint1 = CanJointMotor(0x141)
@@ -12,7 +12,6 @@ if __name__ == "__main__":
         print(joint2.read_encoder())
     except (KeyboardInterrupt, ValueError) as e:
         print(e)
-        break
 
     screw.motor_stop()
     joint1.motor_stop()

@@ -11,8 +11,8 @@ class CanMotor:
         self.gear_ratio = gear_ratio
         self.id = motor_id
 
-    def send(self, arb_id, data):
-        msg = can.Message(arbitration_id=arb_id, data=data, extended_id=False)
+    def send(self, data):
+        msg = can.Message(arbitration_id=self.id, data=data, extended_id=False)
         self.canBus.send(msg)
         msg = self.canBus.recv()
         return msg
@@ -27,7 +27,7 @@ class CanMotor:
         14-bit range: 0~16383 deg ==> rad
     '''
     def read_motor_status(self):
-        msg = self.send(self.id, [0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+        msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
 
         # encoder readings are in (high byte, low byte)
         torque   = self.utils.readBytes(msg.data[3], msg.data[2])
@@ -59,7 +59,7 @@ class CanMotor:
         to_deg = 100 * self.utils.radToDeg(to_rad)
         byte1, byte2, byte3, byte4 = self.utils.toBytes(to_deg)
 
-        self.send(self.id, [0xa3, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1])
+        self.send([0xa3, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1])
 
     '''
     controls the speed of the motor by `to_deg` rad/s/LSB by converting from rad/s/LSB to dps/LSB.
@@ -69,7 +69,7 @@ class CanMotor:
         to_dps = 100 * self.utils.radToDeg(to_rad)
         byte1, byte2, byte3, byte4 = self.utils.toBytes(to_dps)
  
-        msg = self.send(self.id, [0xa2, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1])
+        msg = self.send([0xa2, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1])
         return self.utils.degToRad(self.utils.readBytes(msg.data[5], msg.data[4]))
 
     '''
@@ -77,10 +77,10 @@ class CanMotor:
     actual control value sent is in range -2000~2000, corresponding to -32A~32A
     '''
     def torque_ctrl(self, low_byte, high_byte):
-        self.send(self.id, [0xa1, 0x00, 0x00, 0x00, low_byte, high_byte,  0x00, 0x00])
+        self.send([0xa1, 0x00, 0x00, 0x00, low_byte, high_byte, 0x00, 0x00])
 
     '''
     force-stops the motor.
     '''
     def motor_stop(self):
-        self.send(self.id, [0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+        self.send([0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])

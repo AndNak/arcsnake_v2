@@ -9,5 +9,7 @@ data = [0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
 
 canBus = can.interface.Bus(channel='can0', bustype='socketcan_ctypes')
 
-msg = can.Message(arbitration_id=0x141, data=data, extended_id=False)
-canBus.send(msg)
+for i in range(32):
+    arb_id = 0x141+i
+    msg = can.Message(arbitration_id=arb_id, data=data, extended_id=False)
+    canBus.send(msg)
