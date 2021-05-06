@@ -51,9 +51,10 @@ class CanMotor:
     actual position sent is in units of 0.01 deg/LSB (36000 == 360 deg).
     rotation direction is determined by the difference between the target pos and the current pos
     '''
-    def pos_ctrl(self, to_rad):
-        if (to_rad < 0 or to_rad >= 2*math.pi):
-            raise ValueError("pos_ctrl: to_rad = " + str(to_rad) + ". Must be in range [0,2*pi).")
+    def pos_ctrl(self, to_rad, min_pos=0, max_pos=2*math.pi):
+        if (to_rad < min_pos or to_rad >= max_pos):
+            raise ValueError("pos_ctrl: to_rad = " + str(to_rad) + ". Must be in range [" \
+            + str(min_pos) + "," + str(max_pos) + ").")
         
         # The least significant bit represents 0.01 degrees per second.
         to_deg = 100 * self.utils.radToDeg(to_rad)
@@ -65,7 +66,10 @@ class CanMotor:
     controls the speed of the motor by `to_deg` rad/s/LSB by converting from rad/s/LSB to dps/LSB.
     actual speed sent is in units of 0.01 dps/LSB.
     '''
-    def speed_ctrl(self, to_rad):
+    def speed_ctrl(self, to_rad, max_speed=4*math.pi):
+        if to_rad > max_speed:
+            to_rad = max_speed
+
         to_dps = 100 * self.utils.radToDeg(to_rad)
         byte1, byte2, byte3, byte4 = self.utils.toBytes(to_dps)
  
