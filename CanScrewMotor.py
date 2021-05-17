@@ -6,8 +6,8 @@ MAX_SPEED = 4*math.pi
 GEAR_RATIO = 1
 
 class CanScrewMotor(CanMotor):
-    def __init__(self, motor_id):
-        super(CanScrewMotor, self).__init__(GEAR_RATIO, motor_id)
+    def __init__(self, bus, motor_id):
+        super(CanScrewMotor, self).__init__(bus, GEAR_RATIO, motor_id)
 
     def speed_ctrl(self, to_rad):
-        super(CanScrewMotor, self).speed_ctrl(to_rad, MAX_SPEED)
+        return super(CanScrewMotor, self).speed_ctrl(to_rad, MAX_SPEED)

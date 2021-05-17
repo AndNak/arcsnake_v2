@@ -4,8 +4,8 @@ import math
 from CanUtils import CanUtils
 
 class CanMotor(object):
-    def __init__(self, gear_ratio, motor_id):
-        self.canBus = can.ThreadSafeBus(channel='can0', bustype='socketcan_ctypes')
+    def __init__(self, bus, gear_ratio, motor_id):
+        self.canBus = bus
         self.utils = CanUtils()
         self.gear_ratio = gear_ratio
         self.id = motor_id
