@@ -56,7 +56,7 @@ if __name__ == "__main__":
             set_speeds_screw.append(to_vel)
             screw.speed_ctrl(to_vel)
             (_, screw_speed, _) = screw.read_motor_status()
-            # print('screw speed read: {}'.format(screw_spee
+            # print('screw speed read: {}'.format(screw_speed))
             
             set_speeds_joint.append(to_vel2)
             joint1.speed_ctrl(to_vel2)

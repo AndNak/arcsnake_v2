@@ -40,9 +40,23 @@ class CanMotor(object):
     '''
     get just the position reading from the encoder
     '''
-    def read_encoder(self):
-        (_, _, pos) = self.read_motor_status()
-        return pos
+    def read_position(self):
+        (_, _, p) = self.read_motor_status()
+        return p
+
+    '''
+    get just the speed reading from the encoder
+    '''
+    def read_speed(self):
+        (_, s, _) = self.read_motor_status()
+        return s
+    
+    '''
+    get just the torque reading from the encoder
+    '''
+    def read_torque(self):
+        (t, _, _) = self.read_motor_status()
+        return t
 
     '''
     sends the motor to position `to_rad` by converting from radians to degrees.
@@ -51,9 +65,13 @@ class CanMotor(object):
     rotation direction is determined by the difference between the target pos and the current pos
     '''
     def pos_ctrl(self, to_rad, min_pos=0, max_pos=2*math.pi):
-        if (to_rad < min_pos or to_rad >= max_pos):
-            raise ValueError("pos_ctrl: to_rad = " + str(to_rad) + ". Must be in range [" \
-            + str(min_pos) + "," + str(max_pos) + ").")
+        if (to_rad < min_pos):
+            # raise ValueError("pos_ctrl: to_rad = " + str(to_rad) + ". Must be in range [" \
+            # + str(min_pos) + "," + str(max_pos) + ").")
+            to_rad = min_pos
+        
+        if (to_rad >= max_pos):
+            to_rad = max_pos
         
         # The least significant bit represents 0.01 degrees per second.
         to_deg = 100 * self.utils.radToDeg(to_rad)
