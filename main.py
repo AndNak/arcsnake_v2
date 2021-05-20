@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from pyinstrument import Profiler
 
-from CanMotor import CanMotor
+from CanJointMotor import CanJointMotor
+from CanScrewMotor import CanScrewMotor
 from CanUtils import CanUtils
 
 def init():
@@ -42,10 +43,10 @@ if __name__ == "__main__":
     
     start = datetime.now()
     t = []
-    y = []
-    z = []
+    # y = []
+    # z = []
 
-    for i in range(80):
+    for i in range(200):
         try:
             time_since_start = datetime.now() - start
             t.append(time_since_start.total_seconds())
@@ -72,12 +73,12 @@ if __name__ == "__main__":
     joint1.motor_stop()
     joint2.motor_stop()
     screw.motor_stop()
-    plt.plot(x,y,'b-')
-    plt.plot(x,z,'r-')
+    # plt.plot(x,y,'b-')
+    # plt.plot(x,z,'r-')
     
-    plt.xlabel('time (s)')
-    plt.ylabel('speed (rad/s)')
-    plt.legend(["encoder speed", "set speed"])
-    plt.show()
+    # plt.xlabel('time (s)')
+    # plt.ylabel('speed (rad/s)')
+    # plt.legend(["encoder speed", "set speed"])
+    # plt.show()
 
     cleanup()
