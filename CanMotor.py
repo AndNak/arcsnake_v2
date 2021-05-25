@@ -91,7 +91,7 @@ class CanMotor(object):
         byte1, byte2, byte3, byte4 = self.utils.toBytes(to_dps)
  
         msg = self.send([0xa2, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1])
-        return self.utils.degToRad(self.utils.readBytes(msg.data[5], msg.data[4]))
+        return self.utils.degToRad(self.utils.readBytes(msg.data[5], msg.data[4])) / self.gear_ratio
 
     '''
     controls the torque current output of the motor. 
