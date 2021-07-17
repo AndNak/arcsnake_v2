@@ -2,7 +2,6 @@ import os
 import can
 import math
 import time
-import matplotlib.pyplot as plt
 from datetime import datetime
 from pyinstrument import Profiler
 
@@ -66,7 +65,7 @@ if __name__ == "__main__":
 
             before_recv = datetime.now()
             joint_position = joint1.read_position()
-            recv_cmds_joint.append((before_send - datetime.now()).total_seconds())
+            recv_cmds_joint.append((before_recv - datetime.now()).total_seconds())
 
             before_send = datetime.now()
             screw.speed_ctrl(to_vel)
@@ -74,7 +73,7 @@ if __name__ == "__main__":
 
             before_recv = datetime.now()
             screw_speed = screw.read_speed()
-            recv_cmds_screw.append((before_send - datetime.now()).total_seconds())
+            recv_cmds_screw.append((before_recv - datetime.now()).total_seconds())
 
             loop_dur = datetime.now() - start - time_since_start
             # 10ms for each loop

@@ -1,3 +1,4 @@
+'''
 from CanMotor import CanMotor
 from CanUtils import CanUtils
 import matplotlib.pyplot as plt
@@ -31,3 +32,4 @@ if __name__ == "__main__":
     plt.xlabel('time')
     plt.ylabel('angle')
     plt.show()
+    '''
