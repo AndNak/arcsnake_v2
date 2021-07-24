@@ -24,7 +24,6 @@ if __name__ == "__main__":
   screw.torque_pid_ctrl(50, 50)
   screw.pos_ctrl(pos) # this doesn't work, see position control command 4 on the datasheet
   # set direction in the U-joint using spin direction relative to current position
-  # also set 2 can bus lines
   
   try:
     print('screw read position', pos)

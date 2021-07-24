@@ -17,8 +17,8 @@ if __name__ == "__main__":
 
   canBus = can.ThreadSafeBus(channel='can0', bustype='socketcan_ctypes')
   screw = CanScrewMotor(canBus, 0x141)
-  joint1 = CanJointMotor(canBus, 0x142)
-  joint2 = CanJointMotor(canBus, 0x143)
+  joint1 = CanJointMotor(canBus, 0x145)
+  # joint2 = CanJointMotor(canBus, 0x143)
 
 
   # Get position
@@ -39,21 +39,20 @@ if __name__ == "__main__":
   try:
     screw.speed_ctrl(5.0)
     joint1.speed_ctrl(2)
-    joint2.speed_ctrl(1.0)
-
+    # joint2.speed_ctrl(1.0)
     # Duration of motor spin in seconds
-    time.sleep(600)
+    time.sleep(60*30)
   except(KeyboardInterrupt) as e:
     print(e)
   
   # Set all the speeds to 0 and "stop" the motors
   screw.speed_ctrl(0)
   joint1.speed_ctrl(0)
-  joint2.speed_ctrl(0)
+  # joint2.speed_ctrl(0)
 
   screw.motor_stop()
   joint1.motor_stop()
-  joint2.motor_stop()
+  # joint2.motor_stop()
 
   print('Speed Test Done')
 
