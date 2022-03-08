@@ -1,8 +1,8 @@
 from CanMotor import CanMotor
 import math
 
-# gear ratio is 6:1
-GEAR_RATIO = 6
+# gear ratio is 12:1
+GEAR_RATIO = 12
 MIN_POS = 0
 MAX_POS = 2*math.pi
 

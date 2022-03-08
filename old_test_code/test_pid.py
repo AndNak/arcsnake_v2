@@ -20,8 +20,8 @@ if __name__ == "__main__":
   screw = CanScrewMotor(canBus, 0x141)
   pos = screw.read_position()
   screw.pos_pid_ctrl(100, 100)
-  screw.speed_pid_ctrl(40, 30)
-  screw.torque_pid_ctrl(50, 50)
+  screw.speed_pid_ctrl(99, 100)
+  screw.torque_pid_ctrl(100, 100)
   screw.pos_ctrl(pos) # this doesn't work, see position control command 4 on the datasheet
   # set direction in the U-joint using spin direction relative to current position
   
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     print('speed_i',speed_i)
     print('torque_p',torque_p)
     print('torque_i',torque_i)
-    time.sleep(10)
+    time.sleep(.01)
     
   except (KeyboardInterrupt, ValueError) as e:
     print(e)

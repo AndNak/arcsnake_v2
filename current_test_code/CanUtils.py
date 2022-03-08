@@ -7,6 +7,23 @@ class CanUtils:
         decimal_val = np.int16(np.uint16((high_byte << 8) | low_byte))
         return decimal_val
 
+    # byte_list = [high_byte, ..., low_byte] 
+    # Outputs as a 62bit integer 
+    def readBytesList(self, byte_list):
+        out = np.uint64(0)
+        for byte in byte_list:
+            # HACK: Numpy decided it does not want to bitshift when it is "unsafe" (aka overflow)
+            # So using product and addition equivalent stuff instead
+            # out = np.uint64((out << 8) | byte)
+            out = (out * 2**8) + np.uint64(byte)
+
+        # manually handling 2s compliment... This sucks
+        if out > 2**(8*len(byte_list) - 1) - 1:
+            out = -np.int64(2**(8*len(byte_list)) - out) - 1
+        else:
+            out = np.int64(out)
+        return out
+
     # convert value from decimal to 4-byte hexadecimal
     def toBytes(self, amt):
         amt = np.uint32(np.int32(amt))

@@ -2,7 +2,10 @@ import os
 import can
 from CanJointMotor import CanJointMotor
 from CanScrewMotor import CanScrewMotor
+from CanUJoint import CanUJoint
 import time
+from CanArduinoSensors import CanArduinoSensors
+import numpy as np
 
 def init():
   os.system('sudo ifconfig can0 down')
@@ -16,44 +19,37 @@ if __name__ == "__main__":
   init()
 
   canBus = can.ThreadSafeBus(channel='can0', bustype='socketcan_ctypes')
+  deviceId = 0x01
+  sensor = CanArduinoSensors(canBus, deviceId)
+
   screw = CanScrewMotor(canBus, 0x141)
-  joint1 = CanJointMotor(canBus, 0x145)
-  # joint2 = CanJointMotor(canBus, 0x143)
-
-
-  # Get position
-  '''
-  start = time.time()
-  num_loops = 1000
-  for i in range(num_loops):
-    joint1.pos_ctrl(joint1.read_position)
-    joint2.speed_ctrl(0.0)
-    screw.speed_ctrl(0.0)
-
-  print((time.time()-start)/num_loops/3)
-
-  time.sleep(20)
-'''
+  joint1 = CanJointMotor(canBus, 0x143)
+  joint2 = CanJointMotor(canBus, 0x145)
 
   # Set the speeds for the motors
   try:
-    screw.speed_ctrl(5.0)
-    joint1.speed_ctrl(2)
-    # joint2.speed_ctrl(1.0)
-    # Duration of motor spin in seconds
-    time.sleep(60*30)
+    screw.speed_ctrl(10)
+    joint1.speed_ctrl(0)
+    joint2.speed_ctrl(0)
+
+    # Read humidity sensor and set time
+    start_time = time.time()
+    print(start_time)
+    while time.time() - start_time < 60*10:
+      print(sensor.readHumidityAndTemperature())
+      time.sleep(1)
   except(KeyboardInterrupt) as e:
     print(e)
   
   # Set all the speeds to 0 and "stop" the motors
   screw.speed_ctrl(0)
   joint1.speed_ctrl(0)
-  # joint2.speed_ctrl(0)
+  joint2.speed_ctrl(0)
 
   screw.motor_stop()
   joint1.motor_stop()
-  # joint2.motor_stop()
+  joint2.motor_stop()
 
-  print('Speed Test Done')
+  print('Experiment Testing Done!')
 
   cleanup()

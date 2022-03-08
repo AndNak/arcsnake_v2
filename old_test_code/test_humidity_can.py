@@ -1,8 +1,12 @@
 import os
 import can
-from CanJointMotor import CanJointMotor
-from CanScrewMotor import CanScrewMotor
 import time
+from CanArduinoSensors import CanArduinoSensors
+
+# Open new terminal ctrl + alt + t
+# run 'conda activate snake2'
+# run 'cd ~/motorcontrol/arcsnake_v2'
+# run 'python test_humidity_can.py'
 
 def init():
   os.system('sudo ifconfig can0 down')
@@ -16,16 +20,10 @@ if __name__ == "__main__":
   init()
 
   canBus = can.ThreadSafeBus(channel='can0', bustype='socketcan_ctypes')
-  screw = CanScrewMotor(canBus, 0x141)
-  screw.speed_ctrl(4.0)
+  deviceId = 0x01
+  sensor = CanArduinoSensors(canBus, deviceId)
 
-  for _ in range(10000):
-    try:
-      print('screw',screw.read_torque())
-    except(KeyboardInterrupt) as e:
-      print(e)
-      break
-
-  screw.motor_stop()
+  for _ in range(100):
+    print(sensor.readHumidityAndTemperature())
 
   cleanup()

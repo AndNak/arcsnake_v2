@@ -1,7 +1,9 @@
 import os
 import can
 import math
+import warnings
 from CanUtils import CanUtils
+from timeout import timeout
 
 class CanMotor(object):
     def __init__(self, bus, gear_ratio, motor_id):
@@ -10,13 +12,42 @@ class CanMotor(object):
         self.gear_ratio = gear_ratio
         self.id = motor_id
 
+        # For some reason, the screw motor in one our debug sessions
+        # required two of these to be sent in order to recieve new commands...
         self.send([0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
-
-    def send(self, data):
+        self.send([0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+    
+    @timeout(1)
+    def send(self, data, wait_for_response = False):
         msg = can.Message(arbitration_id=self.id, data=data, extended_id=False)
         self.canBus.send(msg)
-        msg = self.canBus.recv()
-        return msg
+
+        if wait_for_response:
+            while True:
+                # Checking canbus message recieved with keyboard interrupt saftey
+                try:
+                    msg = self.canBus.recv()
+                    if msg.arbitration_id == self.id:
+                        break
+                except (KeyboardInterrupt, ValueError) as e:
+                    print(e)
+                    break
+            return msg
+        else:
+            return  None
+
+
+
+    def read_motor_err_and_voltage(self):
+        msg = self.send([0x9a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+
+        temp      = msg.data[1]
+        voltage   = self.utils.readBytes(msg.data[4], msg.data[3]) / 10
+        err_state = msg.data[7]
+
+        return (temp, 
+                voltage, 
+                err_state)
 
     '''
     returns motor encoder readings in units of:
@@ -28,7 +59,7 @@ class CanMotor(object):
         14-bit range: 0~16383 deg ==> rad
     '''
     def read_motor_status(self):
-        msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+        msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
         # encoder readings are in (high byte, low byte)
         torque   = self.utils.readBytes(msg.data[3], msg.data[2])
@@ -45,6 +76,25 @@ class CanMotor(object):
     def read_position(self):
         (_, _, p) = self.read_motor_status()
         return p
+
+    '''
+    get multi-turn position reading from encoder
+    '''
+    def read_multiturn_position(self):
+        msg = self.send([0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+        
+        # CANNOT USE msg.data directly because it is not iterable for some reason...
+        # This is a hack to fix the bug
+        byte_list = []
+        for idx in range(1, 8):
+            byte_list.append(msg.data[idx])
+        byte_list.reverse()
+        decimal_position = self.utils.readBytesList(byte_list)
+
+        # Note: 0.01 scale is taken from dataset to convert multi-turn bits to degrees
+        return self.utils.degToRad(0.01*decimal_position/self.gear_ratio)
+
+    
 
     '''
     get just the speed reading from the encoder
@@ -64,7 +114,7 @@ class CanMotor(object):
     returns `p` and `i` values for position, speed, and torque. can't get `d` for some reason
     '''
     def read_motor_pid(self):
-        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
         pos_p    = msg.data[2]
         pos_i    = msg.data[3]
@@ -98,7 +148,7 @@ class CanMotor(object):
 
     def pos_pid_ctrl(self, kp, ki):
         # read other values first
-        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
         speed_p  = msg.data[4]
         speed_i  = msg.data[5]
@@ -118,11 +168,11 @@ class CanMotor(object):
         to_dps = self.gear_ratio * 100 * self.utils.radToDeg(to_rad)
         byte1, byte2, byte3, byte4 = self.utils.toBytes(to_dps)
  
-        msg = self.send([0xa2, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1])
+        msg = self.send([0xa2, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1], wait_for_response=True)
         return self.utils.degToRad(self.utils.readBytes(msg.data[5], msg.data[4])) / self.gear_ratio
 
     def speed_pid_ctrl(self, kp, ki):
-        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
         pos_p    = msg.data[2]
         pos_i    = msg.data[3]
@@ -139,7 +189,7 @@ class CanMotor(object):
         self.send([0xa1, 0x00, 0x00, 0x00, low_byte, high_byte, 0x00, 0x00])
 
     def torque_pid_ctrl(self, kp, ki):
-        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
         pos_p    = msg.data[2]
         pos_i    = msg.data[3]
