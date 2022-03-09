@@ -9,3 +9,5 @@ Before running any code, initialize the anaconda virtual environment by running
 ```
 conda activate snake2
 ```
+# Installing Packages 
+pip install python-can
