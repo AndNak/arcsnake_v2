@@ -1,4 +1,4 @@
-from CanMotor import CanMotor
+from .CanMotor import CanMotor
 import math
 
 # gear ratio is 12:1

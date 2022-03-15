@@ -16,7 +16,7 @@ def cleanup():
 if __name__ == "__main__":
   init()
 
-  can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan_ctypes')
+  can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
   joint1 = CanJointMotor(can0, 0x143)
   joint2 = CanJointMotor(can0, 0x142)
 

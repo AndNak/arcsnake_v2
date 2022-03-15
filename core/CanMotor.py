@@ -2,8 +2,8 @@ import os
 import can
 import math
 import warnings
-from CanUtils import CanUtils
-from timeout import timeout
+from .CanUtils import CanUtils
+from .timeout import timeout
 
 class CanMotor(object):
     def __init__(self, bus, gear_ratio, motor_id):
@@ -19,7 +19,7 @@ class CanMotor(object):
     
     @timeout(1)
     def send(self, data, wait_for_response = False):
-        msg = can.Message(arbitration_id=self.id, data=data, extended_id=False)
+        msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False)
         self.canBus.send(msg)
 
         if wait_for_response:

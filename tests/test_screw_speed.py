@@ -14,7 +14,7 @@ def cleanup():
 if __name__ == "__main__":
   init()
 
-  canBus = can.ThreadSafeBus(channel='can0', bustype='socketcan_ctypes')
+  canBus = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
   screw = CanScrewMotor(canBus, 0x141)
 

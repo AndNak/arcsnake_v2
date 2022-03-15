@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from pyinstrument import Profiler
 
-from CanJointMotor import CanJointMotor
-from CanScrewMotor import CanScrewMotor
-from CanUtils import CanUtils
+from core.CanJointMotor import CanJointMotor
+from core.CanScrewMotor import CanScrewMotor
+from core.CanUtils import CanUtils
 
 def init():
     os.system('sudo ifconfig can0 down')

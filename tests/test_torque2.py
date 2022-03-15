@@ -33,7 +33,7 @@ def profile(screw):
 if __name__ == "__main__":
   init()
   
-  canBus = can.ThreadSafeBus(channel='can0', bustype='socketcan_ctypes')
+  canBus = can.ThreadSafeBus(channel='can0', bustype='socketcan')
   # joint1 = CanJointMotor(canBus, 0x141)
   joint2 = CanUJoint(canBus, 0x145)
   # screw = CanScrewMotor(canBus, 0x145)

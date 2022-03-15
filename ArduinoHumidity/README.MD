@@ -1,0 +1,1 @@
+## Update to eplain how to upload the *.ino file to arduino and the wiring requirements 
