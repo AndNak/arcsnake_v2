@@ -22,7 +22,6 @@ def init():
 def cleanup():
   os.system('sudo ifconfig can0 down')
 
-
 if __name__ == "__main__":
   init()
   
