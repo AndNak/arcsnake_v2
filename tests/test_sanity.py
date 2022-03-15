@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
   # screw1 = CanScrewMotor(can0, 0x141)
   joint1 = CanUJoint(can0, 0x141)
-  #joint2 = CanUJoint(can0, 0x143)
+  # joint2 = CanUJoint(can0, 0x143)
 
   try:
   
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         # print(sensor.readHumidityAndTemperature())
         time.sleep(0.1)
 
-  except (KeyboardInterrupt, ValueError) as e:
+  except (KeyboardInterrupt, ValueError) as e: # Kill with ctrl + c
     print(e)
 
   # screw1.motor_stop()
