@@ -3,12 +3,6 @@ import can
 import numpy as np
 import time
 
-# Add ARCSnake_V2/* to sys path
-from os.path import dirname, realpath
-import sys
-arcsnake_v2_path = dirname(dirname(realpath(__file__)))
-sys.path.append(arcsnake_v2_path)
-
 from core.CanJointMotor import CanJointMotor
 from core.CanScrewMotor import CanScrewMotor
 from core.CanUJoint import CanUJoint

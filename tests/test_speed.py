@@ -1,7 +1,7 @@
 import os
 import can
-from CanUJoint import CanUJoint
-from CanScrewMotor import CanScrewMotor
+from core.CanUJoint import CanUJoint
+from core.CanScrewMotor import CanScrewMotor
 import time
 
 def init():
@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
   # screw = CanScrewMotor(canBus, 0x145)
-  joint1 = CanUJoint(can0, 0x143)
+  joint1 = CanUJoint(can0, 0x141)
   joint2 = CanUJoint(can0, 0x142)
 
   # Set the speeds for the motors
