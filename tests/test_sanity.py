@@ -3,21 +3,14 @@ import can
 import numpy as np
 import time
 
+import core.CANHelper
 from core.CanJointMotor import CanJointMotor
 from core.CanScrewMotor import CanScrewMotor
 from core.CanUJoint import CanUJoint
 from core.CanArduinoSensors import CanArduinoSensors
 
-def init():
-  os.system('sudo ifconfig can0 down')
-  os.system('sudo ip link set can0 type can bitrate 1000000')
-  os.system('sudo ifconfig can0 up')
-
-def cleanup():
-  os.system('sudo ifconfig can0 down')
-
 if __name__ == "__main__":
-  init()
+  core.CANHelper.init("can0")
   
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
   # deviceId = 0x01
@@ -43,4 +36,4 @@ if __name__ == "__main__":
   joint1.motor_stop()
   #joint2.motor_stop()
 
-  cleanup()
+  core.CANHelper.cleanup("can0")

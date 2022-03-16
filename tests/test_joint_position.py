@@ -1,21 +1,14 @@
 import os
 import can
 
+import core.CANHelper
 from core.CanUJoint import CanUJoint
 from core.CanJointMotor import CanJointMotor
 from core.CanScrewMotor import CanScrewMotor
 import time
 
-def init():
-  os.system('sudo ifconfig can0 down')
-  os.system('sudo ip link set can0 type can bitrate 1000000')
-  os.system('sudo ifconfig can0 up')
-
-def cleanup():
-  os.system('sudo ifconfig can0 down')
-
 if __name__ == "__main__":
-  init()
+  core.CANHelper.init("can0")
 
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
   joint1 = CanJointMotor(can0, 0x141)
@@ -51,4 +44,4 @@ if __name__ == "__main__":
 
   print('Joint Zeroing Test Done')
 
-  cleanup()
+  core.CANHelper.cleanup("can0")

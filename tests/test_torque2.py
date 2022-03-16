@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from pyinstrument import Profiler
 
-from CanJointMotor import CanJointMotor
-from CanUJoint import CanUJoint
-from CanScrewMotor import CanScrewMotor
-from CanUtils import CanUtils
+from core.CanJointMotor import CanJointMotor
+from core.CanUJoint import CanUJoint
+from core.CanScrewMotor import CanScrewMotor
+from core.CanUtils import CanUtils
 
 def init():
   os.system('sudo ifconfig can0 down')
@@ -78,7 +78,7 @@ if __name__ == "__main__":
       print(e)
       break
 
-  screw.motor_stop()
+  # screw.motor_stop()
   plt.plot(t,set_speeds_joint,'b-')
   plt.plot(t,set_speeds_joint,'r-')
   plt.plot(t,read_torque_joint,'g-')
