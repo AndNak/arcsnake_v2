@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from pyinstrument import Profiler
 
+
 from core.CanJointMotor import CanJointMotor
 from core.CanUJoint import CanUJoint
 from core.CanScrewMotor import CanScrewMotor
