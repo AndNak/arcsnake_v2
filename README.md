@@ -7,8 +7,19 @@ and verify that `can0` appears in the list.
 
 # Install Code base
 
+## Installing Anaconda
+Install anaconda from official website 
+Verify anaconda installed with conda -V
+Create a new virtual environment
+```conda create -n arcsnake python=3.9.7 anaconda
 
-# Installing Packages 
+
+## Cloning Repo
+
+
+git clone https://github.com/ucsdarclab/arcsnake_v2.git
+
+## Installing Packages 
 Install can utils
 ```
 sudo apt-get install can-utils
@@ -25,10 +36,12 @@ pip install python-can
 
 # TODO:
 - Add steps for git cloning, creating new conda environment to run stuff from etc.
-- Go through each python file in tests/* and get them to run (also learn about what they do or attempt to do)
 - Add explaination for how to run code in tests/* (do this to the level of running from a terminal)
 - Update README in ArduionoHumidity to explain how the set up is
 - Export conda environment so all the python dependencies can be easily imported
+
+
+
 
 # Notes: 
 
