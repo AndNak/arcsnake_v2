@@ -26,7 +26,8 @@ if __name__ == "__main__":
   # Set all the speeds to 0 and "stop" the motors
   # screw.speed_ctrl(0)
   print("moving to zero position")
-  joint1.pos_ctrl(20)
+  # joint1.pos_ctrl(20)
+  joint1.pos_ctrl(30)
   # joint2.pos_ctrl(20)
   
   try:

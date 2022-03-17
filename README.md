@@ -1,3 +1,15 @@
+# TODO:
+- Export conda environment so all the python dependencies can be easily imported
+- Fix test_joint_position
+- Torque control / torque plotting
+- Post way to reflash the firmware in case you go under the programming tab of the motor and hit one of those buttons
+- Make a shell executable script for all the installation commands
+
+
+## Arduino TODO
+- Update README in ArduionoHumidity to explain how the set up is
+- Get Arduino humidity sensor thingy working 
+
 # Getting Started with USB CAN bus
 To check if USB CAN bus is working, run
 ```
@@ -43,13 +55,12 @@ pip install matplotlib
 pip install python-can
 ```
 
-
-# TODO:
-- Add steps for git cloning, creating new conda environment to run stuff from etc.
-- Add explaination for how to run code in tests/* (do this to the level of running from a terminal)
-- Update README in ArduionoHumidity to explain how the set up is
-- Export conda environment so all the python dependencies can be easily imported
-
+# Running program
+cd inside of arcsnake directory 
+run 
+'''
+python3 tests/test_sanity.py
+'''
 
 
 # Notes: 
@@ -63,7 +74,7 @@ pip install python-can
 - save and verify by running echo $PYTHONPATH in terminal 
 
 ## Otherwise, if issues with Path stuff insert this into top of code
-from os.path import dirname, realpath
-import sys
-arcsnake_v2_path = dirname(dirname(realpath(__file__)))
-sys.path.append(arcsnake_v2_path)
+from os.path import dirname, realpath  
+import sys  
+arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
+sys.path.append(arcsnake_v2_path)  
