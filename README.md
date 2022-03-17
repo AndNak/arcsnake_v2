@@ -25,6 +25,7 @@ conda decativate arcsnake
 
 ## Cloning Repo
 ```
+sudo apt-get install git
 git clone https://github.com/ucsdarclab/arcsnake_v2.git
 ```
 
