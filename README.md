@@ -16,6 +16,7 @@ sudo apt-get install can-utils
 
 Install pip packages:
 ```
+pip install pyinstrument
 pip install numpy
 pip install matplotlib
 pip install python-can
@@ -34,7 +35,9 @@ pip install python-can
 ## Add Python to ubuntu path 
 - type sudo gedit ~/.bashrc in /home directory 
 - Insert this command near end of text file: 
+'''
     export PYTHONPATH="${PYTHONPATH}:/home/myeoh/Documents/Github"
+'''
 - save and verify by running echo $PYTHONPATH in terminal 
 
 ## Otherwise, if issues with Path stuff insert this into top of code

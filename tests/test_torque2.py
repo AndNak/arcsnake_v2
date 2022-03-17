@@ -6,19 +6,11 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from pyinstrument import Profiler
 
-
+import core.CANHelper
 from core.CanJointMotor import CanJointMotor
 from core.CanUJoint import CanUJoint
 from core.CanScrewMotor import CanScrewMotor
 from core.CanUtils import CanUtils
-
-def init():
-  os.system('sudo ifconfig can0 down')
-  os.system('sudo ip link set can0 type can bitrate 1000000')
-  os.system('sudo ifconfig can0 up')
-
-def cleanup():
-  os.system('sudo ifconfig can0 down')
 
 def profile(screw):
   profiler = Profiler()
@@ -32,11 +24,11 @@ def profile(screw):
   print(profiler.output_text(unicode=True, color=True))
 
 if __name__ == "__main__":
-  init()
+  core.CANHelper.init("can0")
   
   canBus = can.ThreadSafeBus(channel='can0', bustype='socketcan')
   # joint1 = CanJointMotor(canBus, 0x141)
-  joint2 = CanUJoint(canBus, 0x145)
+  joint2 = CanUJoint(canBus, 0x141)
   # screw = CanScrewMotor(canBus, 0x145)
   utils = CanUtils()
   
@@ -58,7 +50,7 @@ if __name__ == "__main__":
       time_since_start = datetime.now() - start
       t.append(time_since_start.total_seconds())
       
-      to_vel = 0
+      to_vel = 1
 
       set_speeds_joint.append(to_vel)
       joint2.pos_ctrl(to_vel)
@@ -89,4 +81,4 @@ if __name__ == "__main__":
   # plt.legend(["screw encoder speed", "screw set speed", "screw torque"])
   plt.show()
 
-  cleanup()
+  core.CANHelper.cleanup("can0")
