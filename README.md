@@ -14,15 +14,22 @@ Create a new virtual environment
 ```
 conda create -n arcsnake python=3.9.7 anaconda
 ```
-
+### Activating virtual environment 
+```
+conda activate arcsnake 
+```
+### For deactivating virtual environment 
+```
+conda decativate arcsnake
+```
 
 ## Cloning Repo
-
-
+```
 git clone https://github.com/ucsdarclab/arcsnake_v2.git
+```
 
 ## Installing Packages 
-Install can utils
+Install can utils:
 ```
 sudo apt-get install can-utils
 ```
@@ -41,7 +48,6 @@ pip install python-can
 - Add explaination for how to run code in tests/* (do this to the level of running from a terminal)
 - Update README in ArduionoHumidity to explain how the set up is
 - Export conda environment so all the python dependencies can be easily imported
-
 
 
 
