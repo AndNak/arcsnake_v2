@@ -11,7 +11,9 @@ and verify that `can0` appears in the list.
 Install anaconda from official website 
 Verify anaconda installed with conda -V
 Create a new virtual environment
-```conda create -n arcsnake python=3.9.7 anaconda
+```
+conda create -n arcsnake python=3.9.7 anaconda
+```
 
 
 ## Cloning Repo
