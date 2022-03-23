@@ -2,7 +2,7 @@
 - Export conda environment so all the python dependencies can be easily imported
 - Torque control / torque plotting
 
-## Arduino TODO
+# Arduino TODO
 - Update README in ArduionoHumidity to explain how the set up is
 - Get Arduino humidity sensor thingy working 
 
@@ -14,6 +14,8 @@ ifconfig -a
 and verify that `can0` appears in the list.
 
 # Install Code base
+Do this by running the installation.sh file alternatively, you can manually run the below commands yourself
+
 
 ## Installing Anaconda
 Install anaconda from official website   
@@ -51,7 +53,7 @@ pip install matplotlib
 pip install python-can
 ```
 
-# Running program
+# Running test programs
 cd inside of arcsnake directory 
 run 
 '''
