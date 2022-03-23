@@ -1,10 +1,6 @@
 # TODO:
 - Export conda environment so all the python dependencies can be easily imported
-- Fix test_joint_position
 - Torque control / torque plotting
-- Post way to reflash the firmware in case you go under the programming tab of the motor and hit one of those buttons
-- Make a shell executable script for all the installation commands
-
 
 ## Arduino TODO
 - Update README in ArduionoHumidity to explain how the set up is

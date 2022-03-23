@@ -1,6 +1,11 @@
 import os
 import can
 
+from os.path import dirname, realpath  
+import sys  
+arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
+sys.path.append(arcsnake_v2_path)  
+
 import core.CANHelper
 from core.CanUJoint import CanUJoint
 from core.CanJointMotor import CanJointMotor
@@ -25,9 +30,9 @@ if __name__ == "__main__":
 
   # Set all the speeds to 0 and "stop" the motors
   # screw.speed_ctrl(0)
-  print("moving to zero position")
+  print("moving to position")
   # joint1.pos_ctrl(20)
-  joint1.pos_ctrl(30)
+  joint1.pos_ctrl(0 * 2 * 3.1415)
   # joint2.pos_ctrl(20)
   
   try:
@@ -43,6 +48,6 @@ if __name__ == "__main__":
   joint1.motor_stop()
   # joint2.motor_stop()
 
-  print('Joint Zeroing Test Done')
+  print('Done')
 
   core.CANHelper.cleanup("can0")

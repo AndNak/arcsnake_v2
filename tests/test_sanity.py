@@ -24,7 +24,8 @@ if __name__ == "__main__":
   
     for _ in range(1000):
         # print('screw1',screw1.read_position())
-        print('joint1',joint1.read_position())
+        print('joint1 multiturn_position: ',joint1.read_multiturn_position())
+        print('joint1 posiion: ',joint1.read_position())
         #print('joint2',joint2.read_position())
         # print(sensor.readHumidityAndTemperature())
         time.sleep(0.1)

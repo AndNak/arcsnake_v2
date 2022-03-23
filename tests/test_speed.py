@@ -2,10 +2,14 @@ import os
 import can
 import time
 
+from os.path import dirname, realpath  
+import sys  
+arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
+sys.path.append(arcsnake_v2_path)  
+
 import core.CANHelper
 from core.CanUJoint import CanUJoint
 from core.CanScrewMotor import CanScrewMotor
-
 
 if __name__ == "__main__":
   core.CANHelper.init("can0")
@@ -25,7 +29,7 @@ if __name__ == "__main__":
   except(KeyboardInterrupt) as e:
     print(e)
   
-  # Set all the speeds to 0 and "stop" the motors
+  # Set all the speeds to 0 and stop the motors
   # screw.speed_ctrl(0)
   joint1.speed_ctrl(0)
   # joint2.speed_ctrl(0)

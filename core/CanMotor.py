@@ -141,7 +141,7 @@ class CanMotor(object):
             to_rad = max_pos
         
         # The least significant bit represents 0.01 degrees per second.
-        to_deg = 100 * self.utils.radToDeg(to_rad)
+        to_deg = 100 * self.utils.radToDeg(to_rad) * self.gear_ratio
         byte1, byte2, byte3, byte4 = self.utils.toBytes(to_deg)
 
         self.send([0xa3, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1])

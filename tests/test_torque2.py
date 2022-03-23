@@ -6,6 +6,11 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from pyinstrument import Profiler
 
+from os.path import dirname, realpath  
+import sys  
+arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
+sys.path.append(arcsnake_v2_path)  
+
 import core.CANHelper
 from core.CanJointMotor import CanJointMotor
 from core.CanUJoint import CanUJoint
