@@ -16,23 +16,6 @@ and verify that `can0` appears in the list.
 # Install Code base
 Do this by running the installation.sh file alternatively, you can manually run the below commands yourself
 
-
-## Installing Anaconda
-Install anaconda from official website   
-Verify anaconda installed with conda -V  
-Create a new virtual environment  
-```
-conda create -n arcsnake python=3.9.7 anaconda
-```
-### Activating virtual environment 
-```
-conda activate arcsnake 
-```
-### For deactivating virtual environment 
-```
-conda decativate arcsnake
-```
-
 ## Cloning Repo
 ```
 sudo apt-get install git
@@ -51,6 +34,22 @@ pip install pyinstrument
 pip install numpy
 pip install matplotlib
 pip install python-can
+```
+
+# Installing Anaconda
+Install anaconda from official website   
+Verify anaconda installed with conda -V  
+Create a new virtual environment  
+```
+conda create -n arcsnake python=3.9.7 anaconda
+```
+## Activating virtual environment 
+```
+conda activate arcsnake 
+```
+## For deactivating virtual environment 
+```
+conda decativate arcsnake
 ```
 
 # Running test programs
