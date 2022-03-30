@@ -17,6 +17,14 @@ class CanMotor(object):
         self.send([0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
         self.send([0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
     
+
+    '''
+    Basic CANBus send command:
+        - data is of the form: [0x{Register}, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+            - To convert a 32 unsigned integer to bytes for this, use toBytes in CanUtils
+        - If wait_for_response is True, then this a "read" CANBus send. If False, then this is only a "send" command
+            - To decode the return message, use readBytesList or readByte in CanUtils
+    '''
     @timeout(1)
     def send(self, data, wait_for_response = False):
         msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False)

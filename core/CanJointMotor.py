@@ -1,10 +1,10 @@
 from .CanMotor import CanMotor
 import math
 
-# gear ratio is 12:1
+# gear ratio is 6:1 for RMD X8
 GEAR_RATIO = 6
 MIN_POS = 0
-MAX_POS = 2*math.pi
+MAX_POS = 999*math.pi
 
 class CanJointMotor(CanMotor):
     def __init__(self, bus, motor_id):

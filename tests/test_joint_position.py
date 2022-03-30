@@ -32,7 +32,7 @@ if __name__ == "__main__":
   # screw.speed_ctrl(0)
   print("moving to position")
   # joint1.pos_ctrl(20)
-  joint1.pos_ctrl(0 * 2 * 3.1415)
+  joint1.pos_ctrl(1 * 2 * 3.1415)
   # joint2.pos_ctrl(20)
   
   try:
