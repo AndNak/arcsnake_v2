@@ -35,6 +35,14 @@ class CanUtils:
 
         return byte1, byte2, byte3, byte4
 
+    # Convert value from decimal to x-byte hexadecimal
+    def int_to_bytes(self, value, length):
+        result = []
+        for i in range(0, length):
+            result.append(value >> (i * 8) & 0xff)
+        result.reverse()
+        return result
+
     # convert 14-bit encoder (range 0~16383) current position to degrees 
     # seems like 360 degrees = 15800 encoder bit value
     def toDegrees(self, enc_position):

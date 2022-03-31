@@ -1,16 +1,19 @@
 import os
 import can
 import math
+import time
 import warnings
 from .CanUtils import CanUtils
 from .timeout import timeout
 
 class CanMotor(object):
-    def __init__(self, bus, gear_ratio, motor_id):
+    def __init__(self, bus, motor_id, gear_ratio, MIN_POS = -999 * 2 * math.pi, MAX_POS = 999 * 2 * math.pi):
         self.canBus = bus
         self.utils = CanUtils()
         self.gear_ratio = gear_ratio
         self.id = motor_id
+        self.min_pos = MIN_POS
+        self.max_pos = MAX_POS
 
         # For some reason, the screw motor in one our debug sessions
         # required two of these to be sent in order to recieve new commands...
@@ -85,6 +88,15 @@ class CanMotor(object):
         (_, _, p) = self.read_motor_status()
         return p
 
+
+    '''
+    get the raw position from -32768 to 32768 from the encoder, used for zeroing multiturn position
+    '''
+    def read_raw_position(self):
+        msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+        position = self.utils.readBytes(msg.data[7], msg.data[6]) 
+        return position
+
     '''
     get multi-turn position reading from encoder
     '''
@@ -141,12 +153,12 @@ class CanMotor(object):
     actual position sent is in units of 0.01 deg/LSB (36000 == 360 deg).
     rotation direction is determined by the difference between the target pos and the current pos
     '''
-    def pos_ctrl(self, to_rad, min_pos=0, max_pos=2*math.pi):
-        if (to_rad < min_pos):
-            to_rad = min_pos
+    def pos_ctrl(self, to_rad):
+        if (to_rad < self.min_pos):
+            to_rad = self.min_pos
         
-        if (to_rad >= max_pos):
-            to_rad = max_pos
+        if (to_rad >= self.max_pos):
+            to_rad = self.max_pos
         
         # The least significant bit represents 0.01 degrees per second.
         to_deg = 100 * self.utils.radToDeg(to_rad) * self.gear_ratio
@@ -205,6 +217,16 @@ class CanMotor(object):
         speed_i  = msg.data[5]
 
         self.send([0x31, 0x00, pos_p, pos_i, speed_p, speed_i, kp, ki])
+
+
+    def multiTurnZeroOffset(self, offset, InvertDirection = None):
+        byte1, byte2, byte3, byte4, byte5, byte6 = self.utils.int_to_bytes(offset, 6)
+
+        if InvertDirection is None:
+            self.send([0x63, byte6, byte5, byte4, byte3, byte2, byte1, 1], wait_for_response=False)
+        else:
+            self.send([0x63, byte6, byte5, byte4, byte3, byte2, byte1, 0], wait_for_response=False)
+    
 
     '''
     force-stops the motor.

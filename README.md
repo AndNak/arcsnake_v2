@@ -28,6 +28,7 @@
       - If max speed, use 0xA4
   - Set new CANBus ID with code (register 0x79)
 
+- Convert everthing from toBytes() to int_to_bytes()
 - Export conda environment so all the python dependencies can be easily imported
 - Torque control / torque plotting
 
