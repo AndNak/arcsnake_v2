@@ -18,7 +18,9 @@ if __name__ == "__main__":
 
 	joint1 = CanUJoint(can0, 0x141)
 
-	joint1.zero_motor()
+	# joint1.zero_motor()
+
+	print(joint1.read_multiTurnZeroOffset())
 
 	'''
 	try:

@@ -153,7 +153,7 @@ class CanMotor(object):
     actual position sent is in units of 0.01 deg/LSB (36000 == 360 deg).
     rotation direction is determined by the difference between the target pos and the current pos
     '''
-    def pos_ctrl(self, to_rad):
+    def pos_ctrl(self, to_rad, max_speed = 99 * 2 * math.pi):
         if (to_rad < self.min_pos):
             to_rad = self.min_pos
         
@@ -162,9 +162,13 @@ class CanMotor(object):
         
         # The least significant bit represents 0.01 degrees per second.
         to_deg = 100 * self.utils.radToDeg(to_rad) * self.gear_ratio
-        byte1, byte2, byte3, byte4 = self.utils.toBytes(to_deg)
+        max_speed = 100 * self.utils.radToDeg(max_speed) * self.gear_ratio
+        print(int(max_speed))
+        s_byte1, s_byte2 = self.utils.int_to_bytes(int(max_speed), 2)
 
-        self.send([0xa3, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1])
+        byte1, byte2, byte3, byte4 = self.utils.int_to_bytes(int(to_deg), 4)
+
+        self.send([0xa4, 0x00, s_byte2, s_byte1, byte4, byte3, byte2, byte1])
 
     def pos_pid_ctrl(self, kp, ki):
         # read other values first
@@ -219,14 +223,26 @@ class CanMotor(object):
         self.send([0x31, 0x00, pos_p, pos_i, speed_p, speed_i, kp, ki])
 
 
-    def multiTurnZeroOffset(self, offset, InvertDirection = None):
+    def setmultiTurnZeroOffset(self, offset, InvertDirection = None):
         byte1, byte2, byte3, byte4, byte5, byte6 = self.utils.int_to_bytes(offset, 6)
 
         if InvertDirection is None:
-            self.send([0x63, byte6, byte5, byte4, byte3, byte2, byte1, 1], wait_for_response=False)
+            self.send([0x63, byte6, byte5, byte4, byte3, byte2, byte1, 1], wait_for_response=True)
         else:
-            self.send([0x63, byte6, byte5, byte4, byte3, byte2, byte1, 0], wait_for_response=False)
+            self.send([0x63, byte6, byte5, byte4, byte3, byte2, byte1, 0], wait_for_response=True)
     
+
+    def read_multiTurnZeroOffset(self):
+        msg = self.send([0x22, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+        
+        # CANNOT USE msg.data directly because it is not iterable for some reason...
+        # This is a hack to fix the bug
+        byte_list = []
+        for idx in range(1, 6):
+            byte_list.append(msg.data[idx])
+        byte_list.reverse()
+        
+        return self.utils.readBytesList(byte_list)
 
     '''
     force-stops the motor.

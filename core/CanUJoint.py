@@ -14,7 +14,7 @@ class CanUJoint(CanMotor):
         curPos = self.read_raw_position()
         curPos = self.read_raw_position() # For some reason 2 is necessary, or else it will only return 0 
         print(f"current Position {curPos}")
-        self.multiTurnZeroOffset(curPos)
+        self.setmultiTurnZeroOffset(curPos)
 
         '''
         if curPos < 0:

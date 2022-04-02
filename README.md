@@ -1,18 +1,4 @@
 # TODO:
-
-- Features for CanUJointMotor:
-  
-  - Zero the multi-turn off the single-turn zero is the goal
-    - Scenario: the snake is "roughly" straight on turn on. The single-turn 0's are preset to fit straight config for snake.
-    - The multiturn should set it's zero according to the nearest single-turn 0
-    - The multi-turn zero by default is set to 0 where the motor turns on. So you want to set the multi-turn zero (0x63) to the nearest single-turn zero
-    - This should be a seperate function in CanUJoint that is called "zero_multiturn()"
-    - Test:
-      - Turn on motor and confirm the multi-turn zero is wrong but the single-turn zero is right
-      - Set the multi-turn zero to the nearest single-turn zero using your function
-      - Send a multi-turn position command that is at the new zero and confirm it moves to the correct zero
-  - Add u joint limit after zeroing position
-
 - CanScrewMotor.py and CanUJoint.py should move gear ratios and max speeds into constructor
 
 - Florian doesn't think we need CanJointMotor.py... Let's wait a bit and see

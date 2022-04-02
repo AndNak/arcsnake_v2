@@ -23,7 +23,7 @@ if __name__ == "__main__":
   try:
     while True: 
       val = float(input())
-      joint1.pos_ctrl(val * 2 * 3.14)
+      joint1.pos_ctrl(val * 2 * 3.14, max_speed = .25 * 2 * 3.14)
       print("moving to position")
   except(KeyboardInterrupt) as e:
     print(e)

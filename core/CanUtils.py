@@ -39,7 +39,7 @@ class CanUtils:
     def int_to_bytes(self, value, length):
         result = []
         for i in range(0, length):
-            result.append(value >> (i * 8) & 0xff)
+            result.append(np.uint8(value >> (i * 8) & 0xff))
         result.reverse()
         return result
 
