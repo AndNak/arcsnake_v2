@@ -1,13 +1,21 @@
-import os
 import can
 import math
-import time
-import warnings
 from .CanUtils import CanUtils
 from .timeout import timeout
 
 class CanMotor(object):
     def __init__(self, bus, motor_id, gear_ratio, MIN_POS = -999 * 2 * math.pi, MAX_POS = 999 * 2 * math.pi):
+        """Intializes motor with CAN communication 
+        -
+
+        Args:
+            bus (can0 or can1): CAN port of motor??? check with florian
+            motor_id (0x140 + ID (0-32)): Set motor_id
+            gear_ratio (int): Set gear ratio between motor -> output. 
+                Ex: RMD X8 Motor has a 6:1 gear ratio so this value would be 6
+            MIN_POS (RAD, optional): Set MIN_POS of motor. Used in pos_ctrl function. Defaults to -999*2*math.pi.
+            MAX_POS (RAD, optional): Set MAX_POS of motor. Used in pos_ctrl function. Defaults to 999*2*math.pi.
+        """        
         self.canBus = bus
         self.utils = CanUtils()
         self.gear_ratio = gear_ratio
@@ -70,6 +78,12 @@ class CanMotor(object):
         14-bit range: 0~16383 deg ==> rad
     '''
     def read_motor_status(self):
+        """Reads motor Torque, Speed, and Position from the motor.
+        -
+
+        Returns:
+            (AMPs, RAD/S, RAD): Retrusn tuple of motor torque, speed, and position
+        """
         msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
         # encoder readings are in (high byte, low byte)
@@ -81,26 +95,27 @@ class CanMotor(object):
                 self.utils.degToRad(speed), 
                 self.utils.degToRad(self.utils.toDegrees(position)))
 
-    '''
-    get just the position reading from the encoder
-    '''
-    def read_position(self):
+
+    def read_singleturn_position(self):
+        """ Get single-turn position reading from encoder in radians. 
+        -
+        """
         (_, _, p) = self.read_motor_status()
         return p
 
-
-    '''
-    get the raw position from -32768 to 32768 from the encoder, used for zeroing multiturn position
-    '''
     def read_raw_position(self):
+        """Get raw position of encoder from -32768 to 32768 
+        -
+        """        
         msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
         position = self.utils.readBytes(msg.data[7], msg.data[6]) 
         return position
 
-    '''
-    get multi-turn position reading from encoder
-    '''
+
     def read_multiturn_position(self):
+        ''' Get multi-turn position reading from encoder in radians
+        -
+        '''
         msg = self.send([0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
         
         # CANNOT USE msg.data directly because it is not iterable for some reason...
@@ -114,26 +129,28 @@ class CanMotor(object):
         # Note: 0.01 scale is taken from dataset to convert multi-turn bits to degrees
         return self.utils.degToRad(0.01*decimal_position/self.gear_ratio)
 
-    
-
-    '''
-    get just the speed reading from the encoder
-    '''
     def read_speed(self):
+        ''' Get speed reading from the encoder in rad/s
+        -
+        '''
         (_, s, _) = self.read_motor_status()
         return s
     
-    '''
-    get just the torque reading from the encoder
-    '''
+
     def read_torque(self):
+        ''' Get torque reading from the encoder in Amps
+        -
+        '''
         (t, _, _) = self.read_motor_status()
         return t
 
-    '''
-    returns `p` and `i` values for position, speed, and torque. can't get `d` for some reason
-    '''
     def read_motor_pid(self):
+        ''' Returns P and I values for pos, speed, and torque, can't get 'd' for some reason
+        -
+
+        Returns:
+            (pos_p, pos_i, speed_p, speed_i, torque_p, torque_i): Returns tuple of P and I values
+        '''
         msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
         pos_p    = msg.data[2]
@@ -147,13 +164,15 @@ class CanMotor(object):
                 speed_p,  speed_i,
                 torque_p, torque_i)
 
-    '''
-    sends the motor to position `to_rad` by converting from radians to degrees.
-    `to_rad` must be a positive value.
-    actual position sent is in units of 0.01 deg/LSB (36000 == 360 deg).
-    rotation direction is determined by the difference between the target pos and the current pos
-    '''
-    def pos_ctrl(self, to_rad, max_speed = 99 * 2 * math.pi):
+ 
+    def pos_ctrl(self, to_rad, max_speed = 999 * 2 * math.pi):
+        """Set multiturn position control
+        -
+
+        Args:
+            to_rad (RAD): Desired multi-turn angle in Radians
+            max_speed (RAD/s, optional): Set max speed in rad/s. Defaults to 999*2*math.pi.
+        """        
         if (to_rad < self.min_pos):
             to_rad = self.min_pos
         
@@ -162,8 +181,8 @@ class CanMotor(object):
         
         # The least significant bit represents 0.01 degrees per second.
         to_deg = 100 * self.utils.radToDeg(to_rad) * self.gear_ratio
-        max_speed = 100 * self.utils.radToDeg(max_speed) * self.gear_ratio
-        print(int(max_speed))
+        max_speed = self.utils.radToDeg(max_speed) * self.gear_ratio
+
         s_byte1, s_byte2 = self.utils.int_to_bytes(int(max_speed), 2)
 
         byte1, byte2, byte3, byte4 = self.utils.int_to_bytes(int(to_deg), 4)
@@ -181,11 +200,17 @@ class CanMotor(object):
 
         self.send([0x32, 0x00, kp, ki, speed_p, speed_i, torque_p, torque_i])
 
-    '''
-    controls the speed of the motor by `to_deg` rad/s/LSB by converting from rad/s/LSB to dps/LSB.
-    actual speed sent is in units of 0.01 dps/LSB.
-    '''
-    def speed_ctrl(self, to_rad, max_speed=20*math.pi):
+    def speed_ctrl(self, to_rad, max_speed=20*2*math.pi):
+        """Set speed in rad/s 
+        -
+
+        Args:
+            to_rad (RAD): Set speed
+            max_speed (RAD/s, optional): Set max allowable speed. Defaults to 20*2*math.pi.
+
+        Returns:
+            RAD/s: Returns current speed
+        """        
         if to_rad > max_speed:
             to_rad = max_speed
 
@@ -244,8 +269,9 @@ class CanMotor(object):
         
         return self.utils.readBytesList(byte_list)
 
-    '''
-    force-stops the motor.
-    '''
+    
     def motor_stop(self):
+        """Stops the motor. Useful for allowing motor to be turned by hand
+        -
+        """
         self.send([0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])

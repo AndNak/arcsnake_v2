@@ -1,20 +1,13 @@
 # TODO:
-- CanScrewMotor.py and CanUJoint.py should move gear ratios and max speeds into constructor
-
-- Florian doesn't think we need CanJointMotor.py... Let's wait a bit and see
-
 - Features for CanMotor:
   
-  - Want to add a max velocity and max acceleration to the current pos_ctrl() and speed_ctrl
+  - Want to add max acceleration to the current speed_ctrl
     - Look at the registers used in pos_ctrl and speed_ctrl, see what PID/settings it is using in the datasheet
     - See if there is a corresponding max vel/acc for those registers 
-    - Looks like we are currently using 0xA3 for pos_ctrl, but I think we want to use 0xA4 because it has a max velocity.
-      - To keep the old mode, make max_velocity an optional input (e.g. None by default) 
-      - If none, use 0xA3
-      - If max speed, use 0xA4
   - Set new CANBus ID with code (register 0x79)
 
 - Convert everthing from toBytes() to int_to_bytes()
+- Add indepth comments for can utils with the autodocstring extension (ctrl+shift+2)
 - Export conda environment so all the python dependencies can be easily imported
 - Torque control / torque plotting
 

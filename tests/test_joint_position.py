@@ -16,14 +16,14 @@ if __name__ == "__main__":
   core.CANHelper.init("can0")
 
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
-  joint1 = CanUJoint(can0, 0x141, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 1 * 2 * 3.14)
+  joint1 = CanUJoint(can0, 0x141, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
 
   print("Enter Desired Rotation(s)")
   
   try:
     while True: 
       val = float(input())
-      joint1.pos_ctrl(val * 2 * 3.14, max_speed = .25 * 2 * 3.14)
+      joint1.pos_ctrl(val * 2 * 3.14)
       print("moving to position")
   except(KeyboardInterrupt) as e:
     print(e)
