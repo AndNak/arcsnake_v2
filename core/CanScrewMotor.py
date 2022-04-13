@@ -2,7 +2,6 @@ from .CanMotor import CanMotor
 import math
 
 MAX_SPEED = 1500*2*math.pi/60
-# gear ratio is 1:1
 GEAR_RATIO = 1
 
 class CanScrewMotor(CanMotor):

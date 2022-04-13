@@ -9,10 +9,11 @@ class CanMotor(object):
         -
 
         Args:
-            bus (can0 or can1): CAN port of motor??? check with florian
+            bus (can0 or can1): CAN Bus that the motor is connected to
             motor_id (0x140 + ID (0-32)): Set motor_id
+                Ex: If the dip switches on the motor are set the 1, this value would be 0x141.
             gear_ratio (int): Set gear ratio between motor -> output. 
-                Ex: RMD X8 Motor has a 6:1 gear ratio so this value would be 6
+                Ex: RMD X8 Motor has a 6:1 planteary gear ratio so this value would be 6
             MIN_POS (RAD, optional): Set MIN_POS of motor. Used in pos_ctrl function. Defaults to -999*2*math.pi.
             MAX_POS (RAD, optional): Set MAX_POS of motor. Used in pos_ctrl function. Defaults to 999*2*math.pi.
         """        
@@ -82,7 +83,7 @@ class CanMotor(object):
         -
 
         Returns:
-            (AMPs, RAD/S, RAD): Retrusn tuple of motor torque, speed, and position
+            (AMPs, RAD/S, RAD): Returns tuple of motor torque, speed, and position
         """
         msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
@@ -189,16 +190,47 @@ class CanMotor(object):
 
         self.send([0xa4, 0x00, s_byte2, s_byte1, byte4, byte3, byte2, byte1])
 
-    def pos_pid_ctrl(self, kp, ki):
+    def override_PI_values(self, pos_p = None, pos_i = None, speed_p = None, speed_i = None, torque_p = None, torque_i = None):
+        """Overrites the specified P and I values in the ROM with new values. Still valid for next boot.
+        -
+        """        
         # read other values first
         msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+        if (pos_p is None):
+            pos_p = msg.data[2]
+        if (pos_i is None):
+            pos_i = msg.data[3]    
+        if (speed_p is None):
+            speed_p = msg.data[4]
+        if (speed_i is None):
+            speed_i = msg.data[5] 
+        if (torque_p is None):
+            torque_p = msg.data[6]
+        if (torque_i is None):
+            torque_i = msg.data[7]
 
-        speed_p  = msg.data[4]
-        speed_i  = msg.data[5]
-        torque_p = msg.data[6]
-        torque_i = msg.data[7]
+        self.send([0x32, 0x00, pos_p, pos_i, speed_p, speed_i, torque_p, torque_i])
 
-        self.send([0x32, 0x00, kp, ki, speed_p, speed_i, torque_p, torque_i])
+    def set_PI_values(self, pos_p = None, pos_i = None, speed_p = None, speed_i = None, torque_p = None, torque_i = None):
+        """Overrites the specified P and I values in the RAM with new values. Lost on reboot.
+        -
+        """        
+        # read other values first
+        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+        if (pos_p is None):
+            pos_p = msg.data[2]
+        if (pos_i is None):
+            pos_i = msg.data[3]    
+        if (speed_p is None):
+            speed_p = msg.data[4]
+        if (speed_i is None):
+            speed_i = msg.data[5] 
+        if (torque_p is None):
+            torque_p = msg.data[6]
+        if (torque_i is None):
+            torque_i = msg.data[7]
+
+        self.send([0x31, 0x00, pos_p, pos_i, speed_p, speed_i, torque_p, torque_i])
 
     def speed_ctrl(self, to_rad, max_speed=20*2*math.pi):
         """Set speed in rad/s 
@@ -213,42 +245,32 @@ class CanMotor(object):
         """        
         if to_rad > max_speed:
             to_rad = max_speed
+        if to_rad < -max_speed:
+            to_rad = -max_speed
 
         to_dps = self.gear_ratio * 100 * self.utils.radToDeg(to_rad)
-        byte1, byte2, byte3, byte4 = self.utils.toBytes(to_dps)
+        byte1, byte2, byte3, byte4 = self.utils.int_to_bytes(int(to_dps), 4)
  
         msg = self.send([0xa2, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1], wait_for_response=True)
         return self.utils.degToRad(self.utils.readBytes(msg.data[5], msg.data[4])) / self.gear_ratio
 
-    def speed_pid_ctrl(self, kp, ki):
-        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+    def torque_ctrl(self, to_Amp): # ONLY SORTA TESTED!!
+        """Set the torque current output of the motor from -32A to 32A
 
-        pos_p    = msg.data[2]
-        pos_i    = msg.data[3]
-        torque_p  = msg.data[6]
-        torque_i  = msg.data[7]
+        Args:
+            to_Amp (AMP): Set torque current of motor
+        """        
+        if to_Amp > 32:
+            to_Amp = 32
+        if to_Amp < -32:
+            to_Amp = -32
 
-        self.send([0x31, 0x00, pos_p, pos_i, kp, ki, torque_p, torque_i])
+        to_Amp *= 2000/32 # Value range is -2000 to 2000
+        byte1, byte2 = self.utils.int_to_bytes(int(to_Amp), 2)
 
-    '''
-    controls the torque current output of the motor. 
-    actual control value sent is in range -2000~2000, corresponding to -32A~32A
-    '''
-    def torque_ctrl(self, low_byte, high_byte):
-        self.send([0xa1, 0x00, 0x00, 0x00, low_byte, high_byte, 0x00, 0x00])
+        self.send([0xa1, 0x00, 0x00, 0x00, byte2, byte1, 0x00, 0x00])
 
-    def torque_pid_ctrl(self, kp, ki):
-        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
-
-        pos_p    = msg.data[2]
-        pos_i    = msg.data[3]
-        speed_p  = msg.data[4]
-        speed_i  = msg.data[5]
-
-        self.send([0x31, 0x00, pos_p, pos_i, speed_p, speed_i, kp, ki])
-
-
-    def setmultiTurnZeroOffset(self, offset, InvertDirection = None):
+    def setmultiTurnZeroOffset(self, offset, InvertDirection = None): # NOT COMPATIBLE WITH V1.6 MOTOR FIRMWARE!!
         byte1, byte2, byte3, byte4, byte5, byte6 = self.utils.int_to_bytes(offset, 6)
 
         if InvertDirection is None:
@@ -257,7 +279,7 @@ class CanMotor(object):
             self.send([0x63, byte6, byte5, byte4, byte3, byte2, byte1, 0], wait_for_response=True)
     
 
-    def read_multiTurnZeroOffset(self):
+    def read_multiTurnZeroOffset(self): # NOT COMPATIBLE WITH V1.6 MOTOR FIRMWARE!!
         msg = self.send([0x22, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
         
         # CANNOT USE msg.data directly because it is not iterable for some reason...

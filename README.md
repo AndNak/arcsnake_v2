@@ -1,15 +1,7 @@
 # TODO:
-- Features for CanMotor:
-  
-  - Want to add max acceleration to the current speed_ctrl
-    - Look at the registers used in pos_ctrl and speed_ctrl, see what PID/settings it is using in the datasheet
-    - See if there is a corresponding max vel/acc for those registers 
-  - Set new CANBus ID with code (register 0x79)
-
-- Convert everthing from toBytes() to int_to_bytes()
-- Add indepth comments for can utils with the autodocstring extension (ctrl+shift+2)
+- Show peterrrrrr how to pull from github as well as get his code onto the git 
+- Look at peter's code for plotting all the data cuz it looks really nice!!
 - Export conda environment so all the python dependencies can be easily imported
-- Torque control / torque plotting
 
 # Arduino TODO
 
