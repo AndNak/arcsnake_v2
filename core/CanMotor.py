@@ -190,12 +190,12 @@ class CanMotor(object):
 
         self.send([0xa4, 0x00, s_byte2, s_byte1, byte4, byte3, byte2, byte1])
 
-    def override_PI_values(self, pos_p = None, pos_i = None, speed_p = None, speed_i = None, torque_p = None, torque_i = None):
+    def override_PI_values(self, pos_p = None, pos_i = None, speed_p = None, speed_i = None, torque_p = None, torque_i = None): #UNTESTED!!!
         """Overrites the specified P and I values in the ROM with new values. Still valid for next boot.
         -
         """        
         # read other values first
-        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+        msg = self.send([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True) 
         if (pos_p is None):
             pos_p = msg.data[2]
         if (pos_i is None):
@@ -211,7 +211,7 @@ class CanMotor(object):
 
         self.send([0x32, 0x00, pos_p, pos_i, speed_p, speed_i, torque_p, torque_i])
 
-    def set_PI_values(self, pos_p = None, pos_i = None, speed_p = None, speed_i = None, torque_p = None, torque_i = None):
+    def set_PI_values(self, pos_p = None, pos_i = None, speed_p = None, speed_i = None, torque_p = None, torque_i = None): #UNTESTED!!!
         """Overrites the specified P and I values in the RAM with new values. Lost on reboot.
         -
         """        
