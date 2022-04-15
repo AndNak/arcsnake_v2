@@ -19,7 +19,7 @@ if __name__ == "__main__":
     testMotor.speed_ctrl(1)
     try:
         for i in range(0, 100):
-            time.sleep(.1)
+            time.sleep(.5)
             print(testMotor.read_speed())
             
     except(KeyboardInterrupt) as e:
