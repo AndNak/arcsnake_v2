@@ -2,6 +2,7 @@ import can
 import math
 from .CanUtils import CanUtils
 from .timeout import timeout
+import time
 
 class CanMotor(object):
     def __init__(self, bus, motor_id, gear_ratio, MIN_POS = -999 * 2 * math.pi, MAX_POS = 999 * 2 * math.pi):
@@ -78,7 +79,7 @@ class CanMotor(object):
     position
         14-bit range: 0~16383 deg ==> rad
     '''
-    def read_motor_status(self):
+    def read_motor_status(self, returnTime = False):
         """Reads motor Torque, Speed, and Position from the motor.
         -
 
@@ -92,9 +93,15 @@ class CanMotor(object):
         speed    = self.utils.readBytes(msg.data[5], msg.data[4]) / self.gear_ratio
         position = self.utils.readBytes(msg.data[7], msg.data[6]) / self.gear_ratio
 
-        return (self.utils.encToAmp(torque), 
+        if returnTime:
+            return (self.utils.encToAmp(torque), 
+                self.utils.degToRad(speed), 
+                self.utils.degToRad(self.utils.toDegrees(position)), time.time())
+        else:
+            return (self.utils.encToAmp(torque), 
                 self.utils.degToRad(speed), 
                 self.utils.degToRad(self.utils.toDegrees(position)))
+        
 
 
     def read_singleturn_position(self):

@@ -1,12 +1,11 @@
 # TODO:
-- Show peterrrrrr how to pull from github as well as get his code onto the git 
-- Look at peter's code for plotting all the data cuz it looks really nice!!
-- Export conda environment so all the python dependencies can be easily imported
+- learn more about ros and ros2 (python library)
+- perform system wide install for ros1
+- test python time vs ros time 
 
 # Arduino TODO
-
-- Update README in ArduionoHumidity to explain how the set up is
-- Get Arduino humidity sensor thingy working 
+- Install the sparkfun can library into the arduino ide 
+- Get Arduino CAN Shield working once parts arrive
 
 # Getting Started with USB CAN bus
 
@@ -44,28 +43,6 @@ pip install pyinstrument
 pip install numpy
 pip install matplotlib
 pip install python-can
-```
-
-# Installing Anaconda
-
-Install anaconda from official website   
-Verify anaconda installed with conda -V  
-Create a new virtual environment  
-
-```
-conda create -n arcsnake python=3.9.7 anaconda
-```
-
-## Activating virtual environment
-
-```
-conda activate arcsnake 
-```
-
-## For deactivating virtual environment
-
-```
-conda decativate arcsnake
 ```
 
 # Running test programs
