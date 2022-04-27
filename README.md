@@ -63,6 +63,7 @@ python3 tests/test_sanity.py
   '''
     export PYTHONPATH="${PYTHONPATH}:/home/myeoh/Documents/Github"
   '''
+- **RESTART COMPUTER TO SAVE CHANGES**
 - save and verify by running echo $PYTHONPATH in terminal 
 
 ## Otherwise, if issues with Path stuff insert this into top of code
