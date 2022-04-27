@@ -1,9 +1,10 @@
 # TODO:
-- learn more about ros and ros2 (python library)
-- perform system wide install for ros1
+
+- Full system wide install with ros2
 - test python time vs ros time 
 
 # Arduino TODO
+
 - Install the sparkfun can library into the arduino ide 
 - Get Arduino CAN Shield working once parts arrive
 
