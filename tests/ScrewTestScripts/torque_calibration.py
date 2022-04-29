@@ -15,7 +15,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
-    testMotor = CanUJoint(can0, 0x141, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
+    testMotor = CanUJoint(can0, 0, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     
     command_speed = 1 # in radians per second
     run_time = 10 # in seconds

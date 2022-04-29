@@ -11,8 +11,8 @@ class CanMotor(object):
 
         Args:
             bus (can0 or can1): CAN Bus that the motor is connected to
-            motor_id (int) Set motor_id from 1-32. Can be determined by dip switches on motor 
-                Ex: If all the dip switches are set to 0, the motor_id would be 1. 
+            motor_id (int) Set motor_id from 0-31. Can be determined by decimal number of the dip switches 
+                Ex: If the dip switches are set to 0000, the motor_id would be 0. Since 0000 in binary to decimal is 0. 
             gear_ratio (int): Set gear ratio between motor -> output. 
                 Ex: RMD X8 Motor has a 6:1 planteary gear ratio so this value would be 6
             MIN_POS (RAD, optional): Set MIN_POS of motor. Used in pos_ctrl function. Defaults to -999*2*math.pi.
@@ -22,7 +22,7 @@ class CanMotor(object):
         self.utils = CanUtils()
         self.gear_ratio = gear_ratio
         id = "0x"
-        id += (str(140 + motor_id))
+        id += (str(141 + motor_id))
         self.id = eval(id)
         self.min_pos = MIN_POS
         self.max_pos = MAX_POS

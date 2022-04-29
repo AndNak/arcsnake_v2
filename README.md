@@ -1,11 +1,11 @@
 # TODO:
-
-- Full system wide install with ros2
+- Figure out how exactly to use ROS2
+- find how to make ini file
+- Document installation for ros 
 - test python time vs ros time 
 
 # Arduino TODO
 
-- Install the sparkfun can library into the arduino ide 
 - Get Arduino CAN Shield working once parts arrive
 
 # Getting Started with USB CAN bus
@@ -53,6 +53,14 @@ run
 '''
 python3 tests/test_sanity.py
 '''
+
+# Installing Ros (fix up)
+Use the installation script made by Ace Bhatia (Thanks)
+
+git clone https://github.com/ankbhatia19/ROS2-Containerized.git
+
+Follow instructions in Ace's git??
+
 
 # Notes:
 
