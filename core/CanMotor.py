@@ -299,9 +299,14 @@ class CanMotor(object):
         
         return self.utils.readBytesList(byte_list)
 
+    def motor_start(self):
+        """Starts the motor 
+        -
+        """
+        self.send([0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
     
     def motor_stop(self):
         """Stops the motor. Useful for allowing motor to be turned by hand
         -
         """
-        self.send([0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+        self.send([0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
