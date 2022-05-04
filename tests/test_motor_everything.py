@@ -10,7 +10,6 @@ arcsnake_v2_path = dirname(dirname(realpath(__file__)))
 sys.path.append(arcsnake_v2_path)  
 
 
-
 if __name__ == "__main__":
   core.CANHelper.init("can0") # Intiailize can0
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan') # Create can bus object 
