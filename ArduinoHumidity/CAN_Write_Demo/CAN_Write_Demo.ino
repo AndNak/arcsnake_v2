@@ -1,54 +1,69 @@
-/****************************************************************************
-CAN Write Demo for the SparkFun CAN Bus Shield. 
+// demo: CAN-BUS Shield, send data
+// loovee@seeed.cc
 
-Written by Stephen McCoy. 
-Original tutorial available here: http://www.instructables.com/id/CAN-Bus-Sniffing-and-Broadcasting-with-Arduino
-Used with permission 2016. License CC By SA. 
 
-Distributed as-is; no warranty is given.
-*************************************************************************/
+#include <SPI.h>
 
-#include <Canbus.h>
-#include <defaults.h>
-#include <global.h>
-#include <mcp2515.h>
-#include <mcp2515_defs.h>
+#define CAN_2515
+// #define CAN_2518FD
 
-//********************************Setup Loop*********************************//
+// Set SPI CS Pin according to your hardware
+
+#if defined(SEEED_WIO_TERMINAL) && defined(CAN_2518FD)
+// For Wio Terminal w/ MCP2518FD RPi Hat：
+// Channel 0 SPI_CS Pin: BCM 8
+// Channel 1 SPI_CS Pin: BCM 7
+// Interupt Pin: BCM25
+const int SPI_CS_PIN  = BCM8;
+const int CAN_INT_PIN = BCM25;
+#else
+
+// For Arduino MCP2515 Hat:
+// the cs pin of the version after v1.1 is default to D9
+// v0.9b and v1.0 is default D10
+const int SPI_CS_PIN = 9;
+const int CAN_INT_PIN = 2;
+#endif
+
+
+#ifdef CAN_2518FD
+#include "mcp2518fd_can.h"
+mcp2518fd CAN(SPI_CS_PIN); // Set CS pin
+#endif
+
+#ifdef CAN_2515
+#include "mcp2515_can.h"
+mcp2515_can CAN(SPI_CS_PIN); // Set CS pin
+#endif
 
 void setup() {
-  Serial.begin(9600);
-  Serial.println("CAN Write - Testing transmission of CAN Bus messages");
-  delay(1000);
-  
-  if(Canbus.init(CANSPEED_500))  //Initialise MCP2515 CAN controller at the specified speed
-    Serial.println("CAN Init ok");
-  else
-    Serial.println("Can't init CAN");
-    
-  delay(1000);
+    SERIAL_PORT_MONITOR.begin(115200);
+    while(!Serial){};
+
+    while (CAN_OK != CAN.begin(CAN_1000KBPS)) {             // init can bus : baudrate = 500k
+        SERIAL_PORT_MONITOR.println("CAN init fail, retry...");
+        delay(100);
+    }
+    SERIAL_PORT_MONITOR.println("CAN init ok!");
 }
 
-//********************************Main Loop*********************************//
+unsigned char stmp[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+void loop() {
+    // send data:  id = 0x00, standrad frame, data len = 8, stmp: data buf
+    stmp[7] = stmp[7] + 1;
+    if (stmp[7] == 100) {
+        stmp[7] = 0;
+        stmp[6] = stmp[6] + 1;
 
-void loop() 
-{
-tCAN message;
+        if (stmp[6] == 100) {
+            stmp[6] = 0;
+            stmp[5] = stmp[5] + 1;
+        }
+    }
 
-        message.id = 0x141; //formatted in HEX
-//        message.header.rtr = 0;
-//        message.header.length = 8; //formatted in DEC
-  message.data[0] = 0xa2;
-	message.data[1] = 0x00;
-	message.data[2] = 0x00;
-	message.data[3] = 0x00; //formatted in HEX
-	message.data[4] = 0x00;
-	message.data[5] = 0x03;
-	message.data[6] = 0x4B;
-	message.data[7] = 0x52;
-
-// mcp2515_bit_modify(CANCTRL, (1<<REQOP2)|(1<<REQOP1)|(1<<REQOP0), 0);
-mcp2515_send_message(&message);
-//Serial.println("sent!");
-delay(1000);
+    CAN.sendMsgBuf(0x00, 0, 8, stmp);
+    delay(100);                       // send data per 100ms
+    SERIAL_PORT_MONITOR.println("CAN BUS sendMsgBuf ok!");
 }
+
+// END FILE

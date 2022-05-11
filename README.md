@@ -1,5 +1,4 @@
 # TODO:
-- FIX MOTOR START/MOTOR STOP WEIRDNESS 
 - Figure out how exactly to use ROS2
 - find how to make ini file
 - Document installation for ros 
