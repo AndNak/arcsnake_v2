@@ -32,6 +32,7 @@ class CanMotor(object):
         self.motor_start()
         self.motor_start()
 
+        # By default, the motor is unpowered upon intiailization
         self.motor_stop()
     
 
