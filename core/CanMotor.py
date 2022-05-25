@@ -29,8 +29,11 @@ class CanMotor(object):
 
         # For some reason, the screw motor in one our debug sessions
         # required two of these to be sent in order to recieve new commands...
-        self.send([0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
-        self.send([0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+        self.motor_start()
+        self.motor_start()
+
+        # By default, the motor is unpowered upon intiailization
+        self.motor_stop()
     
 
     '''
