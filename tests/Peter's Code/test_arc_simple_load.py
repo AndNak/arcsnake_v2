@@ -46,16 +46,17 @@ if __name__ == "__main__":
 
   zero_pos = 0.1
   amp = .2 * m.pi
-  loop_rate = 500 #Hz
+  loop_rate = 1000 #Hz
   run_time = 10 #seconds
 
   for i in range(run_time*loop_rate):
     t_start = time.time()
-    print("i = ",i)
+    print("Time: ", '{0:.2f}'.format(i/loop_rate), " seconds")
     joint1.pos_ctrl(amp*m.sin(2*m.pi*i/10000)+zero_pos,.5)
     
     (joint_torque, joint_speed, joint_s_pos) = joint1.read_motor_status()
-    joint_m_pos = joint1.read_multiturn_position()
+    # joint_m_pos = joint1.read_multiturn_position()
+    joint_m_pos = 0
     read_s_pos_joint.append(joint_s_pos)
     read_m_pos_joint.append(joint_m_pos)
     read_speeds_joint.append(joint_speed)
@@ -104,7 +105,7 @@ if __name__ == "__main__":
   axs[3].plot(smooth(read_torque_joint,200),'g-')
   axs[3].set_title('Torque')
   axs[4].plot(t_vec)
-  axs[4].set_title('Execute time (Hz). Set at :', loop_rate,' Hz')
+  axs[4].set_title('Execute time (Hz)')
   plt.show()
 
   core.CANHelper.cleanup("can0")

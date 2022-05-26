@@ -40,8 +40,8 @@ if __name__ == "__main__":
   time.sleep(1)
 
   zero_pos = 0.1
-  amp = .25 * m.pi
-  loop_rate = 500 #Hz
+  amp = 1 * m.pi
+  loop_rate = 1000 #Hz
   run_time = 20 #seconds
 
   joint1.pos_ctrl(zero_pos,1)
