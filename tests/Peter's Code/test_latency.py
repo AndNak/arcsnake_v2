@@ -41,17 +41,15 @@ if __name__ == "__main__":
     t_vec2 = []
     pos_vec1 = []
     pos_vec2 = []
-
-    for i in range(1):
-        time.sleep(1)  
     
+
     for i in range(1000):
         t_start = time.time() - time_zero
 
 
         #### COMANDS HERE ####
 
-        joint1.pos_ctrl(0)
+        # joint1.pos_ctrl(0)
         time.sleep(.001)
         # (joint_torque, joint_speed, joint_s_pos) = joint1.read_motor_status()
         joint_m_pos = joint1.read_multiturn_position()
@@ -78,7 +76,7 @@ if __name__ == "__main__":
 
         #### COMANDS HERE ####
 
-        joint1.pos_ctrl(0)
+        # joint1.pos_ctrl(0)
         time.sleep(.001)
         # (joint_torque, joint_speed, joint_s_pos) = joint1.read_motor_status()
         joint_m_pos = joint1.read_multiturn_position()
@@ -99,14 +97,6 @@ if __name__ == "__main__":
 
     joint1.motor_stop()    
 
-   
-    def multiturn(x):
-        multiturn_values = x
-        for i in len(x):
-            diff = x[i] + x[i-1]
-            if diff > 1:
-                multiturn_values[i] = x[i-1]
-
     avg1 = np.ones(len(t_vec1)) * np.mean(t_vec1)
     avg2 = np.ones(len(t_vec2)) * np.mean(t_vec2)
 
@@ -118,9 +108,11 @@ if __name__ == "__main__":
     axs[0].plot(avg1, 'b')
     axs[0].plot(t_vec2,'r.')
     axs[0].plot(avg2,'r')
+    axs[0].set_title('Loop rate (Hz)')
 
     axs[1].plot(pos_vec1, 'b')
     axs[1].plot(pos_vec2,'r')
+    axs[1].set_title('Position')
     plt.show()
 
     core.CANHelper.cleanup("can0")

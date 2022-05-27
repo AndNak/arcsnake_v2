@@ -1,4 +1,5 @@
 from asyncore import loop
+from audioop import mul
 from cProfile import run
 from doctest import run_docstring_examples
 from os.path import dirname, realpath
@@ -43,20 +44,20 @@ if __name__ == "__main__":
     loop_vec = []
 
     zero_pos = 0
-    amp = .45 * m.pi
-    loop_rate = 1500 #Hz
-    run_time = 5 #seconds
+    amp = 3 * m.pi
+    loop_rate = 2500 #Hz
+    run_time = 20 #seconds
 
 
     def trajectory(t):
-        traj = amp*m.sin(2*m.pi*t/5)+zero_pos
+        traj = amp*m.sin(2*m.pi*t/10)+zero_pos
         return traj
 
 
     print('Starting Test:')
     time.sleep(1)
 
-    joint1.pos_ctrl(trajectory(0),1)
+    joint1.pos_ctrl(trajectory(0),5)
     time.sleep(1)
 
     time_zero = time.time()
@@ -68,14 +69,14 @@ if __name__ == "__main__":
         print("Time: ",round(t_start,3), " seconds")
         t_vec.append(t_start)
 
-        joint1.pos_ctrl(trajectory(t_start),5)
+        joint1.pos_ctrl(trajectory(t_start),7)
 
 
         (joint_torque, joint_speed, joint_s_pos) = joint1.read_motor_status()
         # joint_m_pos = joint1.read_multiturn_position()
-        joint_m_pos = 0
+        # joint_m_pos = 0
         read_s_pos_joint.append(joint_s_pos)
-        read_m_pos_joint.append(joint_m_pos)
+        # read_m_pos_joint.append(joint_m_pos)
         read_speeds_joint.append(joint_speed)
         read_torque_joint.append(joint_torque)
 
@@ -104,9 +105,6 @@ if __name__ == "__main__":
 
     print('Test Done')
     print('Error count: ', err_count)
-    print("Max Positional Value: ", max(read_s_pos_joint))
-    print("Min Positional Value: ", min(read_s_pos_joint))
-    
 
     cut_amount = 10
     del read_s_pos_joint[1:cut_amount]
@@ -122,17 +120,24 @@ if __name__ == "__main__":
 
     traj_expected = []
 
-    for i in t_vec :
-        traj_expected.append(4*trajectory(i))
+    for i in range(len(t_vec)) :
+        traj_expected.append(4*trajectory(t_vec[i]))
 
 
-    def multiturn(x):
-        multiturn_values = x
-        for i in len(x):
-            diff = x[i] + x[i-1]
-            if diff > 1:
-                multiturn_values[i] = x[i-1]
+    def multiturn(singleturn_values):
+        multiturn_values = singleturn_values.copy()
+        count = 0
+        for i in range(len(multiturn_values)-2):
+            diff = singleturn_values[i+1] - singleturn_values[i]
+            if diff < -4:
+                count = count + 1
+            elif diff > 4:
+                count = count - 1
+            multiturn_values[i+1] = multiturn_values[i+1] + 2*count
+            multiturn_values[i+2] = multiturn_values[i+2] + 2*count
+        return multiturn_values
 
+    read_m_pos_joint = smooth(multiturn(read_s_pos_joint),10)  #need to smooth data becuase there small errors right when the single turn switchess
 
     fig, axs = plt.subplots(5)
     axs[0].plot(read_s_pos_joint,'b-')
@@ -148,7 +153,7 @@ if __name__ == "__main__":
     axs[4].set_title('Execute time (Hz)')
     plt.show()
 
-    plt.plot(read_s_pos_joint, "r*")
+    plt.plot(read_m_pos_joint, "r*")
     plt.plot(traj_expected, 'b')
     plt.show()
 
