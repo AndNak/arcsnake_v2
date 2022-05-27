@@ -44,8 +44,8 @@ if __name__ == "__main__":
     loop_vec = []
 
     zero_pos = 0
-    amp = 1 * m.pi
-    loop_rate = 2500 #Hz
+    amp = .2 * m.pi
+    loop_rate = 1000 #Hz
     run_time = 10 #seconds
 
 
@@ -69,7 +69,7 @@ if __name__ == "__main__":
         print("Time: ",round(t_start,3), " seconds")
         t_vec.append(t_start)
 
-        joint1.pos_ctrl(trajectory(t_start),7)
+        joint1.torque_ctrl(trajectory(t_start))
 
 
         (joint_torque, joint_speed, joint_s_pos) = joint1.read_motor_status()
@@ -121,7 +121,7 @@ if __name__ == "__main__":
     traj_expected = []
 
     for i in range(len(t_vec)) :
-        traj_expected.append(4*trajectory(t_vec[i]))
+        traj_expected.append(trajectory(t_vec[i]))
 
 
     def multiturn(singleturn_values):
