@@ -1,12 +1,15 @@
 # TODO:
-- Figure out how exactly to use ROS2
+
+- get version control down!!! PETER!!!!!!!!
+- Fix multiturn code get it solved figure out what's wrong 
+- get the differential pressure sensor and the humidity sensor to communicate via CAN line
+- Document how to upload code to the longan can board
+
+## Ros
+
 - find how to make ini file
 - Document installation for ros 
 - test python time vs ros time 
-
-# Arduino TODO
-
-- Get Arduino CAN Shield working once parts arrive
 
 # Getting Started with USB CAN bus
 
@@ -55,12 +58,12 @@ python3 tests/test_sanity.py
 '''
 
 # Installing Ros (fix up)
+
 Use the installation script made by Ace Bhatia (Thanks)
 
 git clone https://github.com/ankbhatia19/ROS2-Containerized.git
 
 Follow instructions in Ace's git??
-
 
 # Notes:
 
