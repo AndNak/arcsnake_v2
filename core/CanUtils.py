@@ -49,7 +49,7 @@ class CanUtils:
         return result
 
     def toDegrees(self, enc_position):
-        """Convert 14-bit encoder reading (range 0~16383) to degrees
+        """Convert 14-bit encoder reading (range 0~32766) to degrees
 
         Args:
             enc_position (_type_): _description_
@@ -57,7 +57,7 @@ class CanUtils:
         Returns:
             _type_: _description_
         """
-        return (enc_position*360/16383)
+        return (enc_position*360/32766)
 
     def degToRad(self, in_deg):
         """Converts degrees to radians

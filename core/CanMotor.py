@@ -34,6 +34,8 @@ class CanMotor(object):
 
         # By default, the motor is unpowered upon intiailization
         self.motor_stop()
+        self.lastpos = self.read_singleturn_position()
+        self.curpos = 0
     
 
     '''
@@ -96,8 +98,7 @@ class CanMotor(object):
         # encoder readings are in (high byte, low byte)
         torque   = self.utils.readBytes(msg.data[3], msg.data[2])
         speed    = self.utils.readBytes(msg.data[5], msg.data[4]) / self.gear_ratio
-        position = self.utils.readBytes(msg.data[7], msg.data[6]) / self.gear_ratio
-
+        position = self.utils.readBytes(msg.data[7], msg.data[6])
         if returnTime:
             return (self.utils.encToAmp(torque), 
                 self.utils.degToRad(speed), 
@@ -123,6 +124,24 @@ class CanMotor(object):
         msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
         position = self.utils.readBytes(msg.data[7], msg.data[6]) 
         return position
+
+    def read_DIY_multiturn_position(self):
+        Threshold = 1
+        deltapos = self.read_singleturn_position() - self.lastpos
+        self.lastpos = self.read_singleturn_position()
+        
+
+        if deltapos > 4*math.pi-Threshold:
+            self.curpos+= deltapos - 4*math.pi
+            print("full counter-clockwise rotation detected")
+        elif deltapos < -4*math.pi + Threshold:
+            self.curpos+= deltapos + 4*math.pi
+            print("full clockwise rotation detected")
+        else:
+            self.curpos+=deltapos
+
+        print(f"{self.curpos}")
+        return self.curpos
 
 
     def read_multiturn_position(self):
