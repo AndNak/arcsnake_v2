@@ -1,15 +1,11 @@
 # TODO:
 
-- get version control down!!! PETER!!!!!!!!
-- Fix multiturn code get it solved figure out what's wrong 
-- get the differential pressure sensor and the humidity sensor to communicate via CAN line
 - Document how to upload code to the longan can board
 
 ## Ros
 
 - find how to make ini file
-- Document installation for ros 
-- test python time vs ros time 
+- Document installation for ros  
 
 # Getting Started with USB CAN bus
 
@@ -83,3 +79,22 @@ from os.path import dirname, realpath
 import sys  
 arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
 sys.path.append(arcsnake_v2_path)  
+
+# Setting up the Longan Board
+## Basic setup
+1) Navigate to https://www.arduino.cc/en/software
+2) Scroll down the page and download "Arduino IDE 2.0 RC". It is a much improved IDE than the old Arduino software
+3) Open up the humiditytest.ino file in the Arduino IDE(arcsnake_v2/ArduinoSensors/humidtytest)
+4) Make sure that the humidity sensor is wired up according to the pin declared in the Arduino sketch 
+5) Locate drop down menu at the top of the IDE and ensure that your board is selected. The Longa board will show up as a Arduino Leonardo
+6) Press upload
+7) Open the Serial monitor with ctrl+shift+m
+8) Make sure baudrate of serial monitor is 9600
+9) If the correct readings are printing to the Serial monitor then everything is in order!
+
+## Uploading and testing Arduino - Python CAN
+1) Open the ArduinoSensors.ino file (arcsnake_v2/ArduinoSensors/ArduinoSensors)
+2) Upload
+3) Connect the CAN H and CAN L from the Longan board to the appropriate pins on the USB to CAN device 
+4) Run the test_ArduinoSensors.py file
+5) If the correct numbers are printing on Python's terminal as well as Arduino's terminal then everything is good

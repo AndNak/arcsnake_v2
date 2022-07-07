@@ -14,8 +14,8 @@ if __name__ == "__main__":
   core.CANHelper.init("can0") # Intiailize can0
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan') # Create can bus object 
 
-  testMotor = CanUJoint(can0, 0, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14) # Initialize motor with can bus object 
-
+  testMotor = CanUJoint(can0, 0, 1) # Initialize motor with can bus object 
+  
   print("Enter Desired Control method")
   print("1 = Position Control (Rotations)")
   print("2 = Velocity Control (Rotations Per Second)")

@@ -17,14 +17,13 @@ class CanArduinoSensors(object):
     return msg
 
   @timeout(1)
+
   def readHumidityAndTemperature(self):
-    # Uncomment to send a message 
-    data = [0x12, 0x34, 0x56, 0x78, 0x90, 0xab, 0xcd, 0xef]
+    data = [0, 0, 0, 0, 0, 0, 0, 0]
 
     msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False)
     self.canBus.send(msg)
 
-    # Uncomment when the arduino is ready to send back!
     while True:
       try:
         msg = self.canBus.recv()
@@ -34,4 +33,4 @@ class CanArduinoSensors(object):
         print(e)
         break
 
-    return int(msg.data[-1]), int(msg.data[-2])
+    return int(msg.data[-1]), int(msg.data[-2]), int(msg.data[-3]*100)

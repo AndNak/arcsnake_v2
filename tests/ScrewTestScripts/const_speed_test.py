@@ -16,35 +16,43 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
-    testMotor = CanUJoint(can0, 0, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
-    
-    command_speed = -0.4 # in radians per second
-    run_time = 10 # in seconds
+    screwMotor = CanUJoint(can0, 1, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
+    encoderMotor = CanUJoint(can0, 0, 1)
+    command_speed = -1.0 # in radians per second
+    command_torque = -0.4 # in amps
+    run_time = 30 # in second
     sampling_rate = 200 # in Hz
     interval = 2 # seconds
 
+    # screwMotor.speed_ctrl(1)
+    # try:
+    #     for _ in range(1000):
+    #         print(encoderMotor.read_multiturn_position())
+    #         time.sleep(0.1)
+    # except (KeyboardInterrupt, ValueError) as e: # Kill with ctrl + c
+    #     print(e)
+
 
     try:
-
-        with open('tests/ScrewTestScripts/data_files/5_3_test5.csv', mode='w') as test_data:
+        with open('tests/ScrewTestScripts/data_files/6_22_test3.csv', mode='w') as test_data:
             test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            test_writer.writerow(['time', 'speed', 'torque'])
-            testMotor.speed_ctrl(command_speed)
+            test_writer.writerow(['time', 'angular speed', 'torque', 'linear speed'])
+            screwMotor.speed_ctrl(command_speed)
+            # screwMotor.torque_ctrl(command_torque)
             start_time = time.time()
             while True:
                 cur_time = time.time() - start_time
-                row = [cur_time, testMotor.read_speed(), testMotor.read_torque()]
+                row = [cur_time, screwMotor.read_speed(), screwMotor.read_torque(), encoderMotor.read_speed()]
                 print(row)
                 test_writer.writerow(row)
                 time.sleep(1/sampling_rate)
                 if cur_time > run_time:
                     break
-
-            
     except(KeyboardInterrupt) as e:
         print(e)
 
-    testMotor.motor_stop() 
+    screwMotor.motor_stop() 
+    encoderMotor.motor_stop()
 
     print('Done')
 
