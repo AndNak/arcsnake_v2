@@ -43,22 +43,22 @@ if __name__ == "__main__":
     t_vec = []
     loop_vec = []
 
-    zero_pos = 0
-    amp = 1 * m.pi
-    loop_rate = 2500 #Hz
-    run_time = 10 #seconds
+    zero_pos = .1
+    amp = .65 * m.pi
+    loop_rate = 1000 #Hz
+    run_time = 40 #seconds
 
 
     def trajectory(t):
-        traj = amp*m.sin(2*m.pi*t/10)+zero_pos
+        traj = amp*m.sin(2*m.pi*t/20)+zero_pos
         return traj
 
 
     print('Starting Test:')
     time.sleep(1)
 
-    joint1.pos_ctrl(trajectory(0),5)
-    time.sleep(1)
+    joint1.pos_ctrl(trajectory(0),2)
+    time.sleep(2)
 
     time_zero = time.time()
     t_start = 0
@@ -105,12 +105,13 @@ if __name__ == "__main__":
 
     print('Test Done')
     print('Error count: ', err_count)
+    print('Recomend Loop Rate: ', min(loop_vec))
 
     cut_amount = 10
-    del read_s_pos_joint[1:cut_amount]
-    del read_m_pos_joint[1:cut_amount]
-    del read_speeds_joint[1:cut_amount]
-    del read_torque_joint[1:cut_amount]
+    read_s_pos_joint = read_s_pos_joint[cut_amount:-1]
+    read_m_pos_joint = read_m_pos_joint[cut_amount:-1]
+    read_speeds_joint = read_speeds_joint[cut_amount:-1]
+    read_torque_joint = read_torque_joint[cut_amount:-1]
 
 
     def smooth(y, box_pts):
@@ -121,41 +122,58 @@ if __name__ == "__main__":
     traj_expected = []
 
     for i in range(len(t_vec)) :
-        traj_expected.append(4*trajectory(t_vec[i]))
+        traj_expected.append(6*trajectory(t_vec[i]))
 
 
     def multiturn(singleturn_values):
         multiturn_values = singleturn_values.copy()
         count = 0
+        diff_amount = 4
+        amplifiy = abs(max(singleturn_values))
         for i in range(len(multiturn_values)-2):
             diff = singleturn_values[i+1] - singleturn_values[i]
-            if diff < -4:
+            if diff < -diff_amount:
                 count = count + 1
-            elif diff > 4:
+            elif diff > diff_amount:
                 count = count - 1
-            multiturn_values[i+1] = multiturn_values[i+1] + 2*count
-            multiturn_values[i+2] = multiturn_values[i+2] + 2*count
+            multiturn_values[i+1] = multiturn_values[i+1] + amplifiy*count
+            multiturn_values[i+2] = multiturn_values[i+2] + amplifiy*count
         return multiturn_values
 
-    read_m_pos_joint = smooth(multiturn(read_s_pos_joint),10)  #need to smooth data becuase there small errors right when the single turn switchess
+    read_m_pos_joint = multiturn(read_s_pos_joint)
 
     fig, axs = plt.subplots(5)
     axs[0].plot(read_s_pos_joint,'b-')
     axs[0].set_title('Position (Singleloop)')
     axs[1].plot(read_m_pos_joint,'m-')
     axs[1].set_title('Position (Multiloop)')
-    axs[2].plot(smooth(read_speeds_joint,20),'r-')
+    axs[2].plot(read_speeds_joint,'r-')
     axs[2].set_title('Speed')
-    axs[3].plot(smooth(read_torque_joint,300),'g-')
+    axs[3].plot(smooth(read_torque_joint,1000),'g-')
     axs[3].set_title('Torque')
     axs[4].plot(loop_vec)
     axs[4].plot(loop_rate*np.ones(len(loop_vec)))
     axs[4].set_title('Execute rate (Hz)')
     plt.show()
 
-    plt.plot(read_m_pos_joint, "r*")
-    plt.plot(traj_expected, 'b')
+    plt.plot(read_torque_joint,'r')
+    plt.plot(smooth(read_torque_joint,50),'b')
+    plt.plot(smooth(read_torque_joint,100),'g')
+    plt.plot(smooth(read_torque_joint,300),'y')
+    plt.plot(smooth(read_torque_joint,1000),'k')
+    plt.plot(smooth(read_torque_joint,2000),'k')
+    plt.plot(smooth(read_torque_joint,3000),'k')
     plt.show()
+
+    plt.plot(smooth(read_torque_joint,3000),'k')
+    plt.plot(read_speeds_joint,'r-')
+    # plt.plot(read_m_pos_joint,'b-')
+    plt.show()
+
+    # plt.plot(read_m_pos_joint, "r*")
+    # plt.plot(traj_expected, 'b')
+    # plt.show()
+
 
     core.CANHelper.cleanup("can0")
 

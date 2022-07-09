@@ -44,13 +44,14 @@ if __name__ == "__main__":
     loop_vec = []
 
     zero_pos = 0
-    amp = 2 * m.pi
-    loop_rate = 500 #Hz
-    run_time = 20 #seconds
+    amp = 1 #2 * m.pi
+    loop_rate = 350 #Hz
+    run_time = 2 #seconds
 
 
     def trajectory(t):
-        traj = amp*m.sin(2*m.pi*t/10)+zero_pos
+        traj = amp*m.sin(2*m.pi*t/10)+zero_pos #sine wave
+        traj = amp #linear  
         return traj
 
 
@@ -58,7 +59,7 @@ if __name__ == "__main__":
     time.sleep(1)
 
     joint1.pos_ctrl(trajectory(0),5)
-    time.sleep(1)
+    time.sleep(2)
 
     time_zero = time.time()
     t_start = 0
@@ -105,13 +106,13 @@ if __name__ == "__main__":
 
     print('Test Done')
     print('Error count: ', err_count)
+    print('Recomend Loop Rate: ', min(loop_vec))
 
     cut_amount = 10
-    del read_s_pos_joint[1:cut_amount]
-    del read_m_pos_joint[1:cut_amount]
-    del read_speeds_joint[1:cut_amount]
-    del read_torque_joint[1:cut_amount]
-
+    read_s_pos_joint = read_s_pos_joint[cut_amount:-1]
+    read_m_pos_joint = read_m_pos_joint[cut_amount:-1]
+    read_speeds_joint = read_speeds_joint[cut_amount:-1]
+    read_torque_joint = read_torque_joint[cut_amount:-1]
 
     def smooth(y, box_pts):
         box = np.ones(box_pts)/box_pts
@@ -144,7 +145,7 @@ if __name__ == "__main__":
     axs[0].set_title('Position (Singleloop)')
     axs[1].plot(read_m_pos_joint,'m-')
     axs[1].set_title('Position (Multiloop)')
-    axs[2].plot(smooth(read_speeds_joint,20),'r-')
+    axs[2].plot(read_speeds_joint,'r-')
     axs[2].set_title('Speed')
     axs[3].plot(smooth(read_torque_joint,300),'g-')
     axs[3].set_title('Torque')
