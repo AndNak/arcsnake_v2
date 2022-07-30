@@ -1,4 +1,3 @@
-from charset_normalizer import detect
 from os.path import dirname, realpath  
 import sys  
 arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
