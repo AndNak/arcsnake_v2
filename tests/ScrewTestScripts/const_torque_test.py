@@ -18,16 +18,19 @@ if __name__ == "__main__":
 
     screwMotor = CanUJoint(can0, 1, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     encoderMotor = CanUJoint(can0, 0, 1)
+    run_time = 6 # in second
     sampling_rate = 200 # in Hz
-    run_time = 30 # in second
-    data_fname = '~/Documents/screw_test_data_files/motion_tests/set1/test1.csv'
-    command_speed = -2.5 # in radians per second
+
+    # data_fname = '/screw_test_data_files/peak_force_tests/set1/test1.csv'
+    data_fname = 'tests/ScrewTestScripts/data_files/peak_force_tests/set2/test11.csv'
+    command_torque = -1.6 # in amps
+
 
     try:
         with open(data_fname, mode='w') as test_data:
             test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             test_writer.writerow(['time', 'angular speed', 'torque', 'linear speed'])
-            screwMotor.speed_ctrl(command_speed)
+            screwMotor.torque_ctrl(command_torque)
             start_time = time.time()
             while True:
                 cur_time = time.time() - start_time

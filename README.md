@@ -1,6 +1,6 @@
 # TODO:
 
-- Document how to upload code to the longan can board
+- Make outlier filtering - Florian
 
 ## Ros
 
