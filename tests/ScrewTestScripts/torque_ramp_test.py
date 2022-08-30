@@ -22,11 +22,11 @@ if __name__ == "__main__":
     sampling_rate = 200 # in Hz
 
     # data_fname = '/screw_test_data_files/peak_force_tests/set1/test1.csv'
-    data_fname = 'tests/ScrewTestScripts/data_files/torque_ramp_tests/test_set/test2.csv'
-    initial_torque = -0.1
-    final_torque = -1.5
+    data_fname = 'tests/ScrewTestScripts/data_files/torque_ramp_tests/test_set/test5.csv'
+    initial_torque = -0.01
+    final_torque = -2.0
     torque_step = -0.01
-    time_step = 0.1
+    time_step = 0.05
     num_steps = int((final_torque - initial_torque) / torque_step) + 1
     print(num_steps)
 
