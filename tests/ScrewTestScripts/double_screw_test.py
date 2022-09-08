@@ -9,7 +9,11 @@ import sys
 from core.CanMotor import CanMotor
 import csv
 arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
-sys.path.append(arcsnake_v2_path)  
+sys.path.append(arcsnake_v2_path)
+
+
+def get_time(t0):
+    return time.time() - t0
 
 
 if __name__ == "__main__":
@@ -30,16 +34,36 @@ if __name__ == "__main__":
         with open(data_fname, mode='w') as test_data:
             test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             test_writer.writerow(['time', 'angular speed 1', 'angular speed 2', 'torque 1', 'torque 2', 'linear speed'])
+
+            # synchronization procedure
+            t0 = time.time()
+
+            screwMotor1.pos_ctrl(1.6, 6.0)
+            screwMotor2.pos_ctrl(1.6, 6.0)
+            row = [get_time(t0), screwMotor1.read_speed(), screwMotor2.read_speed(), screwMotor1.read_torque(), screwMotor2.read_torque(), encoderMotor.read_speed()]
+            print(row)
+            test_writer.writerow(row)
+            time.sleep(2)
+
+            screwMotor1.pos_ctrl(0, 6.0)
+            screwMotor2.pos_ctrl(0, 6.0)
+            row = [get_time(t0), screwMotor1.read_speed(), screwMotor2.read_speed(), screwMotor1.read_torque(), screwMotor2.read_torque(), encoderMotor.read_speed()]
+            print(row)
+            test_writer.writerow(row)
+
+            time.sleep(15)
+
+            ### Start main trial loop
+            t1 = time.time()
             screwMotor1.speed_ctrl(command_speed)
-            screwMotor2.speed_ctrl(command_speed)
-            start_time = time.time()
+            screwMotor2.speed_ctrl(-command_speed)
             while True:
-                cur_time = time.time() - start_time
-                row = [cur_time, screwMotor1.read_speed(), screwMotor2.read_speed(), screwMotor1.read_torque(), screwMotor2.read_torque(), encoderMotor.read_speed()]
+                trial_time = get_time(t1)
+                row = [get_time(t0), screwMotor1.read_speed(), screwMotor2.read_speed(), screwMotor1.read_torque(), screwMotor2.read_torque(), encoderMotor.read_speed()]
                 print(row)
                 test_writer.writerow(row)
                 time.sleep(1/sampling_rate)
-                if cur_time > run_time:
+                if trial_time > run_time:
                     break
     except(KeyboardInterrupt) as e:
         print(e)
