@@ -39,20 +39,12 @@ if __name__ == "__main__":
             # # synchronization procedure
             t0 = time.time()
 
-            screwMotor1.pos_ctrl(1.0, 2.0)
-            screwMotor2.pos_ctrl(1.75, 2.0)
+            screwMotor1.pos_ctrl(0, 3.0)
+            screwMotor2.pos_ctrl(0.75, 3.0)
             row = [get_time(t0), screwMotor1.read_speed(), screwMotor2.read_speed(), screwMotor1.read_torque(), screwMotor2.read_torque(), encoderMotor.read_speed()]
             print(row)
             test_writer.writerow(row)
-            time.sleep(4)
-
-            screwMotor1.pos_ctrl(0, 2.0)
-            screwMotor2.pos_ctrl(0.75, 2.0)
-            row = [get_time(t0), screwMotor1.read_speed(), screwMotor2.read_speed(), screwMotor1.read_torque(), screwMotor2.read_torque(), encoderMotor.read_speed()]
-            print(row)
-            test_writer.writerow(row)
-
-            time.sleep(5)
+            time.sleep(20)
 
             # ### Start main trial loop
             # t1 = time.time()
