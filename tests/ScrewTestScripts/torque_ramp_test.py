@@ -36,13 +36,14 @@ if __name__ == "__main__":
     num_steps = int((final_torque - initial_torque) / torque_step) + 1
 
     try:
-        time.sleep(3)
+        t0 = time.time()
         with open(data_fname, mode='w') as test_data:
             test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             test_writer.writerow(['time', 'angular speed', 'torque', 'linear speed', 'angular position', 'interval'])
 
+            time.sleep(3)
             # synchronization procedure
-            t0 = time.time()
+            
 
             screwMotor.pos_ctrl(0, 6.0)
             row = [get_time(t0), screwMotor.read_speed(), screwMotor.read_torque(), encoderMotor.read_speed(), screwMotor.read_multiturn_position(), -1]

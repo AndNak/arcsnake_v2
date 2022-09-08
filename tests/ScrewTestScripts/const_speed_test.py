@@ -32,6 +32,7 @@ if __name__ == "__main__":
     data_fname = '~/Documents/screw_test_data_files/motion_tests/set{0}/test{1}.csv'.format(set_num, test_num)
 
     try:
+        time.sleep(3)
         with open(data_fname, mode='w') as test_data:
             test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             test_writer.writerow(['time', 'angular speed', 'torque', 'linear speed'])
