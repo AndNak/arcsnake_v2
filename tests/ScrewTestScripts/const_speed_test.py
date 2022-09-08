@@ -32,21 +32,13 @@ if __name__ == "__main__":
     data_fname = '~/Documents/screw_test_data_files/motion_tests/set{0}/test{1}.csv'.format(set_num, test_num)
 
     try:
+        t0 = time.time()
         time.sleep(3)
         with open(data_fname, mode='w') as test_data:
             test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             test_writer.writerow(['time', 'angular speed', 'torque', 'linear speed'])
 
             # synchronization procedure
-            t0 = time.time()
-
-            screwMotor.pos_ctrl(1.6, 6.0)
-            row = [get_time(t0), screwMotor.read_speed(), screwMotor.read_torque(
-            ), encoderMotor.read_speed()]
-            print(row)
-            test_writer.writerow(row)
-            time.sleep(2)
-
             screwMotor.pos_ctrl(0, 6.0)
             row = [get_time(t0), screwMotor.read_speed(), screwMotor.read_torque(
             ), encoderMotor.read_speed()]
@@ -55,15 +47,14 @@ if __name__ == "__main__":
 
             time.sleep(15)
 
-            start_time = time.time()
+            t1 = time.time()
             screwMotor.speed_ctrl(command_speed)
             while True:
-                cur_time = time.time() - start_time
-                row = [cur_time, screwMotor.read_speed(), screwMotor.read_torque(), encoderMotor.read_speed()]
+                row = [get_time(t0), screwMotor.read_speed(), screwMotor.read_torque(), encoderMotor.read_speed()]
                 print(row)
                 test_writer.writerow(row)
                 time.sleep(1/sampling_rate)
-                if cur_time > run_time:
+                if get_time(t1) > run_time:
                     break
     except(KeyboardInterrupt) as e:
         print(e)
