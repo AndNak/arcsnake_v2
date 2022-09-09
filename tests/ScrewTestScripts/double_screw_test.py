@@ -17,6 +17,7 @@ def get_time(t0):
 
 
 if __name__ == "__main__":
+    t0 = time.time()
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
@@ -24,11 +25,12 @@ if __name__ == "__main__":
     screwMotor2 = CanUJoint(can0, 1, 5, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     encoderMotor = CanUJoint(can0, 2, 1)
     sampling_rate = 200 # in Hz
+
     run_time = 10 # in second
     set_num = 1
-    test_num = 1
+    test_num = 4
+    command_speed = 2.0 # in radians per second
     data_fname = 'tests/ScrewTestScripts/data_files/doublescrew_tests/set{0}/test{1}.csv'.format(set_num, test_num)
-    command_speed = 2.5 # in radians per second
 
     try:
         time.sleep(3)
@@ -37,27 +39,24 @@ if __name__ == "__main__":
             test_writer.writerow(['time', 'angular speed 1', 'angular speed 2', 'torque 1', 'torque 2', 'linear speed', 'angpos'])
 
             # # synchronization procedure
-            t0 = time.time()
-
             screwMotor1.pos_ctrl(0, 3.0)
-            screwMotor2.pos_ctrl(0.75, 3.0)
+            screwMotor2.pos_ctrl(0, 3.0)
             row = [get_time(t0), screwMotor1.read_speed(), screwMotor2.read_speed(), screwMotor1.read_torque(), screwMotor2.read_torque(), encoderMotor.read_speed()]
             print(row)
             test_writer.writerow(row)
-            time.sleep(20)
+            time.sleep(30)
 
-            # ### Start main trial loop
-            # t1 = time.time()
-            # screwMotor1.speed_ctrl(-command_speed)
-            # screwMotor2.speed_ctrl(command_speed)
-            # while True:
-            #     trial_time = get_time(t1)
-            #     row = [get_time(t0), screwMotor1.read_speed(), screwMotor2.read_speed(), screwMotor1.read_torque(), screwMotor2.read_torque(), encoderMotor.read_speed()]
-            #     print(row)
-            #     test_writer.writerow(row)
-            #     time.sleep(1/sampling_rate)
-            #     if trial_time > run_time:
-            #         break
+            ### Start main trial loop
+            t1 = time.time()
+            screwMotor1.speed_ctrl(-command_speed)
+            screwMotor2.speed_ctrl(command_speed)
+            while True:
+                row = [get_time(t0), screwMotor1.read_speed(), screwMotor2.read_speed(), screwMotor1.read_torque(), screwMotor2.read_torque(), encoderMotor.read_speed()]
+                print(row)
+                test_writer.writerow(row)
+                time.sleep(1/sampling_rate)
+                if get_time(t1) > run_time:
+                    break
     except(KeyboardInterrupt) as e:
         print(e)
 

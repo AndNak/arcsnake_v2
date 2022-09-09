@@ -309,7 +309,7 @@ class CanMotor(object):
             self.send([0x63, byte6, byte5, byte4, byte3, byte2, byte1, 0], wait_for_response=True)
     
 
-    def read_multiTurnZeroOffset(self): # NOT COMPATIBLE WITH V1.6 MOTOR FIRMWARE!!
+    def read_multiTurnZeroOffset(self): # NOT COMPATIBLE WITH V1.6 MOTOR FIRMWARE!!        
         msg = self.send([0x22, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
         
         # CANNOT USE msg.data directly because it is not iterable for some reason...

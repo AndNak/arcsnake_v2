@@ -25,11 +25,11 @@ if __name__ == "__main__":
     sampling_rate = 200 # in Hz
 
     ### Change these as needed
-    run_time = 30 # in second
+    run_time = 15 # in second
     set_num = 1
-    test_num = 2
-    command_speed = 2.5 # in radians per second
-    data_fname = 'tests/ScrewTestScripts/data_files/const_speed_tests/set{0}/test{1}.csv'.format(set_num, test_num)
+    test_num = 1
+    command_speed = 0.75 # in radians per second
+    data_fname = 'tests/ScrewTestScripts/data_files/friction_tests/set{0}/test{1}.csv'.format(set_num, test_num)
 
     try:
         t0 = time.time()
