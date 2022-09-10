@@ -26,9 +26,9 @@ if __name__ == "__main__":
 
     ### Change these as needed
     run_time = 15 # in second
-    set_num = 1
+    set_num = 3
     test_num = 1
-    command_speed = 0.75 # in radians per second
+    command_speed = 1.25 # in radians per second
     data_fname = 'tests/ScrewTestScripts/data_files/friction_tests/set{0}/test{1}.csv'.format(set_num, test_num)
 
     try:

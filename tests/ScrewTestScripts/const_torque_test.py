@@ -8,6 +8,8 @@ from os.path import dirname, realpath
 import sys
 from core.CanMotor import CanMotor
 import csv
+
+import matplotlib.pyplot as plt
 arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
 sys.path.append(arcsnake_v2_path)  
 
@@ -24,10 +26,14 @@ if __name__ == "__main__":
     run_time = 5 # in second
     num_runs = 5
     
-    set_num = 1
-    test_num = 3
+    set_num = 2
+    test_num = 5
     data_fname = 'tests/ScrewTestScripts/data_files/const_torque_tests/set{0}/test{1}.csv'.format(set_num, test_num)
-    command_torque = 1.1 # in amps
+    command_torque = 1.4 # in amps
+
+    time_data   = []
+    torque_data = []
+    angular_speed_data = []
     
 
     try:
@@ -53,6 +59,11 @@ if __name__ == "__main__":
                     row = [get_time(t0), screwMotor.read_speed(), screwMotor.read_torque()]
                     print(row)
                     test_writer.writerow(row)
+
+                    time_data.append(row[0])
+                    angular_speed_data.append(row[1])
+                    torque_data.append(row[2])
+
                     time.sleep(1/sampling_rate)
                     if get_time(t_i) > run_time: 
                         break
@@ -73,3 +84,13 @@ if __name__ == "__main__":
     print('Done')
 
     core.CANHelper.cleanup("can0")
+
+    plt.figure()
+    plt.plot(time_data, torque_data)
+    plt.title("Torque")
+
+    plt.figure()
+    plt.plot(time_data, angular_speed_data) 
+    plt.title("Angular Speed")
+
+    plt.show()
