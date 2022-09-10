@@ -11,6 +11,7 @@ import csv
 arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
 sys.path.append(arcsnake_v2_path)  
 
+import matplotlib.pyplot as plt
 
 def get_time(t0):
     return time.time() - t0
@@ -26,10 +27,15 @@ if __name__ == "__main__":
 
     ### Change these as needed
     run_time = 15 # in second
-    set_num = 3
+    set_num = 4
     test_num = 1
-    command_speed = 1.25 # in radians per second
+    command_speed = 0.5 # in radians per second
     data_fname = 'tests/ScrewTestScripts/data_files/friction_tests/set{0}/test{1}.csv'.format(set_num, test_num)
+
+    time_data   = []
+    torque_data = []
+    angular_speed_data = []
+    linear_speed_data = []
 
     try:
         t0 = time.time()
@@ -52,6 +58,12 @@ if __name__ == "__main__":
                 row = [get_time(t0), screwMotor.read_speed(), screwMotor.read_torque(), encoderMotor.read_speed()]
                 print(row)
                 test_writer.writerow(row)
+
+                time_data.append(row[0])
+                angular_speed_data.append(row[1])
+                torque_data.append(row[2])
+                linear_speed_data.append(row[3])
+
                 time.sleep(1/sampling_rate)
                 if get_time(t1) > run_time:
                     break
@@ -64,3 +76,17 @@ if __name__ == "__main__":
     print('Done, stop sensor log')
 
     core.CANHelper.cleanup("can0")
+
+    plt.figure()
+    plt.plot(time_data, torque_data)
+    plt.title("Torque")
+
+    plt.figure()
+    plt.plot(time_data, angular_speed_data) 
+    plt.title("Angular Speed")
+
+    plt.figure()
+    plt.plot(time_data, linear_speed_data) 
+    plt.title("Linear Speed")
+
+    plt.show()

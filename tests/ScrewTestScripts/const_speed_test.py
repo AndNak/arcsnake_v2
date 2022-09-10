@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
     ### Change these as needed
     run_time = 30 # in second
-    set_num = 2
+    set_num = 3
     test_num = 5
     command_speed = 6.0 # in radians per second
     data_fname = 'tests/ScrewTestScripts/data_files/const_speed_tests/set{0}/test{1}.csv'.format(set_num, test_num)
@@ -49,7 +49,7 @@ if __name__ == "__main__":
             print('Sensor should be in free hang. UNBIAS SENSOR')
             print("Smooth the surface!")
             input('Press enter to set zero position')
-            screwMotor.pos_ctrl(0, 5)
+            screwMotor.pos_ctrl(0, 8)
             print("Set sensor back down.")
             print("Wait a few seconds, then Bias the sensor")
             input("Press enter to continue")
