@@ -26,10 +26,10 @@ if __name__ == "__main__":
     run_time = 5 # in second
     num_runs = 5
     
-    set_num = 5
+    set_num = 6
     test_num = 5
     data_fname = 'tests/ScrewTestScripts/data_files/const_torque_tests/set{0}/test{1}.csv'.format(set_num, test_num)
-    command_torque = 1.75 # in amps
+    command_torque = 1.5 # in amps
 
     time_data   = []
     torque_data = []
