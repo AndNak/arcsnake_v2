@@ -20,12 +20,12 @@ if __name__ == "__main__":
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
     # screwMotor = CanUJoint(can0, 1, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
-    encoderMotor = CanUJoint(can0, 0, 1)
+    encoderMotor = CanUJoint(can0, 2, 1)
     sampling_rate = 200 # in Hz
     run_time = 10 # in second
     data_fname = 'tests/ScrewTestScripts/data_files/axial_load_tests/test1.csv'
     command_speed = 0.5 # in radians per second
-    command_torque = 12
+    command_torque = -12
     
     time_data   = []
     torque_data = []
