@@ -27,9 +27,10 @@ if __name__ == "__main__":
     sampling_rate = 200 # in Hz
 
     run_time = 30 # in second
-    set_num = 1
-    test_num = 6
-    command_speed = 2.0 # in radians per second
+    set_num = 2
+    test_num = 4
+
+    command_speed = 5.0 # in radians per second
     data_fname = 'tests/ScrewTestScripts/data_files/doublescrew_tests/set{0}/test{1}.csv'.format(set_num, test_num)
 
     try:
@@ -48,10 +49,9 @@ if __name__ == "__main__":
             t1 = time.time()
             screwMotor1.speed_ctrl(-command_speed)
             screwMotor2.speed_ctrl(command_speed)
-            encoderMotor.torque_ctrl(6)
             while True:
                 row = [get_time(t0), screwMotor1.read_speed(), screwMotor2.read_speed(), screwMotor1.read_torque(), screwMotor2.read_torque(), encoderMotor.read_speed(), encoderMotor.read_multiturn_position() *-.09525/2]
-                print(row[6])
+                print(row)
                 test_writer.writerow(row)
                 time.sleep(1/sampling_rate)
                 if get_time(t1) > run_time:
