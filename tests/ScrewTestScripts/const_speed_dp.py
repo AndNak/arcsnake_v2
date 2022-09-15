@@ -31,11 +31,13 @@ if __name__ == "__main__":
 
     ### Change these as needed
     run_time = 30  # in second
-    set_num = 10
-    test_num = 4
-    command_speed = -10.0  # in radians per second
-    data_fname = 'tests/ScrewTestScripts/data_files/const_speed_tests/set{0}/test{1}.csv'.format(
+    set_num = 7
+    test_num = 2
+    command_speed = -3.0  # in radians per second
+    data_fname = 'tests/ScrewTestScripts/data_files/const_speed_tests_dp/set{0}/test{1}(2).csv'.format(
         set_num, test_num)
+    encoder_torque = 6
+
 
     time_data = []
     torque_data = []
@@ -48,7 +50,7 @@ if __name__ == "__main__":
             test_writer = csv.writer(
                 test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             test_writer.writerow(
-                ['time', 'angular speed', 'torque', 'linear speed'])
+                ['time', 'angular speed', 'torque', 'linear speed', 'encoder torque'])
 
             # synchronization procedure
             print('Sensor should be in free hang. UNBIAS SENSOR')
@@ -61,9 +63,10 @@ if __name__ == "__main__":
 
             t1 = time.time()
             screwMotor.speed_ctrl(command_speed)
+            encoderMotor.torque_ctrl(encoder_torque)
             while True:
                 row = [get_time(t0), screwMotor.read_speed(
-                ), screwMotor.read_torque(), encoderMotor.read_speed()]
+                ), screwMotor.read_torque(), encoderMotor.read_speed(), encoderMotor.read_torque()]
                 print(row)
                 test_writer.writerow(row)
 
