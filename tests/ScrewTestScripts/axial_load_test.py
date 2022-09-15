@@ -25,13 +25,14 @@ if __name__ == "__main__":
     run_time = 10 # in second
     data_fname = 'tests/ScrewTestScripts/data_files/axial_load_tests/test1.csv'
     command_speed = 0.5 # in radians per second
-    command_torque = -12
+    command_torque = -6
     
     time_data   = []
     torque_data = []
     angular_speed_data = []
 
     try:
+        time.sleep(10)
         with open(data_fname, mode='w') as test_data:
             test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             test_writer.writerow(['time', 'torque', 'angular speed'])

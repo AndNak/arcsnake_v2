@@ -31,12 +31,12 @@ if __name__ == "__main__":
 
     ### Change these as needed
     run_time = 30  # in second
-    set_num = 7
-    test_num = 2
-    command_speed = -3.0  # in radians per second
+    set_num = 2
+    test_num = 10
+    command_speed = -6.0  # in radians per second
     data_fname = 'tests/ScrewTestScripts/data_files/const_speed_tests_dp/set{0}/test{1}(2).csv'.format(
         set_num, test_num)
-    encoder_torque = 6
+    encoder_torque = 12
 
 
     time_data = []
