@@ -3,11 +3,11 @@ import time
 myTestBench = testBench(1)
 
 
-myTestBench.liftScrews()
+# myTestBench.liftScrews()
 
-time.sleep(10)
+# time.sleep(10)
 
-myTestBench.lowerScrews()
-# myTestBench.runTorqueTest()
+# myTestBench.lowerScrews()
+myTestBench.runTorqueTest(1,1,1)
 
  

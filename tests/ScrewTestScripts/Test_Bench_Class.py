@@ -3,7 +3,6 @@ import core.CANHelper
 from core.CanUJoint import CanUJoint
 from core.CanScrewMotor import CanScrewMotor
 import time
-import threading
 
 from os.path import dirname, realpath  
 import sys
@@ -52,10 +51,8 @@ class testBench:
     t0 = time.time() # Get start time
     self.run_time = 30 # in second
     self.screwMotor1.torque_ctrl(.25)
-    recD = threading.Thread(target= self.recordData, args=(self.data_fname + "/const_torque_tests/set{0}.csv".format(self.set)))
 
-
-    # self.recordData(self.data_fname + "/const_torque_tests/set{0}.csv".format(self.set))
+    self.recordData(self.data_fname + "/const_torque_tests/set{0}.csv".format(self.set))
     self.stopMotors()
 
   def get_time(self, t0):
@@ -68,20 +65,23 @@ class testBench:
     self.encoderMotor.motor_stop()
 
   def recordData(self, location):
-    t0 = time.time()
-    with open(location, mode='w') as test_data:
-      test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-      test_writer.writerow(['time', 'angular speed 1', 'angular speed 2', 'torque 1', 'torque 2', 'linear speed', 'linear position (meters)'])
-      t1 = time.time() # Get initial start time
-      lastTime = int(self.get_time(t0))
+    try:
+      t0 = time.time()
+      with open(location, mode='w') as test_data:
+        test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        test_writer.writerow(['time', 'angular speed 1', 'angular speed 2', 'torque 1', 'torque 2', 'linear speed', 'linear position (meters)'])
+        t1 = time.time() # Get initial start time
+        lastTime = int(self.get_time(t0))
 
-      while True:
-        row = [self.get_time(t0), self.screwMotor1.read_speed(), self.screwMotor2.read_speed(), self.screwMotor1.read_torque(), self.screwMotor2.read_torque(), self.encoderMotor.read_speed(), self.encoderMotor.read_multiturn_position() *-.09525/2]
-        
-        if (int(self.get_time(t0)) != lastTime):
-          print(f"{self.run_time - int(self.get_time(t0))} seconds left")
-          lastTime = int(self.get_time(t0))
-        test_writer.writerow(row)
-        time.sleep(1/self.sampling_rate)
-        if self.get_time(t1) > self.run_time:
-          break
+        while True:
+          row = [self.get_time(t0), self.screwMotor1.read_speed(), self.screwMotor2.read_speed(), self.screwMotor1.read_torque(), self.screwMotor2.read_torque(), self.encoderMotor.read_speed(), self.encoderMotor.read_multiturn_position() *-.09525/2]
+          
+          if (int(self.get_time(t0)) != lastTime):
+            print(f"{self.run_time - int(self.get_time(t0))} seconds left")
+            lastTime = int(self.get_time(t0))
+          test_writer.writerow(row)
+          time.sleep(1/self.sampling_rate)
+          if self.get_time(t1) > self.run_time:
+            break
+    except(KeyboardInterrupt) as e:
+      print(e)
