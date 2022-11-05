@@ -8,6 +8,6 @@ myTestBench = testBench(1)
 # time.sleep(10)
 
 # myTestBench.lowerScrews()
-myTestBench.runTorqueTest(1,1,1)
+myTestBench.runTorqueTest({.25, .5, .75, 1})
 
  

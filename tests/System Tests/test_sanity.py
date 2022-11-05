@@ -20,7 +20,7 @@ if __name__ == "__main__":
   # deviceId = 0x01
   # sensor = CanArduinoSensors(can0, deviceId)
 
-  joint1 = CanUJoint(can0, 3, 6)
+  joint1 = CanUJoint(can0, 0, 6)
   joint1.motor_stop() # Allow for user to rotate motor by hand 
 
   try:
