@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
   try:
   
-    for _ in range(10):
+    for _ in range(100):
         print(sensor.readHumidityAndTemperature())
         time.sleep(1)
 

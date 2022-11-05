@@ -15,10 +15,11 @@ If you see these on the event log you are straining the sensor too much, try to 
 
 - Single Screw Tests
 Constant Speed Test:
-1) Configuration should be in free hang. 
+1) Configuration should be in free hang. HIT UNBIAS SENSOR BUTTON!
 2) Ensure that media is smoothed and uniform as possible
-3) Write down current set/test info in notebook. 
+3) Write down current set(material)/test(current trial that you're doing) info in notebook. 
 4) Ensure proper set/test number is set on motor script AND sensor log
+  Tools -> Sensor log  -> (three dots) -> Name it -> Click on New File
 5) Start motor script and sensor log (I try to start them at the same time but it doesn't have to be exact)
 6) synchronization procedure will start, after 3 screw spins to set position.
 7) After synchronization procedure, you have 20 seconds to set the screw down. Firmly push it into media to sink it in.

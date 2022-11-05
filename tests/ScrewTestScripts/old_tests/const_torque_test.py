@@ -69,10 +69,6 @@ if __name__ == "__main__":
                         break
                     
                 screwMotor.motor_stop()
-                # for j in range(30):
-                #     print('Starting next run in {0} seconds'.format(30-j))
-                #     time.sleep(1)
-
 
     except(KeyboardInterrupt) as e:
         print(e)

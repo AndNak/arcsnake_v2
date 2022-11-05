@@ -20,13 +20,13 @@ if __name__ == "__main__":
   # deviceId = 0x01
   # sensor = CanArduinoSensors(can0, deviceId)
 
-  joint1 = CanUJoint(can0, 0, 6)
+  joint1 = CanUJoint(can0, 3, 6)
   joint1.motor_stop() # Allow for user to rotate motor by hand 
 
   try:
     for _ in range(1000):
       # print(f"joint1 multiturn_position: {joint1.read_multiturn_position()} joint1 position: {joint1.read_singleturn_position()}")
-      print(joint1.read_speed())
+      print(joint1.read_multiturn_position())
       # joint1.read_DIY_multiturn_position()
       # print(sensor.readHumidityAndTemperature())
       time.sleep(0.1)

@@ -25,6 +25,7 @@ if __name__ == "__main__":
     screwMotor2 = CanUJoint(can0, 1, 5, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     encoderMotor = CanUJoint(can0, 2, 1)
     sampling_rate = 200 # in Hz
+    
 
     run_time = 30 # in second
     set_num = 2

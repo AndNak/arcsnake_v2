@@ -14,7 +14,7 @@ if __name__ == "__main__":
   core.CANHelper.init("can0") # Intiailize can0
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan') # Create can bus object 
 
-  testMotor = CanUJoint(can0, 2, 5) # Initialize motor with can bus object 
+  testMotor = CanUJoint(can0, 0, 6) # Initialize motor with can bus object 
   
   print("Enter Desired Control method")
   print("1 = Position Control (Rotations)")
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     while True: 
       val = float(input())
       if controlMethod == 1:
-        testMotor.pos_ctrl(val * 2 * 3.14) 
+        testMotor.pos_ctrl(val * 2 * 3.14 ,2) 
       elif controlMethod == 2:
         testMotor.speed_ctrl(val * 2 * 3.14)
       elif controlMethod == 3:

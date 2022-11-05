@@ -9,7 +9,7 @@ if __name__ == "__main__":
   core.CANHelper.init("can0") # Intiailize can0
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan') # Create can bus object 
 
-  testMotor = CanUJoint(can0, 0, 1) # Initialize motor with can bus object 
+  testMotor = CanUJoint(can0, 3, 1) # Initialize motor with can bus object 
   # testMotor.speed_ctrl(2*2*3.14)
 
   # time.sleep(2)
@@ -24,6 +24,7 @@ if __name__ == "__main__":
       ElapsedTime = time.time()-startTime
       t.append(ElapsedTime)
       y.append(testMotor.read_speed())  
+      print(testMotor.read_speed())
       time.sleep(0.01)
      
 
