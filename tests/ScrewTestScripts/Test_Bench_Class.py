@@ -3,6 +3,7 @@ import core.CANHelper
 from core.CanUJoint import CanUJoint
 from core.CanScrewMotor import CanScrewMotor
 import time
+import serial
 
 from os.path import dirname, realpath  
 import sys
@@ -22,9 +23,10 @@ class testBench:
     self.sampling_rate = 200 # in Hz
     self.data_fname = "tests/ScrewTestScripts/data_files"
     self.set = set
-    self.liftHeight = 180 # set in mm
+    self.liftHeight = 100 # set in mm
     self.retractMotTorque = -.1
     self.reatractMotSpeed = 2
+    self.seeeduino = serial.Serial(port='COM20', baudrate=115200, timeout=.1)
 
     self.retractMotor.torque_ctrl(self.retractMotTorque)
     print("Ensure TestBench screw are touching ground and cable is on pulley!!")
@@ -63,7 +65,7 @@ class testBench:
     try:
       with open(location, mode='w') as test_data: # Main testing loop
         test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        test_writer.writerow(['time', 'angular speed 1', 'angular speed 2', 'torque 1', 'torque 2', 'linear speed', 'linear position (meters)'])
+        test_writer.writerow(['time', 'angular speed 1', 'torque 1'])
         for torque in torqueSettings:
           for i in range(0,trialNum):
             self.screwMotor1.read_multiturn_position(); self.screwMotor1.read_multiturn_position()
@@ -82,16 +84,19 @@ class testBench:
             trialStart = time.time() # Get initial start time of trial
             lastTime = -1
             while (self.get_time(trialStart) < self.run_time):
-              self.recordData(test_writer, t0)
+              row = [self.get_time(t0), self.screwMotor1.read_speed(), self.screwMotor1.read_torque()]
+              test_writer.writerow(row)      
+              time.sleep(1/self.sampling_rate)
               if (int(self.get_time(trialStart)) != lastTime):
                 print(f"{self.run_time - int(self.get_time(trialStart))} seconds left")
                 lastTime = int(self.get_time(trialStart))
 
     except(KeyboardInterrupt) as e:
       print(e)
-
-
     self.stopMotors()
+
+  def runSingleSpeedTest():
+    input("Please move testbed to the beginning of the rail")
 
   def get_time(self, t0):
     return time.time() - t0
@@ -102,7 +107,17 @@ class testBench:
     self.retractMotor.motor_stop()
     self.encoderMotor.motor_stop()
 
-  def recordData(self, writer, startTime):
-    row = [self.get_time(startTime), self.screwMotor1.read_speed(), self.screwMotor2.read_speed(), self.screwMotor1.read_torque(), self.screwMotor2.read_torque(), self.encoderMotor.read_speed(), self.encoderMotor.read_multiturn_position() *-.09525/2]
-    writer.writerow(row)      
-    time.sleep(1/self.sampling_rate)
+  def biasSensor(self):
+    self.sendBluetoothCommand('a')
+
+  def unBiasSensor(self):
+    self.sendBluetoothCommand('b')
+
+  def stopSensorLog(self):
+    self.sendBluetoothCommand('c')
+
+  def startSensorLog(self):
+    self.sendBluetoothCommand('d')
+
+  def sendBluetoothCommand(self, letter): # Presses LCTRL + SHIFT + letter
+    self.seeeduino.write(bytes(letter, 'utf-8'))
