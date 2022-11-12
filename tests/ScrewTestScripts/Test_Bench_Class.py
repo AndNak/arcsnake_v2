@@ -17,7 +17,7 @@ class testBench:
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
     self.screwMotor1 = CanUJoint(can0, 0, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
-    self.screwMotor2 = CanUJoint(can0, 1, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
+    # self.screwMotor2 = CanUJoint(can0, 1, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     self.retractMotor = CanUJoint(can0, 3, 6)
     self.encoderMotor = CanUJoint(can0, 2, 1)
     self.sampling_rate = 200 # in Hz
@@ -56,34 +56,43 @@ class testBench:
       pass
     print("Done raising!")
 
+  def resetLinPosition(self, pos, speed):
+    self.encoderMotor.pos_ctrl(pos,speed)
+    self.encoderMotor.read_multiturn_position()
+    self.encoderMotor.read_multiturn_position() # Make sure the encoder actually gives an accurate reading
+    print("Moving...")
+    while(abs(self.encoderMotor.read_multiturn_position() - pos) > .1):
+      pass
+    print("Done moving!")
+
   def runTorqueTest(self, torqueSettings):
-    t0 = time.time() # Get start time
-    trialNum = 5
-    self.run_time = 2 # in second
+    numTrials = 5
+    run_time = 15 # in second
     location = self.data_fname + "/const_torque_tests/set{0}.csv".format(self.set)
-    
+    self.encoderMotor.speed_ctrl(0)
+
+    t0 = time.time() # Get start time
+    self.startSensorLog()
+
     try:
       with open(location, mode='w') as test_data: # Main testing loop
         test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        test_writer.writerow(['time', 'angular speed 1', 'torque 1'])
+        test_writer.writerow(['time', 'angular speed 1', 'torque 1', f'Torques: {torqueSettings}', f'numTrials: {numTrials}'])
         for torque in torqueSettings:
-          for i in range(0,trialNum):
-            self.screwMotor1.read_multiturn_position(); self.screwMotor1.read_multiturn_position()
-            curPosition = self.screwMotor1.read_multiturn_position()
-            print(int(curPosition/6.28)*6.28)
-            print(curPosition)
-            self.screwMotor1.pos_ctrl(int(curPosition/6.28)*6.28)
-          
+          for i in range(0,numTrials):
             self.liftScrews() # lift the screws up 
+            self.unBiasSensor()
             print("Unbias the sensor!") # Unbias the sensor
+            self.zeroScrewMotor()
             
             self.lowerScrews() # lower the screws down 
+            self.biasSensor()
             print("Bias the sensor!") # Bias the sensor
             self.screwMotor1.torque_ctrl(torque)
 
             trialStart = time.time() # Get initial start time of trial
             lastTime = -1
-            while (self.get_time(trialStart) < self.run_time):
+            while (self.get_time(trialStart) < run_time):
               row = [self.get_time(t0), self.screwMotor1.read_speed(), self.screwMotor1.read_torque()]
               test_writer.writerow(row)      
               time.sleep(1/self.sampling_rate)
@@ -95,15 +104,57 @@ class testBench:
       print(e)
     self.stopMotors()
 
-  def runSingleSpeedTest():
+  def runSingleSpeedTest(self, speedSettings):
     input("Please move testbed to the beginning of the rail")
+    linEncZero = self.encoderMotor.read_multiturn_position()
+    run_time = 30 # in seconds
+    location = self.data_fname + "/const_speed_tests/set{0}.csv".format(self.set)
+
+    t0 = time.time() # Get start time
+    self.startSensorLog()
+
+    try:
+      with open(location, mode='w') as test_data: # Main testing loop
+        test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        test_writer.writerow(['time', 'angular speed 1', 'torque 1', 'linear speed', f'Speeds: {speedSettings}'])
+        for speed in speedSettings:
+          self.liftScrews() # lift the screws up 
+          self.unBiasSensor()
+          print("Unbias the sensor!") # Unbias the sensor
+          self.zeroScrewMotor()
+          self.resetLinPosition(linEncZero, 1)
+
+          self.lowerScrews() # lower the screws down 
+          self.biasSensor()
+          print("Bias the sensor!") # Bias the sensor
+          self.screwMotor1.speed_ctrl(speed)
+
+          trialStart = time.time() # Get initial start time of trial
+          lastTime = -1
+          while (self.get_time(trialStart) < run_time):
+            row = [self.get_time(t0), self.screwMotor1.read_speed(), self.screwMotor1.read_torque(), self.encoderMotor.read_speed()]
+            test_writer.writerow(row)      
+            time.sleep(1/self.sampling_rate)
+            if (int(self.get_time(trialStart)) != lastTime):
+              print(f"{self.run_time - int(self.get_time(trialStart))} seconds left")
+              lastTime = int(self.get_time(trialStart))
+
+    except(KeyboardInterrupt) as e:
+      print(e)
+    self.stopMotors()
+
+  def zeroScrewMotor(self):
+    self.screwMotor1.read_multiturn_position(); self.screwMotor1.read_multiturn_position()
+    curPosition = self.screwMotor1.read_multiturn_position()
+
+    self.screwMotor1.pos_ctrl(int(curPosition/6.28)*6.28)
 
   def get_time(self, t0):
     return time.time() - t0
 
   def stopMotors(self):
     self.screwMotor1.motor_stop()
-    self.screwMotor2.motor_stop()
+    # self.screwMotor2.motor_stop()
     self.retractMotor.motor_stop()
     self.encoderMotor.motor_stop()
 
@@ -121,3 +172,4 @@ class testBench:
 
   def sendBluetoothCommand(self, letter): # Presses LCTRL + SHIFT + letter
     self.seeeduino.write(bytes(letter, 'utf-8'))
+    time.sleep(.05) # Delay 50 ms for Autohotkey
