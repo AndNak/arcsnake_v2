@@ -1,5 +1,0 @@
-Double Screw Tests
-
-Set 1: In small gravel, const speed tests
-test 1-5: 2, 3, 4, 5, 6 rad/sam
-
