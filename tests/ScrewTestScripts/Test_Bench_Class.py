@@ -25,9 +25,10 @@ class testBench:
     self.set = set
     self.liftHeight = 100 # set in mm
     self.retractMotTorque = -.1
-    self.reatractMotSpeed = 3
+    self.retractMotSpeed = 3
     self.seeeduino = serial.Serial(port='/dev/ttyACM0', baudrate=115200, timeout=.1)
     self.groundZero = None
+    self.liftHeight = None
     self.retractMotor.torque_ctrl(self.retractMotTorque)
     self.railLength = 1.25
     
@@ -40,32 +41,25 @@ class testBench:
 
     self.retractMotor.read_multiturn_position() # Have to read twice to actually get a good reading...
     self.groundZero = self.retractMotor.read_multiturn_position()
+    self.liftHeight = self.groundZero + -(self.liftHeight/180.55) * 2 * 3.14
 
-  def lowerScrews(self):
+  def changeScrewHeight(self, height):
     if (self.groundZero is None):
       self.stopMotors()
       raise Exception("Ground zero not set yet!")
-    self.retractMotor.pos_ctrl(self.groundZero, self.reatractMotSpeed)
-    self.retractMotor.read_multiturn_position()
-    self.retractMotor.read_multiturn_position() # Make sure the encoder actually gives an accurate reading
-    print("Lowering...")
-    while(abs(self.retractMotor.read_multiturn_position() - self.groundZero) > .1):
+    self.retractMotor.pos_ctrl(height, self.retractMotSpeed)
+    self.retractMotor.read_multiturn_position(); self.retractMotor.read_multiturn_position() # Make sure the encoder actually gives an accurate reading
+    print("Moving...")
+    while(abs(self.retractMotor.read_multiturn_position() - height) > .1):
       pass
     self.retractMotor.torque_ctrl(self.retractMotTorque)
-    print("Done lowering!")
+    print("Done moving!")
+
+  def lowerScrews(self):
+    self.changeScrewHeight(self.groundZero)
 
   def liftScrews(self):
-    if (self.groundZero is None):
-      self.stopMotors()
-      raise Exception("Ground zero not set yet!")
-    liftHeight = self.groundZero + -(self.liftHeight/180.55) * 2 * 3.14
-    self.retractMotor.pos_ctrl(liftHeight,self.reatractMotSpeed)
-    self.retractMotor.read_multiturn_position()
-    self.retractMotor.read_multiturn_position() # Make sure the encoder actually gives an accurate reading
-    print("Raising...")
-    while(abs(self.retractMotor.read_multiturn_position() - liftHeight) > .1):
-      pass
-    print("Done raising!")
+    self.changeScrewHeight(self.liftHeight)
 
   def resetLinPosition(self, pos):
     self.encoderMotor.pos_ctrl(pos, 3)
