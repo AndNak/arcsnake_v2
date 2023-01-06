@@ -7,7 +7,7 @@
 
 float h = 0;
 float t = 0;
-int p = 0;e
+int p = 0;
 
 #define DHTTYPE DHT11
 

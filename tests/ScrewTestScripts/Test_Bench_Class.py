@@ -13,7 +13,7 @@ arcsnake_v2_path = dirname(dirname(realpath(__file__)))
 sys.path.append(arcsnake_v2_path)
 
 class testBench:
-  def __init__(self, set): # Test relates to the medium that we are testing on 
+  def __init__(self, set): # Set relates to the medium that we are testing on 
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
     self.screwMotor1 = CanUJoint(can0, 0, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
@@ -78,7 +78,7 @@ class testBench:
     self.encoderMotor.speed_ctrl(0)
 
     t0 = time.time() # Get start time
-    self.startSensorLog()
+    # self.startSensorLog()
 
     try:
       with open(location, mode='w') as test_data: # Main testing loop
@@ -97,7 +97,9 @@ class testBench:
 
             trialStart = time.time() # Get initial start time of trial
             lastTime = -1
-            while (self.get_time(trialStart) < run_time):
+            self.screwMotor1.read_multiturn_position; initialpos = self.screwMotor1.read_multiturn_position
+
+            while (self.get_time(trialStart) < run_time and abs(self.screwMotor1.read_multiturn_position - initialpos) < 3.14*2):
               row = [self.get_time(t0), self.screwMotor1.read_speed(), self.screwMotor1.read_torque()]
               test_writer.writerow(row)      
               time.sleep(1/self.sampling_rate)
@@ -108,7 +110,7 @@ class testBench:
     except(KeyboardInterrupt) as e:
       print(e)
     self.stopMotors()
-    self.stopSensorLog()
+    # self.stopSensorLog()
 
   def runSingleSpeedTest(self, speedSettings):
     self.liftScrews()
@@ -118,7 +120,7 @@ class testBench:
     location = self.data_fname + "/const_speed_tests/set{0}.csv".format(self.set)
 
     t0 = time.time() # Get start time
-    self.startSensorLog()
+    # self.startSensorLog()
 
     try:
       with open(location, mode='w') as test_data: # Main testing loop
@@ -152,7 +154,7 @@ class testBench:
 
     except(KeyboardInterrupt) as e:
       print(e)
-    self.stopSensorLog()
+    # self.stopSensorLog()
     self.stopMotors()
 
   def zeroScrewMotor(self):

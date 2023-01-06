@@ -32,8 +32,8 @@ from core.CanScrewMotor import CanScrewMotor
 if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
-    gear_ratio = 6
-    joint1 = CanMotor(can0, 1, gear_ratio) #ID: 2
+    gear_ratio = 11
+    joint1 = CanMotor(can0, 4, gear_ratio) #ID: 2
     joint1.motor_start()
 
     read_s_pos_joint = []
@@ -43,8 +43,8 @@ if __name__ == "__main__":
     t_vec = []
     loop_vec = []
 
-    zero_pos = .1
-    amp = .65 * m.pi
+    zero_pos = 0
+    amp = .33 * m.pi
     loop_rate = 1000 #Hz
     run_time = 40 #seconds
 
