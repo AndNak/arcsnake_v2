@@ -23,9 +23,9 @@ class testBench:
     self.sampling_rate = 200 # in Hz
     self.data_fname = "tests/ScrewTestScripts/data_files"
     self.set = set
-    self.liftHeight = 100 # set in mm
+    self.heightRaise = 100 # set in mm
     self.retractMotTorque = -.1
-    self.retractMotSpeed = 3
+    self.retractMotSpeed = 2
     self.seeeduino = serial.Serial(port='/dev/ttyACM0', baudrate=115200, timeout=.1)
     self.groundZero = None
     self.liftHeight = None
@@ -41,7 +41,8 @@ class testBench:
 
     self.retractMotor.read_multiturn_position() # Have to read twice to actually get a good reading...
     self.groundZero = self.retractMotor.read_multiturn_position()
-    self.liftHeight = self.groundZero + -(self.liftHeight/180.55) * 2 * 3.14
+    # print(self.groundZero)
+    self.liftHeight = self.groundZero + -(self.heightRaise/180.55) * 2 * 3.14
 
   def changeScrewHeight(self, height):
     if (self.groundZero is None):
@@ -52,14 +53,15 @@ class testBench:
     print("Moving...")
     while(abs(self.retractMotor.read_multiturn_position() - height) > .1):
       pass
-    self.retractMotor.torque_ctrl(self.retractMotTorque)
     print("Done moving!")
 
   def lowerScrews(self):
     self.changeScrewHeight(self.groundZero)
+    self.retractMotor.torque_ctrl(self.retractMotTorque)
 
   def liftScrews(self):
     self.changeScrewHeight(self.liftHeight)
+    self.retractMotor.pos_ctrl(self.liftHeight)
 
   def resetLinPosition(self, pos):
     self.encoderMotor.pos_ctrl(pos, 3)
@@ -72,8 +74,8 @@ class testBench:
     self.encoderMotor.torque_ctrl(0)
 
   def runTorqueTest(self, torqueSettings):
-    numTrials = 5
-    run_time = 15 # in second
+    numTrials = 2
+    run_time = 10 # in second
     location = self.data_fname + "/const_torque_tests/set{0}.csv".format(self.set)
     self.encoderMotor.speed_ctrl(0)
 
@@ -86,10 +88,11 @@ class testBench:
         test_writer.writerow(['time', 'angular speed 1', 'torque 1', f'Torques: {torqueSettings}', f'numTrials: {numTrials}'])
         for torque in torqueSettings:
           for i in range(0,numTrials):
+            self.screwMotor1.torque_ctrl(0)
             self.liftScrews() # lift the screws up 
             self.unBiasSensor()
             print("Unbias the sensor!") # Unbias the sensor
-            # self.zeroScrewMotor()
+
             self.lowerScrews() # lower the screws down 
             self.biasSensor()
             print("Bias the sensor!") # Bias the sensor
@@ -99,7 +102,7 @@ class testBench:
             lastTime = -1
             self.screwMotor1.read_multiturn_position; initialpos = self.screwMotor1.read_multiturn_position
 
-            while (self.get_time(trialStart) < run_time and abs(self.screwMotor1.read_multiturn_position - initialpos) < 3.14*2):
+            while (self.get_time(trialStart) < run_time):
               row = [self.get_time(t0), self.screwMotor1.read_speed(), self.screwMotor1.read_torque()]
               test_writer.writerow(row)      
               time.sleep(1/self.sampling_rate)
@@ -130,12 +133,12 @@ class testBench:
           self.screwMotor1.torque_ctrl(0)
           self.liftScrews() # lift the screws up 
           self.unBiasSensor()
-          print("Unbias the sensor!") # Unbias the sensor
+          
           self.resetLinPosition(linEncZero)
 
           self.lowerScrews() # lower the screws down 
           self.biasSensor()
-          print("Bias the sensor!") # Bias the sensor
+          
           self.screwMotor1.speed_ctrl(-speed)
 
           trialStart = time.time() # Get initial start time of trial
@@ -182,14 +185,16 @@ class testBench:
     self.encoderMotor.motor_stop()
 
   def biasSensor(self):
-    time.sleep(.5)
+    time.sleep(2)
+    print("Bias the sensor!") # Bias the sensor
     self.sendBluetoothCommand('a')
-    time.sleep(.5)
+    time.sleep(2)
 
   def unBiasSensor(self):
-    time.sleep(.5)
+    time.sleep(2)
+    print("Unbias the sensor!") # Unbias the sensor
     self.sendBluetoothCommand('b')
-    time.sleep(.5)
+    time.sleep(2)
 
   def stopSensorLog(self):
     self.sendBluetoothCommand('c')
