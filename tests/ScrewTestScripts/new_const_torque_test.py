@@ -3,9 +3,6 @@ import time
 myTestBench = testBench(1)
 myTestBench.setGroundZero()
 
-# myTestBench.changeScrewHeight(myTestBench.liftHeight)
-# time.sleep(3)
-# myTestBench.changeScrewHeight(myTestBench.groundZero)
 myTestBench.startSensorLog()
 myTestBench.runTorqueTest({.5, .75})
 myTestBench.stopSensorLog()

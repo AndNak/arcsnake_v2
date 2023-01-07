@@ -91,16 +91,13 @@ class testBench:
             self.screwMotor1.torque_ctrl(0)
             self.liftScrews() # lift the screws up 
             self.unBiasSensor()
-            print("Unbias the sensor!") # Unbias the sensor
 
             self.lowerScrews() # lower the screws down 
             self.biasSensor()
-            print("Bias the sensor!") # Bias the sensor
             self.screwMotor1.torque_ctrl(torque)
 
             trialStart = time.time() # Get initial start time of trial
             lastTime = -1
-            self.screwMotor1.read_multiturn_position; initialpos = self.screwMotor1.read_multiturn_position
 
             while (self.get_time(trialStart) < run_time):
               row = [self.get_time(t0), self.screwMotor1.read_speed(), self.screwMotor1.read_torque()]
