@@ -4,7 +4,8 @@ myTestBench = testBench(1)
 myTestBench.setGroundZero()
 
 myTestBench.startSensorLog()
-myTestBench.runTorqueTest({.5, .75})
+myTestBench.runSingleSpeedTest({2,3,4,5,6})
+# myTestBench.runTorqueTest({1, 1.25, 1.5, 1.75, 2})
 myTestBench.stopSensorLog()
 
 # myTestBench.screwMotor1.speed_ctrl(8)

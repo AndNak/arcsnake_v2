@@ -74,8 +74,8 @@ class testBench:
     self.encoderMotor.torque_ctrl(0)
 
   def runTorqueTest(self, torqueSettings):
-    numTrials = 2
-    run_time = 10 # in second
+    numTrials = 5
+    run_time = 5 # in second
     location = self.data_fname + "/const_torque_tests/set{0}.csv".format(self.set)
     self.encoderMotor.speed_ctrl(0)
 
@@ -94,12 +94,13 @@ class testBench:
 
             self.lowerScrews() # lower the screws down 
             self.biasSensor()
-            self.screwMotor1.torque_ctrl(torque)
+            self.screwMotor1.torque_ctrl(-torque)
 
             trialStart = time.time() # Get initial start time of trial
             lastTime = -1
 
             while (self.get_time(trialStart) < run_time):
+              print(f"numtrial: {i} torque: {torque}")
               row = [self.get_time(t0), self.screwMotor1.read_speed(), self.screwMotor1.read_torque()]
               test_writer.writerow(row)      
               time.sleep(1/self.sampling_rate)
@@ -140,6 +141,7 @@ class testBench:
 
           trialStart = time.time() # Get initial start time of trial
           lastTime = -1
+          print(f"speed: {speed}")
           while (self.get_time(trialStart) < run_time):
             linPos = (linEncZero - self.encoderMotor.read_multiturn_position()) *.09525/2
             if (linPos > self.railLength):
