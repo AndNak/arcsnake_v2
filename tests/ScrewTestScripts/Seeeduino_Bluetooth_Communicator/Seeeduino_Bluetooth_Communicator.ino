@@ -13,7 +13,7 @@ int integerdata;
 void setup() 
 {
   Serial.begin(115200);
-  while ( !Serial ) delay(10);   // for nrf52840 with native usb
+  //  while ( !Serial ) delay(10);   // for nrf52840 with native usb
 
   pinMode(A0, INPUT_PULLUP);
 
