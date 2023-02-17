@@ -263,7 +263,7 @@ class CanMotor(object):
 
         self.send([0x31, 0x00, pos_p, pos_i, speed_p, speed_i, torque_p, torque_i])
 
-    def speed_ctrl(self, to_rad, max_speed=20*2*math.pi):
+    def speed_ctrl(self, to_rad, max_speed=30*2*math.pi):
         """Set speed in rad/s 
         -
 

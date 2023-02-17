@@ -9,39 +9,40 @@ from core.CanMotor import CanMotor
 arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
 sys.path.append(arcsnake_v2_path)  
 
+import matplotlib.pyplot as plt
+import time
+
+time_data   = []
+vel_data = []
+desiredSpeed = 4 
 
 if __name__ == "__main__":
   core.CANHelper.init("can0") # Intiailize can0
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan') # Create can bus object 
 
   testMotor = CanUJoint(can0, 5, 1) # Initialize motor with can bus object 
-  
-  print("Enter Desired Control method")
-  print("1 = Position Control (Rotations)")
-  print("2 = Velocity Control (Rotations Per Second)")
-  print("3 = Torque Control (Amps)")
-
-  
-
-  controlMethod = 0 
-
-  controlMethod = int(input())
 
   print(testMotor.read_motor_pid())
   testMotor.override_PI_values(100, 100, 255, 30, 50, 50)
   print(testMotor.read_motor_pid())
-
+  testMotor.speed_ctrl(desiredSpeed)
+  initialTime = time.time()
+  count = 0
   try:
     while True: 
-      val = float(input())
-      if controlMethod == 1:
-        testMotor.pos_ctrl(val * 2 * 3.14 ,2) 
-      elif controlMethod == 2:
-        testMotor.speed_ctrl(val * 2 * 3.14)
-      elif controlMethod == 3:
-        testMotor.torque_ctrl(val)
-      else:
-        raise KeyboardInterrupt
+        time_data.append(time.time() - initialTime)
+        
+        vel_data.append(testMotor.read_speed())
+
+        count += 1
+        if (count > 25):
+          time_data.pop(0)
+          vel_data.pop(0)
+
+
+        plt.plot(time_data, vel_data, color = "black") 
+        plt.draw()
+        plt.pause(0.01)
 
   except(KeyboardInterrupt) as e:
     print(e)
