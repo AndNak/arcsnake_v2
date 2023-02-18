@@ -13,7 +13,7 @@ arcsnake_v2_path = dirname(dirname(realpath(__file__)))
 sys.path.append(arcsnake_v2_path)
 
 class testBench:
-  def __init__(self, set): # Set relates to the medium that we are testing on 
+  def __init__(self, screwnum, set): # Set relates to the medium that we are testing on 
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
     self.screwMotor1 = CanUJoint(can0, 0, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
@@ -21,8 +21,9 @@ class testBench:
     self.retractMotor = CanUJoint(can0, 3, 6)
     self.encoderMotor = CanUJoint(can0, 2, 1)
     self.sampling_rate = 200 # in Hz
-    self.data_fname = "tests/ScrewTestScripts/data_files"
+    self.data_fname = "tests/ScrewTestScripts/new_data_files"
     self.set = set
+    self.screwnum = screwnum
     self.heightRaise = 100 # set in mm
     self.retractMotTorque = -.1
     self.retractMotSpeed = 2
@@ -76,12 +77,11 @@ class testBench:
   def runTorqueTest(self, torqueSettings):
     numTrials = 5
     run_time = 5 # in second
-    location = self.data_fname + "/const_torque_tests/set{0}.csv".format(self.set)
+    location = self.data_fname + "/torque_tests/screw{0}/set{1}.csv".format(self.screwnum, self.set)
     self.encoderMotor.speed_ctrl(0)
 
     t0 = time.time() # Get start time
-    # self.startSensorLog()
-
+    
     try:
       with open(location, mode='w') as test_data: # Main testing loop
         test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -99,8 +99,10 @@ class testBench:
             trialStart = time.time() # Get initial start time of trial
             lastTime = -1
 
+            print(f"numtrial: {i} torque: {torque}")
+            
             while (self.get_time(trialStart) < run_time):
-              print(f"numtrial: {i} torque: {torque}")
+              
               row = [self.get_time(t0), self.screwMotor1.read_speed(), self.screwMotor1.read_torque()]
               test_writer.writerow(row)      
               time.sleep(1/self.sampling_rate)
@@ -118,7 +120,7 @@ class testBench:
     input("Move testbed to the beginning of the rail")
     linEncZero = self.encoderMotor.read_multiturn_position()
     run_time = 30 # in seconds
-    location = self.data_fname + "/const_speed_tests/set{0}.csv".format(self.set)
+    location = self.data_fname + "/speed_tests/screw{0}/set{1}.csv".format(self.screwnum, self.set)
 
     t0 = time.time() # Get start time
     # self.startSensorLog()

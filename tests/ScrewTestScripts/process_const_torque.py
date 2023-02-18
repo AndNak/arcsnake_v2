@@ -14,19 +14,18 @@ if __name__ == "__main__":
 	just_visualizing = True  # Set true if you just want to visualize the data
 
 	set_num = 1
-	test_num = 3
+	screw_num = 7
 
-	ft_data = read_sensor_csv(
-		'fts_data_files/const_torque_tests/test_set/set{0}/test{1}(1).csv'.format(set_num, test_num))
-	# motor_data = read_motor_csv(
-	# 	'motor_data_files/const_torque_tests/test_set/set{0}/test{1}.csv'.format(set_num, test_num))
-
-	# filt_motor_data = filter_motor_data(motor_data, cutoff=6, fs=125, order=2)
-	filt_ft_data = filter_ft_data(ft_data, cutoff=6, fs=125, order=2)
+	# ft_data = read_sensor_csv(
+	# 	'fts_data_files/const_torque_tests/test_set/set{0}/test{1}(1).csv'.format(set_num, test_num))
+	motor_data = read_motor_csv(
+		'new_data_files/torque_tests/screw{0}/set{1}.csv'.format(screw_num, set_num))
+	filt_motor_data = filter_motor_data(motor_data, cutoff=6, fs=125, order=2)
+	# filt_ft_data = filter_ft_data(ft_data, cutoff=6, fs=125, order=2)
 
 	if just_visualizing == True:
-		# plot_motor_data(filt_motor_data, None)
-		plot_ft_data(filt_ft_data, 3000, 6000, None)
+		plot_motor_data(filt_motor_data, None)
+		# plot_ft_data(filt_ft_data, 3000, 6000, None)
 		plt.show()
 
 	elif just_visualizing == False:

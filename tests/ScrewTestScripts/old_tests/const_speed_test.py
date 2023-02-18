@@ -35,7 +35,7 @@ if __name__ == "__main__":
     test_num = 7
     command_speed = -12.0 # in radians per second
     Kp = 255
-    Ki = 150
+    Ki = 255
     test_name = 'screw1_Kp{0}_Ki{1}_v{2}_braketest'.format(Kp, Ki, int(-command_speed))
     data_fname = 'tests/ScrewTestScripts/data_files/speed_pi_control/{0}'.format(test_name)
 
