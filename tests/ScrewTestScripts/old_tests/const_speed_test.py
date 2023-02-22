@@ -33,10 +33,10 @@ if __name__ == "__main__":
     run_time = 15 # in second
     set_num = 4
     test_num = 7
-    command_speed = -12.0 # in radians per second
+    command_speed = -6.0 # in radians per second
     Kp = 255
-    Ki = 255
-    test_name = 'screw1_Kp{0}_Ki{1}_v{2}_braketest'.format(Kp, Ki, int(-command_speed))
+    Ki = 50
+    test_name = 'screw1maxed_Kp{0}_Ki{1}_v{2}_braketest'.format(Kp, Ki, int(-command_speed))
     data_fname = 'tests/ScrewTestScripts/data_files/speed_pi_control/{0}'.format(test_name)
 
     time_data   = []
@@ -96,7 +96,7 @@ if __name__ == "__main__":
     plt.plot(time_data, angular_speed_data)
     plt.title("Screw 1, Kp = {0}, Ki = {1}, Set Vel = {2}, Brake Test".format(Kp, Ki, abs(command_speed)))
     plt.legend(['Torque', 'Angular Speed'])
-    plt.ylim([0, 20])
-    plt.yticks(np.linspace(0, 20, 11))
+    # plt.ylim([0, 20])
+    # plt.yticks(np.linspace(0, 20, 11))
     plt.savefig('tests/ScrewTestScripts/data_files/speed_pi_control/{0}.png'.format(test_name))
     plt.show()
