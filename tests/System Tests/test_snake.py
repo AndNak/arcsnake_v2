@@ -32,9 +32,45 @@ if __name__ == "__main__":
 
     gear_ratio = 11
     joint1 = CanMotor(can0, 1, gear_ratio)
-    joint1.motor_start()
-
-    (joint_torque, joint_speed, joint_pos) = joint1.read_motor_status() # read pos
-    joint1.pos_ctrl(joint_pos) # set read pos
+    joint2 = CanMotor(can0, 3, gear_ratio)
+    joint3 = CanMotor(can0, 4, gear_ratio)
+    joint4 = CanMotor(can0, 6, gear_ratio)
+    screw1 = CanMotor(can0, 0, 1)
+    screw2 = CanMotor(can0, 2, 1)
+    screw3 = CanMotor(can0, 5, 1)
     
+    try:
 
+        input('Press Enter to hold joints at current pos')
+        (joint1_torque, joint1_speed, joint1_pos) = joint1.read_motor_status() # read pos
+        (joint2_torque, joint2_speed, joint2_pos) = joint2.read_motor_status() # read pos
+        (joint3_torque, joint3_speed, joint3_pos) = joint3.read_motor_status() # read pos
+        (joint4_torque, joint4_speed, joint4_pos) = joint4.read_motor_status() # read pos
+        print('Joint 1 pos: ', joint1_pos)
+        print('Joint 2 pos: ', joint2_pos)
+        print('Joint 3 pos: ', joint3_pos)
+        print('Joint 4 pos: ', joint4_pos)
+        joint1.pos_ctrl(joint1_pos) # set read pos
+        joint2.pos_ctrl(joint2_pos) # set read pos
+        joint3.pos_ctrl(joint3_pos) # set read pos
+        joint4.pos_ctrl(joint4_pos) # set read pos
+
+        input('Press Enter to spin screw motors')
+        screw1.speed_ctrl(1)
+        screw2.speed_ctrl(-1)
+        screw3.speed_ctrl(1)
+
+    except(KeyboardInterrupt) as e:
+        print(e)
+
+    joint1.motor_stop()
+    joint2.motor_stop()
+    joint3.motor_stop()
+    joint4.motor_stop()
+    screw1.motor_stop()
+    screw2.motor_stop()
+    screw3.motor_stop()
+
+    print('Done')
+
+    core.CANHelper.cleanup("can0")
