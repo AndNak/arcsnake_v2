@@ -23,7 +23,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
-    screwMotor = CanUJoint(can0, 0, 1, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
+    screwMotor = CanUJoint(can0, 5, 1, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     # encoderMotor = CanUJoint(can0, 2, 1)
 
 
@@ -33,10 +33,10 @@ if __name__ == "__main__":
     run_time = 15 # in second
     set_num = 4
     test_num = 7
-    command_speed = -6.0 # in radians per second
+    command_speed = -12.0 # in radians per second
     Kp = 255
     Ki = 50
-    test_name = 'screw1maxed_Kp{0}_Ki{1}_v{2}_braketest'.format(Kp, Ki, int(-command_speed))
+    test_name = 'screw5maxed_Kp{0}_Ki{1}_v{2}_noshell'.format(Kp, Ki, int(-command_speed))
     data_fname = 'tests/ScrewTestScripts/data_files/speed_pi_control/{0}'.format(test_name)
 
     time_data   = []
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     plt.figure()
     plt.plot(time_data, torque_data)
     plt.plot(time_data, angular_speed_data)
-    plt.title("Screw 1, Kp = {0}, Ki = {1}, Set Vel = {2}, Brake Test".format(Kp, Ki, abs(command_speed)))
+    plt.title("Screw 5, Kp = {0}, Ki = {1}, Set Vel = {2}, No Shell".format(Kp, Ki, abs(command_speed)))
     plt.legend(['Torque', 'Angular Speed'])
     # plt.ylim([0, 20])
     # plt.yticks(np.linspace(0, 20, 11))

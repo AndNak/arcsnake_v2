@@ -44,7 +44,7 @@ if __name__ == "__main__":
     loop_vec = []
 
     zero_pos = 0
-    amp = .33 * m.pi
+    amp = .1 * m.pi
     loop_rate = 1000 #Hz
     run_time = 40 #seconds
 
