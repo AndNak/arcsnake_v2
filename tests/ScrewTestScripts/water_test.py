@@ -22,7 +22,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
-    screwMotor = CanUJoint(can0, 0, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
+    screwMotor = CanUJoint(can0, 0, 1, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     encoderMotor = CanUJoint(can0, 2, 1)
 
     sampling_rate = 200 # in Hz
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     set_num = 4
     test_num = 1
     command_speed = -15.0 # in radians per second
-    data_fname = 'tests/ScrewTestScripts/data_files/water_tests/set{0}/test{1}.csv'.format(set_num, test_num)
+    data_fname = 'tests/ScrewTestScripts/data_files/new_water_tests/set{0}/test{1}.csv'.format(set_num, test_num)
 
     time_data   = []
     torque_data = []
