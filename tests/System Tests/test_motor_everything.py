@@ -3,25 +3,16 @@ import core.CANHelper
 from core.CanUJoint import CanUJoint
 from core.CanScrewMotor import CanScrewMotor
 
-from os.path import dirname, realpath  
-import sys
-from core.CanMotor import CanMotor  
-arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
-sys.path.append(arcsnake_v2_path)  
-
-
 if __name__ == "__main__":
   core.CANHelper.init("can0") # Intiailize can0
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan') # Create can bus object 
 
-  testMotor = CanUJoint(can0, 5, 1) # Initialize motor with can bus object 
+  testMotor = CanUJoint(can0, 2, 1) # Initialize motor with can bus object 
   
   print("Enter Desired Control method")
   print("1 = Position Control (Rotations)")
   print("2 = Velocity Control (Rotations Per Second)")
   print("3 = Torque Control (Amps)")
-
-  
 
   controlMethod = 0 
 

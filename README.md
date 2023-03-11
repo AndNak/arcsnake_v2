@@ -1,11 +1,5 @@
 # TODO:
 
-- Make outlier filtering - Florian
-
-## Ros
-
-- find how to make ini file
-- Document installation for ros  
 
 # Getting Started with USB CAN bus
 
@@ -55,11 +49,6 @@ python3 tests/test_sanity.py
 
 # Installing Ros (fix up)
 
-Use the installation script made by Ace Bhatia (Thanks)
-
-git clone https://github.com/ankbhatia19/ROS2-Containerized.git
-
-Follow instructions in Ace's git??
 
 # Notes:
 
@@ -68,10 +57,10 @@ Follow instructions in Ace's git??
 - type sudo gedit ~/.bashrc in /home directory 
 - Insert this command near end of text file: 
   '''
-    export PYTHONPATH="${PYTHONPATH}:/home/myeoh/Documents/Github"
+    export PATH="$HOME/myeoh/Documents/GitHub/arcsnake_v2:$PATH"
   '''
-- **RESTART COMPUTER TO SAVE CHANGES**
-- save and verify by running echo $PYTHONPATH in terminal 
+- Run source ~/.bashrc
+- save and verify by running echo $PATH in terminal 
 
 ## Otherwise, if issues with Path stuff insert this into top of code
 
