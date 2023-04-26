@@ -10,7 +10,7 @@ if __name__ == "__main__":
   core.CANHelper.init("can0")
   
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
-  deviceId = 0x01
+  deviceId = 0x03
   sensor = CanArduinoSensors(can0, deviceId)
 
   try:

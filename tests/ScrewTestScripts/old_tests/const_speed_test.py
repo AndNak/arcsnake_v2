@@ -4,6 +4,8 @@ from core.CanUJoint import CanUJoint
 from core.CanScrewMotor import CanScrewMotor
 import time
 import numpy as np
+from core.timeout import TimeoutError
+
 
 from os.path import dirname, realpath  
 import sys
@@ -22,8 +24,28 @@ def get_time(t0):
 if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
-
-    screwMotor = CanUJoint(can0, 5, 1, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
+    gear_ratio = 11
+    while True:
+        try:
+            print("Trying to initialize motors")
+            screwMotor = CanMotor(can0, 2, 1)
+            joint2 = CanMotor(can0, 4, gear_ratio)
+            joint1 = CanMotor(can0, 1, gear_ratio)
+            joint3 = CanMotor(can0, 3, gear_ratio)
+            joint4 = CanMotor(can0, 6, gear_ratio)
+            joint1_pos = joint1.read_multiturn_position()
+            joint2_pos = joint2.read_multiturn_position()
+            joint3_pos = joint3.read_multiturn_position()
+            joint4_pos = joint4.read_multiturn_position()
+            joint1.pos_ctrl(joint1_pos) # set read pos
+            joint2.pos_ctrl(joint2_pos) # set read pos
+            joint3.pos_ctrl(joint3_pos) # set read pos
+            joint4.pos_ctrl(joint4_pos) # set read pos
+            break
+        except TimeoutError:
+            print('Timeout Error')
+            continue
+        # screwMotor = CanUJoint(can0, 5, 1, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     # encoderMotor = CanUJoint(can0, 2, 1)
 
 
@@ -33,20 +55,27 @@ if __name__ == "__main__":
     run_time = 15 # in second
     set_num = 4
     test_num = 7
-    command_speed = -12.0 # in radians per second
+    command_speed = -15.0 # in radians per second
     Kp = 255
     Ki = 50
-    test_name = 'screw5maxed_Kp{0}_Ki{1}_v{2}_noshell'.format(Kp, Ki, int(-command_speed))
-    data_fname = 'tests/ScrewTestScripts/data_files/speed_pi_control/{0}'.format(test_name)
+    test_name = 'middlescrew_Kp{0}_Ki{1}_v{2}'.format(Kp, Ki, int(-command_speed))
+    data_fname = 'tests/ScrewTestScripts/data_files/speed_pi_control/fullsnake_{0}'.format(test_name)
 
     time_data   = []
     torque_data = []
     angular_speed_data = []
     linear_speed_data = []
 
-    print(screwMotor.read_motor_pid())
-    screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
-    print(screwMotor.read_motor_pid())
+    while True:
+        try:
+            print(screwMotor.read_motor_pid())
+            screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
+            print(screwMotor.read_motor_pid())
+            break
+        except TimeoutError:
+            print('Timeout Error')
+            continue
+    # screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
     
     try:
         
@@ -65,9 +94,21 @@ if __name__ == "__main__":
             # input("Press enter to continue")
 
             t1 = time.time()
-            screwMotor.speed_ctrl(command_speed)
             while True:
-                row = [get_time(t0), abs(screwMotor.read_speed()), abs(screwMotor.read_torque()), 0]
+                try:
+                    screwMotor.speed_ctrl(command_speed)
+                    break
+                except(TimeoutError):
+                    print('Timeout Error')
+                    continue
+            while True:
+                while True:
+                    try:
+                        row = [get_time(t0), abs(screwMotor.read_speed()), abs(screwMotor.read_torque()), 0]
+                        break
+                    except TimeoutError:
+                        print('Timeout Error')
+                        continue
                 print(row)
                 test_writer.writerow(row)
 
@@ -83,7 +124,17 @@ if __name__ == "__main__":
     except(KeyboardInterrupt) as e:
         print(e)
 
-    screwMotor.motor_stop()
+    while True:
+        try:
+            screwMotor.motor_stop()
+            joint1.motor_stop()
+            joint2.motor_stop()
+            joint3.motor_stop()
+            joint4.motor_stop()
+            break
+        except TimeoutError:
+            print('Timeout Error')
+            continue
     # encoderMotor.motor_stop()
 
     print('Done, stop sensor log')

@@ -3,6 +3,8 @@ import math
 from .CanUtils import CanUtils
 from .timeout import timeout
 import time
+from core.timeout import TimeoutError
+
 
 class CanMotor(object):
     def __init__(self, bus, motor_id, gear_ratio, MIN_POS = -999 * 2 * math.pi, MAX_POS = 999 * 2 * math.pi):
@@ -27,6 +29,9 @@ class CanMotor(object):
         self.min_pos = MIN_POS
         self.max_pos = MAX_POS
 
+        # Clear motor errors and print for debug
+        self.clear_error_flag()
+
         # For some reason, the screw motor in one our debug sessions
         # required two of these to be sent in order to recieve new commands...
         self.motor_start()
@@ -45,8 +50,8 @@ class CanMotor(object):
         - If wait_for_response is True, then this a "read" CANBus send. If False, then this is only a "send" command
             - To decode the return message, use readBytesList or readByte in CanUtils
     '''
-    @timeout(1)
-    def send(self, data, wait_for_response = False):
+    @timeout(0.005)
+    def _send(self, data, wait_for_response = False):
         msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False)
         self.canBus.send(msg)
 
@@ -64,7 +69,16 @@ class CanMotor(object):
         else:
             return None
 
-
+    def send(self, data, wait_for_response = False, num_time_outs = 50):
+        '''
+            Wrapper for _send that retries if timeout occurs. This is useful since the motors can be finicky
+        '''
+        for _ in range(num_time_outs):
+            try:
+                return self._send(data, wait_for_response)
+            except TimeoutError:
+                continue
+        raise TimeoutError("No response from motor")
 
     def read_motor_err_and_voltage(self):
         msg = self.send([0x9a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
@@ -107,8 +121,7 @@ class CanMotor(object):
             return (self.utils.encToAmp(torque), 
                 self.utils.degToRad(speed), 
                 self.utils.degToRad(self.utils.toDegrees(position)))
-        
-
+    
 
     def read_singleturn_position(self):
         """ Get single-turn position reading from encoder in radians. 
@@ -195,8 +208,14 @@ class CanMotor(object):
         return (pos_p,    pos_i, 
                 speed_p,  speed_i,
                 torque_p, torque_i)
+    
+    def clear_error_flag(self):
+        return self.send([0x9B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
- 
+    
+    def get_error_flag(self):
+        return self.send([0x9A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+
     def pos_ctrl(self, to_rad, max_speed = 999 * 2 * math.pi):
         """Set multiturn position control
         -
@@ -330,5 +349,11 @@ class CanMotor(object):
     def motor_stop(self):
         """Stops the motor. Useful for allowing motor to be turned by hand
         -
+        """
+        self.send([0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+
+    def motor_off(self):
+        """
+            Turns off the motor which is great so when it turns back on it doens't spin like crazy!!!
         """
         self.send([0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)

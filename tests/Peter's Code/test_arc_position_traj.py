@@ -33,7 +33,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
     gear_ratio = 11
-    joint1 = CanMotor(can0, 4, gear_ratio) #ID: 2
+    joint1 = CanMotor(can0, 6, gear_ratio) #ID: 2
     joint1.motor_start()
 
     read_s_pos_joint = []
