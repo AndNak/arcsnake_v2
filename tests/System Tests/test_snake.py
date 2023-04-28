@@ -62,22 +62,23 @@ if __name__ == "__main__":
     joint4.pos_ctrl(joint4_pos) # set read pos
 
     input('Press Enter to spin screw motors')
+
     # Roll
     # screw1.speed_ctrl(10)
-    # screw2.speed_ctrl(-10)
+    screw2.speed_ctrl(-10)
     # screw3.speed_ctrl(-10)
 
-    # Torpedo
-    factor = 8
-    number_of_steps = 1000
-    for i in range(number_of_steps):
-        screw1.speed_ctrl((factor*5)*i/number_of_steps  + 2)
-        screw1.clear_error_flag()
-        screw2.speed_ctrl((factor*10)*i/number_of_steps + 2)
-        screw2.clear_error_flag()
-        screw3.speed_ctrl((factor*-5)*i/number_of_steps - 2)
-        screw3.clear_error_flag()
-        time.sleep(0.01)
+    # # Torpedo
+    # factor = 8
+    # number_of_steps = 1000
+    # for i in range(number_of_steps):
+    #     screw1.speed_ctrl((factor*5)*i/number_of_steps  + 2)
+    #     screw1.clear_error_flag()
+    #     screw2.speed_ctrl((factor*10)*i/number_of_steps + 2)
+    #     screw2.clear_error_flag()
+    #     screw3.speed_ctrl((factor*-5)*i/number_of_steps - 2)
+    #     screw3.clear_error_flag()
+    #     time.sleep(0.01)
 
     print(screw1.get_error_flag())
     print(screw2.get_error_flag())

@@ -79,10 +79,16 @@ class CanMotor(object):
             except TimeoutError:
                 continue
         raise TimeoutError("No response from motor")
+    
+    # TODO: Add read_motor_power function which uses a read command on address 0x71
+
+
 
     def read_motor_err_and_voltage(self):
         msg = self.send([0x9a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
+        #TODO: Err state should alsouse data[6]. Please add this in and look at the error codes
+        #       Add a string return for the error state
         temp      = msg.data[1]
         voltage   = self.utils.readBytes(msg.data[4], msg.data[3]) / 10
         err_state = msg.data[7]
