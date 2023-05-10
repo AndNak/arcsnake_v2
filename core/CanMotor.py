@@ -82,6 +82,22 @@ class CanMotor(object):
     
     # TODO: Add read_motor_power function which uses a read command on address 0x71
 
+    # just a practice function
+    def read_phase_current_data(self):
+        '''
+        reads phase current status data of motor
+        input   : none
+        returns : phases A, B, C currents
+        '''
+        msg = self.send([0x33, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+        
+        phaseA_current = self.utils.readBytes(msg.data[3], msg.data[2])
+        phaseB_current = self.utils.readBytes(msg.data[5], msg.data[4])
+        phaseC_current = self.utils.readBytes(msg.data[7], msg.data[6])
+
+        return(phaseA_current,
+               phaseB_current,
+               phaseC_current)
 
 
     def read_motor_err_and_voltage(self):
@@ -93,9 +109,28 @@ class CanMotor(object):
         voltage   = self.utils.readBytes(msg.data[4], msg.data[3]) / 10
         err_state = msg.data[7]
 
+
+        # find err_state as string according to status table in doc
+        volt_bit = 1                              # bit 0
+        temp_bit = 8                              # bit 3
+        err_state_str = ["No errors"]             # string to return
+        # check voltage status bit
+        if err_state & volt_bit:
+            err_state_str[0] = ""
+            err_state_str.append("Low voltage protection flagged")
+        # check temperature status bit
+        if err_state & temp_bit:
+            err_state_str[0] = ""
+            err_state_str.append("Over temperature protection flagged")
+
+        if err_state_str[0] == "": err_state_str.pop(0)
+        err_state_str = ", ".join(err_state_str)
+
+
         return (temp, 
                 voltage, 
-                err_state)
+                err_state,
+                err_state_str)
 
     '''
     returns motor encoder readings in units of:

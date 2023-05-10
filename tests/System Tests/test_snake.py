@@ -84,6 +84,22 @@ if __name__ == "__main__":
     print(screw2.get_error_flag())
     print(screw3.get_error_flag())
 
+
+
+    # --- TESTING READ FUNCTIONS ---
+    # print error messages
+    print("Error messages:\n")
+    print("Screw 1:", screw1.read_motor_err_and_voltage(), "\n")
+    print("Screw 2:", screw2.read_motor_err_and_voltage(), "\n")
+    print("Screw 3:", screw3.read_motor_err_and_voltage(), "\n")
+    # print three-phase currents
+    print("Reading phase currents:\n")
+    print("Screw 1:", screw1.read_phase_current_data(), "\n")
+    print("Screw 2:", screw2.read_phase_current_data(), "\n")
+    print("Screw 3:", screw3.read_phase_current_data(), "\n")
+
+
+
     input('Press Enter to stop motors')
     joint1.motor_off()
     joint2.motor_off()
