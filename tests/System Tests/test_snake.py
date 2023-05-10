@@ -64,9 +64,9 @@ if __name__ == "__main__":
     input('Press Enter to spin screw motors')
 
     # Roll
-    # screw1.speed_ctrl(10)
+    screw1.speed_ctrl(10)
     screw2.speed_ctrl(-10)
-    # screw3.speed_ctrl(-10)
+    screw3.speed_ctrl(-10)
 
     # # Torpedo
     # factor = 8
