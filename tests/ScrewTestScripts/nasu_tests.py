@@ -45,7 +45,7 @@ if __name__ == "__main__":
         6: 35 deg'''
     test_num = 2
     command_speed = -10 # in radians per second
-    data_fname = 'tests/ScrewTestScripts/nasu_data_files/set{0}/ang{1}/test{2}.csv'.format(set_num, ang_num, test_num)
+    data_fname = 'tests/ScrewTestScripts/nasu_data_files/test{0}{1}{2}.csv'.format(set_num, ang_num, test_num)
 
     time_data   = []
     torque_data = []
