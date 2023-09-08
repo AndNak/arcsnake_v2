@@ -323,13 +323,14 @@ class CanMotor(object):
 
         self.send([0x31, 0x00, pos_p, pos_i, speed_p, speed_i, torque_p, torque_i])
 
-    def speed_ctrl(self, to_rad, max_speed=30*2*math.pi):
+    def speed_ctrl(self, to_rad, max_speed=(1890*2*math.pi)/60):
         """Set speed in rad/s 
         -
 
         Args:
             to_rad (RAD): Set speed
             max_speed (RAD/s, optional): Set max allowable speed. Defaults to 20*2*math.pi.
+            **06/20/23 Note: 1890 rpm max given by motor spec sheet, tachometer test in lab (with motor "4") confirms it is close to 1800 rpm max
 
         Returns:
             RAD/s: Returns current speed
@@ -349,6 +350,7 @@ class CanMotor(object):
 
         Args:
             to_Amp (AMP): Set torque current of motor
+                requires an input greater than (0.35, 0.4) to get the motor to run (at no-load speed)
         """        
         if to_Amp > 32:
             to_Amp = 32
