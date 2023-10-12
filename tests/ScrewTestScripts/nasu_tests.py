@@ -29,13 +29,18 @@ if __name__ == "__main__":
     sampling_rate = 200 # in Hz
 
     ### Change these as needed
-    run_time = 10 # in second
-    set_num = 3
+    run_time = 15 # in second
+    set_num = 8
     '''set_num refers to different media
         1: gravel
         2: grass
-        3: sand'''
-    ang_num = 6
+        3: sand
+        4: woodchips
+        5: dirt
+        6: big gravel
+        7: wet sand
+        8: cover photo'''
+    ang_num = 2
     '''ang_num refers to different fin angles
         1: 10 deg
         2: 15 deg
@@ -43,8 +48,8 @@ if __name__ == "__main__":
         4: 25 deg 
         5: 30 deg
         6: 35 deg'''
-    test_num = 3
-    command_speed = -10 # in radians per second
+    test_num = 1
+    command_speed = -10 # in radians per second / gear_ratio (2 for NASU)
     data_fname = 'tests/ScrewTestScripts/nasu_data_files/test{0}{1}{2}.csv'.format(set_num, ang_num, test_num)
 
     time_data   = []
