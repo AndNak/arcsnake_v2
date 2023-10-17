@@ -20,7 +20,7 @@ if __name__ == "__main__":
   core.CANHelper.init("can0") # Intiailize can0
   can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan') # Create can bus object 
 
-  testMotor = CanUJoint(can0, 5, 1) # Initialize motor with can bus object 
+  testMotor = CanUJoint(can0, 2, 1) # Initialize motor with can bus object 
 
   print(testMotor.read_motor_pid())
   testMotor.override_PI_values(100, 100, 255, 30, 50, 50)
