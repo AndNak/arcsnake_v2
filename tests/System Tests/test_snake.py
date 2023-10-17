@@ -86,15 +86,15 @@ if __name__ == "__main__":
     # screw3.speed_ctrl(5)
 
     # Torpedo
-    factor = 8
+    factor = 6
     
     number_of_steps = 1000
     for i in range(number_of_steps):
-        screw1.speed_ctrl((factor*1)*i/number_of_steps  + 2)
+        screw1.speed_ctrl((factor*1)*i/number_of_steps)
         screw1.clear_error_flag()
-        screw2.speed_ctrl((factor*-2)*i/number_of_steps + 2)
+        screw2.speed_ctrl((factor*-2)*i/number_of_steps)
         screw2.clear_error_flag()
-        screw3.speed_ctrl((factor*1)*i/number_of_steps - 2)
+        screw3.speed_ctrl((factor*1)*i/number_of_steps)
         screw3.clear_error_flag()
 
         joint1.pos_ctrl(joint1_pos) # set read pos
