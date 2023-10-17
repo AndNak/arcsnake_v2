@@ -110,7 +110,7 @@ if __name__ == "__main__":
         joint3_error = joint3.read_motor_err_and_voltage()
         joint4_error = joint4.read_motor_err_and_voltage()
 
-        if screw1_error[2] != 0 or screw2_error[2] != 0 or screw3_error[2] != 0 or joint1_error[2] != 0 or joint2_error[2] != 0 or joint3_error[2] != 0 or joint4_error[2] != 0:
+        if screw1_error[3] != 0 or screw2_error[3] != 0 or screw3_error[3] != 0 or joint1_error[3] != 0 or joint2_error[3] != 0 or joint3_error[3] != 0 or joint4_error[3] != 0:
             print("Screw 1 error: ", screw1_error)
             print("Screw 2 error: ", screw2_error)
             print("Screw 3 error: ", screw3_error)
