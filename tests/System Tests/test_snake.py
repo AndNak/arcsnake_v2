@@ -91,6 +91,7 @@ if __name__ == "__main__":
     # Torpedo
     factor = 15
     
+    motor_voltages = []
     number_of_steps = 1000
     for i in range(number_of_steps):
         screw1.speed_ctrl((factor*1)*i/number_of_steps)
@@ -112,8 +113,15 @@ if __name__ == "__main__":
         joint2_error = joint2.read_motor_err_and_voltage()
         joint3_error = joint3.read_motor_err_and_voltage()
         joint4_error = joint4.read_motor_err_and_voltage()
+        motor_voltages.append([screw1_error[1], 
+                               screw2_error[1], 
+                               screw3_error[1], 
+                               joint1_error[1],
+                               joint2_error[1],
+                               joint3_error[1],
+                               joint4_error[1]])
 
-        if screw1_error[3] != 0 or screw2_error[3] != 0 or screw3_error[3] != 0 or joint1_error[3] != 0 or joint2_error[3] != 0 or joint3_error[3] != 0 or joint4_error[3] != 0:
+        if screw1_error[2] != 0 or screw2_error[2] != 0 or screw3_error[2] != 0 or joint1_error[2] != 0 or joint2_error[2] != 0 or joint3_error[2] != 0 or joint4_error[2] != 0:
             print("Screw 1 error: ", screw1_error)
             print("Screw 2 error: ", screw2_error)
             print("Screw 3 error: ", screw3_error)
@@ -154,5 +162,7 @@ if __name__ == "__main__":
 
     print('Done')
 
+    plt.plot(motor_voltages)
+    plt.legend(["screw 1", "screw 2", "screw 3", "joint 1", "joint 2", "joint 3", "joint 4"])
 
     core.CANHelper.cleanup("can0")
