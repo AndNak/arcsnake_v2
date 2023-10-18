@@ -74,6 +74,9 @@ if __name__ == "__main__":
     # screw2.pos_ctrl(screw2_pos + 0.2) # set read pos
     # print(screw2.read_multiturn_position())
 
+    # screw2.speed_ctrl(5) 
+    # screw2.speed_ctrl(5) 
+    
 
 
     # Roll
@@ -86,7 +89,7 @@ if __name__ == "__main__":
     # screw3.speed_ctrl(5)
 
     # Torpedo
-    factor = 6
+    factor = 15
     
     number_of_steps = 1000
     for i in range(number_of_steps):
@@ -121,24 +124,24 @@ if __name__ == "__main__":
             # break
 
 
-        time.sleep(0.01)
+    #     time.sleep(0.01)
 
-    print(screw1.get_error_flag())
-    print(screw2.get_error_flag())
-    print(screw3.get_error_flag())
+    # print(screw1.get_error_flag())
+    # print(screw2.get_error_flag())
+    # print(screw3.get_error_flag())
 
 
-    # --- TESTING READ FUNCTIONS ---
-    # print error messages
-    print("Error messages:\n")
-    print("Screw 1:", screw1.read_motor_err_and_voltage(), "\n")
-    print("Screw 2:", screw2.read_motor_err_and_voltage(), "\n")
-    print("Screw 3:", screw3.read_motor_err_and_voltage(), "\n")
-    # print three-phase currents
-    print("Reading phase currents:\n")
-    print("Screw 1:", screw1.read_phase_current_data(), "\n")
-    print("Screw 2:", screw2.read_phase_current_data(), "\n")
-    print("Screw 3:", screw3.read_phase_current_data(), "\n")
+    # # --- TESTING READ FUNCTIONS ---
+    # # print error messages
+    # print("Error messages:\n")
+    # print("Screw 1:", screw1.read_motor_err_and_voltage(), "\n")
+    # print("Screw 2:", screw2.read_motor_err_and_voltage(), "\n")
+    # print("Screw 3:", screw3.read_motor_err_and_voltage(), "\n")
+    # # print three-phase currents
+    # print("Reading phase currents:\n")
+    # print("Screw 1:", screw1.read_phase_current_data(), "\n")
+    # print("Screw 2:", screw2.read_phase_current_data(), "\n")
+    # print("Screw 3:", screw3.read_phase_current_data(), "\n")
 
     input('Press Enter to stop motors')
     joint1.motor_off()

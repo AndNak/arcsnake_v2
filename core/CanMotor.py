@@ -107,9 +107,9 @@ class CanMotor(object):
         #TODO: Err state should alsouse data[6]. Please add this in and look at the error codes
         #       Add a string return for the error state
         temp      = msg.data[1]
-        #voltage   = self.utils.readBytes(msg.data[4], msg.data[3]) / 10
-        voltage_HB = msg.data[4]
-        voltage_LB = msg.data[3]
+        voltage   = self.utils.readBytes(msg.data[4], msg.data[3]) / 10
+        # voltage_HB = msg.data[4]
+        # voltage_LB = msg.data[3]
         err_state = msg.data[7]
 
 
@@ -131,9 +131,9 @@ class CanMotor(object):
 
 
         return (temp, 
-                #voltage, 
-                voltage_HB,
-                voltage_LB,
+                voltage, 
+                # voltage_HB,
+                # voltage_LB,
                 err_state,
                 err_state_str)
 
