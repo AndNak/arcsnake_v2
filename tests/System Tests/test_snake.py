@@ -6,6 +6,7 @@ from os.path import dirname, realpath
 from pdb import post_mortem
 import sys
 from unittest import mock
+import csv
 
 from more_itertools import sample
 arcsnake_v2_path = dirname(dirname(realpath(__file__)))
@@ -89,39 +90,50 @@ if __name__ == "__main__":
     # screw3.speed_ctrl(5)
 
     # Torpedo
-    factor = 15
+    factor = 5
     
     motor_voltages = []
     number_of_steps = 1000
-    for i in range(number_of_steps):
-        screw1.speed_ctrl((factor*1)*i/number_of_steps)
-        screw1.clear_error_flag()
-        screw2.speed_ctrl((factor*-2)*i/number_of_steps)
-        screw2.clear_error_flag()
-        screw3.speed_ctrl((factor*1)*i/number_of_steps)
-        screw3.clear_error_flag()
+    with open('motor_voltages_sense.csv', 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile, delimiter=',')
 
-        joint1.pos_ctrl(joint1_pos) # set read pos
-        joint2.pos_ctrl(joint2_pos) # set read pos
-        joint3.pos_ctrl(joint3_pos) # set read pos
-        joint4.pos_ctrl(joint4_pos) # set read pos
+        for i in range(number_of_steps):
+            screw1.speed_ctrl((factor*1)*i/number_of_steps)
+            screw1.clear_error_flag()
+            screw2.speed_ctrl((factor*-2)*i/number_of_steps)
+            screw2.clear_error_flag()
+            screw3.speed_ctrl((factor*1)*i/number_of_steps)
+            screw3.clear_error_flag()
 
-        screw1_error = screw1.read_motor_err_and_voltage()
-        screw2_error = screw2.read_motor_err_and_voltage()
-        screw3_error = screw3.read_motor_err_and_voltage()
-        joint1_error = joint1.read_motor_err_and_voltage()
-        joint2_error = joint2.read_motor_err_and_voltage()
-        joint3_error = joint3.read_motor_err_and_voltage()
-        joint4_error = joint4.read_motor_err_and_voltage()
-        motor_voltages.append([screw1_error[1], 
-                               screw2_error[1], 
-                               screw3_error[1], 
-                               joint1_error[1],
-                               joint2_error[1],
-                               joint3_error[1],
-                               joint4_error[1]])
+            joint1.pos_ctrl(joint1_pos) # set read pos
+            joint2.pos_ctrl(joint2_pos) # set read pos
+            joint3.pos_ctrl(joint3_pos) # set read pos
+            joint4.pos_ctrl(joint4_pos) # set read pos
 
-        if screw1_error[2] != 0 or screw2_error[2] != 0 or screw3_error[2] != 0 or joint1_error[2] != 0 or joint2_error[2] != 0 or joint3_error[2] != 0 or joint4_error[2] != 0:
+            screw1_error = screw1.read_motor_err_and_voltage()
+            screw2_error = screw2.read_motor_err_and_voltage()
+            screw3_error = screw3.read_motor_err_and_voltage()
+            joint1_error = joint1.read_motor_err_and_voltage()
+            joint2_error = joint2.read_motor_err_and_voltage()
+            joint3_error = joint3.read_motor_err_and_voltage()
+            joint4_error = joint4.read_motor_err_and_voltage()
+            motor_voltages.append([screw1_error[1], 
+                                screw2_error[1], 
+                                screw3_error[1], 
+                                joint1_error[1],
+                                joint2_error[1],
+                                joint3_error[1],
+                                joint4_error[1]])
+            
+            writer.writerow([screw1_error[1], 
+                                screw2_error[1], 
+                                screw3_error[1], 
+                                joint1_error[1],
+                                joint2_error[1],
+                                joint3_error[1],
+                                joint4_error[1]])
+
+            # if screw1_error[2] != 0 or screw2_error[2] != 0 or screw3_error[2] != 0 or joint1_error[2] != 0 or joint2_error[2] != 0 or joint3_error[2] != 0 or joint4_error[2] != 0:
             print("Screw 1 error: ", screw1_error)
             print("Screw 2 error: ", screw2_error)
             print("Screw 3 error: ", screw3_error)
@@ -129,7 +141,7 @@ if __name__ == "__main__":
             print("Joint 2 error: ", joint2_error)
             print("Joint 3 error: ", joint3_error)
             print("Joint 4 error: ", joint4_error)
-            # break
+                # break
 
 
     #     time.sleep(0.01)
@@ -164,5 +176,7 @@ if __name__ == "__main__":
 
     plt.plot(motor_voltages)
     plt.legend(["screw 1", "screw 2", "screw 3", "joint 1", "joint 2", "joint 3", "joint 4"])
+    plt.savefig("motor_voltages_rampup_sense.png")
+    plt.show()
 
     core.CANHelper.cleanup("can0")

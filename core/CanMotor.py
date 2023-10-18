@@ -69,7 +69,7 @@ class CanMotor(object):
         else:
             return None
 
-    def send(self, data, wait_for_response = False, num_time_outs = 50):
+    def send(self, data, wait_for_response = False, num_time_outs = 100):
         '''
             Wrapper for _send that retries if timeout occurs. This is useful since the motors can be finicky
         '''
