@@ -26,7 +26,6 @@ from core.CanUJoint import CanUJoint
 from core.CanMotor import CanMotor
 from core.CanScrewMotor import CanScrewMotor
 from core.timeout import TimeoutError
-
 import math
 
 
@@ -37,32 +36,45 @@ if __name__ == "__main__":
     gear_ratio = 11
 
     print("Trying to initialize motors")
-    joint1 = CanMotor(can0, 1, gear_ratio)
-    joint2 = CanMotor(can0, 4, gear_ratio)
-    joint3 = CanMotor(can0, 3, gear_ratio)
-    joint4 = CanMotor(can0, 6, gear_ratio)
+    # joint1 = CanMotor(can0, 1, gear_ratio)
+    # joint2 = CanMotor(can0, 4, gear_ratio)
+    # joint3 = CanMotor(can0, 3, gear_ratio)
+    # joint4 = CanMotor(can0, 6, gear_ratio)
     screw1 = CanMotor(can0, 0, 1)
-    screw2 = CanMotor(can0, 2, 1)
-    screw3 = CanMotor(can0, 5, 1)
+    # screw2 = CanMotor(can0, 2, 1)
+    # screw3 = CanMotor(can0, 5, 1)
 
     print('Motor initialization complete')
     
-    input('Press Enter to read joint current pos')
-    joint1_pos = joint1.read_multiturn_position()
-    joint2_pos = joint2.read_multiturn_position()
-    joint3_pos = joint3.read_multiturn_position()
-    joint4_pos = joint4.read_multiturn_position()
+    # input('Press Enter to read joint current pos')
+    # joint1_pos = joint1.read_multiturn_position()
+    # joint2_pos = joint2.read_multiturn_position()
+    # joint3_pos = joint3.read_multiturn_position()
+    # joint4_pos = joint4.read_multiturn_position()
 
-    print('Joint 1 pos: ', joint1_pos)
-    print('Joint 2 pos: ', joint2_pos)
-    print('Joint 3 pos: ', joint3_pos)
-    print('Joint 4 pos: ', joint4_pos)
+    # print('Joint 1 pos: ', joint1_pos)
+    # print('Joint 2 pos: ', joint2_pos)
+    # print('Joint 3 pos: ', joint3_pos)
+    # print('Joint 4 pos: ', joint4_pos)
 
-    input('Press Enter to set joint current pos')
-    joint1.pos_ctrl(joint1_pos) # set read pos
-    joint2.pos_ctrl(joint2_pos) # set read pos
-    joint3.pos_ctrl(joint3_pos) # set read pos
-    joint4.pos_ctrl(joint4_pos) # set read pos
+    # input('Press Enter to set joint current pos')
+    # joint1.pos_ctrl(joint1_pos) # set read pos
+    # joint2.pos_ctrl(joint2_pos) # set read pos
+    # joint3.pos_ctrl(joint3_pos) # set read pos
+    # joint4.pos_ctrl(joint4_pos) # set read pos
+
+    while True:
+        try:
+            print(screw1.read_motor_pid())
+            Kp = 255
+            Ki = 50
+            screw1.override_PI_values(100, 100, Kp, Ki, 50, 50)
+            print(screw1.read_motor_pid())
+            break
+        except TimeoutError:
+            print('Timeout Error')
+            continue
+    # screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
 
     input('Press Enter to spin screw motors')
 
@@ -81,6 +93,7 @@ if __name__ == "__main__":
 
 
     # Roll
+    screw1.speed_ctrl(-15)
     # screw1.speed_ctrl(5)
     # time.sleep(0.1)
     # print(screw1.speed_ctrl(5))
@@ -89,59 +102,59 @@ if __name__ == "__main__":
     # print(screw2.speed_ctrl(-10))
     # screw3.speed_ctrl(5)
 
-    # Torpedo
-    factor = 5
+    # # Torpedo
+    # factor = 5
     
-    motor_voltages = []
-    number_of_steps = 1000
-    with open('motor_voltages_sense.csv', 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile, delimiter=',')
+    # motor_voltages = []
+    # number_of_steps = 1000
+    # with open('motor_voltages_sense.csv', 'w', newline='') as csvfile:
+    #     writer = csv.writer(csvfile, delimiter=',')
 
-        for i in range(number_of_steps):
-            screw1.speed_ctrl((factor*1)*i/number_of_steps)
-            screw1.clear_error_flag()
-            screw2.speed_ctrl((factor*-2)*i/number_of_steps)
-            screw2.clear_error_flag()
-            screw3.speed_ctrl((factor*1)*i/number_of_steps)
-            screw3.clear_error_flag()
+    #     for i in range(number_of_steps):
+    #         screw1.speed_ctrl((factor*1)*i/number_of_steps)
+    #         screw1.clear_error_flag()
+    #         screw2.speed_ctrl((factor*-2)*i/number_of_steps)
+    #         screw2.clear_error_flag()
+    #         screw3.speed_ctrl((factor*1)*i/number_of_steps)
+    #         screw3.clear_error_flag()
 
-            joint1.pos_ctrl(joint1_pos) # set read pos
-            joint2.pos_ctrl(joint2_pos) # set read pos
-            joint3.pos_ctrl(joint3_pos) # set read pos
-            joint4.pos_ctrl(joint4_pos) # set read pos
+    #         joint1.pos_ctrl(joint1_pos) # set read pos
+    #         joint2.pos_ctrl(joint2_pos) # set read pos
+    #         joint3.pos_ctrl(joint3_pos) # set read pos
+    #         joint4.pos_ctrl(joint4_pos) # set read pos
 
-            screw1_error = screw1.read_motor_err_and_voltage()
-            screw2_error = screw2.read_motor_err_and_voltage()
-            screw3_error = screw3.read_motor_err_and_voltage()
-            joint1_error = joint1.read_motor_err_and_voltage()
-            joint2_error = joint2.read_motor_err_and_voltage()
-            joint3_error = joint3.read_motor_err_and_voltage()
-            joint4_error = joint4.read_motor_err_and_voltage()
-            motor_voltages.append([screw1_error[1], 
-                                screw2_error[1], 
-                                screw3_error[1], 
-                                joint1_error[1],
-                                joint2_error[1],
-                                joint3_error[1],
-                                joint4_error[1]])
+    #         screw1_error = screw1.read_motor_err_and_voltage()
+    #         screw2_error = screw2.read_motor_err_and_voltage()
+    #         screw3_error = screw3.read_motor_err_and_voltage()
+    #         joint1_error = joint1.read_motor_err_and_voltage()
+    #         joint2_error = joint2.read_motor_err_and_voltage()
+    #         joint3_error = joint3.read_motor_err_and_voltage()
+    #         joint4_error = joint4.read_motor_err_and_voltage()
+    #         motor_voltages.append([screw1_error[1], 
+    #                             screw2_error[1], 
+    #                             screw3_error[1], 
+    #                             joint1_error[1],
+    #                             joint2_error[1],
+    #                             joint3_error[1],
+    #                             joint4_error[1]])
             
-            writer.writerow([screw1_error[1], 
-                                screw2_error[1], 
-                                screw3_error[1], 
-                                joint1_error[1],
-                                joint2_error[1],
-                                joint3_error[1],
-                                joint4_error[1]])
+    #         writer.writerow([screw1_error[1], 
+    #                             screw2_error[1], 
+    #                             screw3_error[1], 
+    #                             joint1_error[1],
+    #                             joint2_error[1],
+    #                             joint3_error[1],
+    #                             joint4_error[1]])
 
-            # if screw1_error[2] != 0 or screw2_error[2] != 0 or screw3_error[2] != 0 or joint1_error[2] != 0 or joint2_error[2] != 0 or joint3_error[2] != 0 or joint4_error[2] != 0:
-            print("Screw 1 error: ", screw1_error)
-            print("Screw 2 error: ", screw2_error)
-            print("Screw 3 error: ", screw3_error)
-            print("Joint 1 error: ", joint1_error)
-            print("Joint 2 error: ", joint2_error)
-            print("Joint 3 error: ", joint3_error)
-            print("Joint 4 error: ", joint4_error)
-                # break
+    #         # if screw1_error[2] != 0 or screw2_error[2] != 0 or screw3_error[2] != 0 or joint1_error[2] != 0 or joint2_error[2] != 0 or joint3_error[2] != 0 or joint4_error[2] != 0:
+    #         print("Screw 1 error: ", screw1_error)
+    #         print("Screw 2 error: ", screw2_error)
+    #         print("Screw 3 error: ", screw3_error)
+    #         print("Joint 1 error: ", joint1_error)
+    #         print("Joint 2 error: ", joint2_error)
+    #         print("Joint 3 error: ", joint3_error)
+    #         print("Joint 4 error: ", joint4_error)
+    #             # break
 
 
     #     time.sleep(0.01)
@@ -164,19 +177,20 @@ if __name__ == "__main__":
     # print("Screw 3:", screw3.read_phase_current_data(), "\n")
 
     input('Press Enter to stop motors')
-    joint1.motor_off()
-    joint2.motor_off()
-    joint3.motor_off()
-    joint4.motor_off()
+    # joint1.motor_off()
+    # joint2.motor_off()
+    # joint3.motor_off()
+    # joint4.motor_off()
     screw1.motor_off()
-    screw2.motor_off()
-    screw3.motor_off()
+    # screw2.motor_off()
+    # screw3.motor_off()
 
     print('Done')
 
-    plt.plot(motor_voltages)
-    plt.legend(["screw 1", "screw 2", "screw 3", "joint 1", "joint 2", "joint 3", "joint 4"])
-    plt.savefig("motor_voltages_rampup_sense.png")
-    plt.show()
+    # plt.plot(motor_voltages)
+    # plt.legend(["screw 1", "screw 2", "screw 3", "joint 1", "joint 2", "joint 3", "joint 4"])
+    # plt.savefig("motor_voltages_rampup_sense.png")
+    # plt.show()
 
     core.CANHelper.cleanup("can0")
+

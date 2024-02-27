@@ -28,11 +28,11 @@ if __name__ == "__main__":
     sampling_rate = 200 # in Hz
 
     ### Change these as needed
-    run_time = 8 # in second
-    set_num = 3
-    test_num = 10
-    command_speed = -20 # in radians per second
-    data_fname = 'tests/ScrewTestScripts/data_files/new_water_tests/set{0}/test{1}.csv'.format(set_num, test_num)
+    run_time = 5 # in second
+    set_num = 1
+    test_num = 1
+    command_speed = -5 # in radians per second
+    data_fname = 'tests/test.csv'.format(set_num, test_num)
 
     time_data   = []
     torque_data = []
