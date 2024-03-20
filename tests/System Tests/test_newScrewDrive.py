@@ -35,17 +35,27 @@ if __name__ == "__main__":
         # screwMotor = CanUJoint(can0, 5, 1, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     # encoderMotor = CanUJoint(can0, 2, 1)
 
-
     sampling_rate = 200 # in Hz
-
     ### Change these as needed
-    run_time = 5 # in second
+    run_time = 5 # in seconds
     set_num = 4
     test_num = 7
-    command_speed = -20.0 # in radians per second
+    # speed, in radians per second
+    # command_speed = -20.0 
+    # command_speed = -1.0     # low
+    # command_speed = -10.0    # mid
+    command_speed = -50.0    # high
     Kp = 255
     Ki = 50
-    test_name = 'trial1'
+    # test_name = 'block_test_trial_01' #new block, low tension, low speed
+    # test_name = 'block_test_trial_02' #new block, low tension, mid speed
+    # test_name = 'block_test_trial_03' #new block, low tension, hi  speed
+    # test_name = 'block_test_trial_04' #new block, hi  tension, low speed
+    # test_name = 'block_test_trial_05' #new block, hi  tension, mid speed
+    # test_name = 'block_test_trial_06' #new block, hi  tension, hi  speed
+    # test_name = 'block_test_trial_07' #old block, hi  tension, low speed
+    # test_name = 'block_test_trial_08' #old block, hi  tension, mid speed
+    test_name = 'block_test_trial_09' #old block, hi  tension, hi  speed
     data_folder = "tests/System Tests/SystemTest_datafiles/screwDriveTrainTests"
 
     time_data   = []

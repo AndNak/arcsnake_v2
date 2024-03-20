@@ -63,17 +63,17 @@ if __name__ == "__main__":
     # joint3.pos_ctrl(joint3_pos) # set read pos
     # joint4.pos_ctrl(joint4_pos) # set read pos
 
-    while True:
-        try:
-            print(screw1.read_motor_pid())
-            Kp = 255
-            Ki = 50
-            screw1.override_PI_values(100, 100, Kp, Ki, 50, 50)
-            print(screw1.read_motor_pid())
-            break
-        except TimeoutError:
-            print('Timeout Error')
-            continue
+    # while True:
+    #     try:
+    #         print(screw1.read_motor_pid())
+    #         Kp = 255
+    #         Ki = 50
+    #         screw1.override_PI_values(100, 100, Kp, Ki, 50, 50)
+    #         print(screw1.read_motor_pid())
+    #         break
+    #     except TimeoutError:
+    #         print('Timeout Error')
+    #         continue
     # screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
 
     input('Press Enter to spin screw motors')
@@ -93,7 +93,8 @@ if __name__ == "__main__":
 
 
     # Roll
-    screw1.speed_ctrl(-15)
+    screw1.speed_ctrl(10)
+    screw1.speed_ctrl(10)
     # screw1.speed_ctrl(5)
     # time.sleep(0.1)
     # print(screw1.speed_ctrl(5))
