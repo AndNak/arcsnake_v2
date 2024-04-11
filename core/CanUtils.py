@@ -3,7 +3,11 @@ import numpy as np
 
 class CanUtils:
     def readBytes(self, high_byte, low_byte):
-        raise NotImplementedError("THIS FUNCTION WAS WRONG, SWITCH TO readBytesList([high_byte, low_byte])")
+        """Converts values from 2-byte hexadecimal to decimal value
+        -
+        """        
+        decimal_val = np.int16(np.uint16((high_byte << 8) | low_byte))
+        return decimal_val 
 
     def readBytesList(self, byte_list):
         """Reads an array of bytes and returns an integer value
@@ -16,8 +20,7 @@ class CanUtils:
             # out = np.uint64((out << 8) | byte)
             out = (out * 2**8) + np.uint64(byte)
 
-        # manually handling 2s compliment... This sucks
-        if out > 2**(8*len(byte_list) - 1) - 1:
+        # manually handling 2s compliment... This sucks  
             out = -np.int64(2**(8*len(byte_list)) - out) - 1
         else:
             out = np.int64(out)
