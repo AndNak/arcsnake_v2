@@ -25,22 +25,23 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
     gear_ratio = 11
+    motor_id = 5
     while True:
         try:
             print("Trying to initialize motors")
-            screwMotor = CanMotor(can0, 2, 1)
-            joint2 = CanMotor(can0, 4, gear_ratio)
-            joint1 = CanMotor(can0, 1, gear_ratio)
-            joint3 = CanMotor(can0, 3, gear_ratio)
-            joint4 = CanMotor(can0, 6, gear_ratio)
-            joint1_pos = joint1.read_multiturn_position()
-            joint2_pos = joint2.read_multiturn_position()
-            joint3_pos = joint3.read_multiturn_position()
-            joint4_pos = joint4.read_multiturn_position()
-            joint1.pos_ctrl(joint1_pos) # set read pos
-            joint2.pos_ctrl(joint2_pos) # set read pos
-            joint3.pos_ctrl(joint3_pos) # set read pos
-            joint4.pos_ctrl(joint4_pos) # set read pos
+            screwMotor = CanMotor(can0, motor_id, 1)
+            # joint2 = CanMotor(can0, 4, gear_ratio)
+            # joint1 = CanMotor(can0, 1, gear_ratio)
+            # joint3 = CanMotor(can0, 3, gear_ratio)
+            # joint4 = CanMotor(can0, 6, gear_ratio)
+            # joint1_pos = joint1.read_multiturn_position()
+            # joint2_pos = joint2.read_multiturn_position()
+            # joint3_pos = joint3.read_multiturn_position()
+            # joint4_pos = joint4.read_multiturn_position()
+            # joint1.pos_ctrl(joint1_pos) # set read pos
+            # joint2.pos_ctrl(joint2_pos) # set read pos
+            # joint3.pos_ctrl(joint3_pos) # set read pos
+            # joint4.pos_ctrl(joint4_pos) # set read pos
             break
         except TimeoutError:
             print('Timeout Error')
@@ -52,30 +53,33 @@ if __name__ == "__main__":
     sampling_rate = 200 # in Hz
 
     ### Change these as needed
-    run_time = 15 # in second
+    run_time = 30 # in second
     set_num = 4
     test_num = 7
-    command_speed = -15.0 # in radians per second
-    Kp = 255
-    Ki = 50
-    test_name = 'middlescrew_Kp{0}_Ki{1}_v{2}'.format(Kp, Ki, int(-command_speed))
-    data_fname = 'tests/ScrewTestScripts/data_files/speed_pi_control/fullsnake_{0}'.format(test_name)
+    command_speed = 30 # in radians per second
+    Kp = 120
+    Ki = 30
+    TC = 2000
+    test_name = f'single_motor_ID{motor_id}_Kp{Kp}_Ki{Ki}_v{command_speed}_TC{TC}'
+    data_fname = 'tests/System Tests/PCBTesting_MaxTorque/{0}'.format(test_name)
 
     time_data   = []
     torque_data = []
     angular_speed_data = []
     linear_speed_data = []
 
-    while True:
-        try:
-            print(screwMotor.read_motor_pid())
-            screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
-            print(screwMotor.read_motor_pid())
-            break
-        except TimeoutError:
-            print('Timeout Error')
-            continue
+    # while True:
+    #     try:
+    #         print(screwMotor.read_motor_pid())
+    #         screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
+    #         print(screwMotor.read_motor_pid())
+    #         break
+    #     except TimeoutError:
+    #         print('Timeout Error')
+    #         continue
     # screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
+    print(screwMotor.read_motor_pid())
+    input()
     
     try:
         
@@ -127,10 +131,10 @@ if __name__ == "__main__":
     while True:
         try:
             screwMotor.motor_stop()
-            joint1.motor_stop()
-            joint2.motor_stop()
-            joint3.motor_stop()
-            joint4.motor_stop()
+            # joint1.motor_stop()
+            # joint2.motor_stop()
+            # joint3.motor_stop()
+            # joint4.motor_stop()
             break
         except TimeoutError:
             print('Timeout Error')
@@ -149,5 +153,5 @@ if __name__ == "__main__":
     plt.legend(['Torque', 'Angular Speed'])
     # plt.ylim([0, 20])
     # plt.yticks(np.linspace(0, 20, 11))
-    plt.savefig('tests/ScrewTestScripts/data_files/speed_pi_control/{0}.png'.format(test_name))
+    plt.savefig('tests/System Tests/PCBTesting_MaxTorque/{0}.png'.format(test_name))
     plt.show()

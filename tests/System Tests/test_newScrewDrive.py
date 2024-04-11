@@ -27,7 +27,7 @@ if __name__ == "__main__":
     while True:
         try:
             print("Trying to initialize motors")
-            screwMotor = CanMotor(can0, motor_id=0, gear_ratio=1)
+            screwMotor = CanMotor(can0, motor_id=5, gear_ratio=1)
             break
         except TimeoutError:
             print('Timeout Error')
@@ -39,33 +39,33 @@ if __name__ == "__main__":
     sampling_rate = 200 # in Hz
 
     ### Change these as needed
-    run_time = 5 # in second
+    run_time = 20 # in second
     set_num = 4
     test_num = 7
-    command_speed = -20.0 # in radians per second
-    Kp = 255
-    Ki = 50
-    test_name = 'trial1'
-    data_folder = "tests/System Tests/SystemTest_datafiles/screwDriveTrainTests"
+    command_speed = 10 # in radians per second
+    Kp = 40
+    Ki = 30
+    test_name = f'speed_rampup_Kp{Kp}_Ki{Ki}'
+    data_folder = "/home/myeoh/Documents/3-26-24_motor_debugging/motor4_newscrewdrivetrain"
+    os.makedirs(data_folder, exist_ok=True)
 
     time_data   = []
     torque_data = []
     angular_speed_data = []
     linear_speed_data = []
 
-    while True:
-        try:
-            print(screwMotor.read_motor_pid())
-            screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
-            print(screwMotor.read_motor_pid())
-            break
-        except TimeoutError:
-            print('Timeout Error')
-            continue
-    screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
-    
-    screwMotor.speed_ctrl(command_speed)
-    screwMotor.speed_ctrl(command_speed)
+    # while True:
+    #     try:
+    #         print(screwMotor.read_motor_pid())
+    #         screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
+    #         print(screwMotor.read_motor_pid())
+    #         break
+    #     except TimeoutError:
+    #         print('Timeout Error')
+    #         continue
+    print(screwMotor.read_motor_pid())
+    input("Enter to start")
+    # screwMotor.speed_ctrl(command_speed)
     try:
         
         t0 = time.time()
@@ -75,9 +75,12 @@ if __name__ == "__main__":
 
             t1 = time.time()
             while True:
+                cur_t = get_time(t1)
+                step = np.floor(cur_t/2)+1
+                screwMotor.speed_ctrl(command_speed*step)
             #     while True:
             #         try:
-                row = [get_time(t0), abs(screwMotor.read_speed()), abs(screwMotor.read_torque()), 0]
+                row = [get_time(t0), screwMotor.read_speed(), screwMotor.read_torque(), 0]
                     #     break
                     # except TimeoutError:
                     #     print('Timeout Error')
@@ -114,7 +117,7 @@ if __name__ == "__main__":
     plt.figure()
     plt.plot(time_data, torque_data)
     plt.plot(time_data, angular_speed_data)
-    plt.title(test_name)
+    plt.title(f"{test_name}\nAvg Torque: {np.mean(torque_data)}, Avg Speed: {np.mean(angular_speed_data)}")
     plt.legend(['Torque', 'Angular Speed'])
     # plt.ylim([0, 20])
     # plt.yticks(np.linspace(0, 20, 11))
