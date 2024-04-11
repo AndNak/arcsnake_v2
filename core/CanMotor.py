@@ -92,9 +92,9 @@ class CanMotor(object):
         '''
         msg = self.send([0x33, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
         
-        phaseA_current = self.utils.readBytes(msg.data[3], msg.data[2])
-        phaseB_current = self.utils.readBytes(msg.data[5], msg.data[4])
-        phaseC_current = self.utils.readBytes(msg.data[7], msg.data[6])
+        phaseA_current = self.utils.readBytesList([msg.data[3], msg.data[2]])
+        phaseB_current = self.utils.readBytesList([msg.data[5], msg.data[4]])
+        phaseC_current = self.utils.readBytesList([msg.data[7], msg.data[6]])
 
         return(phaseA_current,
                phaseB_current,
@@ -107,7 +107,7 @@ class CanMotor(object):
         #TODO: Err state should alsouse data[6]. Please add this in and look at the error codes
         #       Add a string return for the error state
         temp      = msg.data[1]
-        voltage   = self.utils.readBytes(msg.data[4], msg.data[3]) / 10
+        voltage   = self.utils.readBytesList([msg.data[4], msg.data[3]]) / 10
         # voltage_HB = msg.data[4]
         # voltage_LB = msg.data[3]
         err_state = msg.data[7]
@@ -156,9 +156,9 @@ class CanMotor(object):
         msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
         # encoder readings are in (high byte, low byte)
-        torque   = self.utils.readBytes(msg.data[3], msg.data[2])
-        speed    = self.utils.readBytes(msg.data[5], msg.data[4]) / self.gear_ratio
-        position = self.utils.readBytes(msg.data[7], msg.data[6])
+        torque   = self.utils.readBytesList([msg.data[3], msg.data[2]])
+        speed    = self.utils.readBytesList([msg.data[5], msg.data[4]]) / self.gear_ratio
+        position = self.utils.readBytesList([msg.data[7], msg.data[6]])
         if returnTime:
             return (self.utils.encToAmp(torque), 
                 self.utils.degToRad(speed), 
@@ -181,7 +181,7 @@ class CanMotor(object):
         -
         """        
         msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
-        position = self.utils.readBytes(msg.data[7], msg.data[6]) 
+        position = self.utils.readBytesList([msg.data[7], msg.data[6]]) 
         return position
 
     def read_DIY_multiturn_position(self):
@@ -348,7 +348,7 @@ class CanMotor(object):
         to_dps = self.gear_ratio * 100 * self.utils.radToDeg(to_rad)
         byte1, byte2, byte3, byte4 = self.utils.int_to_bytes(int(to_dps), 4)
         msg = self.send([0xa2, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1], wait_for_response=True)
-        return self.utils.degToRad(self.utils.readBytes(msg.data[5], msg.data[4])) / self.gear_ratio
+        return self.utils.degToRad(self.utils.readBytesList([msg.data[5], msg.data[4]])) / self.gear_ratio
 
     def torque_ctrl(self, to_Amp): # ONLY SORTA TESTED!!
         """Set the torque current output of the motor from -32A to 32A

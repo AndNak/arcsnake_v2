@@ -41,7 +41,7 @@ if __name__ == "__main__":
     
     # Move Motor
     input('Press Enter to spin screw motors')
-    speed_input = -5
+    speed_input = -15
     screwMotor.speed_ctrl(speed_input)
 
     # Stop Motor

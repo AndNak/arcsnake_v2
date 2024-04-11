@@ -103,7 +103,12 @@ if __name__ == "__main__":
 
 
     # Roll
+<<<<<<< HEAD
     # screw1.speed_ctrl(5)
+=======
+    screw1.speed_ctrl(10)
+    screw1.speed_ctrl(10)
+>>>>>>> origin/main
     # screw1.speed_ctrl(5)
     # time.sleep(0.1)
     # print(screw1.speed_ctrl(5))
