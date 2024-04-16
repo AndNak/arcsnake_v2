@@ -24,8 +24,8 @@ def get_time(t0):
 if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
-    gear_ratio = 11
-    motor_id = 5
+    gear_ratio = 1
+    motor_id = 7
     while True:
         try:
             print("Trying to initialize motors")
@@ -56,11 +56,11 @@ if __name__ == "__main__":
     run_time = 30 # in second
     set_num = 4
     test_num = 7
-    command_speed = 30 # in radians per second
-    Kp = 120
+    command_speed = 20 # in radians per second
+    Kp = 40
     Ki = 30
     TC = 2000
-    test_name = f'single_motor_ID{motor_id}_Kp{Kp}_Ki{Ki}_v{command_speed}_TC{TC}'
+    test_name = f'single_motor_ID{motor_id}_Kp{Kp}_Ki{Ki}_v{command_speed}_TC{TC}_speedctrlonce'
     data_fname = 'tests/System Tests/PCBTesting_MaxTorque/{0}'.format(test_name)
 
     time_data   = []
@@ -68,20 +68,21 @@ if __name__ == "__main__":
     angular_speed_data = []
     linear_speed_data = []
 
-    # while True:
-    #     try:
-    #         print(screwMotor.read_motor_pid())
-    #         screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
-    #         print(screwMotor.read_motor_pid())
-    #         break
-    #     except TimeoutError:
-    #         print('Timeout Error')
-    #         continue
+    while True:
+        try:
+            print(screwMotor.read_motor_pid())
+            screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
+            print(screwMotor.read_motor_pid())
+            break
+        except TimeoutError:
+            print('Timeout Error')
+            continue
     # screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
-    print(screwMotor.read_motor_pid())
+    # print(screwMotor.read_motor_pid())
     input()
     
     try:
+        screwMotor.speed_ctrl(command_speed)
         
         t0 = time.time()
         with open(data_fname, mode='w') as test_data:
@@ -98,17 +99,17 @@ if __name__ == "__main__":
             # input("Press enter to continue")
 
             t1 = time.time()
-            while True:
-                try:
-                    screwMotor.speed_ctrl(command_speed)
-                    break
-                except(TimeoutError):
-                    print('Timeout Error')
-                    continue
+            # while True:
+            #     try:
+            #         screwMotor.speed_ctrl(command_speed)
+            #         break
+            #     except(TimeoutError):
+            #         print('Timeout Error')
+            #         continue
             while True:
                 while True:
                     try:
-                        row = [get_time(t0), abs(screwMotor.read_speed()), abs(screwMotor.read_torque()), 0]
+                        row = [get_time(t0), screwMotor.read_speed(), screwMotor.read_torque(), 0]
                         break
                     except TimeoutError:
                         print('Timeout Error')
@@ -149,7 +150,7 @@ if __name__ == "__main__":
     plt.figure()
     plt.plot(time_data, torque_data)
     plt.plot(time_data, angular_speed_data)
-    plt.title("Screw 5, Kp = {0}, Ki = {1}, Set Vel = {2}, No Shell".format(Kp, Ki, abs(command_speed)))
+    plt.title(f"Screw {motor_id}, Kp = {Kp}, Ki = {Ki}, Set Vel = {command_speed}, No Shell")
     plt.legend(['Torque', 'Angular Speed'])
     # plt.ylim([0, 20])
     # plt.yticks(np.linspace(0, 20, 11))

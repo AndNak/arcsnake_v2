@@ -156,9 +156,9 @@ class CanMotor(object):
         msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
         # encoder readings are in (high byte, low byte)
-        torque   = self.utils.readBytesList([msg.data[3], msg.data[2]])
-        speed    = self.utils.readBytesList([msg.data[5], msg.data[4]]) / self.gear_ratio
-        position = self.utils.readBytesList([msg.data[7], msg.data[6]])
+        torque   = self.utils.readBytes(msg.data[3], msg.data[2])
+        speed    = self.utils.readBytes(msg.data[5], msg.data[4]) / self.gear_ratio
+        position = self.utils.readBytes(msg.data[7], msg.data[6])
         if returnTime:
             return (self.utils.encToAmp(torque), 
                 self.utils.degToRad(speed), 
