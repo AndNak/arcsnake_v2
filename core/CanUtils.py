@@ -21,6 +21,7 @@ class CanUtils:
             out = (out * 2**8) + np.uint64(byte)
 
         # manually handling 2s compliment... This sucks  
+        if out > 2**(8*len(byte_list) - 1) - 1:
             out = -np.int64(2**(8*len(byte_list)) - out) - 1
         else:
             out = np.int64(out)
