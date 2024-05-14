@@ -28,10 +28,10 @@ if __name__ == "__main__":
     sampling_rate = 200 # in Hz
 
     ### Change these as needed
-    run_time = 3 # in second
-    set_num = 3 # [N4R0, N3R0, N4R0-RHC]
+    run_time = 7 # in second
+    set_num = 3 # [prop, middle, screw]
     dir_num = 2 # [forward, reverse]
-    test_num = 3 # trial number [1 2 3]
+    test_num = 1 # trial number [1 2 3]
     command_speed = 15 # in radians per second (1:1 gearbox); neg for forw and pos for back
     data_fname = 'tests/ScrewTestScripts/water_tests/test{0}{1}{2}.csv'.format(set_num, dir_num, test_num)
 
