@@ -18,41 +18,44 @@ if __name__ == "__main__":
     
     data_fname = "testing_motor_commands"
 
-    thread_running = True
-    def logging():
-        global thread_running
+    # thread_running = True
+    # def logging():
+    #     global thread_running
 
-        t = []
-        pos = []
-        vel = []
-        torque = []
+    #     t = []
+    #     pos = []
+    #     vel = []
+    #     torque = []
 
-        t0 = time.time()
-        with open(f"{data_fname}.csv", 'w') as f:
-            writer = csv.writer(f)
-            writer.writerow(['time', 'multiturn position', 'angular speed', 'torque'])
-            while thread_running:
-                row = [time.time() - t0, testMotor.read_multiturn_position(), testMotor.read_speed(), testMotor.read_torque()]
-                t.append(row[0])
-                pos.append(row[1])
-                vel.append(row[2])
-                torque.append(row[3])
-                writer.writerow(row)
-                time.sleep(0.01)
+    #     t0 = time.time()
+    #     with open(f"{data_fname}.csv", 'w') as f:
+    #         writer = csv.writer(f)
+    #         writer.writerow(['time', 'multiturn position', 'angular speed', 'torque'])
+    #         while thread_running:
+    #             row = [time.time() - t0, testMotor.read_multiturn_position(), testMotor.read_speed(), testMotor.read_torque()]
+    #             t.append(row[0])
+    #             pos.append(row[1])
+    #             vel.append(row[2])
+    #             torque.append(row[3])
+    #             writer.writerow(row)
+    #             time.sleep(0.01)
 
-            plt.figure()
-            plt.plot(t, vel, label = "Velocity")
-            plt.plot(t, torque, label = "Torque")
-            # plt.title(f"Screw {motor_id}, Kp = {Kp}, Ki = {Ki}")
-            plt.legend()
-            # plt.ylim([0, 20])
-            # plt.yticks(np.linspace(0, 20, 11))
-            plt.savefig(f"{data_fname}.png")
-            plt.show()
+    #         plt.figure()
+    #         plt.plot(t, vel, label = "Velocity")
+    #         plt.plot(t, torque, label = "Torque")
+    #         # plt.title(f"Screw {motor_id}, Kp = {Kp}, Ki = {Ki}")
+    #         plt.legend()
+    #         # plt.ylim([0, 20])
+    #         # plt.yticks(np.linspace(0, 20, 11))
+    #         # plt.savefig(f"{data_fname}.png")
+    #         plt.show()
+
+    # log_thread = threading.Thread(target=logging)
 
 
     controlMethod = 0 
     try:
+        # log_thread.start()
         while True:
             print("Enter Desired Control method")
             print("1 = Position Control (Rotations)")
@@ -89,7 +92,7 @@ if __name__ == "__main__":
 
     except(KeyboardInterrupt) as e:
         print(e)
-    thread_running = False
+    # thread_running = False
     testMotor.motor_off()
 
     print('Done')
