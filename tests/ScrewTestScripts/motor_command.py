@@ -3,6 +3,10 @@ import can
 import core.CANHelper
 from core.CanUJoint import CanUJoint
 from core.CanScrewMotor import CanScrewMotor
+import csv
+import threading
+import time
+import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
     core.CANHelper.init("can0") # Intiailize can0
@@ -12,11 +16,42 @@ if __name__ == "__main__":
     gear_ratio = 1
     testMotor = CanUJoint(can0, motor_id, gear_ratio) # Initialize motor with can bus object 
     
-    
+    data_fname = "testing_motor_commands"
+
+    thread_running = True
+    def logging():
+        global thread_running
+
+        t = []
+        pos = []
+        vel = []
+        torque = []
+
+        t0 = time.time()
+        with open(f"{data_fname}.csv", 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(['time', 'multiturn position', 'angular speed', 'torque'])
+            while thread_running:
+                row = [time.time() - t0, testMotor.read_multiturn_position(), testMotor.read_speed(), testMotor.read_torque()]
+                t.append(row[0])
+                pos.append(row[1])
+                vel.append(row[2])
+                torque.append(row[3])
+                writer.writerow(row)
+                time.sleep(0.01)
+
+            plt.figure()
+            plt.plot(t, vel, label = "Velocity")
+            plt.plot(t, torque, label = "Torque")
+            # plt.title(f"Screw {motor_id}, Kp = {Kp}, Ki = {Ki}")
+            plt.legend()
+            # plt.ylim([0, 20])
+            # plt.yticks(np.linspace(0, 20, 11))
+            plt.savefig(f"{data_fname}.png")
+            plt.show()
+
 
     controlMethod = 0 
-
-
     try:
         while True:
             print("Enter Desired Control method")
@@ -54,7 +89,7 @@ if __name__ == "__main__":
 
     except(KeyboardInterrupt) as e:
         print(e)
-
+    thread_running = False
     testMotor.motor_off()
 
     print('Done')
