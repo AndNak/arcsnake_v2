@@ -43,7 +43,14 @@ if __name__ == "__main__":
     t_vec = []
     loop_vec = []
 
-    zero_pos = 0
+    input('Press Enter to read joint current pos')
+    joint1_m_pos = joint1.read_multiturn_position()
+    joint1_s_pos = joint1.read_singleturn_position()
+    # joint2_pos = joint2.read_multiturn_position()
+    print('Joint 1 pos: ', joint1_m_pos, joint1_s_pos)
+    # print(trajectory(0))
+
+    zero_pos = joint1_m_pos
     amp = .1 * m.pi
     loop_rate = 1000 #Hz
     run_time = 40 #seconds
@@ -53,9 +60,13 @@ if __name__ == "__main__":
         traj = amp*m.sin(2*m.pi*t/20)+zero_pos
         return traj
 
+    print(trajectory(0))
+    input()
 
     print('Starting Test:')
     time.sleep(1)
+
+    
 
     joint1.pos_ctrl(trajectory(0),2)
     time.sleep(2)

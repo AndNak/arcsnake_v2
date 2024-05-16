@@ -36,40 +36,59 @@ if __name__ == "__main__":
 
     gear_ratio = 11
 
-    folder = "tests/System Tests/PCBTesting"
-    test_name = "4screws_2joints_test"
+    # folder = "tests/System Tests/PCBTesting"
+    # test_name = "4screws_2joints_test"
 
     print("Trying to initialize motors")
     screw1 = CanMotor(can0, 0, 1)
-    joint1 = CanMotor(can0, 3, gear_ratio)
-    joint2 = CanMotor(can0, 5, gear_ratio)
+    joint1 = CanMotor(can0, 5, gear_ratio)
+    joint2 = CanMotor(can0, 6, gear_ratio)
     print('Motor initialization complete')
 
-    input('Press Enter to spin screw motor')
+    # input('Press Enter to spin screw motor')
+    # command_speed = 10
+    # screw1.speed_ctrl(command_speed)
+
+    input('Press Enter to read joint current pos')
+    joint1_zero_pos = joint1.read_multiturn_position()
+    joint2_zero_pos = joint2.read_multiturn_position()
+    print('Joint 1 pos: ', joint1_zero_pos)
+    print('Joint 2 pos: ', joint2_zero_pos)
+    input('Press Enter to set joint current pos')
+    joint1.pos_ctrl(joint1_zero_pos) # set read pos
+    joint2.pos_ctrl(joint2_zero_pos) # set read pos
+
+    # zero_pos = joint1_m_pos
+    amp = .2 * m.pi
+
+    input("Press Enter to spin motors.")
+    time.sleep(3)
     command_speed = 10
     screw1.speed_ctrl(command_speed)
+    # joint1.pos_ctrl(trajectory_1(0),2)
+    # joint2.pos_ctrl(trajectory_2(0),2)
+    # time.sleep(2)
 
-    input("Press Enter to spin joint motors.")
-    for i in range(10000):
-        # print(i)
-        joint1.pos_ctrl(amp*math.pi*math.sin(2*math.pi*i/10000))
-        joint2.pos_ctrl(amp*math.pi*math.cos(2*math.pi*i/10000))
-    
-        (joint_torque, joint_speed, joint_s_pos) = joint1.read_motor_status()
-        joint_m_pos = joint1.read_multiturn_position()
-        read_pos_joint.append(joint_m_pos)
-        read_speeds_joint.append(joint_speed)
-        read_torque_joint.append(joint_torque)
+    t0 = time.time()
+    for i in range(1000):
 
-        time.sleep(0.001)
+        joint1.pos_ctrl(amp*math.sin(2*math.pi*i/500) + joint1_zero_pos)
+        joint2.pos_ctrl(amp*math.sin(2*math.pi*i/500) + joint2_zero_pos)
+        print(time.time() - t0, joint1.read_motor_status())
 
+        time.sleep(0.02)
+
+    joint1.motor_stop()    
+    joint2.motor_stop()    
+
+    # print('Test Done')
 
     input('Press Enter to stop motors')
-    # joint1.motor_off()
-    # joint2.motor_off()
+    screw1.motor_off()
+    joint1.motor_off()
+    joint2.motor_off()
     # # joint3.motor_off()
     # # joint4.motor_off()
-    screw1.motor_off()
     # screw2.motor_off()
     # screw3.motor_off()
     # screw4.motor_off()

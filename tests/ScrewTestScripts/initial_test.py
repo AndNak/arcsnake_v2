@@ -36,12 +36,12 @@ if __name__ == "__main__":
 
     # Initialize Motor
     print("Trying to initialize motors")
-    screwMotor = CanUJoint(can0, 0, 1, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
+    screwMotor = CanUJoint(can0, 1, 1, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     print('Motor initialization complete')
     
     # Move Motor
     input('Press Enter to spin screw motors')
-    speed_input = -1
+    speed_input = -10
     screwMotor.speed_ctrl(speed_input)
 
     # Stop Motor

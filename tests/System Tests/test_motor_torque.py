@@ -25,7 +25,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
     gear_ratio = 1
-    motor_id = 3
+    motor_id = 0
 
     while True:
         try:
@@ -56,15 +56,16 @@ if __name__ == "__main__":
 
     ### Change these as needed
     
-    run_time = 15 # in second
+    run_time = 20 # in second
     set_num = 4
     test_num = 7
-    command_speed = 10 # in radians per second
-    Kp = 40
+    command_speed = 16 # in radians per second\
+    command_torque = 10
+    Kp = 255
     Ki = 30
     TC = 2000
-    test_name = f'single_motor_ID{motor_id}_Kp{Kp}_Ki{Ki}_v{command_speed}_TC{TC}'
-    data_fname = 'tests/System Tests/PCBTesting_MaxTorque/{0}'.format(test_name)
+    test_name = f'config3_motor{motor_id}_Kp{Kp}_Ki{Ki}_v{command_speed}_belt42_fullshell'
+    data_fname = f'tests/System Tests/ScrewShellSpinTests/{test_name}'
 
     time_data   = []
     torque_data = []
@@ -85,8 +86,8 @@ if __name__ == "__main__":
     input("Enter to start spinning")
     
     try:
+        # screwMotor.torque_ctrl(command_torque)
         screwMotor.speed_ctrl(command_speed)
-        
         t0 = time.time()
         with open(f"{data_fname}.csv", mode='w') as test_data:
             test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -117,6 +118,9 @@ if __name__ == "__main__":
                     except TimeoutError:
                         print('Timeout Error')
                         continue
+
+                screwMotor.speed_ctrl(command_speed)
+                
                 print(row)
                 test_writer.writerow(row)
 
@@ -153,7 +157,7 @@ if __name__ == "__main__":
     plt.figure()
     plt.plot(time_data, torque_data)
     plt.plot(time_data, angular_speed_data)
-    plt.title(f"Screw {motor_id}, Kp = {Kp}, Ki = {Ki}, Set Vel = {command_speed}, No Shell")
+    plt.title(f"Screw {motor_id}, Kp = {Kp}, Ki = {Ki}")
     plt.legend(['Torque', 'Angular Speed'])
     # plt.ylim([0, 20])
     # plt.yticks(np.linspace(0, 20, 11))
