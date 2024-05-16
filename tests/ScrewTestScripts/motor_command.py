@@ -17,6 +17,8 @@ if __name__ == "__main__":
     print("2 = Velocity Control (Rotations Per Second)")
     print("3 = Torque Control (Amps). Range -32 to 32.")
     print("4 = Motor stop.")
+    print("5 = Motor start.")
+    print("6 = Motor off.")
 
     controlMethod = 0 
 
@@ -33,6 +35,10 @@ if __name__ == "__main__":
                 testMotor.torque_ctrl(val)
             elif controlMethod == 4:
                 testMotor.motor_stop()
+            elif controlMethod == 5:
+                testMotor.motor_start()
+            elif controlMethod == 6:
+                testMotor.motor_off()
             else:
                 raise KeyboardInterrupt
 

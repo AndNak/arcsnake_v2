@@ -389,19 +389,19 @@ class CanMotor(object):
         return self.utils.readBytesList(byte_list)
 
     def motor_start(self):
-        """Starts the motor 
+        """Resume motor operation (recover from motor stop command).
         -
         """
         self.send([0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
     
     def motor_stop(self):
-        """Stops the motor. Useful for allowing motor to be turned by hand
+        """Stops the motor, but does not clear operating state or previously received commands.
         -
         """
         self.send([0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
     def motor_off(self):
         """
-            Turns off the motor which is great so when it turns back on it doens't spin like crazy!!!
+            Turns off the motor output and clears motor operating status and previously received control commands.
         """
-        self.send([0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+        self.send([0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
