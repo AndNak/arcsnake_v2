@@ -56,16 +56,16 @@ if __name__ == "__main__":
 
     ### Change these as needed
     
-    run_time = 20 # in second
+    run_time = 10 # in second
     set_num = 4
     test_num = 7
-    command_speed = 16 # in radians per second\
+    command_speed = 50 # in radians per second\
     command_torque = 10
     Kp = 255
     Ki = 30
     TC = 2000
-    test_name = f'config3_motor{motor_id}_Kp{Kp}_Ki{Ki}_v{command_speed}_belt42_fullshell'
-    data_fname = f'tests/System Tests/ScrewShellSpinTests/{test_name}'
+    test_name = f'config3_v{command_speed}_t4'
+    data_fname = f'tests/System Tests/TangentForceTests/{test_name}'
 
     time_data   = []
     torque_data = []
@@ -157,7 +157,7 @@ if __name__ == "__main__":
     plt.figure()
     plt.plot(time_data, torque_data)
     plt.plot(time_data, angular_speed_data)
-    plt.title(f"Screw {motor_id}, Kp = {Kp}, Ki = {Ki}")
+    plt.title(f"Kp = {Kp}, Ki = {Ki},Set Vel = {command_speed}")
     plt.legend(['Torque', 'Angular Speed'])
     # plt.ylim([0, 20])
     # plt.yticks(np.linspace(0, 20, 11))
