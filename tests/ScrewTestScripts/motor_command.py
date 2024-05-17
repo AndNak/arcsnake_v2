@@ -12,11 +12,21 @@ if __name__ == "__main__":
     core.CANHelper.init("can0") # Intiailize can0
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan') # Create can bus object 
 
-    motor_id = 0
+    motor_id = 1
     gear_ratio = 1
     testMotor = CanUJoint(can0, motor_id, gear_ratio) # Initialize motor with can bus object 
     
     data_fname = "testing_motor_commands"
+
+    while True:
+        try:
+            print(testMotor.read_motor_pid())
+            testMotor.override_PI_values(100, 100, 255, 30, 50, 50)
+            print(testMotor.read_motor_pid())
+            break
+        except TimeoutError:
+            print('Timeout Error')
+            continue
 
     # thread_running = True
     # def logging():
