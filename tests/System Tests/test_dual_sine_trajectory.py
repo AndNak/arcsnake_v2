@@ -1,3 +1,5 @@
+### For validation tests with full U-joint. Runs sine wave on each joint, phase shifted by pi/4 to generate conical trajectory
+### 
 from asyncore import loop
 from audioop import mul
 from cProfile import run
@@ -48,10 +50,9 @@ if __name__ == "__main__":
     input('Press Enter to read joint current pos')
     joint1_zero_pos = joint1.read_multiturn_position()
     joint2_zero_pos = joint2.read_multiturn_position()
-    joint2_pos = joint2.read_multiturn_position()
     print('Joint 1 pos: ', joint1_zero_pos)
     print('Joint 2 pos: ', joint2_zero_pos)
-    input()
+    # input()
 
     # print(trajectory(0))
 
@@ -67,13 +68,17 @@ if __name__ == "__main__":
     # print(trajectory(0))
     # input()
 
-    print('Starting Test:')
-    time.sleep(1)
+    # joint2_start_pos = trajectory(0, joint2_zero_pos, math.pi/2)
+    input("Press Enter to Set Joints to starting positions")
+    joint1.pos_ctrl(trajectory(0, joint1_zero_pos), 1)
+    joint2.pos_ctrl(trajectory(0, joint2_zero_pos, m.pi/2), 1)
+
+
+    # time.sleep(2)
 
     
 
-    joint1.pos_ctrl(trajectory(0, joint1_zero_pos), 2)
-    joint2.pos_ctrl(trajectory(0, joint2_zero_pos), 2)
+    input('Press Enter to start trajectory:')
     time.sleep(2)
 
     time_zero = time.time()
@@ -86,7 +91,7 @@ if __name__ == "__main__":
         t_vec.append(t_start)
 
         joint1.pos_ctrl(trajectory(t_start, joint1_zero_pos),7)
-
+        joint2.pos_ctrl(trajectory(t_start, joint2_zero_pos, m.pi/2), 7)
 
         (joint_torque, joint_speed, joint_s_pos) = joint1.read_motor_status()
         # joint_m_pos = joint1.read_multiturn_position()
@@ -96,13 +101,13 @@ if __name__ == "__main__":
         read_speeds_joint[0].append(joint_speed)
         read_torque_joint[0].append(joint_torque)
 
-        # (joint_torque, joint_speed, joint_s_pos) = joint2.read_motor_status()
+        (joint_torque, joint_speed, joint_s_pos) = joint2.read_motor_status()
         # # joint_m_pos = joint1.read_multiturn_position()
         # # joint_m_pos = 0
-        # read_s_pos_joint[1].append(joint_s_pos)
+        read_s_pos_joint[1].append(joint_s_pos)
         # # read_m_pos_joint.append(joint_m_pos)
-        # read_speeds_joint[1].append(joint_speed)
-        # read_torque_joint[1].append(joint_torque)
+        read_speeds_joint[1].append(joint_speed)
+        read_torque_joint[1].append(joint_torque)
 
         t_expected = 1/loop_rate
         t_execute = time.time() - time_zero - t_start
@@ -127,7 +132,7 @@ if __name__ == "__main__":
             break
 
     joint1.motor_stop()
-    # joint2.motor_stop()    
+    joint2.motor_stop()    
 
     print('Test Done')
     print('Error count: ', err_count)
@@ -146,10 +151,11 @@ if __name__ == "__main__":
         y_smooth = np.convolve(y,box,mode='same')
         return y_smooth
 
-    traj_expected = []
+    traj_expected = [[], []]
 
-    for i in range(len(t_vec)) :
-        traj_expected.append(6*trajectory(t_vec[i], joint1_zero_pos))
+    for i in range(len(t_vec)):
+        traj_expected[0].append(6*trajectory(t_vec[i], joint1_zero_pos))
+        traj_expected[1].append(6*trajectory(t_vec[i], joint2_zero_pos))
 
 
     def multiturn(singleturn_values):
@@ -168,8 +174,11 @@ if __name__ == "__main__":
         return multiturn_values
 
     read_m_pos_joint[0] = multiturn(read_s_pos_joint[0])
+    read_m_pos_joint[1] = multiturn(read_s_pos_joint[1])
 
+    # Joint 1
     fig, axs = plt.subplots(5)
+    fig.suptitle("Joint 1")
     axs[0].plot(read_s_pos_joint[0],'b-')
     axs[0].set_title('Position (Singleloop)')
     axs[1].plot(read_m_pos_joint[0],'m-')
@@ -183,6 +192,8 @@ if __name__ == "__main__":
     axs[4].set_title('Execute rate (Hz)')
     plt.show()
 
+    plt.figure()
+    plt.title("Joint 1")
     plt.plot(read_torque_joint[0],'r')
     plt.plot(smooth(read_torque_joint[0],50),'b')
     plt.plot(smooth(read_torque_joint[0],100),'g')
@@ -194,6 +205,38 @@ if __name__ == "__main__":
 
     plt.plot(smooth(read_torque_joint[0],3000),'k')
     plt.plot(read_speeds_joint[0],'r-')
+    # plt.plot(read_m_pos_joint,'b-')
+    plt.show()
+
+    # Joint 2
+    fig, axs = plt.subplots(5)
+    fig.suptitle("Joint 2")
+    axs[0].plot(read_s_pos_joint[1],'b-')
+    axs[0].set_title('Position (Singleloop)')
+    axs[1].plot(read_m_pos_joint[1],'m-')
+    axs[1].set_title('Position (Multiloop)')
+    axs[2].plot(read_speeds_joint[1],'r-')
+    axs[2].set_title('Speed')
+    axs[3].plot(smooth(read_torque_joint[1],1000),'g-')
+    axs[3].set_title('Torque')
+    axs[4].plot(loop_vec)
+    axs[4].plot(loop_rate*np.ones(len(loop_vec)))
+    axs[4].set_title('Execute rate (Hz)')
+    plt.show()
+
+    plt.figure()
+    plt.title("Joint 2")
+    plt.plot(read_torque_joint[1],'r')
+    plt.plot(smooth(read_torque_joint[1],50),'b')
+    plt.plot(smooth(read_torque_joint[1],100),'g')
+    plt.plot(smooth(read_torque_joint[1],300),'y')
+    plt.plot(smooth(read_torque_joint[1],1000),'k')
+    plt.plot(smooth(read_torque_joint[1],2000),'k')
+    plt.plot(smooth(read_torque_joint[1],3000),'k')
+    plt.show()
+
+    plt.plot(smooth(read_torque_joint[1],3000),'k')
+    plt.plot(read_speeds_joint[1],'r-')
     # plt.plot(read_m_pos_joint,'b-')
     plt.show()
 
