@@ -87,7 +87,7 @@ if __name__ == "__main__":
 
     while t_start < run_time:
         t_start = time.time() - time_zero
-        print("Time: ",round(t_start,3), " seconds")
+        print("Time: ", round(t_start,3), " seconds")
         t_vec.append(t_start)
 
         joint1.pos_ctrl(trajectory(t_start, joint1_zero_pos),7)
