@@ -199,7 +199,7 @@ class CanMotor(object):
         else:
             self.curpos+=deltapos
 
-        print(f"{self.curpos}")
+        # print(f"{self.curpos}")
         return self.curpos
 
 
