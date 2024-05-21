@@ -23,9 +23,16 @@ class CanMotor(object):
         self.canBus = bus
         self.utils = CanUtils()
         self.gear_ratio = gear_ratio
-        id = "0x"
-        id += (str(141 + motor_id))
-        self.id = eval(id)
+
+        ############### PREVIOUS METHOD
+        # id = "0x"
+        # id += (str(141 + motor_id))
+        # self.id = eval(id)
+        #####################
+
+        # NEW METHOD
+        self.id = int(321 + motor_id)
+
         self.min_pos = MIN_POS
         self.max_pos = MAX_POS
 
