@@ -56,16 +56,16 @@ if __name__ == "__main__":
 
     ### Change these as needed
     
-    run_time = 10 # in second
+    run_time = 3 # in second
     set_num = 4
     test_num = 7
-    command_speed = 50 # in radians per second\
+    command_speed = 10 # in radians per second\
     command_torque = 10
     Kp = 255
     Ki = 30
     TC = 2000
-    test_name = f'config3_v{command_speed}_t4'
-    data_fname = f'tests/System Tests/TangentForceTests/{test_name}'
+    test_name = f'config4_v{command_speed}_fullshell_stalltest'
+    data_fname = f'tests/System Tests/ScrewShellSpinTests/{test_name}'
 
     time_data   = []
     torque_data = []

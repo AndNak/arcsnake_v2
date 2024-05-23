@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     print("Trying to initialize motors")
     # screw1 = CanMotor(can0, 0, 1)
-    joint1 = CanMotor(can0, 7, gear_ratio)
+    joint1 = CanMotor(can0, 10, gear_ratio)
     # joint2 = CanMotor(can0, 7, gear_ratio)
     print('Motor initialization complete')
 

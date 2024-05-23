@@ -24,7 +24,7 @@ class CanMotor(object):
         self.utils = CanUtils()
         self.gear_ratio = gear_ratio
 
-        ############### PREVIOUS METHOD
+        ############### PREVIOUS METHOD. DOES NOT WORK
         # id = "0x"
         # id += (str(141 + motor_id))
         # self.id = eval(id)
