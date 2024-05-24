@@ -36,44 +36,54 @@ if __name__ == "__main__":
 
     gear_ratio = 11
 
-    folder = "tests/System Tests/JointRepeatabilityTests"
+    motor_id = 7
+    config = "load_fullsegment"
+    amp_multiplier = 0.2
+
+    folder = f"tests/System Tests/JointRepeatabilityTests/joint{motor_id}"
     os.makedirs(folder, exist_ok=True)
-    test_name = "test1"
+    test_name = f"{config}_amp{amp_multiplier}pi"
 
     print("Trying to initialize motors")
     # screw1 = CanMotor(can0, 0, 1)
-    joint1 = CanMotor(can0, 10, gear_ratio)
-    # joint2 = CanMotor(can0, 7, gear_ratio)
+    joint1 = CanMotor(can0, motor_id, gear_ratio)
+    joint2 = CanMotor(can0, 9, gear_ratio)
     print('Motor initialization complete')
 
     input("Press Enter to read zero position.")
     joint1_zero_pos = joint1.read_multiturn_position()
+    joint2_zero_pos = joint2.read_multiturn_position()
 
-    amp = 0.1 * math.pi
-    num_periods = 2
-    t_period = 5 # s
+    amp = amp_multiplier * math.pi
+    num_periods = 10
+    t_period = 16 # s
     loop_rate = 200 # Hz
     t_loop = (1/loop_rate) # expected time between loops
     num_samples = int(loop_rate * t_period) # per period
     
     log_data = [["time", "s_pos", "m_pos", "speed", "torque"]]
-    input("Press Enter to start test.")
+    input("Enter to set to zero pos")
+    time.sleep(5)
     print("Commanding to zero position...")
     joint1.pos_ctrl(joint1_zero_pos, 1)
-    time.sleep(3)
+    joint2.pos_ctrl(joint2_zero_pos, 1)
+
+    input("Press Enter to start test.")
+    time.sleep(5)
     print("Starting Test.")
     err_count = 0
     t0 = time.time()
     for i in range(num_periods * num_samples + 1):
 
         cur_t = time.time() - t0
+        
 
         joint1.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint1_zero_pos)
         (cur_torque, cur_speed, cur_s_pos) = joint1.read_motor_status()
         # joint2.pos_ctrl(amp*math.sin(2*math.pi*i/500 + math.pi/2) + joint2_zero_pos)
         cur_m_pos = joint1.read_DIY_multiturn_position()
         log_data.append([cur_t, cur_s_pos, cur_m_pos, cur_speed, cur_torque])
-        print(f"Iteration {i}\n-------------")
+        print(f"Period {int(i/num_samples)}, Iteration {i}\n-------------")
         print(f"Time = {cur_t}, s_pos = {cur_s_pos}, m_pos = {cur_m_pos}, speed = {cur_speed}, torque = {cur_torque}\n")
 
         # Ensures proper loop rate
@@ -85,7 +95,10 @@ if __name__ == "__main__":
             time.sleep(t_loop - t_execute)
 
     joint1.motor_stop()    
-    # joint2.motor_stop()    
+    joint2.motor_stop()    
+
+    joint1.motor_off()
+    joint2.motor_off()
 
     print('Test Done')
     print("Loop rate error count = ", err_count)
@@ -135,6 +148,5 @@ if __name__ == "__main__":
     fig3.savefig(os.path.join(folder, f"{test_name}_torque.png"))
     plt.show()
 
-    joint1.motor_off()
     core.CANHelper.cleanup("can0")
 
