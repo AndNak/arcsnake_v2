@@ -38,11 +38,11 @@ if __name__ == "__main__":
 
     motor_id = 7
     config = "load_fullsegment"
-    amp_multiplier = 0.2
+    amp_multiplier = 0.3
 
     folder = f"tests/System Tests/JointRepeatabilityTests/joint{motor_id}"
     os.makedirs(folder, exist_ok=True)
-    test_name = f"{config}_amp{amp_multiplier}pi"
+    test_name = f"{config}_amp{amp_multiplier}pi_torquemaxed"
 
     print("Trying to initialize motors")
     # screw1 = CanMotor(can0, 0, 1)
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     joint2_zero_pos = joint2.read_multiturn_position()
 
     amp = amp_multiplier * math.pi
-    num_periods = 10
+    num_periods = 3
     t_period = 16 # s
     loop_rate = 200 # Hz
     t_loop = (1/loop_rate) # expected time between loops
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     for i in range(num_periods * num_samples + 1):
 
         cur_t = time.time() - t0
-        
+
 
         joint1.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint1_zero_pos)
         (cur_torque, cur_speed, cur_s_pos) = joint1.read_motor_status()
