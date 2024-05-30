@@ -35,6 +35,6 @@ if __name__ == "__main__":
     gear_ratio = 11
 
     print("Trying to initialize motors")
-    joint1 = CanMotor(can0, 9, gear_ratio)
+    joint1 = CanMotor(can0, 6, gear_ratio)
     joint1.motor_start()
     print("Successfully initialized motors")

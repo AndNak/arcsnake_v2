@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     gear_ratio = 11
 
-    motor_id = 10
+    motor_id = 6
     # config = "load_fullsegment"
     # amp_multiplier = 0.2
 
@@ -49,15 +49,15 @@ if __name__ == "__main__":
     num_waypoints = 100 # num trajectory waypoints
     t_loop = abs(angle_to / command_speed) / num_waypoints
 
-    test_name = f"set_pi2_w{command_speed}_nogearratiomultipyonreadpos"
+    test_name = f"set_pi2_w{command_speed}_testingreadposfunctions"
 
     print("Trying to initialize motors")
     joint1 = CanMotor(can0, motor_id, gear_ratio)
     print('Motor initialization complete')
 
     input("Press Enter to read zero position.")
-    joint1_zero_pos = joint1.read_multiturn_position()
-    print(f"s_pos = {joint1.read_singleturn_position()}, m_pos = {joint1_zero_pos}, diy_m_pos = {joint1.read_DIY_multiturn_position()}")
+    (joint1_zero_pos, multiturn_raw_bytes) = joint1.read_multiturn_position()
+    print(f"s_pos = {joint1.read_singleturn_position()}, m_pos = {joint1_zero_pos}, raw_bytes = {multiturn_raw_bytes}, diy_m_pos = {joint1.read_DIY_multiturn_position()}")
     # print(joint1.read_multiturn_position())
     # print(joint1.read_multiturn_position())
     # print(joint1.read_multiturn_position())
@@ -77,7 +77,8 @@ if __name__ == "__main__":
     input("Press Enter to start test.")
     # time.sleep(5)
     print("Starting Test.")
-    log_data = [["time", "s_pos", "m_pos", "diy_m_pos", "speed", "torque"]]
+    log_data = [["time", "s_pos", "m_pos", "diy_m_pos", "raw_encoder", "speed", "torque"]]
+    raw_multiturn_byte_list = []
     err_count = 0
     t0 = time.time()
     for i in range(num_waypoints):
@@ -86,14 +87,17 @@ if __name__ == "__main__":
         
 
         joint1.pos_ctrl((angle_to * ((i+1)/num_waypoints)) + joint1_zero_pos)
-        cur_m_pos = joint1.read_multiturn_position()
-        cur_m_pos = joint1.read_multiturn_position()
-        cur_m_pos = joint1.read_multiturn_position()
-        cur_m_pos = joint1.read_multiturn_position()
-        cur_m_pos = joint1.read_multiturn_position()
+        (cur_m_pos, raw_multiturn_bytes) = joint1.read_multiturn_position()
+        print(f"\n{cur_m_pos}   {raw_multiturn_bytes}\n")
+        # cur_m_pos = joint1.read_multiturn_position()
+        # cur_m_pos = joint1.read_multiturn_position()
+        # cur_m_pos = joint1.read_multiturn_position()
+        # cur_m_pos = joint1.read_multiturn_position()
         (cur_torque, cur_speed, cur_s_pos) = joint1.read_motor_status()
         cur_diy_m_pos = joint1.read_DIY_multiturn_position()
-        log_data.append([cur_t, cur_s_pos, cur_m_pos, cur_diy_m_pos, cur_speed, cur_torque])
+        raw_encoder = joint1.read_raw_position()
+        raw_multiturn_byte_list.append(raw_multiturn_bytes)
+        log_data.append([cur_t, cur_s_pos, cur_m_pos, cur_diy_m_pos, raw_encoder, cur_speed, cur_torque])
         print(f"Iteration {i}\n-------------")
         print(f"Time = {cur_t}, s_pos = {cur_s_pos}, m_pos = {cur_m_pos}, diy_m_pos = {cur_diy_m_pos}, speed = {cur_speed}, torque = {cur_torque}\n")
 
@@ -107,15 +111,20 @@ if __name__ == "__main__":
 
     joint1.motor_stop()    
 
-    joint1.motor_off()
-
     print('Test Done')
     print("Loop rate error count = ", err_count)
+
+    joint1.pos_ctrl(joint1_zero_pos, 0.1)
+
 
     # Save data to csv
     with open(os.path.join(folder, f"{test_name}.csv"), 'w') as f:
         writer = csv.writer(f)
         writer.writerows(log_data)
+
+    with open(os.path.join(folder, f"{test_name}_raw_multiturn_bytes.csv"), 'w') as f:
+        writer = csv.writer(f)
+        writer.writerows(raw_multiturn_byte_list)
 
 
     def multiturn(singleturn_values):
@@ -139,8 +148,9 @@ if __name__ == "__main__":
     m_pos = log_data[:,2]
     diy_m_pos = log_data[:,3]
     peter_diy_m_pos = multiturn(s_pos)
-    speed = log_data[:,4]
-    torque = log_data[:,5]
+    raw_encoder = log_data[:,4]
+    speed = log_data[:,5]
+    torque = log_data[:,6]
 
     print(s_pos[-1], diy_m_pos[-1], peter_diy_m_pos[-1])
 
@@ -155,7 +165,18 @@ if __name__ == "__main__":
     plt.legend()
     plt.tight_layout()
     plt.savefig(os.path.join(folder, f"{test_name}.png"))
+    # plt.show()
+
+    plt.figure()
+    plt.title("Builtin Multiturn")
+    plt.plot(t, m_pos, label="Multiturn")
+    # plt.show()
+
+    plt.figure()
+    plt.title("Raw Encoder")
+    plt.plot(t, raw_encoder)
     plt.show()
+    
     
     # plt.figure()
     # plt.title("Speed")
@@ -173,6 +194,10 @@ if __name__ == "__main__":
     # fig2.savefig(os.path.join(folder, f"{test_name}_speed.png"))
     # fig3.savefig(os.path.join(folder, f"{test_name}_torque.png"))
     # plt.show()
+
+    # input("Press Enter to return to zero position")
+
+    joint1.motor_off()
 
     core.CANHelper.cleanup("can0")
 

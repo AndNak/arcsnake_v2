@@ -161,11 +161,16 @@ class CanMotor(object):
             (AMPs, RAD/S, RAD): Returns tuple of motor torque, speed, and position
         """
         msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+        if msg.data[0] != eval("0x9c"):
+            print("=================================")
+            print(f"Received incorrect response message to command 0x9c, got reply to command {hex(msg.data[0])}")
+            print("=================================")
+
 
         # encoder readings are in (high byte, low byte)
         torque   = self.utils.readBytes(msg.data[3], msg.data[2])
         speed    = self.utils.readBytes(msg.data[5], msg.data[4]) / self.gear_ratio
-        position = self.utils.readBytes(msg.data[7], msg.data[6])
+        position = self.utils.readBytes(msg.data[7], msg.data[6]) / self.gear_ratio
         if returnTime:
             return (self.utils.encToAmp(torque), 
                 self.utils.degToRad(speed), 
@@ -215,6 +220,14 @@ class CanMotor(object):
         -
         '''
         msg = self.send([0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+
+        print("=================================")
+        print(f"Read Multiturn Position first byte: {msg.data[0]}")
+        print("=================================")
+        if msg.data[0] == eval("0x92"):
+            print("Received correct response message to command 0x92.")
+        else:
+            print(f"Received incorrect response message to command 0x92, got reply to command {hex(msg.data[0])}")
         
         # CANNOT USE msg.data directly because it is not iterable for some reason...
         # This is a hack to fix the bug
@@ -225,7 +238,12 @@ class CanMotor(object):
         decimal_position = self.utils.readBytesList(byte_list)
 
         # Note: 0.01 scale is taken from dataset to convert multi-turn bits to degrees
-        return self.utils.degToRad(0.01*decimal_position/self.gear_ratio)
+        return self.utils.degToRad(0.01*decimal_position/self.gear_ratio), msg.data
+
+
+    def read_raw_multiturn(self):
+        msg = self.send([0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+        return msg.data
 
     def read_speed(self):
         ''' Get speed reading from the encoder in rad/s

@@ -36,49 +36,64 @@ if __name__ == "__main__":
     gear_ratio = 11
 
     folder = "tests/System Tests/PCBTesting"
-    test_name = "4screws_2joints_test"
+    test_name = "4screws_6joints_test"
 
     print("Trying to initialize motors")
-    joint1 = CanMotor(can0, 3, gear_ratio)
-    joint2 = CanMotor(can0, 5, gear_ratio)
-    # joint3 = CanMotor(can0, 3, gear_ratio)
-    # joint4 = CanMotor(can0, 6, gear_ratio)
-    # screw1 = CanMotor(can0, 0, 1)
-    screw2 = CanMotor(can0, 2, 1)
-    screw3 = CanMotor(can0, 4, 1)
-    screw4 = CanMotor(can0, 6, 1)
-    # screw5 = CanMotor(can0, 6, 1)
+    joint1 = CanMotor(can0, 5, gear_ratio)
+    joint2 = CanMotor(can0, 6, gear_ratio)
+    joint3 = CanMotor(can0, 7, gear_ratio)
+    joint4 = CanMotor(can0, 8, gear_ratio)
+    joint5 = CanMotor(can0, 9, gear_ratio)
+    joint6 = CanMotor(can0, 10, gear_ratio)
+    screw1 = CanMotor(can0, 0, 1)
+    screw2 = CanMotor(can0, 1, 1)
+    screw3 = CanMotor(can0, 3, 1)
+    screw4 = CanMotor(can0, 4, 1)
+    screw5 = CanMotor(can0, 6, 1)
 
     print('Motor initialization complete')
     
     input('Press Enter to read joint current pos')
-    joint1_pos = joint1.read_multiturn_position()
-    joint2_pos = joint2.read_multiturn_position()
-    # joint3_pos = joint3.read_multiturn_position()
-    # joint4_pos = joint4.read_multiturn_position()
+    joint1_pos, _ = joint1.read_multiturn_position()
+    joint2_pos, _ = joint2.read_multiturn_position()
+    joint3_pos, _ = joint3.read_multiturn_position()
+    joint4_pos, _ = joint4.read_multiturn_position()
+    joint5_pos, _ = joint5.read_multiturn_position()
+    joint6_pos, _ = joint6.read_multiturn_position()
 
     print('Joint 1 pos: ', joint1_pos)
     print('Joint 2 pos: ', joint2_pos)
-    # print('Joint 3 pos: ', joint3_pos)
-    # print('Joint 4 pos: ', joint4_pos)
+    print('Joint 3 pos: ', joint3_pos)
+    print('Joint 4 pos: ', joint4_pos)
+    print('Joint 5 pos: ', joint5_pos)
+    print('Joint 6 pos: ', joint6_pos)
+
 
     input('Press Enter to set joint current pos')
-    joint1.pos_ctrl(joint1_pos) # set read pos
-    joint2.pos_ctrl(joint2_pos) # set read pos
-    # joint3.pos_ctrl(joint3_pos) # set read pos
-    # joint4.pos_ctrl(joint4_pos) # set read pos
+    joint1.pos_ctrl(joint1_pos, 0.5) # set read pos
+    joint2.pos_ctrl(joint2_pos, 0.5) # set read pos
+    joint3.pos_ctrl(joint3_pos, 0.5) # set read pos
+    joint4.pos_ctrl(joint4_pos, 0.5) # set read pos
+    joint5.pos_ctrl(joint5_pos, 0.5) # set read pos
+    joint6.pos_ctrl(joint6_pos, 0.5) # set read pos
 
-    # while True:
-    #     try:
-    #         print(screw1.read_motor_pid())
-    #         Kp = 255
-    #         Ki = 50
-    #         screw1.override_PI_values(100, 100, Kp, Ki, 50, 50)
-    #         print(screw1.read_motor_pid())
-    #         break
-    #     except TimeoutError:
-    #         print('Timeout Error')
-    #         continue
+    while True:
+        try:
+            # print(screw1.read_motor_pid())
+            Kp = 40
+            Ki = 30
+            screw1.override_PI_values(100, 100, Kp, Ki, 50, 50)
+            screw2.override_PI_values(100, 100, Kp, Ki, 50, 50)
+            screw3.override_PI_values(100, 100, Kp, Ki, 50, 50)
+            screw4.override_PI_values(100, 100, Kp, Ki, 50, 50)
+            print(screw1.read_motor_pid())
+            print(screw2.read_motor_pid())
+            print(screw3.read_motor_pid())
+            print(screw4.read_motor_pid())
+            break
+        except TimeoutError:
+            print('Timeout Error')
+            continue
     # while True:
     #     try:
     #         print(screw1.read_motor_pid())
@@ -114,11 +129,11 @@ if __name__ == "__main__":
 
 
     # Roll
-    # command_speed = 30
-    # screw1.speed_ctrl(command_speed)
-    # screw2.speed_ctrl(command_speed)
-    # screw3.speed_ctrl(command_speed)
-    # screw4.speed_ctrl(command_speed)
+    command_speed = 10
+    screw1.speed_ctrl(command_speed)
+    screw2.speed_ctrl(command_speed)
+    screw3.speed_ctrl(command_speed)
+    screw4.speed_ctrl(command_speed)
     # time.sleep(0.1)
     # print(screw1.speed_ctrl(5))
     # screw2.speed_ctrl(-10)
@@ -224,15 +239,60 @@ if __name__ == "__main__":
     # print("Screw 2:", screw2.read_phase_current_data(), "\n")
     # print("Screw 3:", screw3.read_phase_current_data(), "\n")
 
+    input("Run sine waves on joint motors")
+
+    amp_multiplier = 0.3
+    amp = amp_multiplier * math.pi
+    num_periods = 10
+    t_period = 16 # s
+    loop_rate = 100 # Hz
+    t_loop = (1/loop_rate) # expected time between loops
+    num_samples = int(loop_rate * t_period) # per period
+
+    err_count = 0
+    t0 = time.time()
+    for i in range(num_periods * num_samples + 1):
+
+        cur_t = time.time() - t0
+
+
+        joint1.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint1_pos)
+        time.sleep(0.000001)
+        joint2.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint2_pos)
+        time.sleep(0.000001)
+        joint3.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint3_pos)
+        time.sleep(0.000001)
+        joint4.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint4_pos)
+        time.sleep(0.000001)
+        joint5.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint5_pos)
+        time.sleep(0.000001)
+        joint6.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint6_pos)
+        # (cur_torque, cur_speed, cur_s_pos) = joint1.read_motor_status()
+        # joint2.pos_ctrl(amp*math.sin(2*math.pi*i/500 + math.pi/2) + joint2_zero_pos)
+        # cur_m_pos = joint1.read_DIY_multiturn_position()
+        # log_data.append([cur_t, cur_s_pos, cur_m_pos, cur_speed, cur_torque])
+        print(f"Period {int(i/num_samples)}, Iteration {i}\n-------------")
+        # print(f"Time = {cur_t}, s_pos = {cur_s_pos}, m_pos = {cur_m_pos}, speed = {cur_speed}, torque = {cur_torque}\n")
+
+        # Ensures proper loop rate
+        t_execute = time.time() - cur_t - t0 # Time to execute code inside loop
+        if t_execute >= t_loop: # If loop takes longer to execute than expected loop time, loop rate is too fast
+            err_count = err_count + 1
+            print('Loop rate too fast.')
+        elif t_execute < t_loop: # Otherwise wait difference between executed time and expected loop time
+            time.sleep(t_loop - t_execute)
+
     input('Press Enter to stop motors')
-    # joint1.motor_off()
-    # joint2.motor_off()
-    # # joint3.motor_off()
-    # # joint4.motor_off()
+    joint1.motor_off()
+    joint2.motor_off()
+    joint3.motor_off()
+    joint4.motor_off()
+    joint5.motor_off()
+    joint6.motor_off()
     screw1.motor_off()
-    # screw2.motor_off()
-    # screw3.motor_off()
-    # screw4.motor_off()
+    screw2.motor_off()
+    screw3.motor_off()
+    screw4.motor_off()
     # screw5.motor_off()
 
     print('Done')
