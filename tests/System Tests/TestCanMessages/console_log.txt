@@ -1,0 +1,94 @@
+Trying to initialize motors
+Trying to send message 0x9b
+Trying to send message 0x88
+Trying to send message 0x88
+Trying to send message 0x81
+Trying to send message 0x9c
+Motor initialization complete
+Press Enter to read zero position.
+Trying to send message 0x92
+Zero (Multiturn) Position = -0.21224790367207408
+Press Enter to start command loop.
+Trying to send message 0xa4
+Trying to send message 0x92
+=================================
+Received incorrect response message to command 0x92, got reply to command 0xa4
+=================================
+Trying to send message 0x9c
+=================================
+Received incorrect response message to command 0x9c, got reply to command 0x92
+=================================
+Trying to send message 0xa4
+Trying to send message 0x92
+=================================
+Received incorrect response message to command 0x92, got reply to command 0x9c
+=================================
+Trying to send message 0x9c
+=================================
+Received incorrect response message to command 0x9c, got reply to command 0xa4
+=================================
+Trying to send message 0xa4
+Trying to send message 0x92
+Trying to send message 0x9c
+Trying to send message 0xa4
+Trying to send message 0x92
+=================================
+Received incorrect response message to command 0x92, got reply to command 0xa4
+=================================
+Trying to send message 0x9c
+=================================
+Received incorrect response message to command 0x9c, got reply to command 0x92
+=================================
+Trying to send message 0xa4
+Trying to send message 0x92
+=================================
+Received incorrect response message to command 0x92, got reply to command 0x9c
+=================================
+Trying to send message 0x9c
+=================================
+Received incorrect response message to command 0x9c, got reply to command 0xa4
+=================================
+Trying to send message 0xa4
+Trying to send message 0x92
+Trying to send message 0x9c
+Trying to send message 0xa4
+Trying to send message 0x92
+=================================
+Received incorrect response message to command 0x92, got reply to command 0xa4
+=================================
+Trying to send message 0x9c
+=================================
+Received incorrect response message to command 0x9c, got reply to command 0x92
+=================================
+Trying to send message 0xa4
+Trying to send message 0x92
+=================================
+Received incorrect response message to command 0x92, got reply to command 0x9c
+=================================
+Trying to send message 0x9c
+=================================
+Received incorrect response message to command 0x9c, got reply to command 0xa4
+=================================
+Trying to send message 0xa4
+Trying to send message 0x92
+Trying to send message 0x9c
+Trying to send message 0xa4
+Trying to send message 0x92
+=================================
+Received incorrect response message to command 0x92, got reply to command 0xa4
+=================================
+Trying to send message 0x9c
+=================================
+Received incorrect response message to command 0x9c, got reply to command 0x92
+=================================
+Trying to send message 0xa4
+Trying to send message 0x92
+=================================
+Received incorrect response message to command 0x92, got reply to command 0x9c
+=================================
+Trying to send message 0x9c
+=================================
+Received incorrect response message to command 0x9c, got reply to command 0xa4
+=================================
+Trying to send message 0x81
+Trying to send message 0x80
