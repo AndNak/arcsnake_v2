@@ -228,13 +228,13 @@ class CanMotor(object):
         '''
         msg = self.send([0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
-        print("=================================")
-        print(f"Read Multiturn Position first byte: {msg.data[0]}")
-        print("=================================")
-        if msg.data[0] == eval("0x92"):
-            print("Received correct response message to command 0x92.")
-        else:
+        # print("=================================")
+        # print(f"Read Multiturn Position first byte: {msg.data[0]}")
+        # print("=================================")
+        if msg.data[0] != eval("0x92"):
+            print("=================================")
             print(f"Received incorrect response message to command 0x92, got reply to command {hex(msg.data[0])}")
+            print("=================================")
         
         # CANNOT USE msg.data directly because it is not iterable for some reason...
         # This is a hack to fix the bug
@@ -245,7 +245,7 @@ class CanMotor(object):
         decimal_position = self.utils.readBytesList(byte_list)
 
         # Note: 0.01 scale is taken from dataset to convert multi-turn bits to degrees
-        return self.utils.degToRad(0.01*decimal_position/self.gear_ratio), msg.data
+        return self.utils.degToRad(0.01*decimal_position/self.gear_ratio)
 
 
     def read_raw_multiturn(self):

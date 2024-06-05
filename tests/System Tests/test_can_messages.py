@@ -31,8 +31,8 @@ if __name__ == "__main__":
 	core.CANHelper.init("can0")
 	can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
-	motor_id = 0
-	gear_ratio = 1
+	motor_id = 10
+	gear_ratio = 11
 	
 	print("Trying to initialize motors")
 	motor = CanMotor(can0, motor_id, gear_ratio)
@@ -43,8 +43,8 @@ if __name__ == "__main__":
 	print(f"Zero (Multiturn) Position = {zero_pos}")
 
 	# Run commands in loop, with variable frequency, print/saving message information
-	command_rate = 100 # Hz, frequency with which to send motor commands
-	run_time = 10 # s
+	command_rate = 1 # Hz, frequency with which to send motor commands
+	run_time = 30 # s
 
 	input("Press Enter to start command loop.")
 	t_start = time.time()
@@ -61,7 +61,7 @@ if __name__ == "__main__":
 		time.sleep(1/command_rate)
 
 	motor.motor_stop()
-	motor.save_message_log("message_log.csv")
+	motor.save_message_log(f"/home/myeoh/Documents/GitHub/arcsnake_v2/tests/System Tests/TestCanMessages/message_log_rate{command_rate}.csv")
 	motor.motor_off()
 
 	core.CANHelper.cleanup("can0")
