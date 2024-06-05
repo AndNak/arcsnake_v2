@@ -4,6 +4,7 @@ from .CanUtils import CanUtils
 from .timeout import timeout
 import time
 from core.timeout import TimeoutError
+import pandas as pd
 
 
 class CanMotor(object):
@@ -23,6 +24,8 @@ class CanMotor(object):
         self.canBus = bus
         self.utils = CanUtils()
         self.gear_ratio = gear_ratio
+        self.message_log = []
+        self.wakeup_time = time.time()
 
         ############### PREVIOUS METHOD. DOES NOT WORK
         # id = "0x"
@@ -48,6 +51,7 @@ class CanMotor(object):
         self.motor_stop()
         self.lastpos = self.read_singleturn_position()
         self.curpos = 0
+
     
 
     '''
@@ -58,9 +62,11 @@ class CanMotor(object):
             - To decode the return message, use readBytesList or readByte in CanUtils
     '''
     @timeout(0.005)
-    def _send(self, data, wait_for_response = False):
+    def _send(self, data, wait_for_response = False, retry=0):
         msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False)
         self.canBus.send(msg)
+        send_time = time.time() - self.wakeup_time
+        self.message_log.append({"send/receive": 's', "is_rx": msg.is_rx, "send_time": send_time, "num_send_retries": retry, "timestamp": msg.timestamp, "data": msg.data})
 
         if wait_for_response:
             while True:
@@ -72,6 +78,7 @@ class CanMotor(object):
                 except (KeyboardInterrupt, ValueError) as e:
                     print(e)
                     break
+            self.message_log.append({"send/receive": 'r', "is_rx": msg.is_rx, "send_time": send_time, "num_send_retries": retry, "timestamp": msg.timestamp, "data": msg.data})
             return msg
         else:
             return None
@@ -80,10 +87,10 @@ class CanMotor(object):
         '''
             Wrapper for _send that retries if timeout occurs. This is useful since the motors can be finicky
         '''
-        for _ in range(num_time_outs):
+        for i in range(num_time_outs):
             try:
-                # print('trying to send')
-                return self._send(data, wait_for_response)
+                print(f'Trying to send message {hex(data[0])}')
+                return self._send(data, wait_for_response, retry=i)
             except TimeoutError:
                 continue
         raise TimeoutError("No response from motor")
@@ -430,3 +437,8 @@ class CanMotor(object):
             Turns off the motor output and clears motor operating status and previously received control commands.
         """
         self.send([0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
+
+
+    def save_message_log(self, filepath):
+        df = pd.DataFrame(self.message_log)
+        df.to_csv(filepath)

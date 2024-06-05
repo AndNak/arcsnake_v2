@@ -26,8 +26,7 @@ from core.CanMotor import CanMotor
 from core.CanScrewMotor import CanScrewMotor
 
 
-# This code is meant to generate a trajectory, and run a position loop based
-# on that trajectory, and finally spit out the plots between the two
+# This code is meant to test simply connecting to motor 
 
 if __name__ == "__main__":
     core.CANHelper.init("can0")
