@@ -316,7 +316,7 @@ class CanMotor(object):
 
         byte1, byte2, byte3, byte4 = self.utils.int_to_bytes(int(to_deg), 4)
 
-        self.send([0xa4, 0x00, s_byte2, s_byte1, byte4, byte3, byte2, byte1])
+        msg = self.send([0xa4, 0x00, s_byte2, s_byte1, byte4, byte3, byte2, byte1], wait_for_response=True)
 
     def override_PI_values(self, pos_p = None, pos_i = None, speed_p = None, speed_i = None, torque_p = None, torque_i = None): #UNTESTED!!!
         """Overrites the specified P and I values in the ROM with new values. Still valid for next boot.

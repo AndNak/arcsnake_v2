@@ -61,7 +61,7 @@ if __name__ == "__main__":
 		time.sleep(1/command_rate)
 
 	motor.motor_stop()
-	motor.save_message_log(f"/home/myeoh/Documents/GitHub/arcsnake_v2/tests/System Tests/TestCanMessages/message_log_rate{command_rate}.csv")
+	motor.save_message_log(f"/home/myeoh/Documents/GitHub/arcsnake_v2/tests/System Tests/TestCanMessages/message_log_rate{command_rate}_postfix.csv")
 	motor.motor_off()
 
 	core.CANHelper.cleanup("can0")
