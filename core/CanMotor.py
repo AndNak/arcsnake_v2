@@ -66,16 +66,15 @@ class CanMotor(object):
     '''
     @timeout(0.005)
     def _send(self, data, wait_for_response = True, send_retries=0):
-        send_msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False, is_rx=False)
+        send_msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False, is_rx=False, timestamp = time.time() - self.wakeup_time)
         self.canBus.send(send_msg)
         send_time = time.time() - self.wakeup_time
         self.message_log.append({"id": send_msg.arbitration_id,
                                  "is_rx": send_msg.is_rx,
-                                 "send_time": send_time,
+                                 "send_time": send_msg.timestamp,
                                  "rec_time": -1,
                                  "num_send_retries": send_retries,
                                  "num_rec_retries": -1,
-                                 "timestamp": send_msg.timestamp,
                                  "data": send_msg.data})
 
         if wait_for_response:
@@ -84,9 +83,9 @@ class CanMotor(object):
                 # Checking canbus message recieved with keyboard interrupt saftey
                 try:
                     rec_msg = self.canBus.recv()
-                    num_rec_retries += 1
                     if rec_msg.arbitration_id == self.id:
                         break
+                    num_rec_retries += 1
                 except (KeyboardInterrupt, ValueError) as e:
                     print(e)
                     break
@@ -95,11 +94,10 @@ class CanMotor(object):
             rec_msg.timestamp = rec_msg.timestamp - self.wakeup_time
             self.message_log.append({"id": rec_msg.arbitration_id,
                                  "is_rx": rec_msg.is_rx,
-                                 "send_time": send_time,
-                                 "rec_time": rec_time,
+                                 "send_time": send_msg.timestamp,
+                                 "rec_time": rec_msg.timestamp,
                                  "num_send_retries": -1,
                                  "num_rec_retries": num_rec_retries,
-                                 "timestamp": rec_msg.timestamp,
                                  "data": rec_msg.data})
             return rec_msg
         else:
@@ -112,7 +110,7 @@ class CanMotor(object):
         for i in range(num_time_outs):
             try:
                 print(f'Trying to send message {hex(data[0])}')
-                return self._send(data, wait_for_response, retry=i)
+                return self._send(data, wait_for_response, send_retries=i)
             except TimeoutError:
                 continue
         raise TimeoutError("No response from motor")

@@ -31,20 +31,22 @@ if __name__ == "__main__":
 	core.CANHelper.init("can0")
 	can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
-	motor_id = 10
+	motor_id = [10, 0]
 	gear_ratio = 11
 	
 	print("Trying to initialize motors")
-	motor = CanMotor(can0, motor_id, gear_ratio)
+	motor1 = CanMotor(can0, motor_id[0], gear_ratio=11)
+	motor2 = CanMotor(can0, motor_id[1], gear_ratio=1)
 	print('Motor initialization complete')
 
 	input("Press Enter to read zero position.")
-	zero_pos = motor.read_multiturn_position()
-	print(f"Zero (Multiturn) Position = {zero_pos}")
+	zero_pos1 = motor1.read_multiturn_position()
+	zero_pos2 = motor2.read_multiturn_position()
+	# print(f"Zero (Multiturn) Position = {zero_pos1}")
 
 	# Run commands in loop, with variable frequency, print/saving message information
-	command_rate = 1 # Hz, frequency with which to send motor commands
-	run_time = 30 # s
+	command_rate = 100 # Hz, frequency with which to send motor commands
+	run_time = 3 # s
 
 	input("Press Enter to start command loop.")
 	t_start = time.time()
@@ -53,16 +55,22 @@ if __name__ == "__main__":
 		cur_time = time.time() - t_start
 
 		# Commands
-		motor.pos_ctrl(zero_pos)
-		time.sleep(1/command_rate)
-		motor.read_multiturn_position()
-		time.sleep(1/command_rate)
-		(torque, speed, s_pos) = motor.read_motor_status()
-		time.sleep(1/command_rate)
+		motor1.pos_ctrl(zero_pos1)
+		motor2.pos_ctrl(zero_pos2)
+		# time.sleep(1/command_rate)
+		motor1.read_multiturn_position()
+		motor2.read_multiturn_position()
+		# time.sleep(1/command_rate)
+		(torque, speed, s_pos) = motor1.read_motor_status()
+		(torque, speed, s_pos) = motor2.read_motor_status()
+		# time.sleep(1/command_rate)
 
-	motor.motor_stop()
-	motor.save_message_log(f"/home/myeoh/Documents/GitHub/arcsnake_v2/tests/System Tests/TestCanMessages/message_log_rate{command_rate}_postfix.csv")
-	motor.motor_off()
+	motor1.motor_stop()
+	motor2.motor_stop()
+	motor1.save_message_log(f"/home/myeoh/Documents/GitHub/arcsnake_v2/tests/System Tests/TestCanMessages/message_log_rateCONT_postfix_m1.csv")
+	motor2.save_message_log(f"/home/myeoh/Documents/GitHub/arcsnake_v2/tests/System Tests/TestCanMessages/message_log_rateCONT_postfix_m2.csv")
+	motor1.motor_off()
+	motor2.motor_off()
 
 	core.CANHelper.cleanup("can0")
 
