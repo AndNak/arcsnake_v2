@@ -1,6 +1,6 @@
 import can
 import math
-from .CanUtils import CanUtils
+from .CanUtils import CanUtils, command_dict
 from .timeout import timeout
 import time
 from core.timeout import TimeoutError
@@ -69,7 +69,8 @@ class CanMotor(object):
         send_msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False, is_rx=False, timestamp = time.time() - self.wakeup_time)
         self.canBus.send(send_msg)
         send_time = time.time() - self.wakeup_time
-        self.message_log.append({"id": send_msg.arbitration_id,
+        self.message_log.append({"id": send_msg.arbitration_id-321,
+                                 "command": command_dict[hex(send_msg.data[0])],
                                  "is_rx": send_msg.is_rx,
                                  "send_time": send_msg.timestamp,
                                  "rec_time": -1,
@@ -92,13 +93,14 @@ class CanMotor(object):
                 
             rec_time = time.time() - self.wakeup_time
             rec_msg.timestamp = rec_msg.timestamp - self.wakeup_time
-            self.message_log.append({"id": rec_msg.arbitration_id,
-                                 "is_rx": rec_msg.is_rx,
-                                 "send_time": send_msg.timestamp,
-                                 "rec_time": rec_msg.timestamp,
-                                 "num_send_retries": -1,
-                                 "num_rec_retries": num_rec_retries,
-                                 "data": rec_msg.data})
+            self.message_log.append({"id": rec_msg.arbitration_id-321,
+                                     "command": command_dict[hex(send_msg.data[0])],
+                                     "is_rx": rec_msg.is_rx,
+                                     "send_time": send_msg.timestamp,
+                                     "rec_time": rec_msg.timestamp,
+                                     "num_send_retries": -1,
+                                     "num_rec_retries": num_rec_retries,
+                                     "data": rec_msg.data})
             return rec_msg
         else:
             return None
