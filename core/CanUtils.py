@@ -1,6 +1,17 @@
 import math
 import numpy as np
 
+command_dict = {
+    "0x30": "read_pid",
+    "0x31": "write_pid_to_ram",
+    "0x32": "write_pid_to_rom",
+    "0x92": "read_multiturn_pos",
+    "0x9c": "read_motor_torque_speed_pos",
+    "0xa4": "pos_ctrl",
+    "0xa2": "speed_ctrl",
+}
+
+
 class CanUtils:
     def readBytes(self, high_byte, low_byte):
         """Converts values from 2-byte hexadecimal to decimal value

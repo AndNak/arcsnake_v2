@@ -52,6 +52,8 @@ class CanMotor(object):
         self.lastpos = self.read_singleturn_position()
         self.curpos = 0
 
+        
+
     
 
     '''
@@ -60,26 +62,46 @@ class CanMotor(object):
             - To convert a 32 unsigned integer to bytes for this, use toBytes in CanUtils
         - If wait_for_response is True, then this a "read" CANBus send. If False, then this is only a "send" command
             - To decode the return message, use readBytesList or readByte in CanUtils
+        - NOTE: ALWAYS SET wait_for_response TO TRUE, OTHERWISE MESSAGES GET MIXED UP
     '''
     @timeout(0.005)
-    def _send(self, data, wait_for_response = False, retry=0):
-        msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False)
-        self.canBus.send(msg)
+    def _send(self, data, wait_for_response = True, send_retries=0):
+        send_msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False, is_rx=False)
+        self.canBus.send(send_msg)
         send_time = time.time() - self.wakeup_time
-        self.message_log.append({"send/receive": 's', "is_rx": msg.is_rx, "send_time": send_time, "num_send_retries": retry, "timestamp": msg.timestamp, "data": msg.data})
+        self.message_log.append({"id": send_msg.arbitration_id,
+                                 "is_rx": send_msg.is_rx,
+                                 "send_time": send_time,
+                                 "rec_time": -1,
+                                 "num_send_retries": send_retries,
+                                 "num_rec_retries": -1,
+                                 "timestamp": send_msg.timestamp,
+                                 "data": send_msg.data})
 
         if wait_for_response:
+            num_rec_retries = 0
             while True:
                 # Checking canbus message recieved with keyboard interrupt saftey
                 try:
-                    msg = self.canBus.recv()
-                    if msg.arbitration_id == self.id:
+                    rec_msg = self.canBus.recv()
+                    num_rec_retries += 1
+                    if rec_msg.arbitration_id == self.id:
                         break
                 except (KeyboardInterrupt, ValueError) as e:
                     print(e)
                     break
-            self.message_log.append({"send/receive": 'r', "is_rx": msg.is_rx, "send_time": send_time, "num_send_retries": retry, "timestamp": msg.timestamp, "data": msg.data})
-            return msg
+                
+            rec_time = time.time() - self.wakeup_time
+            rec_msg.timestamp = rec_msg.timestamp - self.wakeup_time
+            self.message_log.append({"id": rec_msg.arbitration_id,
+                                 "is_rx": rec_msg.is_rx,
+                                 "send_time": send_time,
+                                 "rec_time": rec_time,
+                                 "num_send_retries": -1,
+                                 "num_rec_retries": num_rec_retries,
+                                 "timestamp": rec_msg.timestamp,
+                                 "data": rec_msg.data})
+            return rec_msg
         else:
             return None
 
