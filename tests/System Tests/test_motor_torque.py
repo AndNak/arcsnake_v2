@@ -30,7 +30,7 @@ if __name__ == "__main__":
     while True:
         try:
             print("Trying to initialize motors")
-            screwMotor = CanMotor(can0, motor_id, 1)
+            screwMotor = CanMotor(can0, motor_id, 6)
             # joint2 = CanMotor(can0, 4, gear_ratio)
             # joint1 = CanMotor(can0, 1, gear_ratio)
             # joint3 = CanMotor(can0, 3, gear_ratio)
@@ -64,8 +64,8 @@ if __name__ == "__main__":
     Kp = 255
     Ki = 30
     TC = 2000
-    test_name = f'config4_v{command_speed}_fullshell_stalltest'
-    data_fname = f'tests/System Tests/ScrewShellSpinTests/{test_name}'
+    test_name = f'v{command_speed}'
+    data_fname = f'tests/System Tests/TestbedTorqueLimitTuning/{test_name}'
 
     time_data   = []
     torque_data = []
@@ -75,8 +75,8 @@ if __name__ == "__main__":
     while True:
         try:
             print(screwMotor.read_motor_pid())
-            screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
-            print(screwMotor.read_motor_pid())
+            # screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
+            # print(screwMotor.read_motor_pid())
             break
         except TimeoutError:
             print('Timeout Error')
