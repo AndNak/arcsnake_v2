@@ -111,7 +111,7 @@ class CanMotor(object):
         '''
         for i in range(num_time_outs):
             try:
-                print(f'Trying to send message {hex(data[0])}')
+                # print(f'Trying to send message {hex(data[0])}')
                 return self._send(data, wait_for_response, send_retries=i)
             except TimeoutError:
                 continue

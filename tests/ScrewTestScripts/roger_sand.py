@@ -22,7 +22,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
-    screwMotor = CanUJoint(can0, 1, 1, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
+    screwMotor = CanUJoint(can0, 1, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     encoderMotor = CanUJoint(can0, 2, 1)
 
     print(screwMotor.read_motor_pid())
@@ -32,11 +32,11 @@ if __name__ == "__main__":
 
     ### Change these as needed
     run_time = 10 # in second
-    type_num = 3 # [screw sand  ,wheel sand, wheel concrete]
-    set_num = 2 # [prop, middle, screw]
+    type_num = 1 # [screw sand  ,wheel sand, wheel concrete]
+    set_num = 4 # [prop, middle, short middle, screw]
     dir_num = 1 # [forward]
-    test_num = 1 # trial number [1 2 3]
-    command_speed = -15 # in radians per second (1:1 gearbox); neg for forw and pos for back
+    test_num = 3 # trial number [1 2 3]
+    command_speed = -10 # in radians per second (1:1 gearbox); neg for forw and pos for back
     data_fname = 'tests/ScrewTestScripts/sand_tests/test{0}{1}{2}{3}.csv'.format(type_num,set_num, dir_num, test_num)
 
     time_data   = []
