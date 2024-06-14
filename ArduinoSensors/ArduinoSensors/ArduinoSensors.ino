@@ -13,7 +13,7 @@
 
 const int SPI_CS_PIN = 17;
 MCP_CAN CAN(SPI_CS_PIN);
-DHT dht(DHTPIN, DHTTYPE);
+//DHT dht(DHTPIN, DHTTYPE);
 Adafruit_BNO055 bno = Adafruit_BNO055(55,0x28,&Wire);
 
 unsigned long this_address = 0x01; // Set CAN address for this arduino here
@@ -28,27 +28,27 @@ uint8_t sys_calib, gyro_calib, accel_calib, mag_calib = 0;
 
 void setup()
 {
-//  Serial.begin(9600);
-  //while(!Serial);
+  Serial.begin(9600);
+  while(!Serial);
   while (CAN_OK != CAN.begin(CAN_1000KBPS))    // init can bus : baudrate = 1000k
   {
-//    Serial.println("CAN BUS FAIL!");
+    Serial.println("CAN BUS FAIL!");
     delay(100);
   }
 
-//  Serial.println("CAN BUS OK!");
-  dht.begin();
+  Serial.println("CAN BUS OK!");
+//  dht.begin();
 
-  pinMode(PRESSURESENSORPIN, INPUT_PULLUP);
+//  pinMode(PRESSURESENSORPIN, INPUT_PULLUP);
 
   if(!bno.begin())
   {
-//    Serial.print("No BNO sensor");
+    Serial.print("No BNO sensor");
     while(1);
   }
   delay(1000);
 
-//  displaySensorDetails();
+  displaySensorDetails();
 
   bno.setExtCrystalUse(true);
 }
@@ -80,16 +80,40 @@ void loop()
 
       // read humidity, temp, pressure command
       if (recv_buf[0] == 0x00){
-        humidity = dht.readHumidity();
-        temp = dht.readTemperature();
-        pressure = analogRead(PRESSURESENSORPIN);
+//        humidity = dht.readHumidity();
+//        temp = dht.readTemperature();
+//        pressure = analogRead(PRESSURESENSORPIN);
         send_buf[0] = 0; // first buffer element matches read command
         send_buf[5] = char(pressure / 100);
         send_buf[6] = char(temp);
         send_buf[7] = char(humidity);
       }
-      // read absolute orientation command
+      // read temp and calibration command
       else if(recv_buf[0] == 0x01){
+        imuTemp = bno.getTemp();
+        bno.getCalibration(&sys_calib, &gyro_calib, &accel_calib, &mag_calib);
+        send_buf[0] = 1;
+        send_buf[1] = char(sys_calib);
+        send_buf[2] = char(gyro_calib);
+        send_buf[3] = char(accel_calib);
+        send_buf[4] = char(mag_calib);
+        send_buf[5] = char(imuTemp);
+        Serial.println();
+        Serial.print(F("temperature: "));
+        Serial.println(imuTemp);
+        Serial.println();
+        Serial.print("Calibration: Sys=");
+        Serial.print(sys_calib);
+        Serial.print(" Gyro=");
+        Serial.print(gyro_calib);
+        Serial.print(" Accel=");
+        Serial.print(accel_calib);
+        Serial.print(" Mag=");
+        Serial.println(mag_calib);
+        Serial.println("--");
+      }
+      // read absolute orientation command
+      else if(recv_buf[0] == 0x02){
         bno.getEvent(&orientationData, Adafruit_BNO055::VECTOR_EULER);
         send_buf[0] = 1;
         send_buf[1] = SignCarry(orientationData.orientation.x);
@@ -98,28 +122,24 @@ void loop()
         send_buf[4] = abs(orientationData.orientation.y);
         send_buf[5] = SignCarry(orientationData.orientation.z);
         send_buf[6] = abs(orientationData.orientation.z);
+        printEvent(&orientationData);
       } 
       // read accelerometer command
-      else if(recv_buf[0] == 0x02){
+      else if(recv_buf[0] == 0x03){
         bno.getEvent(&accelerometerData, Adafruit_BNO055::VECTOR_ACCELEROMETER);
         send_buf[0] = 2;
       }
       // read gyroscope command
-      else if(recv_buf[0] == 0x03){
+      else if(recv_buf[0] == 0x04){
         bno.getEvent(&angVelocityData, Adafruit_BNO055::VECTOR_GYROSCOPE);
         send_buf[0] = 3;
       }
       // read magnetometer command
-      else if(recv_buf[0] == 0x04){
+      else if(recv_buf[0] == 0x05){
         bno.getEvent(&magnetometerData, Adafruit_BNO055::VECTOR_MAGNETOMETER);
         send_buf[0] = 4;
       }
-      // read temp and calibration command
-      else if(recv_buf[0] == 0x05){
-        imuTemp = bno.getTemp();
-        bno.getCalibration(&sys_calib, &gyro_calib, &accel_calib, &mag_calib);
-        send_buf[0] = 5;
-      }
+      
       
 //      Serial.print(F("Humidity: "));
 //      Serial.print(h);
@@ -130,7 +150,7 @@ void loop()
 //      Serial.println();
 
       if (CAN_FAIL == CAN.sendMsgBuf(this_address, CAN_STDID, 8, send_buf)) {
-        Serial.println("Failed to send message :(");
+//        Serial.println("Failed to send message :(");
       }
 
     }
@@ -165,4 +185,60 @@ char SignCarry(int val){ // output the sign and carry for the val
     retVal = 17;
   }
   return retVal;
+}
+
+void printEvent(sensors_event_t* event) {
+  double x = -1000000, y = -1000000 , z = -1000000; //dumb values, easy to spot problem
+  if (event->type == SENSOR_TYPE_ACCELEROMETER) {
+    Serial.print("Accl:");
+    x = event->acceleration.x;
+    y = event->acceleration.y;
+    z = event->acceleration.z;
+  }
+  else if (event->type == SENSOR_TYPE_ORIENTATION) {
+    Serial.print("Orient:");
+    x = event->orientation.x;
+    y = event->orientation.y;
+    z = event->orientation.z;
+  }
+  else if (event->type == SENSOR_TYPE_MAGNETIC_FIELD) {
+    Serial.print("Mag:");
+    x = event->magnetic.x;
+    y = event->magnetic.y;
+    z = event->magnetic.z;
+  }
+  else if (event->type == SENSOR_TYPE_GYROSCOPE) {
+    Serial.print("Gyro:");
+    x = event->gyro.x;
+    y = event->gyro.y;
+    z = event->gyro.z;
+  }
+  else if (event->type == SENSOR_TYPE_ROTATION_VECTOR) {
+    Serial.print("Rot:");
+    x = event->gyro.x;
+    y = event->gyro.y;
+    z = event->gyro.z;
+  }
+  else if (event->type == SENSOR_TYPE_LINEAR_ACCELERATION) {
+    Serial.print("Linear:");
+    x = event->acceleration.x;
+    y = event->acceleration.y;
+    z = event->acceleration.z;
+  }
+  else if (event->type == SENSOR_TYPE_GRAVITY) {
+    Serial.print("Gravity:");
+    x = event->acceleration.x;
+    y = event->acceleration.y;
+    z = event->acceleration.z;
+  }
+  else {
+    Serial.print("Unk:");
+  }
+
+  Serial.print("\tx= ");
+  Serial.print(x);
+  Serial.print(" |\ty= ");
+  Serial.print(y);
+  Serial.print(" |\tz= ");
+  Serial.println(z);
 }
