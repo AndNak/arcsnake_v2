@@ -29,11 +29,8 @@ from core.CanScrewMotor import CanScrewMotor
 # This code is meant to test simply connecting to motor 
 
 if __name__ == "__main__":
-    core.CANHelper.init("can0")
-    can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
-    gear_ratio = 1
+	core.CANHelper.init("can0")
+	can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
-    print("Trying to initialize motors")
-    joint1 = CanMotor(can0, 0, gear_ratio)
-    joint1.motor_start()
-    print("Successfully initialized motors")
+	input("Stop Can network")
+	core.CANHelper.cleanup("can0")
