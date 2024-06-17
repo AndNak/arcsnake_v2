@@ -65,4 +65,15 @@ class CanArduinoSensors(object):
     '''
     data = [2, 0, 0, 0, 0, 0, 0, 0]
     recv_msg = self.send(data)
-    return recv_msg.data
+    x = self.utils.readBytes(recv_msg.data[2], recv_msg.data[1])
+    y = self.utils.readBytes(recv_msg.data[4], recv_msg.data[3])
+    z = self.utils.readBytes(recv_msg.data[6], recv_msg.data[5])
+    x = x / 16.0
+    y = y / 16.0
+    z = z / 16.0
+    return x, y, z
+
+  def readImuAccelerometer(self):
+    '''
+    
+    '''

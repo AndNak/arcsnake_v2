@@ -6,6 +6,10 @@
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
 
+/*
+ * NOTE: THIS CODE REQUIRES AN EDITED VERSION OF ADAFRUIT_BNO055 CLASS WITH CUSTOM FUNCTION readRawBuffer
+ */
+
 #define DHTPIN 6
 #define PRESSURESENSORPIN A3
 #define DHTTYPE DHT11
@@ -76,14 +80,15 @@ void loop()
 
     // send readings
     if (canId == this_address) {
-      unsigned char send_buf[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+      unsigned char send_buf[8] = {0, 0, 0, 0, 0, 0, 0, 0}; // For 8-byte CAN data
+      uint8_t imu_buf[6]; // For 6-byte raw vector readings from IMU
 
       // read humidity, temp, pressure command
       if (recv_buf[0] == 0x00){
 //        humidity = dht.readHumidity();
 //        temp = dht.readTemperature();
 //        pressure = analogRead(PRESSURESENSORPIN);
-        send_buf[0] = 0; // first buffer element matches read command
+        send_buf[0] = 0x00; // first buffer element matches read command
         send_buf[5] = char(pressure / 100);
         send_buf[6] = char(temp);
         send_buf[7] = char(humidity);
@@ -92,52 +97,61 @@ void loop()
       else if(recv_buf[0] == 0x01){
         imuTemp = bno.getTemp();
         bno.getCalibration(&sys_calib, &gyro_calib, &accel_calib, &mag_calib);
-        send_buf[0] = 1;
+        send_buf[0] = 0x01;
         send_buf[1] = char(sys_calib);
         send_buf[2] = char(gyro_calib);
         send_buf[3] = char(accel_calib);
         send_buf[4] = char(mag_calib);
         send_buf[5] = char(imuTemp);
-        Serial.println();
-        Serial.print(F("temperature: "));
-        Serial.println(imuTemp);
-        Serial.println();
-        Serial.print("Calibration: Sys=");
-        Serial.print(sys_calib);
-        Serial.print(" Gyro=");
-        Serial.print(gyro_calib);
-        Serial.print(" Accel=");
-        Serial.print(accel_calib);
-        Serial.print(" Mag=");
-        Serial.println(mag_calib);
-        Serial.println("--");
+//        Serial.println();
+//        Serial.print(F("temperature: "));
+//        Serial.println(imuTemp);
+//        Serial.println();
+//        Serial.print("Calibration: Sys=");
+//        Serial.print(sys_calib);
+//        Serial.print(" Gyro=");
+//        Serial.print(gyro_calib);
+//        Serial.print(" Accel=");
+//        Serial.print(accel_calib);
+//        Serial.print(" Mag=");
+//        Serial.println(mag_calib);
+//        Serial.println("--");
       }
       // read absolute orientation command
       else if(recv_buf[0] == 0x02){
-        bno.getEvent(&orientationData, Adafruit_BNO055::VECTOR_EULER);
-        send_buf[0] = 1;
-        send_buf[1] = SignCarry(orientationData.orientation.x);
-        send_buf[2] = abs(orientationData.orientation.x);
-        send_buf[3] = SignCarry(orientationData.orientation.y);
-        send_buf[4] = abs(orientationData.orientation.y);
-        send_buf[5] = SignCarry(orientationData.orientation.z);
-        send_buf[6] = abs(orientationData.orientation.z);
-        printEvent(&orientationData);
+//          bno.getEvent(&orientationData, Adafruit_BNO055::VECTOR_EULER);
+//          printEvent(&orientationData);
+//          delay(10);
+          send_buf[0] = 0x02;
+          bno.getRawBuffer(imu_buf, Adafruit_BNO055::VECTOR_EULER);
+          memcpy(&send_buf[1], imu_buf, 6);
       } 
       // read accelerometer command
       else if(recv_buf[0] == 0x03){
-        bno.getEvent(&accelerometerData, Adafruit_BNO055::VECTOR_ACCELEROMETER);
-        send_buf[0] = 2;
+//        bno.getEvent(&accelerometerData, Adafruit_BNO055::VECTOR_ACCELEROMETER);
+          send_buf[0] = 0x03;
+          bno.getRawBuffer(imu_buf, Adafruit_BNO055::VECTOR_ACCELEROMETER);
+          memcpy(&send_buf[1], imu_buf, 6);
+      }
+      else if(recv_buf[0] == 0x04){
+//        bno.getEvent(&linearAccelData, Adafruit_BNO055::VECTOR_LINEARACCEL);
+          send_buf[0] = 0x04;
+          bno.getRawBuffer(imu_buf, Adafruit_BNO055::VECTOR_LINEARACCEL);
+          memcpy(&send_buf[1], imu_buf, 6);
       }
       // read gyroscope command
-      else if(recv_buf[0] == 0x04){
-        bno.getEvent(&angVelocityData, Adafruit_BNO055::VECTOR_GYROSCOPE);
-        send_buf[0] = 3;
+      else if(recv_buf[0] == 0x05){
+//        bno.getEvent(&angVelocityData, Adafruit_BNO055::VECTOR_GYROSCOPE);
+          send_buf[0] = 0x05;
+          bno.getRawBuffer(imu_buf, Adafruit_BNO055::VECTOR_GYROSCOPE);
+          memcpy(&send_buf[1], imu_buf, 6);
       }
       // read magnetometer command
-      else if(recv_buf[0] == 0x05){
-        bno.getEvent(&magnetometerData, Adafruit_BNO055::VECTOR_MAGNETOMETER);
-        send_buf[0] = 4;
+      else if(recv_buf[0] == 0x06){
+//        bno.getEvent(&magnetometerData, Adafruit_BNO055::VECTOR_MAGNETOMETER);
+          send_buf[0] = 0x06;
+          bno.getRawBuffer(imu_buf, Adafruit_BNO055::VECTOR_MAGNETOMETER);
+          memcpy(&send_buf[1], imu_buf, 6);
       }
       
       
