@@ -12,7 +12,7 @@ class CanArduinoSensors(object):
     self.id = arduino_id
     self.wakeup_time = time.time()
 
-  @timeout(0.005)
+  @timeout(1)
   def _send(self, data, send_retries=0):
     send_msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False, is_rx=False, timestamp = time.time() - self.wakeup_time)
     self.canBus.send(send_msg)
@@ -21,6 +21,7 @@ class CanArduinoSensors(object):
     while True:
       # Checking canbus message recieved with keyboard interrupt saftey
       try:
+        print("trying to receive")
         recv_msg = self.canBus.recv()
         if recv_msg.arbitration_id == self.id:
           break
@@ -36,7 +37,7 @@ class CanArduinoSensors(object):
     '''
     for i in range(num_time_outs):
         try:
-            # print(f'Trying to send message {hex(data[0])}')
+            print(f'Trying to send message {hex(data[0])}')
             return self._send(data, send_retries=i)
         except TimeoutError:
             continue

@@ -17,7 +17,7 @@
 
 const int SPI_CS_PIN = 17;
 MCP_CAN CAN(SPI_CS_PIN);
-//DHT dht(DHTPIN, DHTTYPE);
+DHT dht(DHTPIN, DHTTYPE);
 Adafruit_BNO055 bno = Adafruit_BNO055(55,0x28,&Wire);
 
 unsigned long this_address = 0x01; // Set CAN address for this arduino here
@@ -32,22 +32,22 @@ uint8_t sys_calib, gyro_calib, accel_calib, mag_calib = 0;
 
 void setup()
 {
-//  Serial.begin(9600);
-//  while(!Serial);
+  Serial.begin(9600);
+  while(!Serial);
   while (CAN_OK != CAN.begin(CAN_1000KBPS))    // init can bus : baudrate = 1000k
   {
-//    Serial.println("CAN BUS FAIL!");
+    Serial.println("CAN BUS FAIL!");
     delay(100);
   }
 
-//  Serial.println("CAN BUS OK!");
-//  dht.begin();
+  Serial.println("CAN BUS OK!");
+  dht.begin();
 
-//  pinMode(PRESSURESENSORPIN, INPUT_PULLUP);
+  pinMode(PRESSURESENSORPIN, INPUT_PULLUP);
 
   if(!bno.begin())
   {
-//    Serial.print("No BNO sensor");
+    Serial.print("No BNO sensor");
     while(1);
   }
   delay(1000);
@@ -85,9 +85,9 @@ void loop()
 
       // read humidity, temp, pressure command
       if (recv_buf[0] == 0x00){
-//        humidity = dht.readHumidity();
-//        temp = dht.readTemperature();
-//        pressure = analogRead(PRESSURESENSORPIN);
+        humidity = dht.readHumidity();
+        temp = dht.readTemperature();
+        pressure = analogRead(PRESSURESENSORPIN);
         send_buf[0] = 0x00; // first buffer element matches read command
         send_buf[5] = char(pressure / 100);
         send_buf[6] = char(temp);
@@ -167,13 +167,13 @@ void loop()
       }
       
       
-//      Serial.print(F("Humidity: "));
-//      Serial.print(h);
-//      Serial.print(F("%  Temperature: "));
-//      Serial.print(t);
-//      Serial.print(F("%  Pressure: "));
-//      Serial.print(p);
-//      Serial.println();
+      Serial.print(F("Humidity: "));
+      Serial.print(humidity);
+      Serial.print(F("%  Temperature: "));
+      Serial.print(temp);
+      Serial.print(F("%  Pressure: "));
+      Serial.print(pressure);
+      Serial.println();
 
       if (CAN_FAIL == CAN.sendMsgBuf(this_address, CAN_STDID, 8, send_buf)) {
 //        Serial.println("Failed to send message :(");

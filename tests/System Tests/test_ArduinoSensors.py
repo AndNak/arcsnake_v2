@@ -34,8 +34,10 @@ if __name__ == "__main__":
       #   print(sensor.readImuCalibrationAndTemp())
       # elif key == 'o':
       #   print(sensor.readImuOrientation())
+      input("read")
+      print("Humidity, Temp, and Pressure: ", sensor.readHumidityAndTemperature())
       printAllImuData(sensor)
-      time.sleep(1)
+      # time.sleep(1)
 
   except (KeyboardInterrupt, ValueError) as e: # Kill with ctrl + c
     print(e)
