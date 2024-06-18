@@ -6,6 +6,19 @@ import time
 import core.CANHelper
 from core.CanArduinoSensors import CanArduinoSensors
 
+def printAllImuData(sensor):
+  print("\n--------------------------------------\n")
+  print("Calibration and Temp Data: ", sensor.readImuCalibrationAndTemp())
+  print("Orientation Euler Angles: ", sensor.readImuOrientation())
+  print("Orientation Quaternion: ", sensor.readImuQuaternion())
+  print("Gyroscope: ", sensor.readImuGyroscope())
+  print("Magnetometer: ", sensor.readImuMagnetometer())
+  print("Accelerometer: ", sensor.readImuAccelerometer())
+  print("Linear Acceleration: ", sensor.readImuLinearAccel())
+  print("Gravity Vector: ", sensor.readImuGravity())
+  print("\n--------------------------------------\n")
+  
+
 if __name__ == "__main__":
   core.CANHelper.init("can0")
   
@@ -16,11 +29,13 @@ if __name__ == "__main__":
   try:
   
     while True:
-      key = input("Press 'c' to read calibration and temp, or press 'o' to read orientation")
-      if key == 'c':
-        print(sensor.readImuCalibrationAndTemp())
-      elif key == 'o':
-        print(sensor.readImuOrientation())
+      # key = input("Press 'c' to read calibration and temp, or press 'o' to read orientation")
+      # if key == 'c':
+      #   print(sensor.readImuCalibrationAndTemp())
+      # elif key == 'o':
+      #   print(sensor.readImuOrientation())
+      printAllImuData(sensor)
+      time.sleep(1)
 
   except (KeyboardInterrupt, ValueError) as e: # Kill with ctrl + c
     print(e)

@@ -52,7 +52,7 @@ class CanArduinoSensors(object):
 
   def readImuCalibrationAndTemp(self):
     '''
-      returns system calib, gyro calib, accel_calib, mag_calib, imu temperature
+      returns system calib, gyro calib, accel_calib, mag_calib, imu temperature in Celsius
       calib ranges from 0 (bad) to 3 (best)
     '''
     data = [1, 0, 0, 0, 0, 0, 0, 0]
@@ -61,7 +61,7 @@ class CanArduinoSensors(object):
 
   def readImuOrientation(self):
     '''
-      reads absolute orientation as (x, y, z) Euler angles
+      reads absolute orientation as (x, y, z) Euler angles in degrees
     '''
     data = [2, 0, 0, 0, 0, 0, 0, 0]
     recv_msg = self.send(data)
@@ -75,5 +75,86 @@ class CanArduinoSensors(object):
 
   def readImuAccelerometer(self):
     '''
-    
+      reads accelerometer data (linear acceleration + gravity) in m/s^2
     '''
+    data = [3, 0, 0, 0, 0, 0, 0, 0]
+    recv_msg = self.send(data)
+    x = self.utils.readBytes(recv_msg.data[2], recv_msg.data[1])
+    y = self.utils.readBytes(recv_msg.data[4], recv_msg.data[3])
+    z = self.utils.readBytes(recv_msg.data[6], recv_msg.data[5])
+    x = x / 100.0
+    y = y / 100.0
+    z = z / 100.0
+    return x, y, z
+
+  def readImuLinearAccel(self):
+    '''
+      reads linear acceleration (without gravity) in m/s^2
+    '''
+    data = [4, 0, 0, 0, 0, 0, 0, 0]
+    recv_msg = self.send(data)
+    x = self.utils.readBytes(recv_msg.data[2], recv_msg.data[1])
+    y = self.utils.readBytes(recv_msg.data[4], recv_msg.data[3])
+    z = self.utils.readBytes(recv_msg.data[6], recv_msg.data[5])
+    x = x / 100.0
+    y = y / 100.0
+    z = z / 100.0
+    return x, y, z
+
+  def readImuGyroscope(self):
+    '''
+      reads gyroscope in rad/s
+    '''
+    data = [5, 0, 0, 0, 0, 0, 0, 0]
+    recv_msg = self.send(data)
+    x = self.utils.readBytes(recv_msg.data[2], recv_msg.data[1])
+    y = self.utils.readBytes(recv_msg.data[4], recv_msg.data[3])
+    z = self.utils.readBytes(recv_msg.data[6], recv_msg.data[5])
+    x = x / 16.0
+    y = y / 16.0
+    z = z / 16.0
+    return x, y, z
+
+  def readImuMagnetometer(self):
+    '''
+      reads magnetometer in microTesla
+    '''
+    data = [6, 0, 0, 0, 0, 0, 0, 0]
+    recv_msg = self.send(data)
+    x = self.utils.readBytes(recv_msg.data[2], recv_msg.data[1])
+    y = self.utils.readBytes(recv_msg.data[4], recv_msg.data[3])
+    z = self.utils.readBytes(recv_msg.data[6], recv_msg.data[5])
+    x = x / 16.0
+    y = y / 16.0
+    z = z / 16.0
+    return x, y, z
+
+  def readImuQuaternion(self):
+    '''
+      reads orientation in quaternion?
+    '''
+    data = [7, 0, 0, 0, 0, 0, 0, 0]
+    recv_msg = self.send(data)
+    w = self.utils.readBytes(recv_msg.data[1], recv_msg.data[0])
+    x = self.utils.readBytes(recv_msg.data[3], recv_msg.data[2])
+    y = self.utils.readBytes(recv_msg.data[5], recv_msg.data[4])
+    z = self.utils.readBytes(recv_msg.data[7], recv_msg.data[6])
+    scale = (1.0 / (1 << 14)) # copied this from internal IMU code
+    return scale*w, scale*x, scale*y, scale*z
+
+
+  def readImuGravity(self):
+    '''
+      reads gravity vector in m/s^2
+    '''
+    data = [8, 0, 0, 0, 0, 0, 0, 0]
+    recv_msg = self.send(data)
+    x = self.utils.readBytes(recv_msg.data[2], recv_msg.data[1])
+    y = self.utils.readBytes(recv_msg.data[4], recv_msg.data[3])
+    z = self.utils.readBytes(recv_msg.data[6], recv_msg.data[5])
+    x = x / 100.0
+    y = y / 100.0
+    z = z / 100.0
+    return x, y, z
+
+  

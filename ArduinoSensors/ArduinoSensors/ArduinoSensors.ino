@@ -32,27 +32,27 @@ uint8_t sys_calib, gyro_calib, accel_calib, mag_calib = 0;
 
 void setup()
 {
-  Serial.begin(9600);
-  while(!Serial);
+//  Serial.begin(9600);
+//  while(!Serial);
   while (CAN_OK != CAN.begin(CAN_1000KBPS))    // init can bus : baudrate = 1000k
   {
-    Serial.println("CAN BUS FAIL!");
+//    Serial.println("CAN BUS FAIL!");
     delay(100);
   }
 
-  Serial.println("CAN BUS OK!");
+//  Serial.println("CAN BUS OK!");
 //  dht.begin();
 
 //  pinMode(PRESSURESENSORPIN, INPUT_PULLUP);
 
   if(!bno.begin())
   {
-    Serial.print("No BNO sensor");
+//    Serial.print("No BNO sensor");
     while(1);
   }
   delay(1000);
 
-  displaySensorDetails();
+//  displaySensorDetails();
 
   bno.setExtCrystalUse(true);
 }
@@ -133,6 +133,7 @@ void loop()
           bno.getRawBuffer(imu_buf, Adafruit_BNO055::VECTOR_ACCELEROMETER);
           memcpy(&send_buf[1], imu_buf, 6);
       }
+      // read linear acceleration (without gravity)
       else if(recv_buf[0] == 0x04){
 //        bno.getEvent(&linearAccelData, Adafruit_BNO055::VECTOR_LINEARACCEL);
           send_buf[0] = 0x04;
@@ -152,6 +153,17 @@ void loop()
           send_buf[0] = 0x06;
           bno.getRawBuffer(imu_buf, Adafruit_BNO055::VECTOR_MAGNETOMETER);
           memcpy(&send_buf[1], imu_buf, 6);
+      }
+      // read orientation in quaternion
+      else if(recv_buf[0] == 0x07){
+        // populates all 8 bytes of send_buf with quaternion data
+        bno.getRawQuat(send_buf);
+      }
+      // Read gravity vector
+      else if(recv_buf[0] == 0x08){
+        send_buf[0] = 0x08;
+        bno.getRawBuffer(imu_buf, Adafruit_BNO055::VECTOR_GRAVITY);
+        memcpy(&send_buf[1], imu_buf, 6);
       }
       
       
