@@ -49,11 +49,30 @@ void setup() {
   }
 //  Serial.println("CAN BUS OK!");
 }
-unsigned char sensor0[8] = {136,136,136,136,136,136,136,136};
+unsigned char orientation_msg[8] = {136,136,136,136,136,136,136,136};
+unsigned char linear_accel_msg[8] = {136,136,136,136,136,136,136,136};
+unsigned char gyro_msg[8] = {136,136,136,136,136,136,136,136};
+unsigned char magnetometer_msg[8] = {136,136,136,136,136,136,136,136};
+unsigned char accel_msg[8] = {136,136,136,136,136,136,136,136};
+unsigned char gravity_msg[8] = {136,136,136,136,136,136,136,136};
 void loop() {
   // put your main code here, to run repeatedly:
-  sensors_event_t event;
-  bno.getEvent(&event);
+  // read all data
+  sensors_event_t orientationData , angVelocityData , linearAccelData, magnetometerData, accelerometerData, gravityData;
+  bno.getEvent(&orientationData, Adafruit_BNO055::VECTOR_EULER);
+  bno.getEvent(&angVelocityData, Adafruit_BNO055::VECTOR_GYROSCOPE);
+  bno.getEvent(&linearAccelData, Adafruit_BNO055::VECTOR_LINEARACCEL);
+  bno.getEvent(&magnetometerData, Adafruit_BNO055::VECTOR_MAGNETOMETER);
+  bno.getEvent(&accelerometerData, Adafruit_BNO055::VECTOR_ACCELEROMETER);
+  bno.getEvent(&gravityData, Adafruit_BNO055::VECTOR_GRAVITY);
+
+  int8_t boardTemp = bno.getTemp();
+
+  uint8_t sys_calib, gyro_calib, accel_calib, mag_calib = 0;
+  bno.getCalibration(&sys_calib, &gyro_calib, &accel_calib, &mag_calib);
+
+  
+  
 //  Serial.print("X: ");
 //  Serial.print(event.orientation.x, 4);
 //  Serial.print("\tY: ");

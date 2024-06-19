@@ -76,7 +76,8 @@ class CanMotor(object):
                                  "rec_time": -1,
                                  "num_send_retries": send_retries,
                                  "num_rec_retries": -1,
-                                 "data": send_msg.data})
+                                 "data": send_msg.data,
+                                 "correct_response": 0})
 
         if wait_for_response:
             num_rec_retries = 0
@@ -93,6 +94,10 @@ class CanMotor(object):
                 
             rec_time = time.time() - self.wakeup_time
             rec_msg.timestamp = rec_msg.timestamp - self.wakeup_time
+            if rec_msg.data[0] == send_msg.data[0]:
+                correct_response = 1
+            else:
+                correct_response = "bad_response"
             self.message_log.append({"id": rec_msg.arbitration_id-321,
                                      "command": command_dict[hex(send_msg.data[0])],
                                      "is_rx": rec_msg.is_rx,
@@ -100,12 +105,13 @@ class CanMotor(object):
                                      "rec_time": rec_msg.timestamp,
                                      "num_send_retries": -1,
                                      "num_rec_retries": num_rec_retries,
-                                     "data": rec_msg.data})
+                                     "data": rec_msg.data,
+                                     "correct_response": correct_response})
             return rec_msg
         else:
             return None
 
-    def send(self, data, wait_for_response = False, num_time_outs = 100):
+    def send(self, data, wait_for_response = True, num_time_outs = 100):
         '''
             Wrapper for _send that retries if timeout occurs. This is useful since the motors can be finicky
         '''
@@ -194,6 +200,7 @@ class CanMotor(object):
             print("=================================")
             print(f"Received incorrect response message to command 0x9c, got reply to command {hex(msg.data[0])}")
             print("=================================")
+            # input("Continue?")
 
 
         # encoder readings are in (high byte, low byte)
@@ -207,7 +214,7 @@ class CanMotor(object):
         else:
             return (self.utils.encToAmp(torque), 
                 self.utils.degToRad(speed), 
-                self.utils.degToRad(self.utils.toDegrees(position)))
+                self.utils.degToRad(self.utils.toDegrees(position, enc_value_range=32768*2)))
     
 
     def read_singleturn_position(self):
@@ -257,6 +264,8 @@ class CanMotor(object):
             print("=================================")
             print(f"Received incorrect response message to command 0x92, got reply to command {hex(msg.data[0])}")
             print("=================================")
+            # input("Continue?")
+
         
         # CANNOT USE msg.data directly because it is not iterable for some reason...
         # This is a hack to fix the bug

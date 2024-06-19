@@ -21,7 +21,7 @@ class CanArduinoSensors(object):
     while True:
       # Checking canbus message recieved with keyboard interrupt saftey
       try:
-        print("trying to receive")
+        # print("trying to receive")
         recv_msg = self.canBus.recv()
         if recv_msg.arbitration_id == self.id:
           break
@@ -37,7 +37,7 @@ class CanArduinoSensors(object):
     '''
     for i in range(num_time_outs):
         try:
-            print(f'Trying to send message {hex(data[0])}')
+            # print(f'Trying to send message {hex(data[0])}')
             return self._send(data, send_retries=i)
         except TimeoutError:
             continue

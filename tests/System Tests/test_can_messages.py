@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
 	# Run commands in loop, with variable frequency, print/saving message information
 	command_rate = 100 # Hz, frequency with which to send motor commands
-	run_time = 3 # s
+	run_time = 5 # s
 
 	input("Press Enter to start command loop.")
 	t_start = time.time()
