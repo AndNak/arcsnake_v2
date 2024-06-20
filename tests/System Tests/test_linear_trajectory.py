@@ -46,7 +46,7 @@ if __name__ == "__main__":
     # Trajectory params
     angle_to = math.pi / 2 # target angle in radians
     command_speed = 0.2 # radians per second
-    num_waypoints = 1000 # num trajectory waypoints
+    num_waypoints = 1500 # num trajectory waypoints
     t_loop = abs(angle_to / command_speed) / num_waypoints
 
     test_name = f"set_pi2_w{command_speed}_testingreadposfunctions"
@@ -127,7 +127,7 @@ if __name__ == "__main__":
 
     joint1.pos_ctrl(joint1_zero_pos, 0.5)
     time.sleep(5)
-    joint1.save_message_log("/home/myeoh/Documents/GitHub/arcsnake_v2/tests/System Tests/TestCanMessages/linear_traj_test.csv")
+    joint1.save_message_log("/home/myeoh/Documents/GitHub/arcsnake_v2/tests/System Tests/TestCanMessages/linear_traj_test_post_recv_fix.csv")
     joint1.motor_off()
 
 

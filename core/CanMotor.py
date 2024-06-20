@@ -69,7 +69,7 @@ class CanMotor(object):
         send_msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False, is_rx=False, timestamp = time.time() - self.wakeup_time)
         self.canBus.recv(0.0) # Clear receive buffer
         self.canBus.send(send_msg)
-        send_time = time.time() - self.wakeup_time
+        bad_response_flag = "None"
         self.message_log.append({"id": send_msg.arbitration_id-321,
                                  "command": command_dict[hex(send_msg.data[0])],
                                  "is_rx": send_msg.is_rx,
@@ -78,7 +78,7 @@ class CanMotor(object):
                                  "num_send_retries": send_retries,
                                  "num_rec_retries": -1,
                                  "data": send_msg.data,
-                                 "correct_response": 0})
+                                 "bad_response_flag": bad_response_flag})
 
         if wait_for_response:
             num_rec_retries = 0
@@ -86,6 +86,9 @@ class CanMotor(object):
                 # Checking canbus message recieved with keyboard interrupt saftey
                 try:
                     recv_msg = self.canBus.recv()
+                    if recv_msg.data[0] != send_msg.data[0]:
+                        bad_response_flag = "bad_response"
+                        input("bad response, continue?")
                     if recv_msg.arbitration_id == self.id and recv_msg.data[0] == send_msg.data[0]:
                         break
                     num_rec_retries += 1
@@ -95,10 +98,6 @@ class CanMotor(object):
                 
             rec_time = time.time() - self.wakeup_time
             recv_msg.timestamp = recv_msg.timestamp - self.wakeup_time
-            if recv_msg.data[0] == send_msg.data[0]:
-                correct_response = 1
-            else:
-                correct_response = "bad_response"
             self.message_log.append({"id": recv_msg.arbitration_id-321,
                                      "command": command_dict[hex(send_msg.data[0])],
                                      "is_rx": recv_msg.is_rx,
@@ -107,7 +106,7 @@ class CanMotor(object):
                                      "num_send_retries": -1,
                                      "num_rec_retries": num_rec_retries,
                                      "data": recv_msg.data,
-                                     "correct_response": correct_response})
+                                     "bad_response_flag": bad_response_flag})
             return recv_msg
         else:
             return None
