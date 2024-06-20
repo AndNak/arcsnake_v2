@@ -67,6 +67,7 @@ class CanMotor(object):
     @timeout(0.005)
     def _send(self, data, wait_for_response = True, send_retries=0):
         send_msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False, is_rx=False, timestamp = time.time() - self.wakeup_time)
+        self.canBus.recv(0.0) # Clear receive buffer
         self.canBus.send(send_msg)
         send_time = time.time() - self.wakeup_time
         self.message_log.append({"id": send_msg.arbitration_id-321,
@@ -84,8 +85,8 @@ class CanMotor(object):
             while True:
                 # Checking canbus message recieved with keyboard interrupt saftey
                 try:
-                    rec_msg = self.canBus.recv()
-                    if rec_msg.arbitration_id == self.id:
+                    recv_msg = self.canBus.recv()
+                    if recv_msg.arbitration_id == self.id and recv_msg.data[0] == send_msg.data[0]:
                         break
                     num_rec_retries += 1
                 except (KeyboardInterrupt, ValueError) as e:
@@ -93,21 +94,21 @@ class CanMotor(object):
                     break
                 
             rec_time = time.time() - self.wakeup_time
-            rec_msg.timestamp = rec_msg.timestamp - self.wakeup_time
-            if rec_msg.data[0] == send_msg.data[0]:
+            recv_msg.timestamp = recv_msg.timestamp - self.wakeup_time
+            if recv_msg.data[0] == send_msg.data[0]:
                 correct_response = 1
             else:
                 correct_response = "bad_response"
-            self.message_log.append({"id": rec_msg.arbitration_id-321,
+            self.message_log.append({"id": recv_msg.arbitration_id-321,
                                      "command": command_dict[hex(send_msg.data[0])],
-                                     "is_rx": rec_msg.is_rx,
+                                     "is_rx": recv_msg.is_rx,
                                      "send_time": send_msg.timestamp,
-                                     "rec_time": rec_msg.timestamp,
+                                     "rec_time": recv_msg.timestamp,
                                      "num_send_retries": -1,
                                      "num_rec_retries": num_rec_retries,
-                                     "data": rec_msg.data,
+                                     "data": recv_msg.data,
                                      "correct_response": correct_response})
-            return rec_msg
+            return recv_msg
         else:
             return None
 
