@@ -8,7 +8,7 @@ import pandas as pd
 
 
 class CanMotor(object):
-    def __init__(self, bus, motor_id, gear_ratio, MIN_POS = -999 * 2 * math.pi, MAX_POS = 999 * 2 * math.pi):
+    def __init__(self, bus, motor_id, gear_ratio, MIN_POS = -999 * 2 * math.pi, MAX_POS = 999 * 2 * math.pi, motor_type="screw"):
         """Intializes motor with CAN communication 
         -
 
@@ -52,6 +52,11 @@ class CanMotor(object):
         self.lastpos = self.read_singleturn_position()
         self.curpos = 0
 
+        if motor_type == "joint":
+            self.enc_value_range = 2*32768
+        elif motor_type == "screw":
+            self.enc_value_range = 16383
+
         
 
     
@@ -67,18 +72,17 @@ class CanMotor(object):
     @timeout(0.005)
     def _send(self, data, wait_for_response = True, send_retries=0):
         send_msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False, is_rx=False, timestamp = time.time() - self.wakeup_time)
-        self.canBus.recv(0.0) # Clear receive buffer
         self.canBus.send(send_msg)
-        bad_response_flag = "None"
-        self.message_log.append({"id": send_msg.arbitration_id-321,
-                                 "command": command_dict[hex(send_msg.data[0])],
-                                 "is_rx": send_msg.is_rx,
-                                 "send_time": send_msg.timestamp,
-                                 "rec_time": -1,
-                                 "num_send_retries": send_retries,
-                                 "num_rec_retries": -1,
-                                 "data": send_msg.data,
-                                 "bad_response_flag": bad_response_flag})
+        # bad_response_flag = "None"
+        # self.message_log.append({"id": send_msg.arbitration_id-321,
+        #                          "command": command_dict[hex(send_msg.data[0])],
+        #                          "is_rx": send_msg.is_rx,
+        #                          "send_time": send_msg.timestamp,
+        #                          "rec_time": -1,
+        #                          "num_send_retries": send_retries,
+        #                          "num_rec_retries": -1,
+        #                          "data": send_msg.data,
+        #                          "bad_response_flag": bad_response_flag})
 
         if wait_for_response:
             num_rec_retries = 0
@@ -86,9 +90,12 @@ class CanMotor(object):
                 # Checking canbus message recieved with keyboard interrupt saftey
                 try:
                     recv_msg = self.canBus.recv()
+                    # Trying to detect if/when bad responses occur
                     if recv_msg.data[0] != send_msg.data[0]:
                         bad_response_flag = "bad_response"
-                        input("bad response, continue?")
+                        print("=================================")
+                        print(f"Received incorrect response message to command {hex(send_msg.data[0])}, got reply to command {hex(recv_msg.data[0])}")
+                        print("=================================")
                     if recv_msg.arbitration_id == self.id and recv_msg.data[0] == send_msg.data[0]:
                         break
                     num_rec_retries += 1
@@ -96,17 +103,16 @@ class CanMotor(object):
                     print(e)
                     break
                 
-            rec_time = time.time() - self.wakeup_time
-            recv_msg.timestamp = recv_msg.timestamp - self.wakeup_time
-            self.message_log.append({"id": recv_msg.arbitration_id-321,
-                                     "command": command_dict[hex(send_msg.data[0])],
-                                     "is_rx": recv_msg.is_rx,
-                                     "send_time": send_msg.timestamp,
-                                     "rec_time": recv_msg.timestamp,
-                                     "num_send_retries": -1,
-                                     "num_rec_retries": num_rec_retries,
-                                     "data": recv_msg.data,
-                                     "bad_response_flag": bad_response_flag})
+            # recv_msg.timestamp = recv_msg.timestamp - self.wakeup_time
+            # self.message_log.append({"id": recv_msg.arbitration_id-321,
+            #                          "command": command_dict[hex(send_msg.data[0])],
+            #                          "is_rx": recv_msg.is_rx,
+            #                          "send_time": send_msg.timestamp,
+            #                          "rec_time": recv_msg.timestamp,
+            #                          "num_send_retries": -1,
+            #                          "num_rec_retries": num_rec_retries,
+            #                          "data": recv_msg.data,
+            #                          "bad_response_flag": bad_response_flag})
             return recv_msg
         else:
             return None
@@ -196,12 +202,6 @@ class CanMotor(object):
             (AMPs, RAD/S, RAD): Returns tuple of motor torque, speed, and position
         """
         msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
-        if msg.data[0] != eval("0x9c"):
-            print("=================================")
-            print(f"Received incorrect response message to command 0x9c, got reply to command {hex(msg.data[0])}")
-            print("=================================")
-            # input("Continue?")
-
 
         # encoder readings are in (high byte, low byte)
         torque   = self.utils.readBytes(msg.data[3], msg.data[2])
@@ -214,7 +214,7 @@ class CanMotor(object):
         else:
             return (self.utils.encToAmp(torque), 
                 self.utils.degToRad(speed), 
-                self.utils.degToRad(self.utils.toDegrees(position, enc_value_range=32768*2)))
+                self.utils.degToRad(self.utils.toDegrees(position, self.enc_value_range)))
     
 
     def read_singleturn_position(self):
@@ -256,16 +256,6 @@ class CanMotor(object):
         -
         '''
         msg = self.send([0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
-
-        # print("=================================")
-        # print(f"Read Multiturn Position first byte: {msg.data[0]}")
-        # print("=================================")
-        if msg.data[0] != eval("0x92"):
-            print("=================================")
-            print(f"Received incorrect response message to command 0x92, got reply to command {hex(msg.data[0])}")
-            print("=================================")
-            # input("Continue?")
-
         
         # CANNOT USE msg.data directly because it is not iterable for some reason...
         # This is a hack to fix the bug

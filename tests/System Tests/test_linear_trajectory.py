@@ -46,7 +46,7 @@ if __name__ == "__main__":
     # Trajectory params
     angle_to = math.pi / 2 # target angle in radians
     command_speed = 0.2 # radians per second
-    num_waypoints = 1500 # num trajectory waypoints
+    num_waypoints = 1600 # num trajectory waypoints
     t_loop = abs(angle_to / command_speed) / num_waypoints
 
     test_name = f"set_pi2_w{command_speed}_testingreadposfunctions"

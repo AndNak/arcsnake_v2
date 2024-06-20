@@ -75,8 +75,8 @@ class CanUtils:
         result.reverse()
         return result
 
-    def toDegrees(self, enc_position, enc_value_range=32766):
-        """Convert 14-bit encoder reading (range 0~32766) to degrees
+    def toDegrees(self, enc_position, enc_value_range):
+        """Convert 14-bit encoder reading to degrees
 
         Args:
             enc_position (_type_): _description_
