@@ -8,7 +8,7 @@ import pandas as pd
 
 
 class CanMotor(object):
-    def __init__(self, bus, motor_id, gear_ratio, MIN_POS = -999 * 2 * math.pi, MAX_POS = 999 * 2 * math.pi, motor_type="screw"):
+    def __init__(self, bus, motor_id, gear_ratio, MIN_POS = -999 * 2 * math.pi, MAX_POS = 999 * 2 * math.pi, motor_type = "screw"):
         """Intializes motor with CAN communication 
         -
 
@@ -26,6 +26,11 @@ class CanMotor(object):
         self.gear_ratio = gear_ratio
         self.message_log = []
         self.wakeup_time = time.time()
+
+        if motor_type == "joint":
+            self.enc_value_range = 2*32768
+        elif motor_type == "screw":
+            self.enc_value_range = 16383
 
         ############### PREVIOUS METHOD. DOES NOT WORK
         # id = "0x"
@@ -50,14 +55,7 @@ class CanMotor(object):
         # By default, the motor is unpowered upon intiailization
         self.motor_stop()
         self.lastpos = self.read_singleturn_position()
-        self.curpos = 0
-
-        if motor_type == "joint":
-            self.enc_value_range = 2*32768
-        elif motor_type == "screw":
-            self.enc_value_range = 16383
-
-        
+        self.curpos = 0        
 
     
 

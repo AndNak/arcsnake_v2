@@ -25,7 +25,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
     gear_ratio = 1
-    motor_id = 4
+    motor_id = 0
 
     while True:
         try:
@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     ### Change these as needed
     
-    run_time = 10 # in second
+    run_time = 3 # in second
     set_num = 4
     test_num = 7
     command_speed = 10 # in radians per second\
@@ -64,7 +64,7 @@ if __name__ == "__main__":
     Kp = 255
     Ki = 50
     TC = 2000
-    test_name = f'config6_ID4_v{command_speed}_Kp{Kp}_Ki{Ki}'
+    test_name = f'idler_pulley_stall_test_v{command_speed}_Kp{Kp}_Ki{Ki}'
     data_fname = f'tests/System Tests/ScrewShellSpinTests/{test_name}'
 
     time_data   = []
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     # screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
     # print(screwMotor.read_motor_pid())
     input("Enter to start spinning")
-    time.sleep(2)
+    time.sleep(5)
     
     try:
         # screwMotor.torque_ctrl(command_torque)
