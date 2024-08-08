@@ -25,7 +25,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
     gear_ratio = 1
-    motor_id = 0
+    motor_id = 1
 
     while True:
         try:
@@ -56,19 +56,20 @@ if __name__ == "__main__":
 
     ### Change these as needed
     
-    run_time = 3 # in second
+    run_time = 30 # in second
     set_num = 4
     test_num = 7
-    command_speed = 10 # in radians per second\
+    command_speed = 30 # in radians per second\
     command_torque = 10
     Kp = 255
     Ki = 50
     TC = 2000
-    test_name = f'idler_pulley_stall_test_v{command_speed}_Kp{Kp}_Ki{Ki}'
+    test_name = f'assembled_screwblock{motor_id}_v{command_speed}_Kp{Kp}_Ki{Ki}'
     data_fname = f'tests/System Tests/ScrewShellSpinTests/{test_name}'
 
     time_data   = []
     torque_data = []
+
     angular_speed_data = []
     linear_speed_data = []
 
@@ -158,7 +159,7 @@ if __name__ == "__main__":
     plt.figure()
     plt.plot(time_data, torque_data)
     plt.plot(time_data, angular_speed_data)
-    plt.title(f"Kp = {Kp}, Ki = {Ki},Set Vel = {command_speed}")
+    plt.title(f"Kp = {Kp}, Ki = {Ki},Set Vel = {command_speed}. Mean Torque = {np.mean(torque_data)}")
     plt.legend(['Torque', 'Angular Speed'])
     # plt.ylim([0, 20])
     # plt.yticks(np.linspace(0, 20, 11))
