@@ -39,14 +39,14 @@ if __name__ == "__main__":
     test_name = "assembled_screwblocks_014"
 
     print("Trying to initialize motors")
-    # joint1 = CanMotor(can0, 9, gear_ratio)
-    # joint2 = CanMotor(can0, 6, gear_ratio)
+    joint1 = CanMotor(can0, 9, gear_ratio)
+    joint2 = CanMotor(can0, 6, gear_ratio)
     # joint3 = CanMotor(can0, 7, gear_ratio)
     # joint4 = CanMotor(can0, 8, gear_ratio)
     # joint5 = CanMotor(can0, 5, gear_ratio)
     # joint6 = CanMotor(can0, 10, gear_ratio)
     screw1 = CanMotor(can0, 4, 1)
-    screw2 = CanMotor(can0, 1, 1)
+    # screw2 = CanMotor(can0, 1, 1)
     # screw3 = CanMotor(can0, 0, 1)
     # screw4 = CanMotor(can0, 4, 1)
     # screw5 = CanMotor(can0, 6, 1)
@@ -56,26 +56,26 @@ if __name__ == "__main__":
     input('Press Enter to read joint current pos')
     joint1_pos = joint1.read_multiturn_position()
     joint2_pos = joint2.read_multiturn_position()
-    joint3_pos = joint3.read_multiturn_position()
-    joint4_pos = joint4.read_multiturn_position()
-    joint5_pos = joint5.read_multiturn_position()
-    joint6_pos = joint6.read_multiturn_position()
+    # joint3_pos = joint3.read_multiturn_position()
+    # joint4_pos = joint4.read_multiturn_position()
+    # joint5_pos = joint5.read_multiturn_position()
+    # joint6_pos = joint6.read_multiturn_position()
 
     print('Joint 1 pos: ', joint1_pos)
     print('Joint 2 pos: ', joint2_pos)
-    print('Joint 3 pos: ', joint3_pos)
-    print('Joint 4 pos: ', joint4_pos)
-    print('Joint 5 pos: ', joint5_pos)
-    print('Joint 6 pos: ', joint6_pos)
+    # print('Joint 3 pos: ', joint3_pos)
+    # print('Joint 4 pos: ', joint4_pos)
+    # print('Joint 5 pos: ', joint5_pos)
+    # print('Joint 6 pos: ', joint6_pos)
 
 
     input('Press Enter to set joint current pos')
     joint1.pos_ctrl(joint1_pos, 0.5) # set read pos
     joint2.pos_ctrl(joint2_pos, 0.5) # set read pos
-    joint3.pos_ctrl(joint3_pos, 0.5) # set read pos
-    joint4.pos_ctrl(joint4_pos, 0.5) # set read pos
-    joint5.pos_ctrl(joint5_pos, 0.5) # set read pos
-    joint6.pos_ctrl(joint6_pos, 0.5) # set read pos
+    # joint3.pos_ctrl(joint3_pos, 0.5) # set read pos
+    # joint4.pos_ctrl(joint4_pos, 0.5) # set read pos
+    # joint5.pos_ctrl(joint5_pos, 0.5) # set read pos
+    # joint6.pos_ctrl(joint6_pos, 0.5) # set read pos
 
     # while True:
     #     try:
@@ -131,8 +131,8 @@ if __name__ == "__main__":
     # Roll
     command_speed = 10
     screw1.speed_ctrl(command_speed)
-    screw2.speed_ctrl(command_speed)
-    screw3.speed_ctrl(command_speed)
+    # screw2.speed_ctrl(command_speed)
+    # screw3.speed_ctrl(command_speed)
     # screw4.speed_ctrl(command_speed)
     # time.sleep(0.1)
     # print(screw1.speed_ctrl(5))
@@ -260,13 +260,13 @@ if __name__ == "__main__":
         time.sleep(0.000001)
         joint2.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint2_pos)
         time.sleep(0.000001)
-        joint3.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint3_pos)
-        time.sleep(0.000001)
-        joint4.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint4_pos)
-        time.sleep(0.000001)
-        joint5.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint5_pos)
-        time.sleep(0.000001)
-        joint6.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint6_pos)
+        # joint3.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint3_pos)
+        # time.sleep(0.000001)
+        # joint4.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint4_pos)
+        # time.sleep(0.000001)
+        # joint5.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint5_pos)
+        # time.sleep(0.000001)
+        # joint6.pos_ctrl(amp*math.sin(2*math.pi*i/num_samples) + joint6_pos)
 
         # (cur_torque, cur_speed, cur_s_pos) = joint1.read_motor_status()
         # joint2.pos_ctrl(amp*math.sin(2*math.pi*i/500 + math.pi/2) + joint2_zero_pos)
@@ -286,13 +286,13 @@ if __name__ == "__main__":
     # input('Press Enter to stop motors')
     joint1.motor_off()
     joint2.motor_off()
-    joint3.motor_off()
-    joint4.motor_off()
-    joint5.motor_off()
-    joint6.motor_off()
+    # joint3.motor_off()
+    # joint4.motor_off()
+    # joint5.motor_off()
+    # joint6.motor_off()
     screw1.motor_off()
-    screw2.motor_off()
-    screw3.motor_off()
+    # screw2.motor_off()
+    # screw3.motor_off()
     # screw4.motor_off()
     # screw5.motor_off()
 

@@ -25,7 +25,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
     gear_ratio = 1
-    motor_id = 1
+    motor_id = 3
 
     while True:
         try:
@@ -56,16 +56,16 @@ if __name__ == "__main__":
 
     ### Change these as needed
     
-    run_time = 30 # in second
+    run_time = 5 # in second
     set_num = 4
     test_num = 7
-    command_speed = 30 # in radians per second\
+    command_speed = 20 # in radians per second
     command_torque = 10
     Kp = 255
     Ki = 50
     TC = 2000
-    test_name = f'assembled_screwblock{motor_id}_v{command_speed}_Kp{Kp}_Ki{Ki}'
-    data_fname = f'tests/System Tests/ScrewShellSpinTests/{test_name}'
+    test_name = f'assembled_screwblock{motor_id}Damage_v{command_speed}_Kp{Kp}_Ki{Ki}'
+    data_fname = f'tests/System Tests/TangentForceTests/{test_name}'
 
     time_data   = []
     torque_data = []
