@@ -35,7 +35,7 @@ if __name__ == "__main__":
       # elif key == 'o':
       #   print(sensor.readImuOrientation())
       input("read")
-      print("Humidity, Temp, and Pressure: ", sensor.readHumidityAndTemperature())
+      # print("Humidity, Temp, and Pressure: ", sensor.readHumidityAndTemperature())
       printAllImuData(sensor)
       # time.sleep(1)
 

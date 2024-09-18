@@ -25,7 +25,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
     gear_ratio = 1
-    motor_id = 3
+    motor_id = 4
 
     while True:
         try:
@@ -59,12 +59,12 @@ if __name__ == "__main__":
     run_time = 10 # in second
     set_num = 4
     test_num = 7
-    command_speed = 10 # in radians per second
+    command_speed = 30 # in radians per second
     command_torque = 10
-    Kp = 255
+    Kp = 200
     Ki = 30
     TC = 2000
-    test_name = f'assembled_screwblock{motor_id}_v{command_speed}_Kp{Kp}_Ki{Ki}_fullshellOLD_BESTCASE_errorflagging'
+    test_name = f'assembled_screwblock{motor_id}_v{command_speed}_Kp{Kp}_Ki{Ki}_FULLNEWSHELL'
     data_fname = f'tests/System Tests/ScrewShellSpinTests/{test_name}'
 
     time_data   = []
@@ -86,11 +86,11 @@ if __name__ == "__main__":
     # screwMotor.override_PI_values(100, 100, Kp, Ki, 50, 50)
     # print(screwMotor.read_motor_pid())
     input("Enter to start spinning")
-    time.sleep(5)
-    
+    # time.sleep(5)
+    screwMotor.speed_ctrl_rampup(command_speed, command_speed/5)
     try:
         # screwMotor.torque_ctrl(command_torque)
-        screwMotor.speed_ctrl(command_speed)
+        # screwMotor.speed_ctrl(command_speed)
         t0 = time.time()
         with open(f"{data_fname}.csv", mode='w') as test_data:
             test_writer = csv.writer(test_data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -123,8 +123,6 @@ if __name__ == "__main__":
                     except TimeoutError:
                         print('Timeout Error')
                         continue
-
-                screwMotor.speed_ctrl(command_speed)
                 
                 print(row)
                 test_writer.writerow(row)

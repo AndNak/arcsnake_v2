@@ -21,6 +21,9 @@ if __name__ == "__main__":
   try:
     while True: 
       val = float(input())
+      error_flag = testMotor.read_motor_err_and_voltage()[3]
+      if error_flag != "No errors":
+        print(error_flag)
       if controlMethod == 1:
         testMotor.pos_ctrl(val * 2 * 3.14 ,2) 
       elif controlMethod == 2:
