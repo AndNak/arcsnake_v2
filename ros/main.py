@@ -8,7 +8,10 @@ from typing import List # For type hinting
 import can
 from core.CanMotor import CanMotor 
 from core.CANHelper import init, cleanup
+from core.CanArduinoSensors import CanArduinoSensors
 
+
+GEAR_RATIO = 11
 
 class Segment(object):
     '''
@@ -22,13 +25,13 @@ class Segment(object):
         self.motors = []
         if uJointID_1 is not None:
             self.motor_names.append('uJoint1')
-            self.motors.append(CanMotor(canBus, uJointID_1, 11))
+            self.motors.append(CanMotor(canBus, uJointID_1, GEAR_RATIO))
         if screwMotorID is not None:
             self.motor_names.append('screw')
             self.motors.append(CanMotor(canBus, screwMotorID, 1))
         if uJointID_2 is not None:
             self.motor_names.append('uJoint2')
-            self.motors.append(CanMotor(canBus, uJointID_2, 11))
+            self.motors.append(CanMotor(canBus, uJointID_2, GEAR_RATIO))
         
     def get_pos(self):
         '''
@@ -85,7 +88,8 @@ class ARCSnakeROS(Node):
     '''
         Joint angle information for each segment of the snake
     '''
-    def __init__(self, list_of_segments:List[Segment], time_period:float = 0.1):
+    def __init__(self, list_of_segments: List[Segment], time_period: float = 0.1,
+                 list_of_can_arduino_sensors: List[CanArduinoSensors] = None):
         super().__init__('arcsnake')
         self.list_of_segments = list_of_segments
         self.publisher_ = self.create_publisher(JointState, '/arcsnake/joints_current', 10)
@@ -105,6 +109,12 @@ class ARCSnakeROS(Node):
             10
         )
         self.state_subscription # prevent unused variable warning
+
+        # IMU Publishers initialization
+        # self.temp_publishers = []
+        # if list_of_can_arduino_sensors:
+        #     for can_arduino_sensor in list_of_can_arduino_sensors:
+        #         self.temp_publishers.append()
 
         self.get_logger().info("ARCSnakeROS node initialized")
 
@@ -160,9 +170,10 @@ def main(args=None):
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
     # Initialize segments
-    segment_list = [ Segment(can0, None, 0, 1),
-                     Segment(can0, 4, 2, 3),
-                     Segment(can0, 6, 5, None)]
+    segment_list = [ Segment(can0, None, 0, 8),
+                     Segment(can0, 10, 1, 5),
+                     Segment(can0, 6, 4, 9),
+                     Segment(can0, 7, 3, None)]
 
     # Initialize ROS
     rclpy.init(args=args)
