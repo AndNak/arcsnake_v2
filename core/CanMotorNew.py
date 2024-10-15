@@ -9,7 +9,8 @@ from dataclasses import dataclass
 
 @dataclass
 class MotorStatus:
-	position: float = 0
+	singleturn_position: float = 0
+	muliturn_position: float = 0
 	speed: float = 0
 	acceleration: float = 0
 	torque: float = 0
@@ -77,8 +78,69 @@ class CanMotor(object):
 		Processes a message received by the Listener that matches this motor's ID
 		'''
 		# filter based on message type
-		if msg.data[0] == 0x9c:
-			self.motor_status.position = read_position_msg(msg)
+		
+		if msg.data[0] == 0x9a: # Read error and voltage
+			#TODO: Err state should alsouse data[6]. Please add this in and look at the error codes
+        #       Add a string return for the error state
+			temp = msg.data[1]
+			voltage = self.utils.readBytesList([msg.data[4], msg.data[3]]) / 10
+			# voltage_HB = msg.data[4]
+			# voltage_LB = msg.data[3]
+			err_state = msg.data[7]
+
+			# find err_state as string according to status table in doc
+			volt_bit = 1                              # bit 0
+			temp_bit = 8                              # bit 3
+			err_state_str = ["No errors"]             # string to return
+			# check voltage status bit
+			if err_state & volt_bit:
+				err_state_str[0] = ""
+				err_state_str.append("Low voltage protection flagged")
+			# check temperature status bit
+			if err_state & temp_bit:
+				err_state_str[0] = ""
+				err_state_str.append("Over temperature protection flagged")
+
+			if err_state_str[0] == "": err_state_str.pop(0)
+			err_state_str = ", ".join(err_state_str)
+
+			self.motor_status.temperature = temp
+			self.motor_status.voltage = voltage
+			self.motor_status.error_state = err_state_str
+
+			# print("Motor voltage = ", voltage, ", temperature = ", temp, ", Error State = ", err_state_str)
+			
+		elif msg.data[0] == 0x9c: # Read motor status (singleturn position, speed, torque)
+			# encoder readings are in (high byte, low byte)
+			torque = self.utils.readBytes(msg.data[3], msg.data[2])
+			torque = self.utils.encToAmp(torque)
+			speed = self.utils.readBytes(msg.data[5], msg.data[4]) / self.gear_ratio
+			speed = self.utils.degToRad(speed)
+			position = self.utils.readBytes(msg.data[7], msg.data[6]) / self.gear_ratio
+			position = self.utils.degToRad(self.utils.toDegrees(position))
+
+			self.motor_status.position = position
+			self.motor_status.speed = speed
+			self.motor_status.torque = torque
+
+			# print("Singleturn position = ", position, ", speed = ", speed, ", torque = ", torque)
+
+		elif msg.data[0] == 0x92: # Read multi-turn position
+			byte_list = []
+			for idx in range(1, 8):
+				byte_list.append(msg.data[idx])
+			byte_list.reverse()
+			decimal_position = self.utils.readBytesList(byte_list)
+			# Note: 0.01 scale is taken from dataset to convert multi-turn bits to degrees
+			multiturn_position = self.utils.degToRad(0.01*decimal_position/self.gear_ratio)
+
+			self.motor_status.multiturn_position = multiturn_position
+
+			# print("Multiturn position = ", multiturn_position)
+
+		
+
+        
 
 
 	'''
