@@ -10,13 +10,21 @@ class MotorListener(Listener):
 			self.set_motor_list(motor_list)
 
 	def set_motor_list(self, motor_list):
+		'''
+		Sets the list of CanMotor objects to process messages for
+
+		Args:
+			motor_list: list of CanMotor objects
+		'''
 		for motor in motor_list:
 			self.motors[motor.id] = motor	
 	
 	def on_message_received(self, msg):
+		'''
+		Called everytime Notifier notifies Listener object of a new message
+		'''
 		# Filter by arbitration ID
 		if msg.arbitration_id in self.motors.keys():
 			self.motors[msg.arbitration_id].process_message(msg)
 		else:
 			print(f"Received message from unknown motor: {msg.arbitration_id}")
-
