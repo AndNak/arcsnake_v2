@@ -56,6 +56,9 @@ class CanMotor(object):
 
 		# For storing current motor values, will be updated on receiving new messages
 		self.motor_data = MotorData()
+
+		# Store active tasks for stopping later
+		self.active_tasks = []
 	
 	# Initialize motor for operation
 	def initialize_motor(self):
@@ -65,10 +68,10 @@ class CanMotor(object):
 		TODO: Add a check to ensure motor actually receives these commands because we will only send one?
 		'''
 		# Clear motor errors and print for debug
-		self.read_temp_voltage_error()
+		self.read_status_once()
 		self.clear_error_flag()
 		self.motor_off()
-		self.motor_start()
+		self.motor_resume()
 	
 	# Called everytime a new message for this motor is recieved, filters according to msg type (first byte)
 	def proccess_msg(self, msg):
@@ -155,13 +158,20 @@ class CanMotor(object):
 		'''
 		msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False, is_rx=False)
 		task = self.canBus.send_periodic(msg, period, duration)
+		self.active_tasks.append(task)
 		return task
+	
+	# Stop all active tasks, empty active_tasks list
+	def stop_all_tasks(self):
+		for task in self.active_tasks:
+			task.stop()
+		self.active_tasks.clear()
 	
 	# util function for sending a single message, don't wait for reply
 	def _single_send(self, data):
 		'''
 		utility function for sending a single message, don't wait for reply
-		
+
 		Args:
 			data (byte list): data to send
 		'''
@@ -241,4 +251,27 @@ class CanMotor(object):
 		task = self._periodic_send(msg_data, period, duration)
 		return task
 
-	
+	def pos_ctrl_periodic(self, to_rad, max_speed = (1890*2*math.pi)/60):
+		'''
+		Periodic send for position control
+		Args:
+			to_rad (RAD): Set position
+			max_speed (RAD/s, optional): Set max allowable speed. Defaults to 20*2*math.pi.
+			**06/20/23 Note: 1890 rpm max given by motor spec sheet, tachometer test in lab (with motor "4") confirms it is close to 1800 rpm max
+
+		Returns:
+			task object that can be used to stop periodic send
+		'''
+		if to_rad > self.max_pos:
+			to_rad = self.max_pos
+		if to_rad < self.min_pos:
+			to_rad = self.min_pos
+		
+		# The least significant bit represents 0.01 degrees per second.
+		to_deg = 100 * self.utils.radToDeg(to_rad) * self.gear_ratio
+		max_speed = self.utils.radToDeg(max_speed) * self.gear_ratio
+		s_byte1, s_byte2 = self.utils.int_to_bytes(int(max_speed), 2)
+		byte1, byte2, byte3, byte4 = self.utils.int_to_bytes(int(to_deg), 4)
+		msg_data = [0xa4, 0x00, s_byte2, s_byte1, byte4, byte3, byte2, byte1]
+		task = self._periodic_send(msg_data)
+		return task
