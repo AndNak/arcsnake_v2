@@ -25,7 +25,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
     gear_ratio = 1
-    motor_id = 3
+    motor_id = 4
 
     while True:
         try:

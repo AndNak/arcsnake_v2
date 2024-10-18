@@ -54,14 +54,14 @@ if __name__ == "__main__":
 
     print("Trying to initialize motors")
     joint1 = CanMotor(can0, 8, gear_ratio)
-    joint2 = CanMotor(can0, 10, gear_ratio)
-    joint3 = CanMotor(can0, 5, gear_ratio)
-    joint4 = CanMotor(can0, 6, gear_ratio)
-    joint5 = CanMotor(can0, 9, gear_ratio)
+    joint2 = CanMotor(can0, 9, gear_ratio)
+    joint3 = CanMotor(can0, 6, gear_ratio)
+    joint4 = CanMotor(can0, 5, gear_ratio)
+    joint5 = CanMotor(can0, 10, gear_ratio)
     joint6 = CanMotor(can0, 7, gear_ratio)
     screw1 = CanMotor(can0, 0, 1)
-    screw2 = CanMotor(can0, 1, 1)
     screw3 = CanMotor(can0, 4, 1)
+    screw2 = CanMotor(can0, 1, 1)
     screw4 = CanMotor(can0, 3, 1)
     # screw5 = CanMotor(can0, 6, 1)
 
@@ -153,11 +153,11 @@ if __name__ == "__main__":
 
 
     # Roll
-    command_speed = 20
-    # screw1.speed_ctrl(command_speed)
-    # screw2.speed_ctrl(command_speed)
-    # screw3.speed_ctrl(command_speed)
-    # screw4.speed_ctrl(-command_speed)
+    command_speed = 10
+    screw1.speed_ctrl(-command_speed)
+    screw2.speed_ctrl(-command_speed)
+    screw3.speed_ctrl(command_speed)
+    screw4.speed_ctrl(-command_speed)
     
     # time.sleep(0.1)
     # print(screw1.speed_ctrl(5))

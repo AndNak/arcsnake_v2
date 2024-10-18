@@ -6,10 +6,11 @@ from std_msgs.msg import String
 from typing import List # For type hinting
 
 import can
-from core.CanMotor import CanMotor 
+from core.CanMotorNew import CanMotor
+from core.MotorListener import MotorListener
 from core.CANHelper import init, cleanup
 from core.CanArduinoSensors import CanArduinoSensors
-
+import time
 
 GEAR_RATIO = 11
 
@@ -32,24 +33,32 @@ class Segment(object):
         if uJointID_2 is not None:
             self.motor_names.append('uJoint2')
             self.motors.append(CanMotor(canBus, uJointID_2, GEAR_RATIO))
-        
+
+        # Start listening for messages
+        self.motor_listener = MotorListener(motor_list=self.motors)
+
+        # Initialize motors here
+        for motor in self.motors:
+            motor.initialize_motor()
+            time.sleep(0.1)
+
     def get_pos(self):
         '''
             Returns the current position of the segment
         '''
-        return [motor.read_multiturn_position() for motor in self.motors]
+        return [motor.motor_data.multiturn_position for motor in self.motors]
 
     def get_speed(self):
         '''
             Returns the current speed of the segment
         '''
-        return [motor.read_speed() for motor in self.motors]
+        return [motor.motor_data.speed for motor in self.motors]
     
     def get_torque(self):
         '''
             Returns the current torque of the segment
         '''
-        return [motor.read_torque() for motor in self.motors]
+        return [motor.motor_data.torque for motor in self.motors]
     
     def get_name(self):
         '''
@@ -58,8 +67,18 @@ class Segment(object):
         return self.motor_names
 
     def start(self):
+        '''
+            Starts/resumes all motors in the segment
+        '''
         for motor in self.motors:
-            motor.motor_start()
+            motor.motor_resume()
+
+            # Start reading periodic messages
+            motor.read_status_periodic(0.15)
+            motor.read_multiturn_periodic(0.15)
+            motor.read_motor_state_periodic(0.15)
+            motor.initialize_control_command(0.15)
+
 
     def stop(self):
         '''
@@ -67,22 +86,31 @@ class Segment(object):
         '''
         for motor in self.motors:
             motor.motor_stop()
+            
+            # Turn off periodic messages
+            motor.stop_all_tasks()
 
     def off(self):
+        '''
+            Turns off all motors in the segment
+        '''
         for motor in self.motors:
             motor.motor_off()
+
+            # Turn off periodic messages
+            motor.stop_all_tasks()
 
     def pos_ctrl(self, pos:float, motor_name:str):
         '''
             Sets the position of the motor with the given name
         '''
-        motor = self.motors[self.motor_names.index(motor_name)].pos_ctrl(pos)
+        self.motors[self.motor_names.index(motor_name)].set_control_mode("position", pos)
 
     def speed_ctrl(self, speed:float, motor_name:str):
         '''
             Sets the speed of the motor with the given name
         '''
-        motor = self.motors[self.motor_names.index(motor_name)].speed_ctrl(speed)
+        self.motors[self.motor_names.index(motor_name)].set_control_mode("speed", speed)
 
 class ARCSnakeROS(Node):
     '''
@@ -169,11 +197,18 @@ def main(args=None):
     init("can0")
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan')
 
+    input("Continue")
+
     # Initialize segments
     segment_list = [ Segment(can0, None, 0, 8),
-                     Segment(can0, 10, 1, 5),
                      Segment(can0, 6, 4, 9),
+                     Segment(can0, 10, 1, 5),
                      Segment(can0, 7, 3, None)]
+    
+    # Start Notifier to listen for messages
+    # THIS LINE OF CODE IS VERY IMPORTANT OTHERWISE THE LISTENERS WILL NOT WORK
+    # I.E. THE MOTORS POSITION/VELOCITY WILL NOT BE UPDATED
+    can.Notifier(can0, [segment.motor_listener for segment in segment_list])
 
     # Initialize ROS
     rclpy.init(args=args)
@@ -189,6 +224,9 @@ def main(args=None):
         segment.stop()
 
     cleanup("can0")
+    can0.shutdown()
+    print("Exiting")
+    exit(0)
 
 
 if __name__ == '__main__':

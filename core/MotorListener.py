@@ -23,6 +23,7 @@ class MotorListener(Listener):
 		'''
 		Called everytime Notifier notifies Listener object of a new message
 		'''
+		# print("Listener received message ", hex(msg.data[0]))
 		# Filter by arbitration ID
 		if msg.arbitration_id in self.motors.keys():
 			self.motors[msg.arbitration_id].process_message(msg)
