@@ -415,7 +415,20 @@ class CanMotor(object):
 			msg.data = [0xa4, 0x00, s_byte2, s_byte1, byte4, byte3, byte2, byte1]
 		
 		elif self.motor_data.command_mode == "torque":
-			raise NotImplementedError("Torque control not implemented yet")
+			# Set the data to the torque control command
+			target_torque = self.motor_data.target_torque
+
+			# Clip target torque to max and min
+			if target_torque > 32:
+				target_torque = 32
+			if target_torque < -32:
+				target_torque = -32
+
+			target_torque *= 2000/32 # Value range is -2000 to 2000
+			byte1, byte2 = self.utils.int_to_bytes(int(target_torque), 2)
+
+			# Set the data to the torque control command
+			msg.data = [0xa1, 0x00, 0x00, 0x00, byte2, byte1, 0x00, 0x00]
 		
 		elif self.motor_data.command_mode == "":
 			pass
@@ -462,6 +475,9 @@ class CanMotor(object):
 		elif mode == "position":
 			self.motor_data.command_mode = "position"
 			self.motor_data.target_position = target_value
+		elif mode == "torque":
+			self.motor_data.command_mode = "torque"
+			self.motor_data.target_torque = target_value
 		else:
 			print("Unknown control mode")
 			return
