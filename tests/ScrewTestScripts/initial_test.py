@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     # Initialize Motor
     print("Trying to initialize motors")
-    screwMotor = CanUJoint(can0, 1, 6, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
+    screwMotor = CanUJoint(can0, 0, 1, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     print('Motor initialization complete')
     
     # Move Motor

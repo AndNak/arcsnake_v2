@@ -109,16 +109,3 @@ class CanUtils:
         -
         """
         return in_amp * 2000 / 32
-
-
-    # # convert value from decimal to 4-byte hexadecimal
-    # def toBytes(self, amt):
-
-    #     amt = np.uint32(np.int32(amt))
-
-    #     byte1 = np.uint8((amt & 0xff000000) >> 24)
-    #     byte2 = np.uint8((amt & 0xff0000) >> 16)
-    #     byte3 = np.uint8((amt & 0xff00) >> 8)
-    #     byte4 = np.uint8((amt & 0xff))
-
-    #     return byte1, byte2, byte3, byte4

@@ -12,7 +12,7 @@ if __name__ == "__main__":
     core.CANHelper.init("can0") # Intiailize can0
     can0 = can.ThreadSafeBus(channel='can0', bustype='socketcan') # Create can bus object 
 
-    motor_id = 1
+    motor_id = 0
     gear_ratio = 1
     testMotor = CanUJoint(can0, motor_id, gear_ratio) # Initialize motor with can bus object 
     

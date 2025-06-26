@@ -1,6 +1,6 @@
 # Class for motor can listener, which handles received messages and processes them
-import can
 from can import Listener, Notifier, Message
+
 
 class MotorListener(Listener):
 	# Initialize the listener with a list of CanMotor objects
@@ -23,9 +23,15 @@ class MotorListener(Listener):
 		'''
 		Called everytime Notifier notifies Listener object of a new message
 		'''
-		# print("Listener received message ", hex(msg.data[0]))
+		# print("Listener received message ", msg)
 		# Filter by arbitration ID
 		if msg.arbitration_id in self.motors.keys():
 			self.motors[msg.arbitration_id].process_message(msg)
+		
+		elif msg.arbitration_id == 4: print()
+		
 		else:
-			print(f"Received message from unknown motor: {msg.arbitration_id}")
+			print(f"~~~~~Received message from unknown motor: {msg.arbitration_id}~~~~~~~~~")
+
+
+			

@@ -112,6 +112,12 @@ class Segment(object):
         '''
         self.motors[self.motor_names.index(motor_name)].set_control_mode("speed", speed)
 
+    def torque_ctrl(self, torque:float, motor_name:str):
+        '''
+            Sets the torque of the motor with the given name
+        '''
+        self.motors[self.motor_names.index(motor_name)].set_control_mode("torque", torque)
+
 class ARCSnakeROS(Node):
     '''
         Joint angle information for each segment of the snake
@@ -161,7 +167,11 @@ class ARCSnakeROS(Node):
             if motor_name == 'screw':
                 self.list_of_segments[seg_num].speed_ctrl(msg.velocity[idx], motor_name)
             else:
-                self.list_of_segments[seg_num].pos_ctrl(msg.position[idx], motor_name)
+                # WARNING: THE TORQUE OVERRIDES POSITOIN CONTROL IF IT IS NOT ZERO
+                if msg.effort[idx] != 0:
+                    self.list_of_segments[seg_num].torque_ctrl(msg.effort[idx], motor_name)
+                else:
+                    self.list_of_segments[seg_num].pos_ctrl(msg.position[idx], motor_name)
 
     def state_listener_callback(self, msg):
         if msg.data == 'stop':
@@ -201,8 +211,8 @@ def main(args=None):
 
     # Initialize segments
     segment_list = [ Segment(can0, None, 0, 8),
-                     Segment(can0, 6, 4, 9),
                      Segment(can0, 10, 1, 5),
+                     Segment(can0, 6, 4, 9),
                      Segment(can0, 7, 3, None)]
     
     # Start Notifier to listen for messages

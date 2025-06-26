@@ -1,6 +1,6 @@
 import can
 import math
-from .CanUtils import CanUtils, command_dict
+from .CanUtils import CanUtils
 from .timeout import timeout
 import time
 from core.timeout import TimeoutError
@@ -33,10 +33,9 @@ class CanMotor(object):
 			  MAX_SPEED:float = (1890*2*math.pi)/60):
 		"""Intializes motor object 
 		-
-
 		Args:
 			bus (can0 or can1): CAN Bus that the motor is connected to
-			motor_id (int) Set motor_id from 0-31. Can be determined by decimal number of the dip switches 
+			motor_id (int) Set motor_id from 0-15. Can be determined by decimal number of the dip switches 
 				Ex: If the dip switches are set to 0000, the motor_id would be 0. Since 0000 in binary to decimal is 0. 
 			gear_ratio (int): Set gear ratio between motor -> output. 
 				Ex: RMD X8 Motor has a 6:1 planteary gear ratio so this value would be 6
@@ -80,13 +79,14 @@ class CanMotor(object):
 		self.read_status_once()
 		self.clear_error_flag()
 		self.motor_off()
-		# self.motor_resume()
 	
 	# Called everytime a new message for this motor is recieved, filters according to msg type (first byte)
 	def process_message(self, msg):
 		'''
 		Processes a message received by the Listener that matches this motor's ID
 		'''
+
+		# print("Processing message ", msg)
 		
 		# Exit early if it is a transmitted message
 		if not msg.is_rx:
@@ -100,7 +100,7 @@ class CanMotor(object):
 		# filter based on message type
 		# print("Received message ", hex(msg.data[0]))
 		if msg.data[0] == 0x9a: # Read error and voltage
-			#TODO: Err state should alsouse data[6]. Please add this in and look at the error codes
+			#TODO: Err state should also use data[6]. Please add this in and look at the error codes
 			temp = msg.data[1]
 			voltage = self.utils.readBytesList([msg.data[4], msg.data[3]]) / 10
 			# voltage_HB = msg.data[4]
@@ -142,7 +142,7 @@ class CanMotor(object):
 			self.motor_data.singleturn_position = position
 			self.motor_data.speed = speed
 			self.motor_data.torque = torque
-			self.motor_data.last_update = (0x9c, msg.timestamp)
+			self.motor_data.last_update = (hex(0x9c), msg.timestamp)
 
 			# print("Singleturn position = ", position, ", speed = ", speed, ", torque = ", torque)
 
@@ -176,13 +176,13 @@ class CanMotor(object):
 			self.motor_data.last_update = (0xa4, msg.timestamp)
 
 		else:
-			print("Unknown message type received, ", hex(msg.data[0]))
+			# print("Unknown message type received, ", hex(msg.data[0]))
 			pass
 
 	# util function for sending periodic messages
-	def _periodic_send(self, data, period=0.1, duration=None, modifier_callback = None):
+	def _periodic_send(self, data, period, duration, modifier_callback = None):
 		'''
-		Default is every 100 ms indefinitely
+		Default is every 10 ms indefinitely
 
 		Args:
 			data (byte list): data to send
@@ -193,7 +193,7 @@ class CanMotor(object):
 		Returns:
 			task object that can be used to stop periodic send
 		'''
-		print("Starting periodic send of message ", hex(data[0]))
+		# print("Starting periodic send of message ", hex(data[0]))
 		msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False, is_rx=False)
 		task = self.canBus.send_periodic(msg, period, duration, True, modifier_callback)
 		self.active_tasks.append(task)
@@ -262,36 +262,7 @@ class CanMotor(object):
 		msg_data = [0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
 		self._single_send(msg_data)
 
-	# ### Periodic commands
-	# def speed_ctrl_periodic(self, to_rad, max_speed = (1890*2*math.pi)/60, period=0.05):
-	# 	'''
-	# 	Example of a periodic send for speed control
-	# 	Args:
-	# 		to_rad (RAD): Set speed
-	# 		max_speed (RAD/s, optional): Set max allowable speed. Defaults to 20*2*math.pi.
-	# 		**06/20/23 Note: 1890 rpm max given by motor spec sheet, tachometer test in lab (with motor "4") confirms it is close to 1800 rpm max
-
-	# 	Returns:
-	# 		task object that can be used to stop periodic send
-	# 	'''        
-	# 	if to_rad > max_speed:
-	# 		to_rad = max_speed
-	# 	if to_rad < -max_speed:
-	# 		to_rad = -max_speed
-
-	# 	to_dps = self.gear_ratio * 100 * self.utils.radToDeg(to_rad)
-	# 	byte1, byte2, byte3, byte4 = self.utils.int_to_bytes(int(to_dps), 4)
-	# 	msg_data = [0xa2, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1]
-
-	# 	# Set command mode to "speed"
-	# 	self.motor_data.command_mode = "speed"
-
-	# 	# Want to add a modifier
-	# 	task = self._periodic_send(msg_data, period = period, modifier_callback = self.motor_command_modifier_callback)
-
-	# 	return task
-
-	def read_status_periodic(self, period=0.05, duration=None):
+	def read_status_periodic(self, period=0.1, duration=None):
 		'''
 		Periodic send for reading motor status (temp, voltage, error flag)
 		Args:
@@ -305,33 +276,7 @@ class CanMotor(object):
 		task = self._periodic_send(msg_data, period, duration)
 		return task
 
-	# def pos_ctrl_periodic(self, to_rad, max_speed = (1890*2*math.pi)/60, period=0.05, duration=None):
-	# 	'''
-	# 	Periodic send for position control
-	# 	Args:
-	# 		- to_rad (RAD): Set position
-	# 		- max_speed (RAD/s, optional): Set max allowable speed. Defaults to 20*2*math.pi.
-	# 		**06/20/23 Note: 1890 rpm max given by motor spec sheet, tachometer test in lab (with motor "4") confirms it is close to 1800 rpm max
-	# 		- period: period between msg sends
-	# 		- duration: duration of periodic send
-	# 	Returns:
-	# 		task object that can be used to stop periodic send
-	# 	'''
-	# 	if to_rad > self.max_pos:
-	# 		to_rad = self.max_pos
-	# 	if to_rad < self.min_pos:
-	# 		to_rad = self.min_pos
-		
-	# 	# The least significant bit represents 0.01 degrees per second.
-	# 	to_deg = 100 * self.utils.radToDeg(to_rad) * self.gear_ratio
-	# 	max_speed = self.utils.radToDeg(max_speed) * self.gear_ratio
-	# 	s_byte1, s_byte2 = self.utils.int_to_bytes(int(max_speed), 2)
-	# 	byte1, byte2, byte3, byte4 = self.utils.int_to_bytes(int(to_deg), 4)
-	# 	msg_data = [0xa4, 0x00, s_byte2, s_byte1, byte4, byte3, byte2, byte1]
-	# 	task = self._periodic_send(msg_data, period, duration)
-	# 	return task
-
-	def read_multiturn_periodic(self, period=0.05, duration=None):
+	def read_multiturn_periodic(self, period=0.1, duration=None):
 		'''
 		Periodic send for reading motor multiturn
 		Args:
@@ -345,7 +290,7 @@ class CanMotor(object):
 		task = self._periodic_send(msg_data, period, duration)
 		return task
 
-	def read_motor_state_periodic(self, period=0.05, duration=None):
+	def read_motor_state_periodic(self, period=0.1, duration=None):
 		'''
 		Periodic send for reading motor state (single turn position, speed, and torque)
 		Args:
@@ -405,8 +350,8 @@ class CanMotor(object):
 			# Convert target position to degrees (and multiply by gear ratio and 100 for some reason)
 			to_deg = 100 * self.utils.radToDeg(target_position) * self.gear_ratio
 
-			# Convert max speed to bytes which is part of the command
-			max_speed = self.utils.radToDeg(self.max_speed) * self.gear_ratio
+			# limit speed, choosing safe value of 10 deg/s
+			max_speed =  10 * self.gear_ratio
 
 			# Convert to bytes
 			s_byte1, s_byte2 = self.utils.int_to_bytes(int(max_speed), 2)
@@ -424,11 +369,11 @@ class CanMotor(object):
 			if target_torque < -32:
 				target_torque = -32
 
-			target_torque *= 2000/32 # Value range is -2000 to 2000
+			target_torque *= 2000 / 32  # Value range is -2000 to 2000
 			byte1, byte2 = self.utils.int_to_bytes(int(target_torque), 2)
 
 			# Set the data to the torque control command
-			msg.data = [0xa1, 0x00, 0x00, 0x00, byte2, byte1, 0x00, 0x00]
+			msg.data = [0xA1, 0x00, 0x00, 0x00, byte2, byte1, 0x00, 0x00]
 		
 		elif self.motor_data.command_mode == "":
 			pass
@@ -440,7 +385,7 @@ class CanMotor(object):
 		return msg
 		
 
-	def initialize_control_command(self,  period=0.05, duration=None):
+	def initialize_control_command(self,  period=0.1, duration=None):
 		'''
 		Initializes a periodic send task for sending control commands to the motor
 
@@ -456,7 +401,7 @@ class CanMotor(object):
 		self.motor_control_task = self._periodic_send(empty_data, period, duration, modifier_callback = self._motor_command_modifier_callback)
 
 
-	def set_control_mode(self, mode, target_value, period=0.05, duration=None):
+	def set_control_mode(self, mode, target_value):
 		'''
 			Sets the various control modes for the motor
 

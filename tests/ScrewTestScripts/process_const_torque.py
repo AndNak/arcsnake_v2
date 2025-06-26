@@ -1,31 +1,32 @@
 import cv2 as cv
 import numpy as np
 import csv
-from pickle_mixin import test
+#from pickle_mixin import test
 from scipy.signal import butter, lfilter
 from matplotlib import pyplot as plt
-from analysis import read_sensor_csv
+#from analysis import read_sensor_csv
 from utils import *
 from utils import filter_motor_data
 
 
 if __name__ == "__main__":
 
-	just_visualizing = True  # Set true if you just want to visualize the data
+	just_visualizing = False  # Set true if you just want to visualize the data
 
 	set_num = 1
-	screw_num = 7
+	test_num = 1
+	screw_num = 1
 
-	# ft_data = read_sensor_csv(
-	# 	'fts_data_files/const_torque_tests/test_set/set{0}/test{1}(1).csv'.format(set_num, test_num))
+	ft_data = read_sensor_csv(
+		'tests/ScrewTestScripts/data_files/const_torque_tests/set{0}/test{1}.csv'.format(set_num, test_num))
 	motor_data = read_motor_csv(
-		'new_data_files/torque_tests/screw{0}/set{1}.csv'.format(screw_num, set_num))
+		'tests/ScrewTestScripts/data_files/torque_tests/screw{0}/set{1}.csv'.format(screw_num, set_num))
 	filt_motor_data = filter_motor_data(motor_data, cutoff=6, fs=125, order=2)
-	# filt_ft_data = filter_ft_data(ft_data, cutoff=6, fs=125, order=2)
+	filt_ft_data = filter_ft_data(ft_data, cutoff=6, fs=125, order=2)
 
 	if just_visualizing == True:
 		plot_motor_data(filt_motor_data, None)
-		# plot_ft_data(filt_ft_data, 3000, 6000, None)
+		plot_ft_data(filt_ft_data, 3000, 6000, None)
 		plt.show()
 
 	elif just_visualizing == False:

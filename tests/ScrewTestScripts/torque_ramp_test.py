@@ -43,8 +43,6 @@ if __name__ == "__main__":
 
             time.sleep(3)
             # synchronization procedure
-            
-
             screwMotor.pos_ctrl(0, 6.0)
             row = [get_time(t0), screwMotor.read_speed(), screwMotor.read_torque(), encoderMotor.read_speed(), screwMotor.read_multiturn_position(), -1]
             print(row)

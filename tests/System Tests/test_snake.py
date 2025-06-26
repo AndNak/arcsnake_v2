@@ -54,15 +54,15 @@ if __name__ == "__main__":
 
     print("Trying to initialize motors")
     joint1 = CanMotor(can0, 8, gear_ratio)
-    joint2 = CanMotor(can0, 9, gear_ratio)
-    joint3 = CanMotor(can0, 6, gear_ratio)
-    joint4 = CanMotor(can0, 5, gear_ratio)
     joint5 = CanMotor(can0, 10, gear_ratio)
+    joint4 = CanMotor(can0, 5, gear_ratio)
+    joint3 = CanMotor(can0, 6, gear_ratio)
+    joint2 = CanMotor(can0, 9, gear_ratio)
     joint6 = CanMotor(can0, 7, gear_ratio)
-    screw1 = CanMotor(can0, 0, 1)
-    screw3 = CanMotor(can0, 4, 1)
-    screw2 = CanMotor(can0, 1, 1)
-    screw4 = CanMotor(can0, 3, 1)
+    screw1 = CanMotor(can0, 0, 1) # negative
+    screw2 = CanMotor(can0, 1, 1) # negative
+    screw3 = CanMotor(can0, 4, 1) # positive
+    screw4 = CanMotor(can0, 3, 1) # negative
     # screw5 = CanMotor(can0, 6, 1)
 
     print('Motor initialization complete')

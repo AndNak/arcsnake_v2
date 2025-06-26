@@ -1,10 +1,10 @@
 import cv2 as cv
 import numpy as np
 import csv
-from pickle_mixin import test
+#from pickle_mixin import test
 from scipy.signal import butter, lfilter
 from matplotlib import pyplot as plt
-from analysis import read_sensor_csv
+#from analysis import read_sensor_csv
 from utils import *
 from utils import filter_motor_data
 
@@ -16,10 +16,12 @@ if __name__ == "__main__":
 	set_num = 1
 	test_num = 1
 
-	ft_data = read_sensor_csv('fts_data_files/const_speed_tests/set{0}/test{1}.csv'.format(set_num, test_num))
-	motor_data = read_motor_csv('motor_data_files/const_speed_tests/set{0}/test{1}.csv'.format(set_num, test_num))
+	ft_data_water = read_sensor_csv('tests/ScrewTestScripts/fts_data_files/const_speed_tests/set{0}/test{1}.csv'.format(set_num, test_num))
+	ft_data_sand = read_sensor_csv('tests/ScrewTestScripts/fts_data_files/sand_tests/const_speed_tests/set{0}/test{1}.csv'.format(set_num, test_num))
+	mdw = motor_data_water = read_motor_csv('tests/ScrewTestScripts/motor_data_files/const_speed_tests/set{0}/test{1}.csv'.format(set_num, test_num))
+	mds = motor_data_sand = read_motor_csv('tests/ScrewTestScripts/sand_tests/const_speed_tests/set{0}/test{1}.csv'.format(set_num, test_num))
 
-	filt_motor_data = filter_motor_data(motor_data, cutoff=6, fs=125, order=2)
+	filt_motor_data = filter_motor_data(mdw, cutoff=6, fs=125, order=2)
 	filt_ft_data = filter_ft_data(ft_data, cutoff=6, fs=125, order=2)
 
 	if just_visualizing==True:

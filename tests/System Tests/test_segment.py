@@ -40,9 +40,9 @@ if __name__ == "__main__":
     # test_name = "4screws_2joints_test"
 
     print("Trying to initialize motors")
-    screw1 = CanMotor(can0, 2, 1)
-    # joint1 = CanMotor(can0, 5, gear_ratio)
-    # joint2 = CanMotor(can0, 10, gear_ratio)
+    screw1 = CanMotor(can0, 4, 1)
+    joint1 = CanMotor(can0, 6, gear_ratio)
+    joint2 = CanMotor(can0, 9, gear_ratio)
 
     print('Motor initialization complete')
 
