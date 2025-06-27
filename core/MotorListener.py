@@ -1,7 +1,6 @@
 # Class for motor can listener, which handles received messages and processes them
 from can import Listener, Notifier, Message
 
-
 class MotorListener(Listener):
 	# Initialize the listener with a list of CanMotor objects
 	def __init__(self, motor_list=None):
