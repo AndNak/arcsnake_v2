@@ -55,8 +55,6 @@ If you see these on the event log you are straining the sensor too much, try to 
 8) This time the screw may or may not spin during trial. Watch to make sure the test bed itself doesn't move.
 Steps 9-10 same
 
-
-
 # Sidenote:
 ## Add Python to ubuntu path
 
