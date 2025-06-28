@@ -5,36 +5,28 @@ import csv
 import logging
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.signal import butter, filtfilt
+from utils import butter_lpf
 
 import core.CANHelper
 from core.CanUJoint import CanUJoint
-from utils import filter_motor_data
 
 
-# === Test Configuration Data ===
+# ~~~ Test Configuration Data ~~~
 terrain = 'concrete' # [water, sand, concrete, gravel] *Could potentially change depending on testing!*
 test_type = 'torque' # [speed, torque]  // Torque when testing statically and locking rail position, speed for dynamic testing and unlocked rail
 pitch = 1 #[ , , , , ]
 depth = 1 #[ , , , , ]
 test_num = 1 # Trial [1 2 3]
 command_speed = -10.0 #rad/s (1:1 gearbox); neg for forw and pos for back
+command_torque = -6  # Holding Torque for Encoder Motor in Torque Test
 run_time = 10 #s
 sample_rate = 200 #Hz
-filename = f'tests/ScrewTestScripts/motor_data_files/motor_{terrain}_tests/{test_type}_test/test{pitch}{depth}{test_num}.csv'
+filename = f'tests/Testbed/motor_data_files/motor_{terrain}_tests/{test_type}_test/test{pitch}{depth}{test_num}.csv'
 
-
-# === Low-Pass Filter ===
-def lowpass_filter(data, cutoff=6, fs=200, order=1):
-    nyq = 0.5 *fs
-    normal_cutoff = cutoff / nyq
-    b, a = butter(order, normal_cutoff, btype='low', analog=False)
-    return filtfilt(b, a, data)
-
-# === Basic Logging Setup ===
+# ~~~ Basic Logging Setup ~~~
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# === Get Time ===
+# ~~~ Get Time ~~~
 def get_time(t0):
     return time.time() - t0
 
@@ -67,16 +59,19 @@ def main_test():
             t1 = time.time()
 
             if test_type == 'torque':
-                logging.info("Running static test: Locking encoder motor on rail.")
-                ### TODO: IMPLEMENT LOGIC FOR STATIC TESTS
-                encoderMotor.
-
-            else:
-                logging.info("Running dynamic test: Unlocking encoder motor on rail.")
-                ### TODO: IMPLEMENT LOGIC FOR DYNAMIC TESTS
-                encoderMotor.
-
-
+                logging.info("Running static test: Preventing encoder motor from backdriving")
+                encoderMotor.torque_ctrl(command_torque)  # Give it a bit of resistance just so it doesn't backdrive
+                screwMotor.speed_ctrl(command_speed)
+            elif test_type == "speed":
+                logging.info("Running motion test: No axial load")
+                encoderMotor.torque_ctrl(command_torque)    # Set low for no axial load
+                screwMotor.speed_ctrl(command_speed)
+            # EXPERIMENTAL - NOT TESTED
+            # elif test_type == "speed w/load":
+            #     logging.info("Running motion test: Axial load")
+            #     encoderMotor.torque_ctrl(command_torque)    # Apply axial load via encoder motor
+            #     screwMotor.speed_ctrl(command_speed)        # Apply torque to screw motor
+                
             screwMotor.speed_ctrl(command_speed)
 
             while True:
@@ -102,12 +97,12 @@ def main_test():
         core.CANHelper.cleanup("can0")
         logging.info("Test Complete. Devices Are All Safetly Shut Down.")
 
-    # === Apply Filtering ===
-    filtered_torque = lowpass_filter(torque_data, fs=sample_rate)
-    filtered_angular_speed = lowpass_filter(angular_speed_data, fs=sample_rate)
-    filtered_linear_speed = lowpass_filter(linear_speed_data, fs=sample_rate)
+    # ~~~ Apply Filtering ~~~
+    filtered_torque = butter_lpf(torque_data, fs=sample_rate, order=1)
+    filtered_angular_speed = butter_lpf(angular_speed_data, fs=sample_rate, order=1)
+    filtered_linear_speed = butter_lpf(linear_speed_data, fs=sample_rate, order=1)
 
-    # === Plot Everything! ===
+    # ~~~ Plot Everything! ~~~
     plt.figure()
     plt.plot(time_data, filtered_torque, label="Torque")
     plt.xlabel("Time (s)"); plt.ylabel("Torque (Nm)"); plt.title("Filtered Torque"); plt.grid(True)

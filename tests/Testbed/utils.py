@@ -57,7 +57,7 @@ def read_tr_motor_csv(fname):
 
 
 ### Peforms butterworth LPF on data
-def butter_lpf(data, cutoff, fs, order):
+def butter_lpf(data, cutoff=6, fs=200, order=1):
 	nyq = 0.5 * fs
 	normal_cutoff = cutoff / nyq
 	b, a = butter(order, normal_cutoff, btype='low', analog=False)
@@ -88,7 +88,6 @@ def filter_motor_data(data, cutoff, fs, order, tr=False):
 
 ### Filter ft data
 def filter_ft_data(data, cutoff, fs, order):
-
 
 	filtered_data = np.empty(np.shape(data))
 	nyq = 0.5 * fs
