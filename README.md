@@ -35,7 +35,7 @@ Status codes to watch out for:
 If you see these on the event log you are straining the sensor too much, try to ease the load being put on it.
 
 ## For Single Screw Tests
-### Constant Speed Test:
+### Constant Speed Test: Use TestBedTests.py
 1) Configuration should be in free hang. HIT UNBIAS SENSOR BUTTON!
 2) Ensure that media is smoothed and uniform as possible
 3) Write down current set(material)/test(current trial that you're doing) info in notebook. 
@@ -49,7 +49,7 @@ If you see these on the event log you are straining the sensor too much, try to 
 10) Ensure that the proper data files (with the correct set/test number) were saved.
 
 
-## Constant Torque Test:
+## Constant Torque Test: Use TestBedTests.py
 ### Steps 1-6 exactly the same as constant speed test.
 7) During this step, make sure someone pushes the configuration forward agianst the "brake" on  while setting down.
 8) This time the screw may or may not spin during trial. Watch to make sure the test bed itself doesn't move.
