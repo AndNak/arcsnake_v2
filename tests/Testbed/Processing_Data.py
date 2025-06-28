@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from utils import *
-
+ 
 # ~~~ Configuration ~~~
 terrain = 'concrete'           # [water, sand, concrete, gravel] *Could potentially change depending on testing!*
 test_type = 'speed'            # [speed, torque]
