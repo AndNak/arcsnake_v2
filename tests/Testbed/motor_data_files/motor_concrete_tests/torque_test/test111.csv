@@ -1,1107 +1,535 @@
 time,torque,angular speed,linear speed
-0.45128607749938965,-2.3396484375,0.0,0.0
-0.7775018215179443,-2.3396484375,0.0,0.0
-1.1446223258972168,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-5.410520681182422,0.0
-1.1553716659545898,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-3.7699111843077517,0.0
-1.1657438278198242,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-7.068583470577034,0.0
-1.1765697002410889,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.552113334772214,0.0
-1.1857950687408447,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.861110273767961,0.0
-1.1949882507324219,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.17526953912694,0.0
-1.204108715057373,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.297442586766545,0.0
-1.212432622909546,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.773843811168245,0.0
-1.220928430557251,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.018189906447452,0.0
-1.2296597957611084,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.634217471008698,0.0
-1.238403081893921,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.791297103688189,0.0
-1.2486624717712402,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.738937226128359,0.0
-1.256779432296753,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.826203688728075,0.0
-1.2647690773010254,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.791297103688189,0.0
-1.2733838558197021,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.896016858807847,0.0
-1.2826764583587646,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.47713783832921,0.0
-1.2915010452270508,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.669124056048586,0.0
-1.300307273864746,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.669124056048586,0.0
-1.3086659908294678,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.704030641088472,0.0
-1.3170642852783203,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.791297103688189,0.0
-1.3252205848693848,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.407324668249437,0.0
-1.3340144157409668,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.546951008408982,0.0
-1.3449888229370117,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.704030641088472,0.0
-1.3530833721160889,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.349802464326373,0.0
-1.36136794090271,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.913470151327791,0.0
-1.3697187900543213,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.913470151327791,0.0
-1.379509449005127,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.12290966156711,0.0
-1.387984037399292,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.983283321407566,0.0
-1.3972485065460205,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.843656981248017,0.0
-1.4056851863861084,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.773843811168245,0.0
-1.4140617847442627,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.250245035569947,0.0
-1.4226162433624268,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.738937226128359,0.0
-1.4312756061553955,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.599310885968812,0.0
-1.440208911895752,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.721483933608416,0.0
-1.448775291442871,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.773843811168245,0.0
-1.457735538482666,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.197885158010116,0.0
-1.4665024280548096,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.773843811168245,0.0
-1.4754440784454346,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.088003076527224,0.0
-1.484182596206665,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.512044423369096,0.0
-1.4924728870391846,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.599310885968812,0.0
-1.500962495803833,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.599310885968812,0.0
-1.5099129676818848,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-1.5187194347381592,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.105456369047168,0.0
-1.5272350311279297,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.930923443847735,0.0
-1.5364115238189697,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.669124056048586,0.0
-1.5446395874023438,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.721483933608416,0.0
-1.5531885623931885,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-1.5638830661773682,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.314895879286487,0.0
-1.5725197792053223,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-1.581315279006958,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-1.589857816696167,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.314895879286487,0.0
-1.6022484302520752,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.54178868204575,0.0
-1.6103785037994385,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.314895879286487,0.0
-1.6185367107391357,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.43706892692609,0.0
-1.6267573833465576,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.279989294246601,0.0
-1.6361777782440186,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.930923443847735,0.0
-1.6451208591461182,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.773843811168245,0.0
-1.6536064147949219,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.930923443847735,0.0
-1.6627740859985352,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.983283321407566,0.0
-1.6714403629302979,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-1.6802771091461182,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.035643198967394,0.0
-1.6887528896331787,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.930923443847735,0.0
-1.6997401714324951,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.773843811168245,0.0
-1.710731029510498,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.826203688728075,0.0
-1.719040870666504,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.896016858807847,0.0
-1.7291481494903564,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.843656981248017,0.0
-1.7373363971710205,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.826203688728075,0.0
-1.7458195686340332,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-1.7540996074676514,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.12290966156711,0.0
-1.7629425525665283,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.279989294246601,0.0
-1.7717485427856445,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.17526953912694,0.0
-1.7808468341827393,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.896016858807847,0.0
-1.7903916835784912,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.930923443847735,0.0
-1.7987723350524902,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.367255756846317,0.0
-1.8077797889709473,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.17526953912694,0.0
-1.8187882900238037,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.738937226128359,0.0
-1.828073501586914,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.17526953912694,0.0
-1.836881160736084,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.896016858807847,0.0
-1.8454933166503906,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.913470151327791,0.0
-1.8551642894744873,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.843656981248017,0.0
-1.8641431331634521,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.861110273767961,0.0
-1.8728952407836914,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-1.8820619583129883,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.17526953912694,0.0
-1.8912484645843506,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.913470151327791,0.0
-1.8999478816986084,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-1.9100606441497803,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.965830028887622,0.0
-1.9187538623809814,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-1.927682876586914,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.791297103688189,0.0
-1.9377942085266113,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.965830028887622,0.0
-1.9475724697113037,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.17526953912694,0.0
-1.9566247463226318,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.663961729685353,0.0
-1.9650194644927979,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.018189906447452,0.0
-1.9743382930755615,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-1.9831302165985107,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.314895879286487,0.0
-1.9928884506225586,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.402162341886203,0.0
-2.0013794898986816,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.43706892692609,0.0
-2.0122408866882324,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.12290966156711,0.0
-2.0203661918640137,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.913470151327791,0.0
-2.0285208225250244,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-2.038147449493408,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.035643198967394,0.0
-2.0468575954437256,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.861110273767961,0.0
-2.055682420730591,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.913470151327791,0.0
-2.0646417140960693,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.773843811168245,0.0
-2.0748507976531982,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.965830028887622,0.0
-2.0829927921295166,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.634217471008698,0.0
-2.092498302459717,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.826203688728075,0.0
-2.1012799739837646,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.843656981248017,0.0
-2.110109806060791,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.354964790689605,0.0
-2.1192939281463623,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.861110273767961,0.0
-2.129819869995117,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.721483933608416,0.0
-2.1382272243499756,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.704030641088472,0.0
-2.1473388671875,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.965830028887622,0.0
-2.157134532928467,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.704030641088472,0.0
-2.166461944580078,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.105456369047168,0.0
-2.1751294136047363,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-2.1873559951782227,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.965830028887622,0.0
-2.1973018646240234,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.105456369047168,0.0
-2.205618143081665,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.22762941668677,0.0
-2.214514970779419,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.367255756846317,0.0
-2.224501371383667,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.035643198967394,0.0
-2.234933853149414,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.210176124166829,0.0
-2.243074417114258,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-2.2514851093292236,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.983283321407566,0.0
-2.265442132949829,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.035643198967394,0.0
-2.275282382965088,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.965830028887622,0.0
-2.28377366065979,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.367255756846317,0.0
-2.292200803756714,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.983283321407566,0.0
-2.30128812789917,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.791297103688189,0.0
-2.310245990753174,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.669124056048586,0.0
-2.3190674781799316,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.773843811168245,0.0
-2.327772617340088,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.599310885968812,0.0
-2.3390393257141113,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.738937226128359,0.0
-2.353436231613159,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.896016858807847,0.0
-2.362067699432373,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.983283321407566,0.0
-2.3711345195770264,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.861110273767961,0.0
-2.380439519882202,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.826203688728075,0.0
-2.3889224529266357,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.088003076527224,0.0
-2.3987674713134766,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.791297103688189,0.0
-2.4082796573638916,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.210176124166829,0.0
-2.4165804386138916,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.721483933608416,0.0
-2.424872398376465,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.52949771588904,0.0
-2.433382987976074,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.896016858807847,0.0
-2.4442076683044434,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.210176124166829,0.0
-2.453843832015991,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.12290966156711,0.0
-2.462631940841675,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-2.4725921154022217,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-2.4804258346557617,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.983283321407566,0.0
-2.4887614250183105,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.965830028887622,0.0
-2.4969594478607178,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.738937226128359,0.0
-2.505634307861328,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.22762941668677,0.0
-2.51420259475708,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.773843811168245,0.0
-2.5229125022888184,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.983283321407566,0.0
-2.5314629077911377,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.12290966156711,0.0
-2.539792060852051,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.913470151327791,0.0
-2.5481090545654297,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.157816246606997,0.0
-2.557189464569092,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.861110273767961,0.0
-2.5660645961761475,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.896016858807847,0.0
-2.574575185775757,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.035643198967394,0.0
-2.5828335285186768,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-2.591775894165039,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.22762941668677,0.0
-2.599992036819458,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.088003076527224,0.0
-2.6083152294158936,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.826203688728075,0.0
-2.6170716285705566,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.22762941668677,0.0
-2.6260340213775635,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.22762941668677,0.0
-2.634622573852539,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-2.643181324005127,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.12290966156711,0.0
-2.652445077896118,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.965830028887622,0.0
-2.661633014678955,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.018189906447452,0.0
-2.670302629470825,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.389871375729493,0.0
-2.6783130168914795,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.738937226128359,0.0
-2.6869029998779297,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.599310885968812,0.0
-2.6956067085266113,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.546951008408982,0.0
-2.704474687576294,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.965830028887622,0.0
-2.714648485183716,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.47713783832921,0.0
-2.722731828689575,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.581857593448868,0.0
-2.7308766841888428,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.47713783832921,0.0
-2.7392778396606445,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.285151620609833,0.0
-2.7480216026306152,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.197885158010116,0.0
-2.7574310302734375,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.459684545809266,0.0
-2.7663276195526123,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.389871375729493,0.0
-2.7753963470458984,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.128071987930344,0.0
-2.784392833709717,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.779006137531477,0.0
-2.794736862182617,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.74409955249159,0.0
-2.803006887435913,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.639379797371932,0.0
-2.8116836547851562,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.779006137531477,0.0
-2.82698917388916,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.360127117052839,0.0
-2.8353817462921143,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.185594191853404,0.0
-2.8438494205474854,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.063421144213804,0.0
-2.852335214614868,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.168140899333462,0.0
-2.860522747039795,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-7.7841684638947095,0.0
-2.873818874359131,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-6.8067840827778845,0.0
-2.8819186687469482,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-7.016223593017205,0.0
-2.890211343765259,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-6.03883921190038,0.0
-2.8984413146972656,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-6.056292504420323,0.0
-2.906940221786499,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-5.794493116621174,0.0
-2.9154467582702637,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-4.834562028024293,0.0
-2.923825740814209,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-4.694935687864747,0.0
-2.9326748847961426,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-4.258603374866164,0.0
-2.9411680698394775,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-4.118977034706617,0.0
-2.949169397354126,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-3.4033920413889422,0.0
-2.9574663639068604,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-3.3161255787892263,0.0
-2.9661996364593506,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-2.5132741228718345,0.0
-2.9751436710357666,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-2.129301687433082,0.0
-2.9838619232177734,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-2.007128639793479,0.0
-2.992415428161621,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-1.7627825445142729,0.0
-3.001093626022339,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-1.710422666954443,0.0
-3.0098676681518555,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-1.2566370614359172,0.0
-3.0187180042266846,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.8726646259971648,0.0
-3.0272903442382812,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.7853981633974483,0.0
-3.036060094833374,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.5410520681182421,0.0
-3.0457446575164795,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.6108652381980153,0.0
-3.054733991622925,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.7853981633974483,0.0
-3.064777135848999,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.7853981633974483,0.0
-3.0732576847076416,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.7504915783575616,0.0
-3.0814993381500244,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.8726646259971648,0.0
-3.089891195297241,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-1.0297442586766543,0.0
-3.099330186843872,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.9424777960769379,0.0
-3.1098580360412598,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-1.0297442586766543,0.0
-3.1181836128234863,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.9948376736367678,0.0
-3.1266677379608154,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-1.239183768915974,0.0
-3.135669231414795,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-1.2217304763960306,0.0
-3.144719362258911,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-1.0995574287564276,0.0
-3.1533188819885254,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-1.0995574287564276,0.0
-3.1630539894104004,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.9075712110370514,0.0
-3.1719601154327393,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.7853981633974483,0.0
-3.181424856185913,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.5934119456780721,0.0
-3.1903181076049805,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.5585053606381855,0.0
-3.1989800930023193,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.4886921905584123,0.0
-3.207946300506592,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.4886921905584123,0.0
-3.2164101600646973,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.4886921905584123,0.0
-3.2247936725616455,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.5934119456780721,0.0
-3.233609914779663,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.715584993317675,0.0
-3.243333578109741,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.6806784082777885,0.0
-3.2525627613067627,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.7330382858376184,0.0
-3.2609333992004395,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.7853981633974483,0.0
-3.270131826400757,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.715584993317675,0.0
-3.2794265747070312,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.5934119456780721,0.0
-3.288160562515259,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.47123889803846897,0.0
-3.2973053455352783,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.5235987755982988,0.0
-3.305804491043091,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.29670597283903605,0.0
-3.314756155014038,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.3665191429188092,0.0
-3.3235440254211426,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.15707963267948966,0.0
-3.33219051361084,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.08726646259971647,0.0
-3.341158390045166,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.3500685691833496,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.3584811687469482,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.22689280275926285,0.0
-3.3671863079071045,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.3763272762298584,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.385017156600952,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.22689280275926285,0.0
-3.393420696258545,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.017453292519943295,0.0
-3.40278697013855,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.411623239517212,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.4203619956970215,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.22689280275926285,0.0
-3.430306911468506,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.439138412475586,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.448125123977661,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.45658278465271,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.3316125578789226,0.0
-3.4674911499023438,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.4758431911468506,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.3490658503988659,0.0
-3.4839422702789307,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.3665191429188092,0.0
-3.493659734725952,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.5235987755982988,0.0
-3.5022263526916504,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.5410520681182421,0.0
-3.5115978717803955,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.5203447341918945,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.4537856055185257,0.0
-3.530264139175415,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.5389537811279297,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.13962634015954636,0.0
-3.5479655265808105,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.558466911315918,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.5674121379852295,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.576387405395508,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.585522413253784,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.596216917037964,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.6042864322662354,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.615204334259033,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.6234493255615234,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.6315340995788574,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.6406774520874023,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.6496009826660156,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.6585073471069336,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.667161703109741,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.6764676570892334,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.684873104095459,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.6934850215911865,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.7024037837982178,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.711397171020508,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.7201478481292725,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.729442834854126,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.7414956092834473,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.7496492862701416,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.03490658503988659,0.0
-3.7608771324157715,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.768982410430908,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.7773795127868652,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.7871224880218506,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.7957494258880615,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.03490658503988659,0.0
-3.8041436672210693,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.8142802715301514,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.8224635124206543,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.830493450164795,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.20943951023931953,0.0
-3.843247175216675,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.851449728012085,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.8626151084899902,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.870826005935669,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.879196882247925,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.8876051902770996,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.897446870803833,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.9053051471710205,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.9137232303619385,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.9220852851867676,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.93277907371521,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.941563606262207,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-3.9502081871032715,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.962179660797119,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.9702954292297363,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.9789328575134277,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.9876465797424316,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-3.9962844848632812,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.006293058395386,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.015084505081177,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.0236241817474365,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-4.032306432723999,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.041198015213013,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.0498785972595215,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.0585551261901855,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.06726336479187,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.0763726234436035,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.08726646259971647,0.0
-4.085146427154541,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.17453292519943295,0.0
-4.093823194503784,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.102892160415649,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.111886501312256,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.1206374168396,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.129205703735352,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-4.137744665145874,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-4.146573781967163,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.155446290969849,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.164016246795654,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.172997236251831,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.181244850158691,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.20943951023931953,0.0
-4.189464092254639,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-4.199983596801758,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-4.208258628845215,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.216693878173828,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.03490658503988659,0.0
-4.225876569747925,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-4.234983682632446,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-4.2440571784973145,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.08726646259971647,0.0
-4.254834413528442,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.08726646259971647,0.0
-4.263033151626587,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.271655321121216,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.06981317007977318,0.0
-4.280824184417725,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.289697885513306,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.10471975511965977,0.0
-4.298520088195801,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.308175086975098,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.17453292519943295,0.0
-4.316543340682983,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.3251423835754395,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.334612846374512,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.343565940856934,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.06981317007977318,0.0
-4.352998733520508,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.361628770828247,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.370363473892212,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.379153251647949,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.20943951023931953,0.0
-4.388851165771484,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.397617340087891,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.408815860748291,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-4.41866135597229,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.427765130996704,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.20943951023931953,0.0
-4.436408519744873,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.445155382156372,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.10471975511965977,0.0
-4.454029321670532,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.462392568588257,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.4712536334991455,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.482726335525513,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.49147367477417,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.500486850738525,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.509382724761963,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.518023490905762,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.5283403396606445,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.538197755813599,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.550372123718262,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.559402704238892,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.568053245544434,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.578363418579102,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.586564302444458,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.017453292519943295,0.0
-4.594932317733765,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.605595350265503,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.613890886306763,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.13962634015954636,0.0
-4.623560428619385,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.633720636367798,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.64236307144165,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.655129432678223,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-4.66398286819458,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.676923990249634,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.687222480773926,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.695425987243652,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.703387260437012,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.711684465408325,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.720376253128052,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.7292890548706055,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.737773418426514,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.7461793422698975,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.755524635314941,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.764614820480347,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.772593975067139,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.782511472702026,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.790656566619873,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.799509763717651,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.808218240737915,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.816566228866577,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.824744939804077,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.833423614501953,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.842192888259888,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.854109048843384,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.863308906555176,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.872163772583008,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.8818511962890625,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.20943951023931953,0.0
-4.89089560508728,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.899383306503296,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.9081385135650635,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.917257070541382,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.926196336746216,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.934697389602661,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.942984580993652,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.951921224594116,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.96127462387085,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.970733165740967,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.979044198989868,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.989467144012451,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-4.99978494644165,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.008417844772339,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.01716947555542,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.025903940200806,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.034645318984985,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.13962634015954636,0.0
-5.042908430099487,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-5.0516955852508545,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.06378173828125,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.071753263473511,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.081768274307251,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.0897297859191895,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.0978920459747314,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-5.106467247009277,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.115908145904541,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.124741792678833,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.133363723754883,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.10471975511965977,0.0
-5.14302396774292,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.154556035995483,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-5.165905714035034,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-5.174367904663086,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.1858909130096436,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.10471975511965977,0.0
-5.194626808166504,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.203353404998779,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.21185040473938,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.2203896045684814,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.229623556137085,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.238140106201172,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.17453292519943295,0.0
-5.248256206512451,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.256321430206299,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.17453292519943295,0.0
-5.264532089233398,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-5.273342132568359,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.283094644546509,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.291578769683838,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.300156354904175,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.311991214752197,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.326262474060059,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.334864377975464,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.348097801208496,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.357054233551025,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.368673801422119,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.377500295639038,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.386330604553223,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.39478325843811,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.404393672943115,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.4126293659210205,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.4207444190979,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.429303169250488,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.439854145050049,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.448791980743408,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.457508563995361,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.467554330825806,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.4762279987335205,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.485025644302368,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.493503570556641,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.50359582901001,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.514225721359253,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.522355318069458,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.533064365386963,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.543457746505737,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.551455974578857,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.22689280275926285,0.0
-5.559736728668213,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-5.568449020385742,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.576960563659668,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.585060119628906,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.593737602233887,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-5.602482080459595,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.10471975511965977,0.0
-5.61133885383606,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.06981317007977318,0.0
-5.620182037353516,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.630376577377319,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.639134168624878,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.650800466537476,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-5.65896463394165,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.667296409606934,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.675435543060303,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.06981317007977318,0.0
-5.687463045120239,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.6960413455963135,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.704535961151123,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.712792158126831,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.721204996109009,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.7300286293029785,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.738638401031494,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.748790979385376,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.756871938705444,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.765246868133545,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.773697376251221,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.78259539604187,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.791377305984497,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.799737930297852,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.808412075042725,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.817062854766846,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.8256449699401855,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.834498405456543,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.842668056488037,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.852521181106567,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.8621604442596436,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.87208890914917,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.8812174797058105,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.889469623565674,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.89925479888916,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.910576343536377,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-5.9221086502075195,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.9305760860443115,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.13962634015954636,0.0
-5.940267324447632,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.95032525062561,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.958512783050537,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.96715521812439,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.975549936294556,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.984408855438232,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-5.992799282073975,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-6.00379204750061,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.17453292519943295,0.0
-6.012092590332031,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-6.022058963775635,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.030028343200684,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.038382291793823,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.047072410583496,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.055449962615967,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.064288377761841,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.072756052017212,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.081502199172974,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.090023756027222,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.0987465381622314,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.1076695919036865,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.116473197937012,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.125794887542725,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.135303258895874,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.143732786178589,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.152485370635986,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.160961151123047,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.169789552688599,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.178472280502319,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.187067747116089,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.195639133453369,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.204424142837524,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.212951898574829,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.221553802490234,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.2316999435424805,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.2397520542144775,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.24835991859436,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.256828546524048,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.266101121902466,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.274320840835571,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.283010721206665,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.291587591171265,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.300599813461304,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.3092041015625,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.318026065826416,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.326576232910156,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.335190534591675,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.3436737060546875,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.352043628692627,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.3608362674713135,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.369465351104736,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.3783392906188965,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.3871870040893555,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.395454168319702,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.404619932174683,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2617993877991494,0.0
-6.413150310516357,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.421791315078735,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.431674003601074,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.440051794052124,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.448527097702026,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.458006381988525,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.470257520675659,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.47906494140625,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.487767219543457,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.497792720794678,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.505868911743164,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.514751434326172,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.523107051849365,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.5327417850494385,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.541452169418335,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.549698829650879,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.558628082275391,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.567155838012695,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.5778467655181885,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.5858094692230225,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.59395694732666,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.602492332458496,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.611215591430664,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.619804859161377,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.6286022663116455,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.63917088508606,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.64769172668457,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.65618634223938,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.665491819381714,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.673898935317993,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.682525634765625,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.6910858154296875,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.700039863586426,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.70889139175415,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.71690034866333,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.725038051605225,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.733848810195923,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.74233341217041,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.7511374950408936,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.759677171707153,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.768205165863037,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.7771852016448975,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.785947799682617,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.794760465621948,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.803493499755859,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.8119988441467285,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.822787046432495,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.831532001495361,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.840251922607422,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.8494179248809814,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.857774972915649,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.8663671016693115,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.874751567840576,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.883895397186279,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.892939329147339,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.90387749671936,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.912259340286255,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.923155069351196,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.932860374450684,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.942107200622559,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.95068621635437,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.958706855773926,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.969849348068237,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.9829065799713135,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-6.991967678070068,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.000861883163452,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.009526252746582,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.018145561218262,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.026738882064819,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.035457611083984,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.044016122817993,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.0527663230896,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.061347961425781,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.070818901062012,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.079033851623535,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.087291240692139,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.095810890197754,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.105911731719971,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.114181041717529,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.1223297119140625,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.22689280275926285,0.0
-7.1318957805633545,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.140645265579224,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.149750232696533,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.157906770706177,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.166684627532959,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.175750732421875,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.184352874755859,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.192893743515015,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.208521604537964,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.216596364974976,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.224754333496094,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.23365592956543,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.241967439651489,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.250166654586792,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.258373975753784,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.270114183425903,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.278473854064941,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.287004232406616,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.295358896255493,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.305243968963623,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.313470363616943,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.322176694869995,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.331043481826782,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.339879751205444,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.351686477661133,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.359974145889282,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.3685150146484375,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.377150058746338,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.385962009429932,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.39479923248291,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.403551340103149,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.412892580032349,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.4219279289245605,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.17453292519943295,0.0
-7.430351734161377,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.439733266830444,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.448381662368774,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.457669258117676,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.467223882675171,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.476014852523804,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.484269380569458,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.492735862731934,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.5013298988342285,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.509978294372559,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.518761873245239,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.527241468429565,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.2792526803190927,0.0
-7.535930395126343,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.545738697052002,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.554790019989014,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.5647132396698,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.5730531215667725,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.581733703613281,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.590322017669678,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.599473714828491,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.607967853546143,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.6165735721588135,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.625081300735474,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.63374662399292,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.642936944961548,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.650803089141846,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.659069061279297,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.667757511138916,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.676438808441162,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.6858131885528564,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.694707155227661,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.70349645614624,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.712322473526001,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.720642805099487,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.017453292519943295,0.0
-7.729097127914429,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.7395336627960205,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.748786449432373,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.757320880889893,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.773622751235962,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.787317752838135,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.795679330825806,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.806825876235962,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.8164143562316895,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.824673891067505,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.84345555305481,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.853100061416626,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.864269733428955,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.874258279800415,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.882585763931274,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.891222238540649,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.900529384613037,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.908972263336182,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.917585611343384,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.926195859909058,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.935196399688721,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.943870782852173,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.952838659286499,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.961521625518799,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.970526695251465,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.979070663452148,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.987659692764282,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-7.99651026725769,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.00729775428772,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.015935897827148,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.024444341659546,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.03333568572998,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.04172968864441,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.050384044647217,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-8.058802604675293,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.067732572555542,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.07803750038147,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.08666706085205,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.094834327697754,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.103666543960571,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.112056970596313,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.120882272720337,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.129579067230225,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.138370275497437,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.146540880203247,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-8.159415483474731,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.16751503944397,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.175904750823975,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.187057495117188,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.195279836654663,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.203380584716797,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.211982011795044,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.220664501190186,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.229360342025757,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.237962245941162,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.246266603469849,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.25498366355896,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.263596057891846,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.272199869155884,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.280407905578613,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.290907621383667,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.299588680267334,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.313052415847778,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.321363687515259,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.329482555389404,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.337854862213135,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.351351976394653,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.359702110290527,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.367992639541626,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.376347064971924,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.388248443603516,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.10471975511965977,0.0
-8.396433353424072,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.40505576133728,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.416228771209717,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.424452304840088,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.432523727416992,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.442845344543457,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.450783729553223,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.458627462387085,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.467170476913452,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.476775646209717,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.485374450683594,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.49581241607666,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.503889560699463,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.512324571609497,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.522390842437744,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.530279874801636,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.538742065429688,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.547869682312012,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.556312084197998,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.565370321273804,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.576015710830688,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.586364984512329,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.59434723854065,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.602644443511963,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.61139965057373,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.6232168674469,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.633259773254395,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.643069505691528,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.651846647262573,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.661842584609985,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.67000699043274,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.678712844848633,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.687379598617554,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.69620132446289,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.704648971557617,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.713338136672974,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.721962213516235,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.730547189712524,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.739238023757935,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.747983455657959,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.760194540023804,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.768208265304565,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.776625394821167,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.785544157028198,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.795234441757202,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.803858995437622,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.813040018081665,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.82168436050415,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.830066680908203,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.840737342834473,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.849371194839478,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.857884407043457,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.868316650390625,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.87639307975769,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.885328769683838,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.893900156021118,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.902563095092773,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.911237716674805,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.919946670532227,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.928590297698975,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.937321662902832,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.946688175201416,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.955681562423706,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.963891983032227,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.972206830978394,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.980727434158325,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.99023699760437,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-8.99843144416809,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.006736993789673,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.01652455329895,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.024707078933716,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.032830953598022,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.041471481323242,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.05116581916809,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-9.05918025970459,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.069912910461426,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.078211069107056,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.086912155151367,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.096343994140625,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.104557752609253,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.112952709197998,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.12207293510437,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.130429029464722,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.139118432998657,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.147464036941528,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.157294034957886,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.165448427200317,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.174190759658813,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.182745218276978,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.191575288772583,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.20012617111206,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.208635568618774,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.217534303665161,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.22600507736206,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.23459267616272,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.243130445480347,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.251712322235107,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.261364936828613,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.270521879196167,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.279140949249268,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.287779808044434,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.29674506187439,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.305114507675171,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.313665628433228,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.324165105819702,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.332327365875244,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.340506315231323,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.350610494613647,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.358688831329346,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.367441892623901,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.37633228302002,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.385311365127563,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.394120454788208,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.402935266494751,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.411152601242065,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.419982671737671,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.431573152542114,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.43972110748291,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.15707963267948966,0.0
-9.448313474655151,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.457045316696167,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.465805768966675,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.4744131565094,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.484697818756104,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.49347448348999,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.502324342727661,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.510831594467163,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.519827365875244,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.530786991119385,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.53973388671875,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.54934048652649,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.557131290435791,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.565330743789673,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.57392692565918,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.584146499633789,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.592284679412842,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-9.602747201919556,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.611015319824219,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.619795083999634,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.629144668579102,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.63773226737976,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.646154642105103,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.658884763717651,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-9.667128086090088,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.675496101379395,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.685254096984863,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.694674491882324,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.703251838684082,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.711718559265137,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.72047758102417,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.729195594787598,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.737809658050537,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.746795177459717,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.755166053771973,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.763582468032837,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.772345066070557,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.781023502349854,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.789856672286987,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.801005125045776,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.809848546981812,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.818604469299316,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.827089071273804,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.835525751113892,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.843773365020752,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.852699995040894,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.861644506454468,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.870523452758789,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.87907361984253,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.887667417526245,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.896554470062256,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.905359029769897,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.91401982307434,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.923080444335938,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.932125091552734,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.940701961517334,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.949525356292725,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.961121559143066,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.96911334991455,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.977385520935059,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.9860200881958,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-9.99485182762146,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.003620624542236,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.011892557144165,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.020241022109985,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.029957294464111,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.039817333221436,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.04863953590393,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.05989933013916,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.069446563720703,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.078178644180298,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.086737632751465,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.09569787979126,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.104299068450928,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.112801790237427,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.121746301651001,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.130432605743408,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.139131307601929,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.147478580474854,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.15741515159607,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.08726646259971647,0.0
-10.165273189544678,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.03490658503988659,0.0
-10.173391819000244,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.184437990188599,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,0.0,0.0
-10.193232297897339,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.03490658503988659,0.0
-10.202274322509766,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.2792526803190927,0.0
-10.212040185928345,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.03490658503988659,0.0
-10.220179319381714,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.29670597283903605,0.0
-10.228494644165039,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.5410520681182421,0.0
-10.238788366317749,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-0.9075712110370514,0.0
-10.247002363204956,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-1.361356816555577,0.0
-10.255099058151245,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-1.710422666954443,0.0
-10.263751983642578,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-2.897246558310587,0.0
-10.272949695587158,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-4.76474885794452,0.0
-10.281867027282715,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-4.4505895925855405,0.0
-10.290355920791626,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-5.497787143782138,0.0
-10.29971957206726,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-5.8468529941810035,0.0
-10.308488845825195,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-7.592182246175334,-0.03490658503988659
-10.317104816436768,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.307767239493009,0.0
-10.326428890228271,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.21533845053006,0.0
-10.335352420806885,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.965830028887622,0.0
-10.343861103057861,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-11.06538745764405,0.0
-10.35253381729126,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.43706892692609,0.0
-10.361360311508179,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.681415022205297,0.0
-10.370270729064941,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.75122819228507,0.0
-10.378941297531128,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.035643198967394,0.0
-10.387652158737183,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.861110273767961,0.0
-10.396374225616455,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.018189906447452,0.0
-10.40591025352478,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.402162341886203,-0.2792526803190927
-10.415558099746704,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.471975511965978,0.0
-10.42471194267273,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.314895879286487,0.0
-10.433480262756348,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-10.442099571228027,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.896016858807847,0.0
-10.450642585754395,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-10.45955777168274,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.367255756846317,0.0
-10.471060276031494,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.983283321407566,0.0
-10.479106903076172,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.559241974565694,0.0
-10.487473249435425,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.053096491487338,0.0
-10.498558044433594,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.843656981248017,0.2792526803190927
-10.506675481796265,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.669124056048586,0.0
-10.516684293746948,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.314895879286487,0.0
-10.524785280227661,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.930923443847735,0.0
-10.533604145050049,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.105456369047168,0.0
-10.543175220489502,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-10.55225133895874,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.210176124166829,0.0
-10.565183639526367,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.663961729685353,0.2792526803190927
-10.573925733566284,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.559241974565694,0.0
-10.582627296447754,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.035643198967394,0.0
-10.591256380081177,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.17526953912694,0.0
-10.600036859512329,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.279989294246601,0.0
-10.60902452468872,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.791297103688189,0.0
-10.617611646652222,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.896016858807847,0.0
-10.62785267829895,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.843656981248017,-0.2792526803190927
-10.635985136032104,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.599310885968812,0.15707963267948966
-10.644324541091919,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.704030641088472,0.0
-10.65499496459961,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.088003076527224,0.0
-10.663129091262817,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.704030641088472,0.0
-10.671091079711914,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.913470151327791,0.0
-10.68111777305603,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.197885158010116,0.0
-10.689682483673096,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.843656981248017,0.0
-10.698215007781982,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.861110273767961,0.0
-10.711885690689087,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.634217471008698,0.0
-10.72010350227356,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.367255756846317,0.0
-10.728323698043823,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.279989294246601,0.0
-10.736478805541992,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.12290966156711,0.0
-10.74497389793396,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.367255756846317,0.0
-10.75368332862854,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.54178868204575,0.0
-10.764846801757812,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.402162341886203,0.0
-10.773125648498535,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.611601852125522,-0.017453292519943295
-10.783935308456421,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.43706892692609,0.0
-10.792202949523926,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.559241974565694,0.0
-10.800310850143433,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.314895879286487,0.0
-10.808566093444824,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.419615634406146,0.0
-10.817589044570923,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-10.82625699043274,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.12290966156711,0.0
-10.835065841674805,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.506882097005864,0.0
-10.84391474723816,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.12290966156711,0.0
-10.853209733963013,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.349802464326373,0.0
-10.861763954162598,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.47713783832921,0.0
-10.870644330978394,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.791297103688189,0.0
-10.881447553634644,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.489428804485922,0.0
-10.889809846878052,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.965830028887622,0.0
-10.898238182067871,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.17526953912694,0.0
-10.90880274772644,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-10.917662382125854,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.245082709206715,0.0
-10.926618337631226,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.157816246606997,0.0
-10.93664026260376,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.721483933608416,0.0
-10.944748163223267,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.05825881785057,0.0
-10.953742980957031,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.367255756846317,0.0
-10.96265172958374,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.210176124166829,0.0
-10.972557306289673,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.367255756846317,0.0
-10.982740879058838,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.663961729685353,0.0
-10.991856336593628,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.367255756846317,0.0
-11.002151489257812,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.651670763528642,0.0
-11.011078119277954,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.843656981248017,0.0
-11.020311832427979,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.018189906447452,0.0
-11.034428358078003,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.210176124166829,0.0
-11.042465925216675,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.419615634406146,0.0
-11.050917863845825,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.17526953912694,0.0
-11.060538530349731,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.168140899333462,0.0
-11.069299936294556,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-5.532693728822025,0.0
-11.07805609703064,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.621926504851988,0.0
-11.087939739227295,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.960667702524388,0.0
-11.096585988998413,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-10.367255756846317,0.0
-11.105654954910278,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-9.983283321407566,0.0
-11.114554643630981,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-8.779006137531477,0.0
-11.125121355056763,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-7.661995416255106,0.0
-11.133193492889404,<bound method CanMotor.read_torque of <core.CanUJoint.CanUJoint object at 0x796f64422f50>>,-6.562437987498679,0.0
+1.3334214687347412,0.14115234375,0.0,0.0
+2.718709945678711,0.14115234375,0.0,0.0
+3.5602011680603027,0.31130859375000003,0.5410520681182421,0.0
+3.572032928466797,0.3441796875,1.6406094968746698,0.0
+3.589460611343384,0.3519140625,3.5081117965086026,0.0
+3.6006152629852295,0.33837890625,4.39822971502571,0.0
+3.6114091873168945,0.3364453125,4.625122517784973,0.0
+3.6211323738098145,0.36931640624999995,4.852015320544236,0.0
+3.6306986808776855,0.35384765625000003,5.550147021341968,0.0
+3.6415750980377197,0.32871093749999997,5.305800926062761,0.0
+3.651010751724243,0.34611328125,5.567600313861911,0.0
+3.6606218814849854,0.34224609375,5.742133239061344,0.0
+3.669867515563965,0.3519140625,5.218534463463045,0.0
+3.6792595386505127,0.36158203125,5.742133239061344,0.0
+3.6887757778167725,0.34031249999999996,5.427973973702365,0.0
+3.698192834854126,0.3441796875,5.270894341022875,0.0
+3.7075588703155518,0.36351562499999995,5.375614096142535,0.0
+3.7166483402252197,0.36351562499999995,5.218534463463045,0.0
+3.726321220397949,0.32871093749999997,4.834562028024293,0.0
+3.7358460426330566,0.35384765625000003,4.4331363000655974,0.0
+3.745360851287842,0.34224609375,4.118977034706617,0.0
+3.7565157413482666,0.34998046875,3.7000980142279785,0.0
+3.7654170989990234,0.35964843750000003,3.438298626428829,0.0
+3.7746076583862305,0.36158203125,3.2986722862692828,0.0
+3.7838497161865234,0.34224609375,2.9670597283903604,0.0
+3.79506778717041,0.34998046875,2.9146998508305306,0.0
+3.8048365116119385,0.34224609375,3.0892327760299634,0.0
+3.8141419887542725,0.33837890625,3.036872898470133,0.0
+3.823565721511841,0.35771484375,3.0543261909900763,0.0
+3.8333754539489746,0.35578125,3.3510321638291125,0.0
+3.8424675464630127,0.37511718749999995,3.543018381548489,0.0
+3.8515710830688477,0.33064453125,3.6826447217080354,0.0
+3.8624041080474854,0.34611328125,3.822271061867582,0.0
+3.8711001873016357,0.34611328125,3.5779249665883754,0.0
+3.880147695541382,0.348046875,3.368485456349056,0.0
+3.889831066131592,0.35771484375,3.1764992386296798,0.0
+3.9007785320281982,0.34998046875,2.8623399732707,0.0
+3.912914276123047,0.34998046875,2.286381320112572,0.0
+3.9225406646728516,0.35771484375,1.8151424220741028,0.0
+3.932670831680298,0.34611328125,1.3089969389957472,0.0
+3.942380428314209,0.35384765625000003,0.8552113334772214,0.0
+3.951568126678467,0.3519140625,0.6806784082777885,0.0
+3.961291551589966,0.34998046875,0.2792526803190927,0.0
+3.970553159713745,0.3519140625,0.0,0.0
+3.979858636856079,0.36158203125,-0.29670597283903605,0.0
+3.989461660385132,0.35384765625000003,-0.3490658503988659,0.0
+3.998939037322998,0.3519140625,-0.2792526803190927,0.0
+4.008275985717773,0.34998046875,0.0,0.0
+4.0173890590667725,0.34611328125,0.2792526803190927,0.0
+4.0264527797698975,0.348046875,0.3316125578789226,0.0
+4.036039352416992,0.33837890625,0.5235987755982988,0.0
+4.045439958572388,0.34611328125,0.4886921905584123,0.0
+4.055751323699951,0.34998046875,0.5585053606381855,0.0
+4.064713954925537,0.348046875,0.6108652381980153,0.0
+4.0747082233428955,0.34998046875,0.6806784082777885,0.0
+4.08379864692688,0.34998046875,0.5235987755982988,0.0
+4.093061208724976,0.348046875,0.4886921905584123,0.0
+4.102478742599487,0.3519140625,0.13962634015954636,0.0
+4.1118316650390625,0.3519140625,0.0,0.0
+4.122748613357544,0.34611328125,-0.13962634015954636,0.0
+4.132581949234009,0.348046875,-0.2792526803190927,0.0
+4.142240762710571,0.348046875,-0.3316125578789226,0.0
+4.151384115219116,0.35384765625000003,-0.2792526803190927,0.0
+4.162578821182251,0.34998046875,-0.13962634015954636,0.0
+4.17319130897522,0.34998046875,-0.2792526803190927,0.0
+4.182555675506592,0.348046875,0.0,0.0
+4.192035913467407,0.348046875,0.29670597283903605,0.0
+4.201727390289307,0.34611328125,0.5235987755982988,0.0
+4.211246490478516,0.34611328125,0.47123889803846897,0.0
+4.220968246459961,0.34998046875,0.4886921905584123,0.0
+4.230363845825195,0.34998046875,0.2792526803190927,0.0
+4.240009784698486,0.3519140625,0.2792526803190927,0.0
+4.2492125034332275,0.34998046875,0.0,0.0
+4.258602142333984,0.3519140625,-0.2792526803190927,0.0
+4.268111705780029,0.35578125,-0.2792526803190927,0.0
+4.277452230453491,0.36158203125,-0.2792526803190927,0.0
+4.288194894790649,0.35771484375,-0.2792526803190927,0.0
+4.296905279159546,0.3441796875,-0.03490658503988659,0.0
+4.306131601333618,0.35384765625000003,0.0,0.0
+4.315284252166748,0.34998046875,-0.13962634015954636,0.0
+4.324747085571289,0.34611328125,0.0,0.0
+4.334167242050171,0.34224609375,0.0,0.0
+4.343467473983765,0.3519140625,0.0,0.0
+4.357244253158569,0.3519140625,0.13962634015954636,0.0
+4.365347623825073,0.35578125,0.0,0.0
+4.374168395996094,0.34998046875,0.0,0.0
+4.382944107055664,0.34611328125,0.13962634015954636,0.0
+4.392328977584839,0.3519140625,0.0,0.0
+4.40200662612915,0.34998046875,0.0,0.0
+4.411433458328247,0.34224609375,0.0,0.0
+4.420942544937134,0.348046875,0.20943951023931953,0.0
+4.43030309677124,0.34998046875,0.0,0.0
+4.4460742473602295,0.34998046875,0.0,0.0
+4.456435918807983,0.3519140625,0.0,0.0
+4.465161323547363,0.35384765625000003,0.0,0.0
+4.474575996398926,0.348046875,0.0,0.0
+4.483454942703247,0.34998046875,0.0,0.0
+4.4929563999176025,0.348046875,0.0,0.0
+4.502485513687134,0.3519140625,-0.2792526803190927,0.0
+4.512026309967041,0.3519140625,-0.2792526803190927,0.0
+4.5225536823272705,0.348046875,0.0,0.0
+4.531528472900391,0.35578125,0.0,0.0
+4.540462970733643,0.3519140625,0.0,0.0
+4.549416542053223,0.34611328125,-0.017453292519943295,0.0
+4.561142921447754,0.3519140625,0.0,0.0
+4.570237159729004,0.3519140625,0.0,0.0
+4.579850196838379,0.3519140625,0.08726646259971647,0.0
+4.589615821838379,0.348046875,0.0,0.0
+4.598677635192871,0.34611328125,0.0,0.0
+4.609399318695068,0.34611328125,0.0,0.0
+4.620344400405884,0.348046875,0.0,0.0
+4.633057355880737,0.34998046875,0.0,0.0
+4.644469261169434,0.34224609375,0.0,0.0
+4.654070854187012,0.36158203125,0.0,0.0
+4.663499593734741,0.348046875,0.0,0.0
+4.67585825920105,0.34998046875,-0.2792526803190927,0.0
+4.684758901596069,0.3519140625,-0.15707963267948966,0.0
+4.694077491760254,0.35384765625000003,0.0,0.0
+4.703635931015015,0.34611328125,-0.22689280275926285,0.0
+4.712826728820801,0.35771484375,0.0,0.0
+4.723201513290405,0.34998046875,0.0,0.0
+4.732030153274536,0.34998046875,0.0,0.0
+4.744379281997681,0.348046875,0.0,0.0
+4.753839492797852,0.3519140625,0.0,0.0
+4.763030767440796,0.35964843750000003,0.0,0.0
+4.772610425949097,0.33837890625,0.13962634015954636,0.0
+4.781956195831299,0.35771484375,0.0,0.0
+4.792722940444946,0.348046875,0.0,0.0
+4.801647901535034,0.348046875,0.2792526803190927,0.0
+4.813246488571167,0.34998046875,0.0,0.0
+4.823379039764404,0.35384765625000003,0.0,0.0
+4.833800554275513,0.34998046875,0.0,0.0
+4.842994689941406,0.36351562499999995,-0.06981317007977318,0.0
+4.854187726974487,0.34224609375,0.0,0.0
+4.862928152084351,0.34611328125,-0.017453292519943295,0.0
+4.873252868652344,0.35384765625000003,0.0,0.0
+4.882329940795898,0.348046875,0.0,0.0
+4.891623020172119,0.3519140625,-0.2617993877991494,0.0
+4.901514291763306,0.36158203125,-0.2792526803190927,0.0
+4.911062240600586,0.3519140625,-0.2792526803190927,0.0
+4.921489715576172,0.348046875,-0.2792526803190927,0.0
+4.93041729927063,0.34998046875,0.0,0.0
+4.940157175064087,0.348046875,0.0,0.0
+4.949737548828125,0.348046875,0.2792526803190927,0.0
+4.959194898605347,0.34998046875,0.2792526803190927,0.0
+4.969397306442261,0.3519140625,0.0,0.0
+4.979152202606201,0.34611328125,0.2792526803190927,0.0
+4.989452362060547,0.35384765625000003,0.017453292519943295,0.0
+4.999391317367554,0.35384765625000003,0.0,0.0
+5.008349895477295,0.34998046875,0.0,0.0
+5.017738342285156,0.35771484375,0.0,0.0
+5.027052164077759,0.34998046875,0.0,0.0
+5.0366058349609375,0.34611328125,0.0,0.0
+5.045806646347046,0.3441796875,0.0,0.0
+5.054993629455566,0.3519140625,0.0,0.0
+5.064785480499268,0.3519140625,0.0,0.0
+5.075725793838501,0.3519140625,0.0,0.0
+5.08502984046936,0.33837890625,0.0,0.0
+5.094932317733765,0.3519140625,0.0,0.0
+5.1053690910339355,0.3519140625,0.0,0.0
+5.114959955215454,0.3519140625,0.0,0.0
+5.124579191207886,0.34998046875,0.0,0.0
+5.134237766265869,0.3519140625,0.2792526803190927,0.0
+5.143593788146973,0.3519140625,0.0,0.0
+5.15242600440979,0.3519140625,0.0,0.0
+5.162834405899048,0.34224609375,0.2792526803190927,0.0
+5.173207759857178,0.35384765625000003,0.0,0.0
+5.1824116706848145,0.34611328125,0.0,0.0
+5.194144248962402,0.34998046875,0.0,0.0
+5.20308780670166,0.34998046875,0.0,0.0
+5.2124714851379395,0.348046875,0.0,0.0
+5.222313165664673,0.3519140625,0.0,0.0
+5.233343124389648,0.35384765625000003,0.0,0.0
+5.242157697677612,0.34031249999999996,0.0,0.0
+5.25103235244751,0.3519140625,-0.2792526803190927,0.0
+5.260871410369873,0.34998046875,0.0,0.0
+5.270295143127441,0.34611328125,0.0,0.0
+5.279658794403076,0.34998046875,-0.2792526803190927,0.0
+5.290565013885498,0.348046875,0.0,0.0
+5.299430847167969,0.34031249999999996,0.0,0.0
+5.308499097824097,0.34611328125,0.0,0.0
+5.317567586898804,0.348046875,0.0,0.0
+5.329812049865723,0.33837890625,0.0,0.0
+5.338643550872803,0.35578125,0.0,0.0
+5.347877025604248,0.35964843750000003,0.0,0.0
+5.3571155071258545,0.348046875,0.0,0.0
+5.366907358169556,0.34224609375,0.0,0.0
+5.376482963562012,0.34224609375,0.08726646259971647,0.0
+5.385490417480469,0.34998046875,0.0,0.0
+5.396466493606567,0.348046875,0.0,0.0
+5.406010389328003,0.35578125,0.0,0.0
+5.415239095687866,0.34998046875,0.0,0.0
+5.424459457397461,0.34998046875,0.0,0.0
+5.434139013290405,0.35384765625000003,-0.17453292519943295,0.0
+5.443587779998779,0.34224609375,0.0,0.0
+5.4528563022613525,0.34998046875,0.0,0.0
+5.463046550750732,0.348046875,-0.2792526803190927,0.0
+5.472083330154419,0.348046875,-0.03490658503988659,0.0
+5.481397867202759,0.34998046875,0.0,0.0
+5.490909814834595,0.3441796875,0.0,0.0
+5.502148628234863,0.35384765625000003,-0.017453292519943295,0.0
+5.513091087341309,0.3519140625,-0.20943951023931953,0.0
+5.52870774269104,0.3519140625,0.0,0.0
+5.5384202003479,0.34998046875,0.0,0.0
+5.547314405441284,0.348046875,0.20943951023931953,0.0
+5.560230255126953,0.35384765625000003,0.13962634015954636,0.0
+5.570518970489502,0.348046875,0.0,0.0
+5.580146074295044,0.35578125,0.0,0.0
+5.589928388595581,0.34998046875,0.0,0.0
+5.603662014007568,0.34998046875,-0.2792526803190927,0.0
+5.6125569343566895,0.35384765625000003,-0.03490658503988659,0.0
+5.623691558837891,0.34998046875,0.0,0.0
+5.632714748382568,0.34611328125,0.0,0.0
+5.641895055770874,0.35384765625000003,0.0,0.0
+5.651078701019287,0.3519140625,0.0,0.0
+5.661852598190308,0.34998046875,0.0,0.0
+5.67061448097229,0.3519140625,-0.2792526803190927,0.0
+5.679758071899414,0.348046875,0.0,0.0
+5.6898157596588135,0.348046875,0.0,0.0
+5.698779106140137,0.35384765625000003,0.0,0.0
+5.707555532455444,0.3441796875,0.0,0.0
+5.716855049133301,0.3519140625,0.2792526803190927,0.0
+5.72600245475769,0.348046875,0.0,0.0
+5.7353901863098145,0.3441796875,0.2792526803190927,0.0
+5.74445104598999,0.348046875,0.0,0.0
+5.7557213306427,0.348046875,0.0,0.0
+5.764500379562378,0.34224609375,0.0,0.0
+5.773178339004517,0.34224609375,0.0,0.0
+5.7822065353393555,0.34998046875,0.0,0.0
+5.791892051696777,0.34998046875,0.0,0.0
+5.8009490966796875,0.34998046875,0.0,0.0
+5.812947750091553,0.3519140625,0.0,0.0
+5.8235023021698,0.348046875,0.0,0.0
+5.8340067863464355,0.34998046875,0.0,0.0
+5.8431220054626465,0.35384765625000003,0.0,0.0
+5.859823703765869,0.3441796875,0.0,0.0
+5.869750261306763,0.3519140625,0.0,0.0
+5.8876330852508545,0.34998046875,0.0,0.0
+5.902604341506958,0.35384765625000003,0.0,0.0
+5.911507606506348,0.34998046875,0.0,0.0
+5.920546054840088,0.348046875,0.0,0.0
+5.932374477386475,0.34998046875,0.2792526803190927,0.0
+5.9435083866119385,0.3519140625,0.0,0.0
+5.95334792137146,0.34224609375,0.0,0.0
+5.9626829624176025,0.34998046875,0.0,0.0
+5.972097158432007,0.35384765625000003,0.0,0.0
+5.981448411941528,0.34998046875,0.0,0.0
+5.99251914024353,0.34611328125,0.0,0.0
+6.001570701599121,0.35384765625000003,0.0,0.0
+6.010725021362305,0.348046875,-0.03490658503988659,0.0
+6.021560192108154,0.34998046875,-0.06981317007977318,0.0
+6.030560731887817,0.35384765625000003,0.0,0.0
+6.0399250984191895,0.348046875,-0.13962634015954636,0.0
+6.04927921295166,0.35384765625000003,0.0,0.0
+6.058446168899536,0.3519140625,0.0,0.0
+6.0672807693481445,0.34998046875,0.0,0.0
+6.076463937759399,0.3519140625,0.0,0.0
+6.085909843444824,0.35384765625000003,0.0,0.0
+6.095235109329224,0.34998046875,0.15707963267948966,0.0
+6.105054140090942,0.348046875,0.2792526803190927,0.0
+6.11433219909668,0.348046875,0.0,0.0
+6.124971389770508,0.34998046875,0.0,0.0
+6.1339826583862305,0.35384765625000003,0.0,0.0
+6.143316268920898,0.35384765625000003,0.0,0.0
+6.152790546417236,0.35771484375,0.0,0.0
+6.1622841358184814,0.3519140625,0.2792526803190927,0.0
+6.172060966491699,0.35384765625000003,0.0,0.0
+6.181936502456665,0.34998046875,0.0,0.0
+6.191206932067871,0.33837890625,0.0,0.0
+6.200505495071411,0.3519140625,0.0,0.0
+6.210369110107422,0.348046875,0.0,0.0
+6.219792366027832,0.34031249999999996,0.0,0.0
+6.228973627090454,0.34611328125,-0.17453292519943295,0.0
+6.23856520652771,0.348046875,0.0,0.0
+6.249051094055176,0.3519140625,0.0,0.0
+6.257888555526733,0.34611328125,-0.2617993877991494,0.0
+6.267065048217773,0.3519140625,0.0,0.0
+6.2762250900268555,0.348046875,0.0,0.0
+6.285578966140747,0.348046875,0.0,0.0
+6.2952306270599365,0.34998046875,0.0,0.0
+6.304839611053467,0.34224609375,0.0,0.0
+6.314302444458008,0.3519140625,0.0,0.0
+6.32487940788269,0.348046875,0.0,0.0
+6.333434820175171,0.3519140625,0.0,0.0
+6.342484951019287,0.34611328125,0.0,0.0
+6.3514299392700195,0.348046875,0.0,0.0
+6.360699653625488,0.34998046875,0.0,0.0
+6.3701171875,0.3519140625,0.0,0.0
+6.379352807998657,0.3519140625,0.0,0.0
+6.390881061553955,0.34998046875,-0.10471975511965977,0.0
+6.400317192077637,0.348046875,0.0,0.0
+6.409971475601196,0.34998046875,0.0,0.0
+6.419009685516357,0.3519140625,0.0,0.0
+6.429461479187012,0.348046875,0.0,0.0
+6.438271760940552,0.34224609375,0.0,0.0
+6.447248458862305,0.348046875,0.0,0.0
+6.457056760787964,0.34611328125,0.0,0.0
+6.466123342514038,0.3519140625,-0.03490658503988659,0.0
+6.475445032119751,0.348046875,0.0,0.0
+6.48464822769165,0.34998046875,0.0,0.0
+6.496722459793091,0.3519140625,0.0,0.0
+6.505611896514893,0.34224609375,0.0,0.0
+6.514185190200806,0.34031249999999996,0.0,0.0
+6.52312970161438,0.35578125,0.0,0.0
+6.5342748165130615,0.34998046875,0.0,0.0
+6.54402232170105,0.36158203125,0.0,0.0
+6.5530242919921875,0.3519140625,0.0,0.0
+6.563417196273804,0.34998046875,0.0,0.0
+6.571882486343384,0.348046875,0.0,0.0
+6.5838000774383545,0.36931640624999995,-0.2792526803190927,0.0
+6.59466814994812,0.34998046875,0.0,0.0
+6.603423357009888,0.34031249999999996,0.0,0.0
+6.612477540969849,0.348046875,0.0,0.0
+6.623364448547363,0.348046875,0.0,0.0
+6.633429765701294,0.348046875,0.0,0.0
+6.644039869308472,0.3519140625,0.0,0.0
+6.6539881229400635,0.35384765625000003,0.15707963267948966,0.0
+6.66297173500061,0.348046875,0.0,0.0
+6.671907424926758,0.3519140625,0.0,0.0
+6.6847193241119385,0.35384765625000003,0.0,0.0
+6.699826955795288,0.35771484375,0.0,0.0
+6.708992958068848,0.3519140625,0.06981317007977318,0.0
+6.718612194061279,0.35578125,0.10471975511965977,0.0
+6.727952003479004,0.34998046875,0.0,0.0
+6.737657785415649,0.3519140625,0.0,0.0
+6.751636981964111,0.3519140625,0.0,0.0
+6.761338472366333,0.34998046875,0.0,0.0
+6.771050214767456,0.35384765625000003,0.0,0.0
+6.780658006668091,0.3519140625,0.0,0.0
+6.79110050201416,0.3519140625,0.0,0.0
+6.800384998321533,0.33837890625,0.0,0.0
+6.8104634284973145,0.34224609375,0.0,0.0
+6.8200225830078125,0.34224609375,0.0,0.0
+6.829460620880127,0.35384765625000003,0.13962634015954636,0.0
+6.838991403579712,0.34611328125,0.0,0.0
+6.848481178283691,0.34224609375,0.0,0.0
+6.857929944992065,0.36544921874999997,0.0,0.0
+6.867780923843384,0.34611328125,0.0,0.0
+6.877148389816284,0.35384765625000003,0.0,0.0
+6.886510848999023,0.34998046875,0.0,0.0
+6.896278619766235,0.34998046875,0.0,0.0
+6.905773401260376,0.34998046875,0.2792526803190927,0.0
+6.9159910678863525,0.34998046875,0.0,0.0
+6.926039457321167,0.348046875,0.0,0.0
+6.935177803039551,0.35384765625000003,0.0,0.0
+6.94487452507019,0.34224609375,-0.22689280275926285,0.0
+6.9542765617370605,0.3519140625,0.0,0.0
+6.965338468551636,0.348046875,0.0,0.0
+6.97464919090271,0.3519140625,0.0,0.0
+6.984090566635132,0.3519140625,0.0,0.0
+6.995000839233398,0.348046875,-0.2792526803190927,0.0
+7.003800630569458,0.3441796875,0.0,0.0
+7.01503324508667,0.3519140625,-0.22689280275926285,0.0
+7.024817228317261,0.33837890625,0.0,0.0
+7.033662557601929,0.348046875,0.0,0.0
+7.042988538742065,0.35384765625000003,0.0,0.0
+7.054679870605469,0.348046875,0.0,0.0
+7.063666582107544,0.348046875,-0.017453292519943295,0.0
+7.073400020599365,0.348046875,0.0,0.0
+7.085502862930298,0.3519140625,0.0,0.0
+7.094580173492432,0.348046875,0.0,0.0
+7.104617118835449,0.3519140625,-0.10471975511965977,0.0
+7.113723039627075,0.35384765625000003,0.0,0.0
+7.1232569217681885,0.35384765625000003,0.0,0.0
+7.132506847381592,0.348046875,0.0,0.0
+7.142406702041626,0.34998046875,0.0,0.0
+7.153012990951538,0.35384765625000003,0.0,0.0
+7.164694309234619,0.348046875,0.0,0.0
+7.174567461013794,0.34998046875,0.0,0.0
+7.184396982192993,0.35578125,0.0,0.0
+7.194549322128296,0.348046875,0.0,0.0
+7.204681158065796,0.348046875,0.0,0.0
+7.216748952865601,0.348046875,0.0,0.0
+7.227796316146851,0.3519140625,0.0,0.0
+7.238034248352051,0.34998046875,0.0,0.0
+7.24857497215271,0.35578125,0.0,0.0
+7.258410215377808,0.3441796875,0.0,0.0
+7.267341375350952,0.3519140625,0.0,0.0
+7.277074575424194,0.348046875,0.2792526803190927,0.0
+7.289566278457642,0.348046875,0.0,0.0
+7.298476219177246,0.3519140625,0.0,0.0
+7.310832500457764,0.348046875,0.0,0.0
+7.321043491363525,0.3519140625,0.0,0.0
+7.332577228546143,0.34998046875,0.0,0.0
+7.343412160873413,0.34611328125,0.0,0.0
+7.35218620300293,0.34224609375,0.0,0.0
+7.364105463027954,0.34998046875,0.0,0.0
+7.37319803237915,0.33837890625,0.0,0.0
+7.383751153945923,0.35771484375,0.0,0.0
+7.394463777542114,0.34611328125,0.0,0.0
+7.403850078582764,0.35384765625000003,0.0,0.0
+7.4137327671051025,0.34998046875,0.0,0.0
+7.423269987106323,0.348046875,0.0,0.0
+7.434118747711182,0.34611328125,0.0,0.0
+7.444105863571167,0.34998046875,0.0,0.0
+7.45378851890564,0.348046875,0.0,0.0
+7.464225769042969,0.34611328125,0.0,0.0
+7.473178863525391,0.34998046875,0.0,0.0
+7.482682466506958,0.34998046875,0.0,0.0
+7.49225926399231,0.3519140625,0.0,0.0
+7.501556873321533,0.348046875,-0.08726646259971647,0.0
+7.511151552200317,0.3519140625,0.0,0.0
+7.5223228931427,0.348046875,0.0,0.0
+7.531184434890747,0.34998046875,0.0,0.0
+7.542168378829956,0.34031249999999996,0.0,0.0
+7.55542516708374,0.3519140625,0.0,0.0
+7.564328908920288,0.34998046875,-0.06981317007977318,0.0
+7.573644399642944,0.35384765625000003,0.0,0.0
+7.583712100982666,0.3519140625,0.0,0.0
+7.5940046310424805,0.36158203125,0.0,0.0
+7.607660531997681,0.35384765625000003,0.2617993877991494,0.0
+7.616370439529419,0.34224609375,0.0,0.0
+7.62728214263916,0.35384765625000003,0.2792526803190927,0.0
+7.639031648635864,0.348046875,0.0,0.0
+7.649235248565674,0.3519140625,0.0,0.0
+7.661905288696289,0.36158203125,0.0,0.0
+7.671383857727051,0.3519140625,0.0,0.0
+7.68148398399353,0.34998046875,0.0,0.0
+7.690810441970825,0.3519140625,0.0,0.0
+7.701687335968018,0.3519140625,0.0,0.0
+7.710573434829712,0.35771484375,0.0,0.0
+7.720344543457031,0.348046875,0.0,0.0
+7.739327907562256,0.34998046875,0.0,0.0
+7.749128818511963,0.3519140625,0.0,0.0
+7.76130485534668,0.3519140625,0.0,0.0
+7.770209074020386,0.35384765625000003,0.0,0.0
+7.780894756317139,0.34998046875,0.0,0.0
+7.790722131729126,0.348046875,0.0,0.0
+7.799668788909912,0.34998046875,0.0,0.0
+7.811178207397461,0.34998046875,0.0,0.0
+7.82541561126709,0.34998046875,0.0,0.0
+7.839327812194824,0.34031249999999996,0.0,0.0
+7.848195552825928,0.34998046875,0.0,0.0
+7.863147974014282,0.34998046875,0.0,0.0
+7.872145414352417,0.34998046875,0.0,0.0
+7.881352663040161,0.34998046875,0.03490658503988659,0.0
+7.891071319580078,0.34998046875,-0.20943951023931953,0.0
+7.903543949127197,0.348046875,0.0,0.0
+7.91281533241272,0.3519140625,-0.2792526803190927,0.0
+7.9221351146698,0.35384765625000003,0.0,0.0
+7.9335737228393555,0.34998046875,0.0,0.0
+7.945898771286011,0.35384765625000003,0.0,0.0
+7.955435037612915,0.36351562499999995,0.0,0.0
+7.966373920440674,0.348046875,0.0,0.0
+7.975019454956055,0.3519140625,0.0,0.0
+7.98382568359375,0.35384765625000003,0.0,0.0
+7.993475675582886,0.348046875,0.0,0.0
+8.002962589263916,0.3364453125,0.0,0.0
+8.012322425842285,0.348046875,0.0,0.0
+8.021780729293823,0.34224609375,0.0,0.0
+8.03147840499878,0.34998046875,0.0,0.0
+8.040745735168457,0.3519140625,-0.2792526803190927,0.0
+8.051552295684814,0.34998046875,0.0,0.0
+8.061032056808472,0.36158203125,0.0,0.0
+8.073312520980835,0.3519140625,0.0,0.0
+8.082231283187866,0.34611328125,0.2792526803190927,0.0
+8.091471672058105,0.35384765625000003,0.06981317007977318,0.0
+8.100589513778687,0.35384765625000003,0.0,0.0
+8.11270546913147,0.348046875,0.0,0.0
+8.122083187103271,0.34998046875,0.0,0.0
+8.131736516952515,0.34998046875,0.0,0.0
+8.140990018844604,0.348046875,0.0,0.0
+8.15173053741455,0.34031249999999996,0.0,0.0
+8.161295890808105,0.36158203125,0.0,0.0
+8.170808792114258,0.35384765625000003,0.0,0.0
+8.180324077606201,0.34611328125,0.0,0.0
+8.189946413040161,0.348046875,0.0,0.0
+8.199021816253662,0.34031249999999996,0.0,0.0
+8.208640098571777,0.34998046875,-0.08726646259971647,0.0
+8.217856407165527,0.3519140625,0.0,0.0
+8.227349519729614,0.34998046875,0.0,0.0
+8.23637080192566,0.348046875,0.03490658503988659,0.0
+8.247077703475952,0.35578125,0.0,0.0
+8.257019281387329,0.348046875,0.0,0.0
+8.266201734542847,0.348046875,0.0,0.0
+8.276028633117676,0.348046875,0.0,0.0
+8.285436630249023,0.348046875,0.0,0.0
+8.295131921768188,0.34998046875,0.0,0.0
+8.3039870262146,0.35384765625000003,0.0,0.0
+8.31462836265564,0.34611328125,0.0,0.0
+8.32349419593811,0.348046875,0.0,0.0
+8.332868814468384,0.348046875,0.0,0.0
+8.342211961746216,0.348046875,0.0,0.0
+8.351332902908325,0.348046875,0.0,0.0
+8.360624313354492,0.348046875,0.0,0.0
+8.369526386260986,0.3519140625,0.0,0.0
+8.378774404525757,0.34998046875,0.0,0.0
+8.391814470291138,0.35578125,0.0,0.0
+8.400346517562866,0.34998046875,-0.22689280275926285,0.0
+8.410813331604004,0.34998046875,0.0,0.0
+8.419685363769531,0.34998046875,0.0,0.0
+8.428757667541504,0.3441796875,0.0,0.0
+8.438010215759277,0.348046875,0.0,0.0
+8.44730830192566,0.348046875,0.0,0.0
+8.45693063735962,0.35578125,0.0,0.0
+8.466180562973022,0.34998046875,0.0,0.0
+8.476831436157227,0.348046875,0.0,0.0
+8.486119508743286,0.3519140625,0.0,0.0
+8.49562954902649,0.35384765625000003,0.0,0.0
+8.505350351333618,0.36544921874999997,0.0,0.0
+8.516215324401855,0.34611328125,0.0,0.0
+8.52530026435852,0.33837890625,0.0,0.0
+8.534644365310669,0.348046875,0.0,0.0
+8.543837547302246,0.35384765625000003,-0.13962634015954636,0.0
+8.554420232772827,0.35771484375,0.0,0.0
+8.563329935073853,0.34998046875,0.0,0.0
+8.573824644088745,0.34224609375,0.0,0.0
+8.582870244979858,0.3441796875,-0.17453292519943295,0.0
+8.591893434524536,0.34998046875,0.0,0.0
+8.601144313812256,0.3519140625,-0.08726646259971647,0.0
+8.610714673995972,0.34998046875,0.0,0.0
+8.620334148406982,0.34998046875,0.0,0.0
+8.62964677810669,0.34998046875,0.0,0.0
+8.640032291412354,0.34998046875,0.0,0.0
+8.648729801177979,0.35771484375,0.0,0.0
+8.657899379730225,0.34998046875,0.08726646259971647,0.0
+8.667120218276978,0.348046875,0.2792526803190927,0.0
+8.676543474197388,0.348046875,0.0,0.0
+8.686386823654175,0.3519140625,0.15707963267948966,0.0
+8.695595264434814,0.35578125,-0.10471975511965977,0.0
+8.704645156860352,0.3364453125,0.0,0.0
+8.715317487716675,0.34224609375,0.2792526803190927,0.0
+8.724436283111572,0.348046875,0.0,0.0
+8.734239339828491,0.348046875,0.03490658503988659,0.0
+8.745009899139404,0.3519140625,-0.15707963267948966,0.0
+8.754800081253052,0.35964843750000003,0.0,0.0
+8.764023065567017,0.3519140625,0.03490658503988659,0.0
+8.774667978286743,0.3519140625,0.0,0.0
+8.783421277999878,0.3441796875,0.0,0.0
+8.79265546798706,0.35771484375,0.0,0.0
+8.802591562271118,0.348046875,-0.03490658503988659,0.0
+8.813502550125122,0.35384765625000003,-0.017453292519943295,0.0
+8.822281837463379,0.34998046875,0.0,0.0
+8.831163883209229,0.34611328125,-0.22689280275926285,0.0

@@ -19,8 +19,8 @@ depth = 1 #[ , , , , ]
 num_starts = 1 # Number of starts
 test_num = 1 # Trial [1 2 3]
 command_speed = -10.0 #rad/s (1:1 gearbox); neg for forw and pos for back
-command_torque = 12  # Holding Torque for Encoder Motor in Torque Test
-run_time = 10 #s
+command_torque = 2.9  # Holding Torque for Encoder Motor in Torque Test
+run_time = 20 #s
 sample_rate = 200 #Hz
 filename = f'tests/Testbed/motor_data_files/motor_{terrain}_tests/{test_type}_test/test{pitch}{depth}{test_num}.csv'
 
@@ -62,7 +62,8 @@ def main_test():
             if test_type == 'torque':
                 logging.info("Running static test: Preventing encoder motor from backdriving")
                 encoderMotor.motor_stop()  # Give it a bit of resistance just so it doesn't backdrive
-                screwMotor.speed_ctrl(command_speed)
+                screwMotor.torque_ctrl(command_torque)  # Apply holding torque to screw motor
+
             elif test_type == "speed":
                 logging.info("Running motion test: No axial load")
                 encoderMotor.torque_ctrl(0)   # Set low for no axial load
@@ -79,8 +80,7 @@ def main_test():
                 #kv = (screwMotor.read_speed()*(1 / 0.1047)) / voltage
                 #torque = (torque_current * voltage) / screwMotor.read_speed()
                 logging.info(f"Speed: {screwMotor.read_speed():.2f} rad/s, Voltage: {voltage:.2f} V, Torque: {screwMotor.read_torque():.2f} Nm")
-
-                row = [get_time(t0), screwMotor.read_torque, screwMotor.read_speed(), encoderMotor.read_speed()]
+                row = [get_time(t0), screwMotor.read_torque(), screwMotor.read_speed(), encoderMotor.read_speed()]
                 writer.writerow(row)
                 logging.debug(f"{row}")
 

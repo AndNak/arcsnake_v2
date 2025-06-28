@@ -18,16 +18,6 @@ if __name__ == "__main__":
     
     data_fname = "testing_motor_commands"
 
-    while True:
-        try:
-            print(testMotor.read_motor_pid())
-            testMotor.override_PI_values(100, 100, 255, 30, 50, 50)
-            print(testMotor.read_motor_pid())
-            break
-        except TimeoutError:
-            print('Timeout Error')
-            continue
-
     # thread_running = True
     # def logging():
     #     global thread_running
