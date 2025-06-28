@@ -10,7 +10,7 @@ from utils import butter_lpf
 import core.CANHelper
 from core.CanUJoint import CanUJoint
 
-
+ 
 # ~~~ Test Configuration Data ~~~
 terrain = 'concrete' # [water, sand, concrete, gravel] *Could potentially change depending on testing!*
 test_type = 'torque' # [speed, torque]  // Torque when testing statically and locking rail position, speed for dynamic testing and unlocked rail
