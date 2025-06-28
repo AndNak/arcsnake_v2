@@ -1,19 +1,19 @@
 import can
+import time
+
 import core.CANHelper
 from core.CanUJoint import CanUJoint
 from core.CanScrewMotor import CanScrewMotor
-import time
-
-from os.path import dirname, realpath  
-import sys
-from core.CanMotor import CanMotor
-import csv
-
+from core.CanMotorNew import CanMotor
 import matplotlib.pyplot as plt
-import math
 
-arcsnake_v2_path = dirname(dirname(realpath(__file__)))  
-sys.path.append(arcsnake_v2_path)  
+import cv2 as cv
+import numpy as np
+import csv
+from scipy.signal import butter, lfilter
+from matplotlib import pyplot as plt
+from utils import *
+from utils import filter_motor_data
 
 
 def get_time(t0):
@@ -26,31 +26,21 @@ if __name__ == "__main__":
     screwMotor = CanUJoint(can0, 0, 1, MIN_POS = 0 * 2 * 3.14, MAX_POS = 10 * 2 * 3.14)
     encoderMotor = CanUJoint(can0, 2, 1)
 
+    print(screwMotor.read_motor_pid())
+    
     sampling_rate = 200 # in Hz
 
     ### Change these as needed
-    run_time = 15 # in second
-    set_num = 8
-    '''set_num refers to different media
-        1: gravel
-        2: grass
-        3: sand
-        4: woodchips
-        5: dirt
-        6: big gravel
-        7: wet sand
-        8: cover photo'''
-    ang_num = 2
-    '''ang_num refers to different fin angles
-        1: 10 deg
-        2: 15 deg
-        3: 20 deg
-        4: 25 deg 
-        5: 30 deg
-        6: 35 deg'''
-    test_num = 1
-    command_speed = -10 # in radians per second / gear_ratio (2 for NASU)
-    data_fname = 'tests/ScrewTestScripts/nasu_data_files/test{0}{1}{2}.csv'.format(set_num, ang_num, test_num)
+    # segment_type = 4 # [prop, middle, short middle, screw]
+    # dir_num = 1 # [forward]
+    RUN_TIME = 10 # in second
+    terrain = "concrete" # [water, sand, concrete, gravel] *Could potentially change depending on testing!*
+    test_type = "torque" # [speed, torque]  // Torque when testing statically and locking rail position, speed for dynamic testing and unlocked rail
+    pitch = 1 #[ , , , , ]
+    depth = 1 #[ , , , , ]
+    test_num = 1 # Trial [1 2 3]
+    command_speed = -10 # in radians per second (1:1 gearbox); neg for forw and pos for back
+    data_fname = 'tests/ScrewTestScripts/motor_data_files/motor_{0}_tests/{1}_test/test{2}{3}{4}.csv'.format(terrain, test_type, pitch, depth, test_num)
 
     time_data   = []
     torque_data = []
@@ -66,9 +56,9 @@ if __name__ == "__main__":
             # synchronization procedure
             input('Sensor should be in free hang, unbias sensor then press enter.')
             test_writer.writerow([get_time(t0), screwMotor.read_speed(), screwMotor.read_torque(), encoderMotor.read_speed()])
-            input("Lower screw, then press enter.")
+            input("Lower screw into water, then press enter.")
             test_writer.writerow([get_time(t0), screwMotor.read_speed(), screwMotor.read_torque(), encoderMotor.read_speed()])
-            input("Bias sensor, then press enter to start trial.")
+            input("Bias sensor, then press enter to start trial. Hit log at the same time you press enter.")
 
             t1 = time.time()
             screwMotor.speed_ctrl(command_speed)
@@ -83,7 +73,7 @@ if __name__ == "__main__":
                 linear_speed_data.append(row[3])
 
                 time.sleep(1/sampling_rate)
-                if get_time(t1) > run_time:
+                if get_time(t1) > RUN_TIME:
                     break
     except(KeyboardInterrupt) as e:
         print(e)
@@ -95,17 +85,16 @@ if __name__ == "__main__":
 
     core.CANHelper.cleanup("can0")
 
+    plt.figure()
+    plt.plot(time_data, torque_data)
+    plt.title("Torque")
 
-    # plt.figure()
-    # plt.plot(time_data, torque_data)
-    # plt.title("Torque")
+    plt.figure()
+    plt.plot(time_data, angular_speed_data) 
+    plt.title("Angular Speed")
 
-    # plt.figure()
-    # plt.plot(time_data, angular_speed_data) 
-    # plt.title("Angular Speed")
+    plt.figure()
+    plt.plot(time_data, linear_speed_data) 
+    plt.title("Linear Speed")
 
-    # plt.figure()
-    # plt.plot(time_data, linear_speed_data) 
-    # plt.title("Linear Speed")
-
-    # plt.show()
+    plt.show()
