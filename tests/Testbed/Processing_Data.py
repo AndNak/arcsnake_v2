@@ -4,8 +4,8 @@ from utils import *
  
 # ~~~ Configuration ~~~
 terrain = 'concrete'           # [water, sand, concrete, gravel] *Could potentially change depending on testing!*
-test_type = 'speed'            # [speed, torque]
-pitch, depth, trial = 1, 2, 3
+test_type = 'torque'            # [speed, torque]
+pitch, depth, num_starts, trial = 1, 1, 1, 1
 just_visualizing = False      # Set True to skip processing and just visualize output
 index_set = [3000, 6000]       # Used in plotting only (optional quick view)
 
@@ -25,15 +25,15 @@ if just_visualizing:
     segmented = data['segmented']
 else:
     raw_motor_data = read_motor_csv(motor_csv)
-    raw_ft_data = read_sensor_csv(fts_csv)
+    #raw_ft_data = read_sensor_csv(fts_csv)
 
     # ~~~ Filtering ~~~
-    filt_motor_data = filter_motor_data(raw_motor_data)
-    filt_ft_data = filter_ft_data(raw_ft_data)
+    filt_motor_data = filter_motor_data(raw_motor_data, cutoff=6, fs=200, order=1)
+    #filt_ft_data = filter_ft_data(raw_ft_data, cutoff=6, fs=200, order=1)
 
     # ~~~ Plotting for initial index selection ~~~
-    plot_motor_data(filt_motor_data)
-    plot_ft_data(filt_ft_data, *index_set, None)
+    plot_motor_data(filt_motor_data, datafname)
+    #plot_ft_data(filt_ft_data, *index_set, None)
 
     # ~~~ Manual Indexing for Segmentation ~~~
     print("Input data segmentation indices (time domain):")
@@ -57,7 +57,7 @@ else:
     np.savez(
         datafname + '.npz',
         filt_motor_data=filt_motor_data,
-        filt_ft_data=filt_ft_data,
+        #filt_ft_data=filt_ft_data,
         segmented=segmented
     )
 

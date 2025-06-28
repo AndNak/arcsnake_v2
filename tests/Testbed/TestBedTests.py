@@ -16,9 +16,10 @@ terrain = 'concrete' # [water, sand, concrete, gravel] *Could potentially change
 test_type = 'torque' # [speed, torque]  // Torque when testing statically and locking rail position, speed for dynamic testing and unlocked rail
 pitch = 1 #[ , , , , ]
 depth = 1 #[ , , , , ]
+num_starts = 1 # Number of starts
 test_num = 1 # Trial [1 2 3]
 command_speed = -10.0 #rad/s (1:1 gearbox); neg for forw and pos for back
-command_torque = -6  # Holding Torque for Encoder Motor in Torque Test
+command_torque = 12  # Holding Torque for Encoder Motor in Torque Test
 run_time = 10 #s
 sample_rate = 200 #Hz
 filename = f'tests/Testbed/motor_data_files/motor_{terrain}_tests/{test_type}_test/test{pitch}{depth}{test_num}.csv'
@@ -47,32 +48,30 @@ def main_test():
         t0 = time.time()
         with open(filename, mode='w', newline='') as test_data:
             writer = csv.writer(test_data)
-            writer.writerow('time', 'torque', 'angular speed', 'linear speed')
+            writer.writerow(['time', 'torque', 'angular speed', 'linear speed'])
 
             input('Ensure sensor is in free hang. Now, unbias FTS, then press Enter.')
-            writer.writerow([get_time(t0)], screwMotor.read_torque(), screwMotor.read_speed(), encoderMotor.read_speed())
+            writer.writerow([get_time(t0), screwMotor.read_torque(), screwMotor.read_speed(), encoderMotor.read_speed()])
 
             input('Lower screw into medium, then press Enter.')
-            writer.writerow([get_time(t0)], screwMotor.read_torque(), screwMotor.read_speed(), encoderMotor.read_speed())
+            writer.writerow([get_time(t0), screwMotor.read_torque(), screwMotor.read_speed(), encoderMotor.read_speed()])
 
             input('You can now bias the FTS sensor. Press Enter to start testing.')
             t1 = time.time()
 
             if test_type == 'torque':
                 logging.info("Running static test: Preventing encoder motor from backdriving")
-                encoderMotor.torque_ctrl(command_torque)  # Give it a bit of resistance just so it doesn't backdrive
+                encoderMotor.motor_stop()  # Give it a bit of resistance just so it doesn't backdrive
                 screwMotor.speed_ctrl(command_speed)
             elif test_type == "speed":
                 logging.info("Running motion test: No axial load")
-                encoderMotor.torque_ctrl(command_torque)    # Set low for no axial load
+                encoderMotor.torque_ctrl(0)   # Set low for no axial load
                 screwMotor.speed_ctrl(command_speed)
             # EXPERIMENTAL - NOT TESTED
             # elif test_type == "speed w/load":
             #     logging.info("Running motion test: Axial load")
             #     encoderMotor.torque_ctrl(command_torque)    # Apply axial load via encoder motor
             #     screwMotor.speed_ctrl(command_speed)        # Apply torque to screw motor
-                
-            screwMotor.speed_ctrl(command_speed)
 
             while True:
                 row = [get_time(t0), screwMotor.read_torque(), screwMotor.read_speed(), encoderMotor.read_speed()]
