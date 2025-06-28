@@ -74,7 +74,13 @@ def main_test():
             #     screwMotor.speed_ctrl(command_speed)        # Apply torque to screw motor
 
             while True:
-                row = [get_time(t0), screwMotor.read_torque(), screwMotor.read_speed(), encoderMotor.read_speed()]
+                #torque_current, _, _ = screwMotor.read_motor_status()
+                _, voltage, _, _ = screwMotor.read_motor_err_and_voltage()
+                #kv = (screwMotor.read_speed()*(1 / 0.1047)) / voltage
+                #torque = (torque_current * voltage) / screwMotor.read_speed()
+                logging.info(f"Speed: {screwMotor.read_speed():.2f} rad/s, Voltage: {voltage:.2f} V, Torque: {screwMotor.read_torque():.2f} Nm")
+
+                row = [get_time(t0), screwMotor.read_torque, screwMotor.read_speed(), encoderMotor.read_speed()]
                 writer.writerow(row)
                 logging.debug(f"{row}")
 

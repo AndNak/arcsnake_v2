@@ -202,7 +202,7 @@ class CanMotor(object):
         msg = self.send([0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], wait_for_response=True)
 
         # encoder readings are in (high byte, low byte)
-        torque   = self.utils.readBytes(msg.data[3], msg.data[2])
+        torque   = self.utils.readBytes(msg.data[3], msg.data[2]) * 0.1 # 0.28 is the conversion factor from Amps to Nm
         speed    = self.utils.readBytes(msg.data[5], msg.data[4]) / self.gear_ratio
         position = self.utils.readBytes(msg.data[7], msg.data[6]) / self.gear_ratio
         if returnTime:
