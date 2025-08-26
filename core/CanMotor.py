@@ -396,7 +396,7 @@ class CanMotor(object):
         if to_rad < -max_speed:
             to_rad = -max_speed
 
-        to_dps = self.gear_ratio * 100 * self.utils.radToDeg(to_rad)
+        to_dps = self.gear_ratio * self.utils.radToDeg(to_rad) * 100
         byte1, byte2, byte3, byte4 = self.utils.int_to_bytes(int(to_dps), 4)
         msg = self.send([0xa2, 0x00, 0x00, 0x00, byte4, byte3, byte2, byte1], wait_for_response=True)
         return self.utils.degToRad(self.utils.readBytesList([msg.data[5], msg.data[4]])) / self.gear_ratio

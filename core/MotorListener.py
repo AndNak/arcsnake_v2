@@ -30,7 +30,8 @@ class MotorListener(Listener):
 		elif msg.arbitration_id == 4: print()
 		
 		else:
-			print(f"~~~~~Received message from unknown motor: {msg.arbitration_id}~~~~~~~~~")
+			# print(f"~~~~~Received message from unknown motor: {msg.arbitration_id}~~~~~~~~~")
+			i = 10
 
 
 			

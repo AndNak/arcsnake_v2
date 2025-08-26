@@ -12,17 +12,17 @@ from core.CanUJoint import CanUJoint
 
  
 # ~~~ Test Configuration Data ~~~
-terrain = 'concrete' # [water, sand, concrete, gravel] *Could potentially change depending on testing!*
-test_type = 'torque' # [speed, torque]  // Torque when testing statically and locking rail position, speed for dynamic testing and unlocked rail
-pitch = 1 #[ , , , , ]
+terrain = 'water' # [water, sand, concrete, gravel] *Could potentially change depending on testing!*
+test_type = 'speed' # [speed, torque]  // Torque when testing statically and locking rail position, speed for dynamic testing and unlocked rail
 depth = 1 #[ , , , , ]
-num_starts = 1 # Number of starts
+pitch = 5 #, , , , ]
+num_starts = 2 # Number of startss
 test_num = 1 # Trial [1 2 3]
-command_speed = -10.0 #rad/s (1:1 gearbox); neg for forw and pos for back
-command_torque = 2.9  # Holding Torque for Encoder Motor in Torque Test
-run_time = 20 #s
+command_speed = -20 #rad/s (1:1 gearbox); neg for forw and pos for back
+command_torque = -14  # Holding Torque for Encoder Motor in Torque Test
+run_time = 3 #s
 sample_rate = 200 #Hz
-filename = f'tests/Testbed/motor_data_files/motor_{terrain}_tests/{test_type}_test/test{pitch}{depth}{test_num}.csv'
+filename = f'tests/Testbed/motor_data_files/motor_{terrain}_tests/{test_type}_test/test{depth}{pitch}{num_starts}{test_num}.csv'
 
 # ~~~ Basic Logging Setup ~~~
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -80,7 +80,7 @@ def main_test():
                 #kv = (screwMotor.read_speed()*(1 / 0.1047)) / voltage
                 #torque = (torque_current * voltage) / screwMotor.read_speed()
                 logging.info(f"Speed: {screwMotor.read_speed():.2f} rad/s, Voltage: {voltage:.2f} V, Torque: {screwMotor.read_torque():.2f} Nm")
-                row = [get_time(t0), screwMotor.read_torque(), screwMotor.read_speed(), encoderMotor.read_speed()]
+                row = [get_time(t0), screwMotor.read_torque(), screwMotor.read_speed(), 0.05* encoderMotor.read_speed()] #0.05 is the radius of the encoder wheel in meters -> linear velocity derek
                 writer.writerow(row)
                 logging.debug(f"{row}")
 

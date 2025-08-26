@@ -9,6 +9,8 @@ from dataclasses import dataclass
 from typing import Tuple
 from can import ThreadSafeBus
 
+import threading
+
 # Dataclass for storing current motor data, will be updated on receiving new messages
 @dataclass
 class MotorData:
@@ -132,6 +134,7 @@ class CanMotor(object):
 			
 		elif msg.data[0] == 0x9c: # Read motor status (singleturn position, speed, torque)
 			# encoder readings are in (high byte, low byte)
+			#print(f"Raw 0x9c data: {[hex(b) for b in msg.data]}")
 			torque = self.utils.readBytes(msg.data[3], msg.data[2])
 			torque = self.utils.encToAmp(torque)
 			speed = self.utils.readBytes(msg.data[5], msg.data[4]) / self.gear_ratio
@@ -142,9 +145,9 @@ class CanMotor(object):
 			self.motor_data.singleturn_position = position
 			self.motor_data.speed = speed
 			self.motor_data.torque = torque
-			self.motor_data.last_update = (hex(0x9c), msg.timestamp)
+			self.motor_data.last_update = (0x9c, msg.timestamp)
 
-			# print("Singleturn position = ", position, ", speed = ", speed, ", torque = ", torque)
+			#print("Singleturn position = ", position, ", speed = ", speed, ", torque = ", torque)
 
 		elif msg.data[0] == 0x92: # Read multi-turn position
 			byte_list = []
@@ -198,6 +201,38 @@ class CanMotor(object):
 		task = self.canBus.send_periodic(msg, period, duration, True, modifier_callback)
 		self.active_tasks.append(task)
 		return task
+	
+	def start_custom_periodic_send(self, data, period=0.1, duration=None, modifier_callback = None):
+		stop_event = threading.Event()
+
+		def send_loop():
+			# print("Thread started")
+			start_time = time.time()
+
+			while not stop_event.is_set():
+				# print("Preparing to send message")
+				msg = can.Message(arbitration_id=self.id, data=data, is_extended_id=False, is_rx=False)
+
+				# Apply modifier callback if provided
+				if modifier_callback is not None:
+					# print("Calling modifier callback")
+					msg = modifier_callback(msg)
+					# print("Raw Message Data:", [hex(b) for b in msg.data])
+
+				self.canBus.send(msg)
+				if duration is not None and (time.time() - start_time) >= duration:
+					break
+				time.sleep(period)
+
+		thread = threading.Thread(target=send_loop, daemon=True)
+		thread.start()
+		self.active_tasks.append(stop_event)
+		return stop_event
+
+	def stop_all_custom_periodic(self):
+		for stop_event in self.active_tasks:
+			stop_event.set()
+		self.active_tasks.clear()
 
 	# Stop all active tasks, empty active_tasks list
 	def stop_all_tasks(self):
@@ -273,7 +308,8 @@ class CanMotor(object):
 			task object that can be used to stop periodic send
 		'''
 		msg_data = [0x9a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-		task = self._periodic_send(msg_data, period, duration)
+		task = self.start_custom_periodic_send(msg_data, period, duration)
+		#task = self._periodic_send(msg_data, period, duration)
 		return task
 
 	def read_multiturn_periodic(self, period=0.1, duration=None):
@@ -287,7 +323,8 @@ class CanMotor(object):
 			task object that can be used to stop periodic send
 		'''
 		msg_data = [0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-		task = self._periodic_send(msg_data, period, duration)
+		task = self.start_custom_periodic_send(msg_data, period, duration)
+		#task = self._periodic_send(msg_data, period, duration)
 		return task
 
 	def read_motor_state_periodic(self, period=0.1, duration=None):
@@ -301,7 +338,8 @@ class CanMotor(object):
 			task object that can be used to stop periodic send
 		'''
 		msg_data = [0x9c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-		task = self._periodic_send(msg_data, period, duration)
+		task = self.start_custom_periodic_send(msg_data, period, duration)
+		#task = self._periodic_send(msg_data, period, duration)
 		return task
 
 	def _motor_command_modifier_callback(self, msg):
@@ -316,10 +354,11 @@ class CanMotor(object):
 		Args:
 			msg (can.Message): message to be modified
 		'''
-
+		# print("Modifier callback called for motor command")
 		# Case statement for different command modes
 		if self.motor_data.command_mode == "speed":
 			# Set the data to the speed control command
+			# print("Setting speed control command")
 			target_speed = self.motor_data.target_speed
 
 			# Clip target speed to max speed
@@ -328,8 +367,9 @@ class CanMotor(object):
 			if target_speed < -self.max_speed:
 				target_speed = -self.max_speed
 
-			# Convert target speed to degrees per second and multiply by gear ratio and 100 (for some reason)
-			target_speed = self.utils.radToDeg(target_speed) * self.gear_ratio * 100
+			# Convert target speed to degrees per second and multiply by gear ratio and 100 (for some reason) -worked fine without the multiplication to 100 -derek
+			target_speed = self.utils.radToDeg(target_speed) * self.gear_ratio * 100 # Don't listen to Derek - Syler
+			# CAN protocol expects the speed command in centidegrees per second, so we multiply by 100
 			
 			# Convert to bytes
 			byte1, byte2, byte3, byte4 = self.utils.int_to_bytes(int(target_speed), 4)
@@ -348,10 +388,12 @@ class CanMotor(object):
 				target_position = self.min_pos
 
 			# Convert target position to degrees (and multiply by gear ratio and 100 for some reason)
-			to_deg = 100 * self.utils.radToDeg(target_position) * self.gear_ratio
+			to_deg = 100 * self.utils.radToDeg(target_position) * self.gear_ratio # Multiply by 100 for centidegree conversion
 
 			# limit speed, choosing safe value of 10 deg/s
-			max_speed =  10 * self.gear_ratio
+			#max_speed =  100 * self.gear_ratio Might have to tune max_speed for Voodoo doll implementation
+			max_speed = 999 * 2 * math.pi
+			max_speed = self.utils.radToDeg(max_speed) * self.gear_ratio
 
 			# Convert to bytes
 			s_byte1, s_byte2 = self.utils.int_to_bytes(int(max_speed), 2)
@@ -393,12 +435,14 @@ class CanMotor(object):
 			period (float): period in between each message (seconds)
 			duration (float, optional): duration to send messages for (seconds). Defaults to None (meaning indefinitely)
 		'''
-
+		# print("Initializing motor control command")
 		if self.motor_control_task is not None:
 			raise ValueError("Motor control task already initialized. Please stop it first")
 
 		empty_data = [0, 0, 0, 0, 0, 0, 0, 0]
-		self.motor_control_task = self._periodic_send(empty_data, period, duration, modifier_callback = self._motor_command_modifier_callback)
+		# CHECK WHAT DATA IS BEING SENT AFTER MODIFIER CALLBACK
+		self.motor_control_task = self.start_custom_periodic_send(empty_data, period, duration, modifier_callback = self._motor_command_modifier_callback)
+		#self.motor_control_task = self._periodic_send(empty_data, period, duration, modifier_callback = self._motor_command_modifier_callback)
 
 
 	def set_control_mode(self, mode, target_value):
